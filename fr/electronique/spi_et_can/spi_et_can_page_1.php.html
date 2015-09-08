@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>SPI et CAN&nbsp;: Carte d'adaptation</title>
+<meta name="description" content="Elaboration d'une carte d'adaptation du bus SPI vers le bus CAN&nbsp;: Sch&eacute;mas, typons et codes sources" />
+<meta name="keywords" content="atrylec electronique carte adaptation bus spi can liaison exemple exemples sch&eacute;ma sch&eacute;mas typon typons code codes source sources langage c h programmation keil &umicro;vision 4 mplab microchip mcp2515 mcp2551 stm32 stm32discovery discovery stm32f100rbt6" />
+<link rel="stylesheet" media="screen" type="text/css" title="Style 3" href="../../../elements/allures/style_3.css">
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-42331281-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+<body>
+<div id="page">
+<div id="haut">
+<header id="Haut_de_page">
+<div id="principale">
+<p class="titre_principal_haut">
+<a href="../../../index.php.html"><img style="width: 150px;" alt="Affichage_Atrylec_com" src="../../../images/Affichage_Atrylec_com.png" /><span class="invisible">Atrylec</span></a></p>
+<p class="sous-titre_haut">Vous n'&ecirc;tes pas seuls dans l'Univers !</p>
+</div>
+<div id="additionnelle">
+</div>
+</header>
+<nav>
+<ul id="navigation">
+<li><a href="../../../index.php.html" title="Accueil">Accueil</a></li>
+<li><a class="choisi" href="../index.php.html" title="Electronique">Electronique</a></li>
+<li><a href="../../radio/index.php%3Fnumero=0.html" title="Radio">Radio</a></li>
+<li><a href="../../origami/index.php.html" title="Origami">Origami</a></li>
+<li><a href="../../photographies/index.php%3Fnumero=0.html" title="Photographies">Photographies</a></li>
+<li><a href="../../le_grenier/index.php.html" title="Le grenier">Le grenier</a></li>
+<li><a href="../../contact.php.html" title="ContaCT">ContaCT</a></li>
+</ul>
+</nav>
+</div>
+<section>
+<div id="titre">
+<div id="titre_gauche">
+</div>
+<div id="titre_image">
+<img style="width: 100px; height: 100px;" alt="Transistor_100" src="../../../images/Transistor_100.png">
+</div>
+<div id="titre_texte">
+<p>/&nbsp;</p><h1>SPI et CAN&nbsp;: Carte d'adaptation</h1>
+</div>
+<div id="titre_droite">
+</div>
+</div>
+<div>
+<p id="introduction">Cet article explique comment &eacute;laborer&nbsp;une carte d'adaptation du bus SPI vers le bus CAN, et propose des programmes qui permettent de l'utiliser au sein d'un bus CAN.</p>
+</div>
+<p>
+<a id="Liste_de_depart"></a>
+</p>
+<div>
+<div class="menu_article">
+<ul class="menu_article_principal">
+<li><a href="spi_et_can_page_1.php.html">SPI et CAN&nbsp;: Carte d'adaptation</a></li>
+</ul>
+<ul class="menu_article_secondaire">
+<li><a href="spi_et_can_page_1.php.html#Endroit_1-0-0">1) Pr&eacute;sentations</a></li>
+<li><a href="spi_et_can_page_1.php.html#Endroit_2-0-0">2) Version &laquo;&nbsp;DIL&nbsp;&raquo;</a></li>
+<li>
+<ul>
+<li><a href="spi_et_can_page_1.php.html#Endroit_2-1-0">2-1) Sch&eacute;ma &eacute;lectronique</a></li>
+<li><a href="spi_et_can_page_1.php.html#Endroit_2-2-0">2-2) Typon</a></li>
+</ul>
+</li>
+<li><a href="spi_et_can_page_1.php.html#Endroit_3-0-0">3) Version &laquo;&nbsp;CMS&nbsp;&raquo;</a></li>
+<li>
+<ul>
+<li><a href="spi_et_can_page_1.php.html#Endroit_3-1-0">3-1) Sch&eacute;ma &eacute;lectronique</a></li>
+<li><a href="spi_et_can_page_1.php.html#Endroit_3-2-0">3-2) Typon</a></li>
+</ul>
+</li>
+<li><a href="spi_et_can_page_1.php.html#Endroit_4-0-0">4) Code source</a></li>
+</ul>
+</div>
+</div>
+<div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="spi_et_can_page_1.php.html#Haut_de_page">Je veux remonter !</a>&nbsp;|&nbsp;<a href="spi_et_can_page_1.php.html#Liste_de_depart">Liste</a>
+</div>
+<a id="Endroit_1-0-0"></a>
+<h2>1) Pr&eacute;sentations</h2>
+<p>Cette carte permet de doter d'une liaison CAN tout
+microcontr&ocirc;leur ou FPGA, du moment qu'il est capable de
+communiquer par un bus SPI.<br />
+Elle utilise en effet le composant &laquo;&nbsp;MCP2515&nbsp;&raquo; ,
+fabriqu&eacute; par MICROCHIP, et qui est une passerelle CAN - SPI.<br />
+Un <i>transceiver</i>, de r&eacute;f&eacute;rence
+&laquo;&nbsp;MCP2551
+&raquo; , &eacute;galement fabriqu&eacute; par MICROCHIP,
+compl&egrave;te l'ensemble et permet de se connecter aux lignes
+&laquo;&nbsp;CAN-L&nbsp;&raquo; et &laquo;&nbsp;CAN-H&nbsp;&raquo; du bus
+CAN physique.</p>
+<p><img alt="LIEN_EXTERNE" src="../../../images/LIEN_EXTERNE.png" />&nbsp;<a href="http://ww1.microchip.com/downloads/en/devicedoc/21801d.pdf" title="Ouvrir le lien &laquo;&nbsp;http://ww1.microchip.com/downloads/en/devicedoc/21801d.pdf&nbsp;&raquo; dans une nouvelle fen&ecirc;tre, ou dans un nouvel onglet" target="_blank">La <i>datasheet</i> du composant &laquo;&nbsp;MCP2515&nbsp;&raquo;</a></p>
+<p><img alt="LIEN_EXTERNE" src="../../../images/LIEN_EXTERNE.png" />&nbsp;<a href="http://ww1.microchip.com/downloads/en/DeviceDoc/21667f.pdf" title="Ouvrir le lien &laquo;&nbsp;http://ww1.microchip.com/downloads/en/DeviceDoc/21667f.pdf&nbsp;&raquo; dans une nouvelle fen&ecirc;tre, ou dans un nouvel onglet" target="_blank">La <i>datasheet</i> du composant &laquo;&nbsp;MCP2551&nbsp;&raquo;</a></p>
+<p>Caract&eacute;ristiques de la carte d'adaptation du bus &laquo;
+SPI&nbsp;&raquo; vers le bus &laquo;
+CAN&nbsp;&raquo; , qui reprennent celles des composants &laquo;
+MCP2515&nbsp;&raquo; et &laquo;&nbsp;MCP2551
+&raquo;&nbsp;:</p>
+<ul>
+<li>Possibilit&eacute; de connecter jusqu'&agrave; 112 n&oelig;uds&nbsp;;</li>
+<li>Fonctionne pour des tensions d'alimentation allant de 2,7 Volt &agrave; 5,5 Volt&nbsp;;</li>
+<li>Prend en charge la norme &laquo;&nbsp;CAN V2.0B&nbsp;&raquo;&nbsp;;</li>
+<li>Prend en charge les modes &laquo;&nbsp;Standard&nbsp;&raquo; et &laquo;&nbsp;Etendu&nbsp;&raquo;&nbsp;;</li>
+<li>Communique avec une liaison SPI pouvant atteindre une fr&eacute;quence de 10 MHz&nbsp;;</li>
+<li>2 tampons de r&eacute;ceptions&nbsp;;</li>
+<li>6 filtres de longueur 29 bits&nbsp;;</li>
+<li>2 masques de longueur 29 bits&nbsp;;</li>
+<li>Possibilit&eacute; d'envoyer jusqu'&agrave; 3 trammes pr&eacute;d&eacute;finies diff&eacute;rentes, suite &agrave; l'envoi d'un front descendant sur une broche parmi 3&nbsp;;</li>
+<li>Possibilit&eacute; de transmettre au microcontr&ocirc;leur ou au FPGA qui g&egrave;re le montage, jusqu'&agrave; 3 signaux d'interruptions diff&eacute;rents, lors de la r&eacute;ception d'une tramme poss&eacute;dant un identifiant non filtr&eacute;&nbsp;;</li>
+<li>Sortie sur un connecteur de type &laquo;&nbsp;MICROMATCH&nbsp;&raquo;&nbsp;;</li>
+<li>Sortie sur un connecteur de type &laquo;&nbsp;Bornier &agrave; visser&nbsp;&raquo;&nbsp;;</li>
+<li>Mise en place d'une r&eacute;sistance de terminaison de 120 Ohm selon la position d'un cavalier.</li>
+</ul>
+<p>Une premi&egrave;re version de cette carte d'adaptation utilise des cicuits int&eacute;gr&eacute;s en bo&icirc;tier &laquo;&nbsp;DIL&nbsp;&raquo; et donne acc&egrave;s &agrave; toutes les broches utiles de ces derniers.</p>
+<p>Une deuxi&egrave;me version, plus minimaliste mais aussi de dimensions plus r&eacute;duites, utilise des circuits int&eacute;gr&eacute;s en bo&icirc;tier &laquo;&nbsp;CMS&nbsp;&raquo; et donne acc&egrave;s &agrave; l'essentiel des broches qui permettent d'obtenir le fonctionnement souhait&eacute; de carte d'adaptation du bus &laquo;&nbsp;SPI &raquo; vers le bus &laquo;&nbsp;CAN&nbsp;&raquo;.</p>
+<p>Au niveau des codes sources, une premi&egrave;re version utilise un microcontr&ocirc;leur STM32F100RB.</p>
+<p>Une deuxi&egrave;me version utilise un PIC18F4550.</p>
+<div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="spi_et_can_page_1.php.html#Haut_de_page">Je veux remonter !</a>&nbsp;|&nbsp;<a href="spi_et_can_page_1.php.html#Liste_de_depart">Liste</a>
+</div>
+<a id="Endroit_2-0-0"></a>
+<h2>2) Version &laquo;&nbsp;DIL&nbsp;&raquo;</h2>
+<figure>
+<table border="0" cellpadding="2" cellspacing="1">
+<tbody>
+<tr>
+<td>
+<a href="../../../images/CARTE_SPI_CAN_1_face_avant_a_plat.jpg">
+<img alt="CARTE_SPI_CAN_1_face_avant_a_plat" src="../../../images/CARTE_SPI_CAN_1_face_avant_a_plat_Petite.jpg">
+</a>
+</td>
+<td>
+<a href="../../../images/CARTE_SPI_CAN_1_face_arriere_a_plat.jpg">
+<img alt="CARTE_SPI_CAN_1_face_arriere_a_plat" src="../../../images/CARTE_SPI_CAN_1_face_arriere_a_plat_Petite.jpg">
+</a>
+</td>
+<td>
+<a href="../../../images/CARTE_SPI_CAN_1_face_avant_detail_circuit_integre/0.jpg.html">
+<img alt="CARTE_SPI_CAN_1_face_avant_detail_circuit_integre" src="../../../images/CARTE_SPI_CAN_1_face_avant_detail_circuit_integre_Petite.jpg">
+</a>
+</td>
+</tr>
+</tbody>
+</table>
+<figcaption>La carte &laquo;&nbsp;SPI et CAN&nbsp;&raquo;, en version &laquo;&nbsp;DIL&nbsp;&raquo;, sous toutes les coutures</figcaption>
+</figure>
+<a id="Endroit_2-1-0"></a>
+<h3>2-1) Sch&eacute;ma &eacute;lectronique</h3>
+<figure>
+<a href="../../../images/SCHEMA_SPI_ET_CAN_1.png">
+<img alt="SCHEMA_SPI_ET_CAN_1" src="../../../images/SCHEMA_SPI_ET_CAN_1_Petite.png">
+</a>
+<figcaption>Sch&eacute;ma de la carte d'adaptation SPI vers CAN, version &laquo;&nbsp;DIL&nbsp;&raquo;</figcaption>
+</figure>
+<a id="Endroit_2-2-0"></a>
+<h3>2-2) Typon</h3>
+<figure>
+<a href="../../../images/TYPON_SPI_ET_CAN_1.png">
+<img alt="TYPON_SPI_ET_CAN_1" src="../../../images/TYPON_SPI_ET_CAN_1_Petite.png">
+</a>
+<figcaption>Typon de la carte d'adaptation SPI vers CAN, version &laquo;&nbsp;DIL&nbsp;&raquo;</figcaption>
+</figure>
+<div class="valorisations">
+<div class="programmes">
+<div class="programmes_gauche">
+<img style="width: 32px; height: 32px;" alt="fleche-bas-telecharger-icone-9594-32" src="../../../images/fleche-bas-telecharger-icone-9594-32.png">
+</div>
+<div class="programmes_droite">
+<p>Sch&eacute;ma &eacute;lectronique et typon de la carte d'adaptation SPI vers CAN, version &laquo;&nbsp;DIL&nbsp;&raquo;<br />
+Logiciel de dessin&nbsp;: EAGLE 6.2.0<br />
+<a href="../../../elements/allures/valorisations/programmes.php%3Fprogramme=spi_et_can_page_1+1+1">T&eacute;l&eacute;charger le fichier<span>Effectuez un clic droit, puis s&eacute;lectionnez l'option &laquo;&nbsp;Enregistrer la cible du lien sous...&nbsp;&raquo;, pour t&eacute;l&eacute;charger le fichier</span></a> (86.97 Ko)</p></div>
+</div>
+</div>
+<div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="spi_et_can_page_1.php.html#Haut_de_page">Je veux remonter !</a>&nbsp;|&nbsp;<a href="spi_et_can_page_1.php.html#Liste_de_depart">Liste</a>
+</div>
+<a id="Endroit_3-0-0"></a>
+<h2>3) Version &laquo;&nbsp;CMS&nbsp;&raquo;</h2>
+<a id="Endroit_3-1-0"></a>
+<h3>3-1) Sch&eacute;ma &eacute;lectronique</h3>
+<figure>
+<a href="../../../images/SCHEMA_SPI_ET_CAN_2.png">
+<img alt="SCHEMA_SPI_ET_CAN_2" src="../../../images/SCHEMA_SPI_ET_CAN_2_Petite.png">
+</a>
+<figcaption>Sch&eacute;ma de la carte d'adaptation SPI vers CAN, version &laquo;&nbsp;CMS&nbsp;&raquo;</figcaption>
+</figure>
+<a id="Endroit_3-2-0"></a>
+<h3>3-2) Typon</h3>
+<figure>
+<a href="../../../images/TYPON_SPI_ET_CAN_2.png">
+<img alt="TYPON_SPI_ET_CAN_2" src="../../../images/TYPON_SPI_ET_CAN_2_Petite.png">
+</a>
+<figcaption>Typon de la carte d'adaptation SPI vers CAN, version &laquo;&nbsp;CMS&nbsp;&raquo;</figcaption>
+</figure>
+<div class="valorisations">
+<div class="programmes">
+<div class="programmes_gauche">
+<img style="width: 32px; height: 32px;" alt="fleche-bas-telecharger-icone-9594-32" src="../../../images/fleche-bas-telecharger-icone-9594-32.png">
+</div>
+<div class="programmes_droite">
+<p>Sch&eacute;ma &eacute;lectronique et typon de la carte d'adaptation SPI vers CAN, version &laquo;&nbsp;CMS&nbsp;&raquo;<br />
+Logiciel de dessin&nbsp;: EAGLE 6.2.0<br />
+<a href="../../../elements/allures/valorisations/programmes.php%3Fprogramme=spi_et_can_page_1+2+1">T&eacute;l&eacute;charger le fichier<span>Effectuez un clic droit, puis s&eacute;lectionnez l'option &laquo;&nbsp;Enregistrer la cible du lien sous...&nbsp;&raquo;, pour t&eacute;l&eacute;charger le fichier</span></a> (54.62 Ko)</p></div>
+</div>
+</div>
+<div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="spi_et_can_page_1.php.html#Haut_de_page">Je veux remonter !</a>&nbsp;|&nbsp;<a href="spi_et_can_page_1.php.html#Liste_de_depart">Liste</a>
+</div>
+<a id="Endroit_4-0-0"></a>
+<h2>4) Code source</h2>
+<p>Les programmes ont &eacute;t&eacute; &eacute;crits pour fonctionner sur deux microcontr&ocirc;leurs.
+La premi&egrave;re version utilise un STM32F100RB, pr&eacute;sent sur une carte de type &laquo;&nbsp;STM32DISCOVERY&nbsp;&raquo;.<br />
+Pour obtenir plus d'informations &agrave; propos de la programmation de ces cartes de d&eacute;veloppement, ouvrez <a href="../stm32discovery/stm32discovery_page_1.php.html" title="Ouvrir le lien &laquo;&nbsp;http://www.atrylec.com/fr/electronique/stm32discovery/stm32discovery_page_1.php&nbsp;&raquo;" >ce lien</a>.</p>
+La deuxi&egrave;me version utilise un PIC18F4550.<br />
+Pour obtenir plus d'informations &agrave; propos de la programmation des PIC18F, ouvrez <a href="../la_programmation_des_pic18f/la_programmation_des_pic18f_page_1.php.html" title="Ouvrir le lien &laquo;&nbsp;http://www.atrylec.com/fr/electronique/la_programmation_des_pic18f/la_programmation_des_pic18f_page_1.php&nbsp;&raquo;" >ce lien</a>.</p>
+<p>Correspondances entre les broches de la carte &laquo;&nbsp;STM32DISCOVERY&nbsp;&raquo; et de la carte &laquo;&nbsp;SPI et CAN&nbsp;&raquo;&nbsp;:</p>
+<table border="1" cellpadding="2" cellspacing="2">
+<tbody>
+<tr>
+<th>Carte &laquo;&nbsp;STM32DISCOVERY&nbsp;&raquo;</th>
+<td>+5V</td>
+<td>GND</td>
+<td>PA0</td>
+<td>PA5</td>
+<td>PA6</td>
+<td>PA7</td>
+</tr>
+<tr>
+<th>Carte &laquo;&nbsp;SPI et CAN&nbsp;&raquo;</th>
+<td>+5V</td>
+<td>GND</td>
+<td>~CSMCP2515</td>
+<td>SCLK_MCP2515</td>
+<td>MISO_MCP25115</td>
+<td>MOSI_MCP2515</td>
+</tr>
+</tbody>
+</table>
+<p>Correspondances entre les broches du PIC18F4550 et de la carte &laquo;&nbsp;SPI et CAN&nbsp;&raquo;&nbsp;:</p>
+<table border="1" cellpadding="2" cellspacing="2">
+<tbody>
+<tr>
+<th>Microcontr&ocirc;leur PIC18F4550</th>
+<td>VDD</td>
+<td>VSS</td>
+<td>RA0</td>
+<td>RB1</td>
+<td>RB0</td>
+<td>RC7</td>
+</tr>
+<tr>
+<th>Carte &laquo;&nbsp;SPI et CAN&nbsp;&raquo;</th>
+<td>+5V</td>
+<td>GND</td>
+<td>~CSMCP2515</td>
+<td>SCLK_MCP2515</td>
+<td>MISO_MCP25115</td>
+<td>MOSI_MCP2515</td>
+</tr>
+</tbody>
+</table>
+<div class="valorisations">
+<div class="programmes">
+<div class="programmes_gauche">
+<img style="width: 32px; height: 32px;" alt="fleche-bas-telecharger-icone-9594-32" src="../../../images/fleche-bas-telecharger-icone-9594-32.png">
+</div>
+<div class="programmes_droite">
+<p>Utiliser une carte d'adaptation du bus SPI vers le bus CAN&nbsp;: Fichiers C et fichiers H<br />
+Cible&nbsp;: STM32F100RB<br />Compilateur&nbsp;: Keil &micro;Vision4<br />
+<a href="../../../elements/allures/valorisations/programmes.php%3Fprogramme=spi_et_can_page_1+3+1">T&eacute;l&eacute;charger le fichier<span>Effectuez un clic droit, puis s&eacute;lectionnez l'option &laquo;&nbsp;Enregistrer la cible du lien sous...&nbsp;&raquo;, pour t&eacute;l&eacute;charger le fichier</span></a> (14.23 Ko)</p></div>
+</div>
+</div>
+<div class="valorisations">
+<div class="programmes">
+<div class="programmes_gauche">
+<img style="width: 32px; height: 32px;" alt="fleche-bas-telecharger-icone-9594-32" src="../../../images/fleche-bas-telecharger-icone-9594-32.png">
+</div>
+<div class="programmes_droite">
+<p>Utiliser une carte d'adaptation du bus SPI&nbsp;&raquo; vers le bus CAN&nbsp;: Fichiers C et fichiers H<br />
+Cible&nbsp;: PIC18F4550<br />Compilateur&nbsp;: MCC18<br />
+<a href="../../../elements/allures/valorisations/programmes.php%3Fprogramme=spi_et_can_page_1+3+2">T&eacute;l&eacute;charger le fichier<span>Effectuez un clic droit, puis s&eacute;lectionnez l'option &laquo;&nbsp;Enregistrer la cible du lien sous...&nbsp;&raquo;, pour t&eacute;l&eacute;charger le fichier</span></a> (52.63 Ko)</p></div>
+</div>
+</div>
+<div>
+<div class="menu_article">
+<ul class="menu_article_principal">
+<li><a href="spi_et_can_page_1.php.html">SPI et CAN&nbsp;: Carte d'adaptation</a></li>
+</ul>
+<ul class="menu_article_secondaire">
+<li><a href="spi_et_can_page_1.php.html#Endroit_1-0-0">1) Pr&eacute;sentations</a></li>
+<li><a href="spi_et_can_page_1.php.html#Endroit_2-0-0">2) Version &laquo;&nbsp;DIL&nbsp;&raquo;</a></li>
+<li>
+<ul>
+<li><a href="spi_et_can_page_1.php.html#Endroit_2-1-0">2-1) Sch&eacute;ma &eacute;lectronique</a></li>
+<li><a href="spi_et_can_page_1.php.html#Endroit_2-2-0">2-2) Typon</a></li>
+</ul>
+</li>
+<li><a href="spi_et_can_page_1.php.html#Endroit_3-0-0">3) Version &laquo;&nbsp;CMS&nbsp;&raquo;</a></li>
+<li>
+<ul>
+<li><a href="spi_et_can_page_1.php.html#Endroit_3-1-0">3-1) Sch&eacute;ma &eacute;lectronique</a></li>
+<li><a href="spi_et_can_page_1.php.html#Endroit_3-2-0">3-2) Typon</a></li>
+</ul>
+</li>
+<li><a href="spi_et_can_page_1.php.html#Endroit_4-0-0">4) Code source</a></li>
+</ul>
+</div>
+</div>
+<div class="commentaires"><a id="Endroits_des_commentaires"></a><p class="sous-titre_commentaires">Commentaires (0)</p><p class="sous-titre_ajouts">Ajouter un commentaire</p>
+<form id="contact" method="post" action="http://atrylec.com/elements/allures/commentaires/verification.php">
+<fieldset>
+<legend>
+Votre pseudo&nbsp;: 
+</legend>
+<p>
+<label for="pseudo">
+Pseudo&nbsp;: 
+</label>
+<input type="text" id="pseudo" name="pseudo" tabindex="1" required="required">
+</p>
+</fieldset>
+<fieldset>
+<legend>
+Votre commentaire&nbsp;: 
+</legend>
+<p>
+<label for="commentaire">
+Commentaire&nbsp;: 
+</label>
+<textarea id="commentaire" name="commentaire" tabindex="2" cols="50" rows="2" required="required">
+</textarea>
+</p>
+</fieldset>
+<div class="bouton_validation_commentaire">
+<input type="submit" name="Poster" value="Poster" />
+</div>
+</form>
+</div><div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="spi_et_can_page_1.php.html#Haut_de_page">Je veux remonter !</a>
+</div>
+</section>
+<footer>
+<div class="liens">
+<ul>
+<li><a href="../../contact.php.html">ContaCT</a></li>
+</ul>
+</div>
+<div id="choix_style">
+<div class="presentation">Ravaler la fa&ccedil;ade&nbsp;:</div>
+<a href="spi_et_can_page_1.php%3Fselection=1.html" title="Style 1"><div class="choix choix_bleu">&nbsp;</div></a><a href="spi_et_can_page_1.php%3Fselection=2.html" title="Style 2"><div class="choix choix_rouge">&nbsp;</div></a><div class="choix choix_orange_choisi">&nbsp;</div></div>
+<div class="remarques">
+<p>Il ne faut pas dire&nbsp;: &laquo;&nbsp;Un ouvrage d'art autrichien
+&nbsp;&raquo;, mais&nbsp;: &laquo;&nbsp;Un pont de Vienne
+&nbsp;&raquo;.</p>
+</div>
+<div class="visites">
+<img style="width: 15px; height: 15px;" alt="6_30" src="../../../images/6_30.png">   <img style="width: 15px; height: 15px;" alt="5_30" src="../../../images/5_30.png">   <img style="width: 15px; height: 15px;" alt="0_30" src="../../../images/0_30.png">   <img style="width: 15px; height: 15px;" alt="9_30" src="../../../images/9_30.png">   <img style="width: 15px; height: 15px;" alt="8_30" src="../../../images/8_30.png">   </div>
+</footer>
+</div>
+</body>
+</html>

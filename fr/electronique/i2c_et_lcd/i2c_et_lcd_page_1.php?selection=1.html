@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>I2C, LCD&nbsp;: Comment piloter un afficheur graphique alphanum&eacute;rique ?</title>
+<meta name="description" content="I2C, LCD&nbsp;: Sch&eacute;mas et codes sources pour piloter un afficheur graphique alphanum&eacute;rique &agrave; l'aide de circuits int&eacute;gr&eacute;s de type &laquo;&nbsp;PCF8574&nbsp;&raquo; et d'un microcontr&ocirc;leur." />
+<meta name="keywords" content="atrylec electronique i2c lcd pcf8574 mcp23016 pic18f4550 pic 18f4550 realisation realisations schema schemas typon typons code source montage montages langage c adaptation afficheur graphique alphanumerique bus microcontroleur expanseur expanseurs port ports entrees sorties programmation" />
+<link rel="stylesheet" media="screen" type="text/css" title="Style 1" href="../../../elements/allures/style_1.css">
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-42331281-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+<body>
+<div id="page">
+<div id="haut">
+<header id="Haut_de_page">
+<div id="principale">
+<p class="titre_principal_haut">
+<a href="../../../index.php.html"><img style="width: 150px;" alt="Affichage_Atrylec_com" src="../../../images/Affichage_Atrylec_com.png" /><span class="invisible">Atrylec</span></a></p>
+<p class="sous-titre_haut">Vous n'&ecirc;tes pas seuls dans l'Univers !</p>
+</div>
+<div id="additionnelle">
+</div>
+</header>
+<nav>
+<ul id="navigation">
+<li><a href="../../../index.php.html" title="Accueil">Accueil</a></li>
+<li><a class="choisi" href="../index.php.html" title="Electronique">Electronique</a></li>
+<li><a href="../../radio/index.php%3Fnumero=0.html" title="Radio">Radio</a></li>
+<li><a href="../../origami/index.php.html" title="Origami">Origami</a></li>
+<li><a href="../../photographies/index.php%3Fnumero=0.html" title="Photographies">Photographies</a></li>
+<li><a href="../../le_grenier/index.php.html" title="Le grenier">Le grenier</a></li>
+<li><a href="../../contact.php.html" title="ContaCT">ContaCT</a></li>
+</ul>
+</nav>
+</div>
+<section>
+<div id="titre">
+<div id="titre_gauche">
+</div>
+<div id="titre_image">
+<img style="width: 100px; height: 100px;" alt="Transistor_100" src="../../../images/Transistor_100.png">
+</div>
+<div id="titre_texte">
+<p>[</p><h1>I2C, LCD&nbsp;: Piloter un afficheur</h1><p>]</p>
+</div>
+<div id="titre_droite">
+</div>
+</div>
+<div>
+<p id="introduction">Cet article montre comment il est possible de piloter un afficheur LCD graphique alphanum&eacute;rique &agrave; commande parall&egrave;le, gr&acirc;ce &agrave; un bus I2C.<br />
+Il est question, pour cette premi&egrave;re partie, d'utiliser un, ou plusieurs circuits int&eacute;gr&eacute;s de type &laquo;&nbsp;PCF8574&nbsp;&raquo;.</p>
+</div>
+<div class="video">
+<div class="video-gauche">
+<p>Ce type d'afficheur peut &ecirc;tre directement reli&eacute; &agrave; un microcontr&ocirc;leur, or, dans ce cas, il n&eacute;cessite la mise en oeuvre de 11 entr&eacute;es/sorties.<br />
+Gr&acirc;ce &agrave; l'utilisation de circuits int&eacute;gr&eacute;s sp&eacute;cifiques, appel&eacute;e &laquo;&nbsp;Expanseurs de ports pour bus I2C&nbsp;&raquo; <i>( &laquo;&nbsp;Remote I/O expander for I2C-bus&nbsp;&raquo; )</i>, les montages propos&eacute;s ici permettent de commander le m&ecirc;me afficheur en ne r&eacute;clamant que deux ports d'entr&eacute;es/sorties d'un microcontr&ocirc;leur, sur lequel le contr&ocirc;le d'un bus I2C est possible.<br />
+Ceci permet de relier un afficheur graphique alphanum&eacute;rique, situ&eacute; en fa&ccedil;ade d'un appareil tel qu'un <a href="../realisations/le_boitier_a_code_confidentiel.php.html" title="Ouvrir le lien &laquo;&nbsp;http://www.atrylec.com/fr/electronique/realisations/le_boitier_a_code_confidentiel.php&nbsp;&raquo;" >bo&icirc;tier &agrave; code confidentiel</a>, par exemple, &agrave; son circuit de commande, plac&eacute; dans un autre endroit de l'appareil, avec seulement 4 fils.<br />
+Les deux montages propos&eacute;s ici permettent &eacute;galement de piloter 5 LED, plac&eacute;es au m&ecirc;me endroit que l'afficheur LCD graphique alphanum&eacute;rique.</p>
+<p></p>
+</div>
+<div class="video-droite">
+<figure>
+<iframe src="http://www.dailymotion.com/embed/video/xn9bkr" frameborder="0" height="270" width="480"></iframe>
+<p><img alt="LIEN_EXTERNE" src="../../../images/LIEN_EXTERNE.png" />&nbsp;<a href="http://www.dailymotion.com/video/xn9bkr_i2c-et-lcd_tech" title="Ouvrir le lien &laquo;&nbsp;http://www.dailymotion.com/video/xn9bkr_i2c-et-lcd_tech&nbsp;&raquo; dans une nouvelle fen&ecirc;tre, ou dans un nouvel onglet" target="_blank">I2C et LCD</a></p>
+<figcaption>La vid&eacute;o de d&eacute;monstration du montage</figcaption></figure>
+</div>
+</div>
+<p>
+<a id="Liste_de_depart"></a>
+</p>
+<div>
+<div class="menu_article">
+<ul class="menu_article_principal">
+<li><a href="i2c_et_lcd_page_1.php.html">I2C, LCD&nbsp;: Comment piloter un afficheur graphique ?</a></li>
+<li><ul>
+<li><a class="choisi" href="i2c_et_lcd_page_1.php.html">Utilisation des PCF8574</a></li>
+<li><a href="i2c_et_lcd_page_2.php.html">Utilisation des MCP23016 et des MCP23017</a></li>
+</ul></li>
+</ul>
+<ul class="menu_article_secondaire">
+<li><a href="i2c_et_lcd_page_1.php%3Fselection=1.html#Endroit_1-0-0">1) Pr&eacute;sentation</a></li>
+<li><a href="i2c_et_lcd_page_1.php%3Fselection=1.html#Endroit_2-0-0">2) Montages utilisant le PCF8574</a></li>
+<li>
+<ul>
+<li><a href="i2c_et_lcd_page_1.php%3Fselection=1.html#Endroit_2-1-0">2-1) Avec un PCF8574</a></li>
+<li>
+<ul>
+<li><a href="i2c_et_lcd_page_1.php%3Fselection=1.html#Endroit_2-1-1">2-1-1) Vues d'ensembles</a></li>
+<li><a href="i2c_et_lcd_page_1.php%3Fselection=1.html#Endroit_2-1-2">2-1-2) Sch&eacute;ma</a></li>
+<li><a href="i2c_et_lcd_page_1.php%3Fselection=1.html#Endroit_2-1-3">2-1-3) Typon</a></li>
+<li><a href="i2c_et_lcd_page_1.php%3Fselection=1.html#Endroit_2-1-4">2-1-4) Codes sources</a></li>
+</ul>
+</li>
+<li><a href="i2c_et_lcd_page_1.php%3Fselection=1.html#Endroit_2-2-0">2-2) Avec deux PCF8574</a></li>
+<li>
+<ul>
+<li><a href="i2c_et_lcd_page_1.php%3Fselection=1.html#Endroit_2-2-1">2-2-1) Vues d'ensembles</a></li>
+<li><a href="i2c_et_lcd_page_1.php%3Fselection=1.html#Endroit_2-2-2">2-2-2) Sch&eacute;ma</a></li>
+<li><a href="i2c_et_lcd_page_1.php%3Fselection=1.html#Endroit_2-2-3">2-2-3) Codes sources</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="i2c_et_lcd_page_1.php%3Fselection=1.html#Haut_de_page">Je veux remonter !</a>&nbsp;|&nbsp;<a href="i2c_et_lcd_page_1.php%3Fselection=1.html#Liste_de_depart">Liste</a>
+</div>
+<a id="Endroit_1-0-0"></a>
+<h2>1) Pr&eacute;sentation</h2>
+<p>Dans cet article, quatre montages sont propos&eacute;s, ils utilisent un microcontr&ocirc;leur PIC18F4550 et un STM32F100RB.</p>
+<p>Le premier montage utilise l'afficheur en mode &laquo;&nbsp;4 bits&nbsp;&raquo;.<br />
+Les trois autres montages utilisent l'afficheur en mode &laquo;&nbsp;8 bits&nbsp;&raquo;.<br />
+Ils se distinguent par l'utilisation de diff&eacute;rents expanseurs de ports pour bus I2C.</p>
+<p>Le premier montage fait appel &agrave; un circuit int&eacute;gr&eacute; PCF8574, le deuxi&egrave;me utilise deux circuits int&eacute;gr&eacute;s PCF8574, le troisi&egrave;me utilise un composant MCP23016 et le quatri&egrave;me utilise un composant MCP23017.<br />
+Si vous souhaitez r&eacute;aliser ce montage pour une application particuli&egrave;re, le tableau suivant devrait vous aider &agrave; choisir&nbsp;votre ou vos expanseurs de ports pour bus I2C, dont d&eacute;pend la programmation du microcontr&ocirc;leur qui doit g&eacute;rer l'ensemble.</p>
+<table border="1" cellpadding="2" cellspacing="2">
+<tbody>
+<tr>
+<th>R&eacute;f&eacute;rence du circuit int&eacute;gr&eacute;</th>
+<th>PCF8574</th>
+<th>PCF8574A</th>
+<th>PCF8575</th>
+<th>MCP23016</th>
+<th>MCP23017</th>
+</tr>
+<tr>
+<td>Nombre de&nbsp;circuits int&eacute;gr&eacute;s n&eacute;cessaires pour l'application envisag&eacute;e</td>
+<td>
+2<br />
+(1 seul si l'afficheur est utilis&eacute; en mode &laquo;&nbsp;4 bits&nbsp;&raquo; )
+</td>
+<td>
+2<br />
+(1 seul si l'afficheur est utilis&eacute; en mode &laquo;&nbsp;4 bits&nbsp;&raquo; )
+</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Nombre de broches</td>
+<td>16</td>
+<td>16</td>
+<td>24</td>
+<td>28</td>
+<td>28</td>
+</tr>
+<tr>
+<td>Fr&eacute;quence maximale de fonctionnement</td>
+<td>100 kHz</td>
+<td>100 kHz</td>
+<td>400 kHz</td>
+<td>400 kHz</td>
+<td>1,7 MHz</td>
+</tr>
+<tr>
+<td>Composants externes n&eacute;cessaires</td>
+<td>Aucun</td>
+<td>Aucun</td>
+<td>Aucun</td>
+<td>
+<ul>
+<li>1 r&eacute;sistance</li>
+<li>1 condensateur</li>
+</ul>
+</td>
+<td>Aucun</td>
+</tr>
+<tr>
+<td>Nombre de sorties d'interruption</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Gamme d'adresses possibles sur le bus I2C</td>
+<td>0x40 - 0x4F</td>
+<td>0x70 - 0x7F</td>
+<td>0x40 - 0x4F</td>
+<td>0x40 - 0x4F</td>
+<td>0x40 - 0x4F</td>
+</tr>
+<tr>
+<td>Nombre d'adresses possibles sur le bus I2C</td>
+<td>8</td>
+<td>8</td>
+<td>8</td>
+<td>8</td>
+<td>8</td>
+</tr>
+</tbody>
+</table>
+<p></p>
+<ul>
+<li><img alt="LIEN_EXTERNE" src="../../../images/LIEN_EXTERNE.png" />&nbsp;<a href="http://ww1.microchip.com/downloads/en/DeviceDoc/39632e.pdf" title="Ouvrir le lien &laquo;&nbsp;http://ww1.microchip.com/downloads/en/DeviceDoc/39632e.pdf&nbsp;&raquo; dans une nouvelle fen&ecirc;tre, ou dans un nouvel onglet" target="_blank">La <i>datasheet</i> du PIC18F2455, du PIC18F2550, du PIC18F4455 et du PIC18F4550</a>,</li>
+<li><img alt="LIEN_EXTERNE" src="../../../images/LIEN_EXTERNE.png" />&nbsp;<a href="http://www.st.com/internet/com/TECHNICAL_RESOURCES/TECHNICAL_LITERATURE/REFERENCE_MANUAL/CD00246267.pdf" title="Ouvrir le lien &laquo;&nbsp;http://www.st.com/internet/com/TECHNICAL_RESOURCES/TECHNICAL_LITERATURE/REFERENCE_MANUAL/CD00246267.pdf&nbsp;&raquo; dans une nouvelle fen&ecirc;tre, ou dans un nouvel onglet" target="_blank">La <i>datasheet</i> du microcontr&ocirc;leur STM32F100RB</a>.</li>
+</ul>
+<ul>
+<li><img alt="LIEN_EXTERNE" src="../../../images/LIEN_EXTERNE.png" />&nbsp;<a href="http://www.st.com/internet/com/TECHNICAL_RESOURCES/TECHNICAL_LITERATURE/USER_MANUAL/CD00267113.pdf" title="Ouvrir le lien &laquo;&nbsp;http://www.st.com/internet/com/TECHNICAL_RESOURCES/TECHNICAL_LITERATURE/USER_MANUAL/CD00267113.pdf&nbsp;&raquo; dans une nouvelle fen&ecirc;tre, ou dans un nouvel onglet" target="_blank">La notice de la carte &laquo;&nbsp;STM32VLDISCOVERY&nbsp;&raquo;</a>.</li>
+</ul>
+<ul>
+<li><img alt="LIEN_EXTERNE" src="../../../images/LIEN_EXTERNE.png" />&nbsp;<a href="http://www.nxp.com/documents/data_sheet/PCF8574.pdf" title="Ouvrir le lien &laquo;&nbsp;http://www.nxp.com/documents/data_sheet/PCF8574.pdf&nbsp;&raquo; dans une nouvelle fen&ecirc;tre, ou dans un nouvel onglet" target="_blank">La <i>datasheet</i> du PCF8574 et du PCF8574A</a>,</li>
+<li><img alt="LIEN_EXTERNE" src="../../../images/LIEN_EXTERNE.png" />&nbsp;<a href="http://www.nxp.com/documents/data_sheet/PCF8575.pdf" title="Ouvrir le lien &laquo;&nbsp;http://www.nxp.com/documents/data_sheet/PCF8575.pdf&nbsp;&raquo; dans une nouvelle fen&ecirc;tre, ou dans un nouvel onglet" target="_blank">La <i>datasheet</i> du PCF8575</a><a href="i2c_et_lcd_page_1.php%3Fselection=1.html"></a></li>
+<li><img alt="LIEN_EXTERNE" src="../../../images/LIEN_EXTERNE.png" />&nbsp;<a href="http://ww1.microchip.com/downloads/en/DeviceDoc/20090C.pdf" title="Ouvrir le lien &laquo;&nbsp;http://ww1.microchip.com/downloads/en/DeviceDoc/20090C.pdf&nbsp;&raquo; dans une nouvelle fen&ecirc;tre, ou dans un nouvel onglet" target="_blank">La <i>datasheet</i> du MCP23016</a>,</li>
+<li><img alt="LIEN_EXTERNE" src="../../../images/LIEN_EXTERNE.png" />&nbsp;<a href="http://ww1.microchip.com/downloads/en/DeviceDoc/21952b.pdf" title="Ouvrir le lien &laquo;&nbsp;http://ww1.microchip.com/downloads/en/DeviceDoc/21952b.pdf&nbsp;&raquo; dans une nouvelle fen&ecirc;tre, ou dans un nouvel onglet" target="_blank">La <i>datasheet</i> du MCP23017 et du MCP23S17</a>.</li>
+</ul>
+<div class="valorisations">
+<div class="informations">
+<div class="informations-gauche">
+<img style="width: 32px; height: 32px;" alt="documentaires-des-proprietes-icone-5224-32" src="../../../images/documentaires-des-proprietes-icone-5224-32.png">
+</div>
+<div class="informations-droite">
+<p>Remarque&nbsp;: La ou les sorties d'interruption des&nbsp;expanseurs de ports pour bus I2C ne sera ou ne seront pas utilis&eacute;es dans
+les exemples pr&eacute;sent&eacute;s dans cet article.<br />
+Ces sorties permettent d'informer le microcontr&ocirc;leur qu'une ou plusieurs broches de l'expanseur de ports pour bus I2C a chang&eacute; d'&eacute;tat logique, depuis la derni&egrave;re lecture de l'&eacute;tat de ses broches.<br />
+Vous pouvez la ou les utiliser si vous souhaitez doter votre afficheur de boutons-poussoirs pour le syst&egrave;me que vous souhaitez d&eacute;velopper.</p></div>
+</div>
+</div>
+<div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="i2c_et_lcd_page_1.php%3Fselection=1.html#Haut_de_page">Je veux remonter !</a>&nbsp;|&nbsp;<a href="i2c_et_lcd_page_1.php%3Fselection=1.html#Liste_de_depart">Liste</a>
+</div>
+<a id="Endroit_2-0-0"></a>
+<h2>2) Montages utilisant le PCF8574</h2>
+<a id="Endroit_2-1-0"></a>
+<h3>2-1) Avec un PCF8574</h3>
+<a id="Endroit_2-1-1"></a>
+<h4>2-1-1) Vues d'ensembles</h4>
+<p>Le bon fonctionnement de ce premier montage montage a &eacute;t&eacute; v&eacute;rifi&eacute; d'une part avec un microcontr&ocirc;leur PIC18F4550, et d'autre part avec un STM32F100RB.</p>
+<p></p>
+<figure>
+<a href="../../../images/MONTAGE_1_-_PCF8574_PIC18F4550_2.jpg">
+<img alt="MONTAGE_1_-_PCF8574_PIC18F4550_2" src="../../../images/MONTAGE_1_-_PCF8574_PIC18F4550_2_Petite.jpg">
+</a>
+<table border="0" cellpadding="2" cellspacing="1">
+<tbody>
+<tr>
+<td>
+<a href="../../../images/MONTAGE_1_-_PCF8574_PIC18F4550_1.jpg">
+<img alt="MONTAGE_1_-_PCF8574_PIC18F4550_1" src="../../../images/MONTAGE_1_-_PCF8574_PIC18F4550_1_Petite.jpg">
+</a>
+</td>
+<td>
+<a href="../../../images/MONTAGE_1_-_PCF8574_PIC18F4550_3.jpg">
+<img alt="MONTAGE_1_-_PCF8574_PIC18F4550_3" src="../../../images/MONTAGE_1_-_PCF8574_PIC18F4550_3_Petite.jpg">
+</a>
+</td>
+</tr>
+</tbody>
+</table>
+<figcaption>Fromage ?</figcaption>
+</figure>
+<p></p>
+<figure>
+<a href="../../../images/MONTAGE_2_-_PCF8574_STM32F100RB_2.jpg">
+<img alt="MONTAGE_2_-_PCF8574_STM32F100RB_2" src="../../../images/MONTAGE_2_-_PCF8574_STM32F100RB_2_Petite.jpg">
+</a>
+<table border="0" cellpadding="2" cellspacing="1">
+<tbody>
+<tr>
+<td>
+<a href="../../../images/MONTAGE_2_-_PCF8574_STM32F100RB_1.jpg">
+<img alt="MONTAGE_2_-_PCF8574_STM32F100RB_1" src="../../../images/MONTAGE_2_-_PCF8574_STM32F100RB_1_Petite.jpg">
+</a>
+</td>
+<td>
+<a href="../../../images/MONTAGE_2_-_PCF8574_STM32F100RB_3.jpg">
+<img alt="MONTAGE_2_-_PCF8574_STM32F100RB_3" src="../../../images/MONTAGE_2_-_PCF8574_STM32F100RB_3_Petite.jpg">
+</a>
+</td>
+</tr>
+</tbody>
+</table>
+<figcaption>Ou dessert ?</figcaption>
+</figure>
+<p>Les connexions entre l'expanseur de ports pour bus I2C, l'afficheur LCD graphique alphanum&eacute;rique et la commande du r&eacute;tro&eacute;clairage &eacute;ventuel sont indiqu&eacute;es dans le tableau pr&eacute;sent&eacute; ci-apr&egrave;s&nbsp:</p>
+<table border="1" cellpadding="2" cellspacing="2">
+<tbody>
+<tr>
+<th>Afficheur LCD et commande du r&eacute;tro&eacute;clairage &eacute;ventuel</th>
+<td>D4</td>
+<td>D5</td>
+<td>D6</td>
+<td>D7</td>
+<td>E</td>
+<td>RW</td>
+<td>RS</td>
+<td>COMMANDE DU RETROECLAIRAGE EVENTUEL</td>
+</tr>
+<tr>
+<th>PCF8574</th>
+<td>P0</td>
+<td>P1</td>
+<td>P2</td>
+<td>P3</td>
+<td>P4</td>
+<td>P5</td>
+<td>P6</td>
+<td>P7</td>
+</tr>
+</tbody>
+</table>
+<p></p>
+<a id="Endroit_2-1-2"></a>
+<h4>2-1-2) Sch&eacute;ma</h4>
+<figure>
+<a href="../../../images/SCHEMA_I2C_ET_LCD_1.png">
+<img alt="SCHEMA_I2C_ET_LCD_1" src="../../../images/SCHEMA_I2C_ET_LCD_1_Petite.png">
+</a>
+<figcaption>Sch&eacute;ma &eacute;lectrique du montage avec un PCF8574</figcaption>
+</figure>
+<p></p>
+<a id="Endroit_2-1-3"></a>
+<h4>2-1-3) Typon</h4>
+<figure>
+<a href="../../../images/TYPON_I2C_ET_LCD_1.png">
+<img alt="TYPON_I2C_ET_LCD_1" src="../../../images/TYPON_I2C_ET_LCD_1_Petite.png">
+</a>
+<figcaption>Typon du montage avec un PCF8574</figcaption>
+</figure>
+<div class="valorisations">
+<div class="programmes">
+<div class="programmes_gauche">
+<img style="width: 32px; height: 32px;" alt="fleche-bas-telecharger-icone-9594-32" src="../../../images/fleche-bas-telecharger-icone-9594-32.png">
+</div>
+<div class="programmes_droite">
+<p>Sch&eacute;ma &eacute;lectronique et typon de la carte d'adaptation SPI vers LCD<br />
+Logiciel de dessin&nbsp;: EAGLE 6.4.0<br />
+<a href="../../../elements/allures/valorisations/programmes.php%3Fprogramme=i2c_et_lcd_page_1+1+1">T&eacute;l&eacute;charger le fichier<span>Effectuez un clic droit, puis s&eacute;lectionnez l'option &laquo;&nbsp;Enregistrer la cible du lien sous...&nbsp;&raquo;, pour t&eacute;l&eacute;charger le fichier</span></a> (237.36 Ko)</p></div>
+</div>
+</div>
+<a id="Endroit_2-1-4"></a>
+<h4>2-1-4) Codes sources</h4>
+<p>L'essai avec un microcontr&ocirc;leur PIC18F4550 utilise une platine d'exp&eacute;rimentations.<br />
+Les connexions entre le circuit et le microcontr&ocirc;leur sont indiqu&eacute;es dans le tableau ci-apr&egrave;s.<br />
+Les broches &laquo;&nbsp;RB0&nbsp;&raquo; et &laquo;&nbsp;RB1&nbsp;&raquo; sont reli&eacute;es au + 5 Volt par des r&eacute;sistances de tirage de 10 kilo Ohm.</p>
+<table border="1" cellpadding="2" cellspacing="2">
+<tbody>
+<tr>
+<th>Microcontr&ocirc;leur PIC18F4550</th>
+<td>+5V</td>
+<td>0V</td>
+<td>RB0</td>
+<td>RB1</td>
+</tr>
+<tr>
+<th>Circuit int&eacute;gr&eacute; PCF8574</th>
+<td>+5V</td>
+<td>0V</td>
+<td>SDA</td>
+<td>SCL</td>
+</tr>
+</tbody>
+</table>
+<p></p>
+<div class="valorisations">
+<div class="programmes">
+<div class="programmes_gauche">
+<img style="width: 32px; height: 32px;" alt="fleche-bas-telecharger-icone-9594-32" src="../../../images/fleche-bas-telecharger-icone-9594-32.png">
+</div>
+<div class="programmes_droite">
+<p>Piloter un afficheur graphique alphanum&eacute;rique avec un PCF8574 et un PIC 18F4550&nbsp;: Fichiers C<br />
+Cible&nbsp;: PIC18F4550<br />Compilateur&nbsp;: MCC18<br />
+<a href="../../../elements/allures/valorisations/programmes.php%3Fprogramme=i2c_et_lcd_page_1+1+2">T&eacute;l&eacute;charger le fichier<span>Effectuez un clic droit, puis s&eacute;lectionnez l'option &laquo;&nbsp;Enregistrer la cible du lien sous...&nbsp;&raquo;, pour t&eacute;l&eacute;charger le fichier</span></a> (88.86 Ko)</p></div>
+</div>
+</div>
+<p>L'essai &agrave; l'aide d'un microcontr&ocirc;leur STM32F100RB utilise une carte de d&eacute;veloppement de type &laquo;&nbsp;STM32VLDISCOVERY&nbsp;&raquo;, qui en est &eacute;quip&eacute;e.<br />
+Les connexions entre le circuit et la carte de d&eacute;veloppement sont indiqu&eacute;es dans le tableau ci-apr&egrave;s.<br />
+Les broches &laquo;&nbsp;PB6&nbsp;&raquo; et &laquo;&nbsp;PB7&nbsp;&raquo; sont reli&eacute;es au + 5 Volt par des r&eacute;sistances de tirage de 1 kilo Ohm.</p>
+<div class="valorisations">
+<div class="informations">
+<div class="informations-gauche">
+<img style="width: 32px; height: 32px;" alt="documentaires-des-proprietes-icone-5224-32" src="../../../images/documentaires-des-proprietes-icone-5224-32.png">
+</div>
+<div class="informations-droite">
+<p>Remarque&nbsp;: Le microcontr&ocirc;leur STM32F100RB, bien qu'aliment&eacute; sous une tension de + 3,3 Volt, accepte de recevoir des niveaux de tensions&nbsp; + 5 Volt sur ses broches configur&eacute;es en tant qu' &laquo;&nbsp;Entr&eacute;es logiques et sorties &agrave; collecteurs ouverts&nbsp;&raquo;, comme c'est le cas pour utiliser le bus &laquo; I2C &raquo;.</p>
+<p>Ces niveaux de + 5 Volt ne sont pas destructeurs pour le microcontr&ocirc;leur, car ils sont appliqu&eacute;s par l'interm&eacute;diaire de r&eacute;sistances de tirages.</p></div>
+</div>
+</div>
+<p></p>
+<table border="1" cellpadding="2" cellspacing="2">
+<tbody>
+<tr>
+<th>Carte de d&eacute;veloppement &laquo;&nbsp;STM32VLDISCOVERY&nbsp;&raquo;</th>
+<td>+5V</td>
+<td>0V</td>
+<td>PB6</td>
+<td>PB7</td>
+</tr>
+<tr>
+<th>Circuit int&eacute;gr&eacute; PCF8574</th>
+<td>+5V</td>
+<td>0V</td>
+<td>SCL</td>
+<td>SDA</td>
+</tr>
+</tbody>
+</table>
+<p></p>
+<div class="valorisations">
+<div class="programmes">
+<div class="programmes_gauche">
+<img style="width: 32px; height: 32px;" alt="fleche-bas-telecharger-icone-9594-32" src="../../../images/fleche-bas-telecharger-icone-9594-32.png">
+</div>
+<div class="programmes_droite">
+<p>Piloter un afficheur graphique alphanum&eacute;rique avec un PCF8574 et un STM32F100RB&nbsp;: Fichiers C<br />
+Cible&nbsp;: STM32F100RB<br />Compilateur&nbsp;: Keil &micro;Vison 4<br />
+<a href="../../../elements/allures/valorisations/programmes.php%3Fprogramme=i2c_et_lcd_page_1+1+3">T&eacute;l&eacute;charger le fichier<span>Effectuez un clic droit, puis s&eacute;lectionnez l'option &laquo;&nbsp;Enregistrer la cible du lien sous...&nbsp;&raquo;, pour t&eacute;l&eacute;charger le fichier</span></a> (23.9 Ko)</p></div>
+</div>
+</div>
+<a id="Endroit_2-2-0"></a>
+<h3>2-2) Avec deux PCF8574</h3>
+<a id="Endroit_2-2-1"></a>
+<h4>2-2-1) Vues d'ensembles</h4>
+<p>Les connexions entre les expanseurs de ports pour bus I2C, l'afficheur LCD graphique alphanum&eacute;rique et les 5 LED sont indiqu&eacute;es dans les deux tableaux pr&eacute;sent&eacute;s ci-apr&egrave;s&nbsp;</p>
+<table border="1" cellpadding="2" cellspacing="2">
+<tbody>
+<tr>
+<th>Afficheur LCD et LED</th>
+<td>D0</td>
+<td>D1</td>
+<td>D2</td>
+<td>D3</td>
+<td>D4</td>
+<td>D5</td>
+<td>D6</td>
+<td>D7</td>
+</tr>
+<tr>
+<th>PCF8574, 1</th>
+<td>P0</td>
+<td>P1</td>
+<td>P2</td>
+<td>P3</td>
+<td>P4</td>
+<td>P5</td>
+<td>P6</td>
+<td>P7</td>
+</tr>
+</tbody>
+</table>
+<p></p>
+<table border="1" cellpadding="2" cellspacing="2">
+<tbody>
+<tr>
+<th>Afficheur LCD et LED</th>
+<td>RS</td>
+<td>RW</td>
+<td>E</td>
+<td>LED1</td>
+<td>LED2</td>
+<td>LED3</td>
+<td>LED4</td>
+<td>LED5</td>
+</tr>
+<tr>
+<th>PCF8574, 2</th>
+<td>P0</td>
+<td>P1</td>
+<td>P2</td>
+<td>P3</td>
+<td>P4</td>
+<td>P5</td>
+<td>P6</td>
+<td>P7</td>
+</tr>
+</tbody>
+</table>
+<p></p>
+<a id="Endroit_2-2-2"></a>
+<h4>2-2-2) Sch&eacute;ma</h4>
+<figure>
+<a href="../../../images/SCHEMA_I2C_ET_LCD_AVEC_DEUX_PCF8574_ET_UN_PIC18F4550.png">
+<img alt="SCHEMA_I2C_ET_LCD_AVEC_DEUX_PCF8574_ET_UN_PIC18F4550" src="../../../images/SCHEMA_I2C_ET_LCD_AVEC_DEUX_PCF8574_ET_UN_PIC18F4550_Petite.png">
+</a>
+<figcaption>Sch&eacute;ma &eacute;lectrique du montage avec deux PCF8574</figcaption>
+</figure>
+<a id="Endroit_2-2-3"></a>
+<h4>2-2-3) Codes sources</h4>
+<div class="valorisations">
+<div class="programmes">
+<div class="programmes_gauche">
+<img style="width: 32px; height: 32px;" alt="fleche-bas-telecharger-icone-9594-32" src="../../../images/fleche-bas-telecharger-icone-9594-32.png">
+</div>
+<div class="programmes_droite">
+<p>Piloter un afficheur graphique alphanum&eacute;rique avec deux PCF8574 et un PIC18F4550&nbsp;: Fichier C<br />
+Cible&nbsp;: PIC18F4550<br />Compilateur&nbsp;: MCC18<br />
+<a href="../../../elements/allures/valorisations/programmes.php%3Fprogramme=i2c_et_lcd_page_1+2+1">T&eacute;l&eacute;charger le fichier<span>Effectuez un clic droit, puis s&eacute;lectionnez l'option &laquo;&nbsp;Enregistrer la cible du lien sous...&nbsp;&raquo;, pour t&eacute;l&eacute;charger le fichier</span></a> (3.98 Ko)</p><p>Piloter un afficheur graphique alphanum&eacute;rique avec deux PCF8574 et un PIC18F4550&nbsp;: Fichier HEX<br />
+Cible&nbsp;: PIC18F4550<br />Compilateur&nbsp;: MCC18<br />
+<a href="../../../elements/allures/valorisations/programmes.php%3Fprogramme=i2c_et_lcd_page_1+2+2">T&eacute;l&eacute;charger le fichier<span>Effectuez un clic droit, puis s&eacute;lectionnez l'option &laquo;&nbsp;Enregistrer la cible du lien sous...&nbsp;&raquo;, pour t&eacute;l&eacute;charger le fichier</span></a> (1.54 Ko)</p></div>
+</div>
+</div>
+<div>
+<div class="menu_article">
+<ul class="menu_article_principal">
+<li><a href="i2c_et_lcd_page_1.php.html">I2C, LCD&nbsp;: Comment piloter un afficheur graphique ?</a></li>
+<li><ul>
+<li><a class="choisi" href="i2c_et_lcd_page_1.php.html">Utilisation des PCF8574</a></li>
+<li><a href="i2c_et_lcd_page_2.php.html">Utilisation des MCP23016 et des MCP23017</a></li>
+</ul></li>
+</ul>
+<ul class="menu_article_secondaire">
+<li><a href="i2c_et_lcd_page_1.php%3Fselection=1.html#Endroit_1-0-0">1) Pr&eacute;sentation</a></li>
+<li><a href="i2c_et_lcd_page_1.php%3Fselection=1.html#Endroit_2-0-0">2) Montages utilisant le PCF8574</a></li>
+<li>
+<ul>
+<li><a href="i2c_et_lcd_page_1.php%3Fselection=1.html#Endroit_2-1-0">2-1) Avec un PCF8574</a></li>
+<li>
+<ul>
+<li><a href="i2c_et_lcd_page_1.php%3Fselection=1.html#Endroit_2-1-1">2-1-1) Vues d'ensembles</a></li>
+<li><a href="i2c_et_lcd_page_1.php%3Fselection=1.html#Endroit_2-1-2">2-1-2) Sch&eacute;ma</a></li>
+<li><a href="i2c_et_lcd_page_1.php%3Fselection=1.html#Endroit_2-1-3">2-1-3) Typon</a></li>
+<li><a href="i2c_et_lcd_page_1.php%3Fselection=1.html#Endroit_2-1-4">2-1-4) Codes sources</a></li>
+</ul>
+</li>
+<li><a href="i2c_et_lcd_page_1.php%3Fselection=1.html#Endroit_2-2-0">2-2) Avec deux PCF8574</a></li>
+<li>
+<ul>
+<li><a href="i2c_et_lcd_page_1.php%3Fselection=1.html#Endroit_2-2-1">2-2-1) Vues d'ensembles</a></li>
+<li><a href="i2c_et_lcd_page_1.php%3Fselection=1.html#Endroit_2-2-2">2-2-2) Sch&eacute;ma</a></li>
+<li><a href="i2c_et_lcd_page_1.php%3Fselection=1.html#Endroit_2-2-3">2-2-3) Codes sources</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="commentaires"><a id="Endroits_des_commentaires"></a><p class="sous-titre_commentaires">Commentaires (2)</p><div class="commentaire">
+<div class="commentaire-haut">
+<div class="commentaire-haut-gauche">
+<p>sou</p></div>
+<div class="commentaire-haut-droite">
+<p>Le lundi 18 juin 2012 &agrave; 14:44</p></div>
+</div>
+<div class="commentaire-bas">
+<p>salut! excellent travail!!</p></div>
+</div>
+<div class="commentaire">
+<div class="commentaire-haut">
+<div class="commentaire-haut-gauche">
+<p>Mattpatt</p></div>
+<div class="commentaire-haut-droite">
+<p>Le lundi 11 juin 2012 &agrave; 18:01</p></div>
+</div>
+<div class="commentaire-bas">
+<p>Salut , tu sais que tu peux piloter l'afficheur avec un seul composant :<br />
+<br />
+<img alt="LIEN_EXTERNE" src="../../../images/LIEN_EXTERNE.png" />&nbsp;<a href="http://www.robot-amateur.com/Articles/Realisation_afficheur_LCD_I2C-p43.html" target="_blank" title="Ouvrir le lien &laquo;&nbsp;http://www.robot-amateur.com/Articles/Realisation_afficheur_LCD_I2C-p43.html&nbsp;&raquo; dans une nouvelle fen&ecirc;tre, ou dans un nouvel onglet">http://www.robot-amateur.com/Articles/Realisation_afficheur_LCD_I2C-p43.html</a></p></div>
+</div>
+<p class="sous-titre_ajouts">Ajouter un commentaire</p>
+<form id="contact" method="post" action="http://atrylec.com/elements/allures/commentaires/verification.php">
+<fieldset>
+<legend>
+Votre pseudo&nbsp;: 
+</legend>
+<p>
+<label for="pseudo">
+Pseudo&nbsp;: 
+</label>
+<input type="text" id="pseudo" name="pseudo" tabindex="1" required="required">
+</p>
+</fieldset>
+<fieldset>
+<legend>
+Votre commentaire&nbsp;: 
+</legend>
+<p>
+<label for="commentaire">
+Commentaire&nbsp;: 
+</label>
+<textarea id="commentaire" name="commentaire" tabindex="2" cols="50" rows="2" required="required">
+</textarea>
+</p>
+</fieldset>
+<div class="bouton_validation_commentaire">
+<input type="submit" name="Poster" value="Poster" />
+</div>
+</form>
+</div><div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="i2c_et_lcd_page_1.php%3Fselection=1.html#Haut_de_page">Je veux remonter !</a>
+</div>
+</section>
+<footer>
+<div class="liens">
+<ul>
+<li><a href="../../contact.php.html">ContaCT</a></li>
+</ul>
+</div>
+<div id="choix_style">
+<div class="presentation">Ravaler la fa&ccedil;ade&nbsp;:</div>
+<div class="choix choix_bleu_choisi">&nbsp;</div><a href="i2c_et_lcd_page_1.php%3Fselection=2.html" title="Style 2"><div class="choix choix_rouge">&nbsp;</div></a><a href="i2c_et_lcd_page_1.php%3Fselection=3.html" title="Style 3"><div class="choix choix_orange">&nbsp;</div></a></div>
+<div class="remarques">
+<p>Il ne faut pas dire&nbsp;: &laquo;&nbsp;Un fant&ocirc;me qui fait demi-tour
+&nbsp;&raquo;, mais&nbsp;: &laquo;&nbsp;Un retournement spectral
+&nbsp;&raquo;.</p>
+</div>
+<div class="visites">
+<img style="width: 15px; height: 15px;" alt="6_30" src="../../../images/6_30.png">   <img style="width: 15px; height: 15px;" alt="5_30" src="../../../images/5_30.png">   <img style="width: 15px; height: 15px;" alt="0_30" src="../../../images/0_30.png">   <img style="width: 15px; height: 15px;" alt="9_30" src="../../../images/9_30.png">   <img style="width: 15px; height: 15px;" alt="9_30" src="../../../images/9_30.png">   </div>
+</footer>
+</div>
+</body>
+</html>

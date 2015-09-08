@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>La bo&icirc;te &agrave; sons personnalisable</title>
+<meta name="description" content="Thermom&egrave;tre num&eacute;rique &agrave; base de microcontr&ocirc;leur : sch&eacute;ma et code source" />
+<meta name="keywords" content="audiovore electronique afficheur 7 segment led liaison i2c schema code source langage c pic pic18f4550 tmp100 sept" />
+<link rel="stylesheet" media="screen" type="text/css" title="Style 3" href="../../../elements/allures/style_3.css">
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-42331281-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+<body>
+<div id="page">
+<div id="haut">
+<header id="Haut_de_page">
+<div id="principale">
+<p class="titre_principal_haut">
+<a href="../../../index.php.html"><img style="width: 150px;" alt="Affichage_Atrylec_com" src="../../../images/Affichage_Atrylec_com.png" /><span class="invisible">Atrylec</span></a></p>
+<p class="sous-titre_haut">Vous n'&ecirc;tes pas seuls dans l'Univers !</p>
+</div>
+<div id="additionnelle">
+</div>
+</header>
+<nav>
+<ul id="navigation">
+<li><a href="../../../index.php.html" title="Accueil">Accueil</a></li>
+<li><a class="choisi" href="../index.php.html" title="Electronique">Electronique</a></li>
+<li><a href="../../radio/index.php%3Fnumero=0.html" title="Radio">Radio</a></li>
+<li><a href="../../origami/index.php.html" title="Origami">Origami</a></li>
+<li><a href="../../photographies/index.php%3Fnumero=0.html" title="Photographies">Photographies</a></li>
+<li><a href="../../le_grenier/index.php.html" title="Le grenier">Le grenier</a></li>
+<li><a href="../../contact.php.html" title="ContaCT">ContaCT</a></li>
+</ul>
+</nav>
+</div>
+<section>
+<div id="titre">
+<div id="titre_gauche">
+</div>
+<div id="titre_image">
+<img style="width: 100px; height: 100px;" alt="Transistor_100" src="../../../images/Transistor_100.png">
+</div>
+<div id="titre_texte">
+<p>/&nbsp;</p><h1>La bo&icirc;te &agrave; sons personnalisable</h1>
+</div>
+<div id="titre_droite">
+</div>
+</div>
+<div>
+<p id="introduction">La bo&icirc;te &agrave; sons personnalisable est la cousine de <a href="la_boite_a_meuh_personnalisable.php.html" title="Ouvrir le lien &laquo;&nbsp;http://www.atrylec.com/fr/electronique/realisations/la_boite_a_meuh_personnalisable.php&nbsp;&raquo;">la bo&icirc;te &agrave; meuh personnalisable</a>&nbsp;: les objets plus ou moins utiles qui sont visibles sur ce site Internet forment une grande famille !</p>
+</div>
+<p></p>
+<div class="video">
+<div class="video-gauche">
+<p>Elle est capable de contenir, dans sa m&eacute;moire vocale, seize sons d&rsquo;une dur&eacute;e maximale d'environ trois secondes chacun, sauf pour le seizi&egrave;me son, qui peut durer plus longtemps.</p>
+<p>Le son qui sera reproduit &agrave; chaque sollicitation de cette r&eacute;alisation est param&eacute;trable.</p>
+</div>
+<div class="video-droite">
+</div>
+</div>
+<p>
+<a id="Liste_de_depart"></a>
+</p>
+<div>
+<div class="menu_article">
+<ul class="menu_article_principal">
+<li><a href="la_boite_a_sons_personnalisable.php.html">La bo&icirc;te &agrave; sons personnalisable</a></li>
+</ul>
+<ul class="menu_article_secondaire">
+<li><a href="la_boite_a_sons_personnalisable.php%3Fselection=3.html#Endroit_1-0-0">1) Pr&eacute;sentation</a></li>
+<li>
+<ul>
+<li><a href="la_boite_a_sons_personnalisable.php%3Fselection=3.html#Endroit_1-1-0">1-1) Version 1 - 2010</a></li>
+<li><a href="la_boite_a_sons_personnalisable.php%3Fselection=3.html#Endroit_1-2-0">1-2) Version 2 - 2011</a></li>
+</ul>
+</li>
+<li><a href="la_boite_a_sons_personnalisable.php%3Fselection=3.html#Endroit_2-0-0">2) R&eacute;alisation</a></li>
+<li>
+<ul>
+<li><a href="la_boite_a_sons_personnalisable.php%3Fselection=3.html#Endroit_2-1-0">2-1) Version 1 - 2010</a></li>
+<li>
+<ul>
+<li><a href="la_boite_a_sons_personnalisable.php%3Fselection=3.html#Endroit_2-1-1">2-1-1) Sch&eacute;ma &eacute;lectronique</a></li>
+</ul>
+</li>
+<li><a href="la_boite_a_sons_personnalisable.php%3Fselection=3.html#Endroit_2-2-0">2-2) Version 2 - 2011</a></li>
+<li>
+<ul>
+<li><a href="la_boite_a_sons_personnalisable.php%3Fselection=3.html#Endroit_2-2-1">2-2-1) Sch&eacute;mas &eacute;lectroniques</a></li>
+<li><a href="la_boite_a_sons_personnalisable.php%3Fselection=3.html#Endroit_2-2-2">2-2-2) Codes sources</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="la_boite_a_sons_personnalisable.php%3Fselection=3.html#Endroit_3-0-0">3) Sujets associ&eacute;s</a></li>
+</ul>
+</div>
+</div>
+<div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="la_boite_a_sons_personnalisable.php%3Fselection=3.html#Haut_de_page">Je veux remonter !</a>&nbsp;|&nbsp;<a href="la_boite_a_sons_personnalisable.php%3Fselection=3.html#Liste_de_depart">Liste</a>
+</div>
+<a id="Endroit_1-0-0"></a>
+<h2>1) Pr&eacute;sentation</h2>
+<p></p>
+<div class="questions-reponses">
+<div class="questions-reponses-haut">
+<div class="questions-reponses-haut-gauche">
+<img style="width: 32px; height: 32px;" alt="daide-un-point-interrogation-icone-6123-32" src="../../../images/daide-un-point-interrogation-icone-6123-32.png">
+</div>
+<div class="questions-reponses-haut-droit">
+<p>Question&nbsp;: Utilit&eacute; ?</p></div>
+</div>
+<div class="questions-reponses-bas">
+<div class="questions-reponses-bas-gauche">
+<img style="width: 32px; height: 32px;" alt="fleche-droite-icone-8334-32" src="../../../images/fleche-droite-icone-8334-32.png">
+</div>
+<div class="questions-reponses-bas-droit">
+<p>R&eacute;ponse&nbsp;:</p>
+<ul>
+<li>Appr&eacute;cier vos qualit&eacute;s vocales de bruiteur hors-pair&nbsp;;</li>
+<li>R&eacute;&eacute;couter &agrave; souhait <a href="../../le_grenier/le_meilleur_des_perles_des_profs.php.html" title="Ouvrir le lien &laquo;&nbsp;http://www.atrylec.com/fr/le_grenier/le_meilleur_des_perles_des_profs.php&nbsp;&raquo;">les r&eacute;pliques cultes de vos profs</a>, afin de leur rendre hommage, apr&egrave;s les avoir enregistr&eacute;es avec <a href="l_enregistroclasseur.php.html" title="Ouvrir le lien &laquo;&nbsp;http://www.atrylec.com/fr/electronique/realisations/l_enregistroclasseur.php"&nbsp;&raquo;">un objet con&ccedil;u sp&eacute;cialement pour cela</a>&nbsp;;</li>
+<li>Reproduire des sons de la nature, par exemple apprendre &agrave; distinguer diff&eacute;rents chants d'oiseaux, pour les passionn&eacute;s d'ornthologie&nbsp;;</li>
+<li>Faire des mauvaises blagues aux gens, en s&eacute;lectionnant avec soin les bruitages les plus incongrus, et donc les plus pertinents&nbsp;;</li>
+<li>Mettre de l'animation en cours.</li>
+</ul>
+<p></p></div>
+</div>
+</div>
+<p></p>
+<p>Notez que l'application cit&eacute;e en troisi&egrave;me est la seule application intelligente que je connaisse &agrave; ce jour, bien qu'elle n'aie jamais &eacute;t&eacute;e mise en&nbsp;&oelig;uvre.<br />
+Si vous avez d'autres id&eacute;es d'applications intelligentes &agrave; me proposer, la page &laquo;&nbsp;CONTACT&nbsp;&raquo; est &agrave; votre disposition.</p>
+<a id="Endroit_1-1-0"></a>
+<h3>1-1) Version 1 - 2010</h3>
+<p>Pour cette version de l'objet, le choix du son se fait gr&acirc;ce &agrave; un bloc de quatre petits interrupteurs.<br />
+L'ensemble est aliment&eacute; par une pile de 9 volt rechargeable.<br />
+Cette version a ensuite &eacute;t&eacute; modifi&eacute;e, afin de rendre, au choix, le son reproduit fixe, ou al&eacute;atoire.</p>
+<figure>
+<a href="../../../images/La_boite_a_sons_personnalisable_version_1_non_aleatoire.jpg">
+<img alt="La_boite_a_sons_personnalisable_version_1_non_aleatoire" src="../../../images/La_boite_a_sons_personnalisable_version_1_non_aleatoire.jpg">
+</a>
+<figcaption>La bo&icirc;te &agrave; sons personnalisable, version 1, sans la modification qui permet de rendre le son reproduit al&eacute;atoire</figcaption>
+</figure>
+<a id="Endroit_1-2-0"></a>
+<h3>1-2) Version 2 - 2011</h3>
+<p>A l'int&eacute;rieur de la seconde version de cet abominable objet, un microcontr&ocirc;leur a &eacute;t&eacute; utilis&eacute;, afin d'ajouter des fonctions plus ou moins douteuses &agrave; cette r&eacute;alisation.</p>
+<p>La version 2 de la bo&icirc;te &agrave; sons personnalisable se caract&eacute;rise par :</p>
+<ul>
+<li>La mise en place de six modes de fonctionnement,</li>
+<li>La possibilit&eacute; d'enregistrer des sons sans aucun accessoire suppl&eacute;mentaire, gr&acirc;ce &agrave; l'ajout d'un microphone int&eacute;gr&eacute;,</li>
+<li>L'ajout d'une t&eacute;l&eacute;commande radio, qui permet, gr&acirc;ce &agrave; ses seize boutons-poussoirs, de d&eacute;clencher au choix l'un des seize sons &agrave; distance,</li>
+<li>L'ajout d'une entr&eacute;e audio, servant &agrave; enregistrer des sons en provenance d'une source externe, &agrave; l'aide d'un c&acirc;ble audio conventionnel,</li>
+<li>L'ajout d'une sortie son, utile pour brancher l'objet &agrave; une cha&icirc;ne Hi-Fi, &agrave; un amplificateur de puissance, ou encore &agrave; une table de mixage, toujours &agrave; l'aide d'un c&acirc;ble audio conventionnel.</li>
+</ul>
+<p></p>
+<p>Les diff&eacute;rents modes de fonctionnement sont les suivants :</p>
+<ul>
+<li>Mode 1 : Fonctionnement normal, le son qui est reproduit &agrave; chaque fois que l'on secoue l'engin est celui qui correspond &agrave; la combinaison form&eacute;e par le bloc des quatre petits interrupteurs,</li>
+<li>Mode 2 : Al&eacute;atoire, le son qui est reproduit sera &agrave; chaque fois un son pris au hasard, et cela, quelle que soit la configuration des micro-interrupteurs,</li>
+<li>Mode 3 : Bruitage &agrave; retardement, le son qui correspond &agrave; la combinaison form&eacute;e par le bloc des quatre petits interrupteurs est reproduit environ une minute apr&egrave;s la s&eacute;lection du mode,</li>
+<li>Mode 4 : D&eacute;clenchement al&eacute;atoire, le son qui correspond &agrave; la combinaison form&eacute;e par le bloc des quatre petits interrupteurs est reproduit &agrave; des intervalles de temps al&eacute;atoires,</li>
+<li>Mode 5 : Comportement al&eacute;atoire ou encore, mode chaotique, &agrave; des intervalles de temps al&eacute;atoires, un son choisi au hasard est reproduit,</li>
+<li>Mode 6 : Silencieux, l'objet ne se met &agrave; reproduire un son que si la t&eacute;l&eacute;commande est utilis&eacute;e.</li>
+</ul>
+<p></p>
+<figure>
+<a href="../../../images/La_boite_a_sons_personnalisable_version_2_et_sa_telecommande_radio.jpg">
+<img alt="La_boite_a_sons_personnalisable_version_2_et_sa_telecommande_radio" src="../../../images/La_boite_a_sons_personnalisable_version_2_et_sa_telecommande_radio_Petite.jpg">
+</a>
+<figcaption>La bo&icirc;te &agrave; sons personnalisable, version 2, et la t&eacute;l&eacute;commande radio qui l'accompagne</figcaption>
+</figure>
+<p></p>
+<figure>
+<a href="../../../images/Objet_demonte.jpg">
+<img alt="Objet_demonte" src="../../../images/Objet_demonte_Petite.jpg">
+</a>
+<figcaption>Objet d&eacute;mont&eacute;</figcaption>
+</figure>
+<p></p>
+<figure>
+<a href="../../../images/La_boite_a_sons_personnalisable_version_2_-_Annotations.jpg">
+<img alt="La_boite_a_sons_personnalisable_version_2_-_Annotations" src="../../../images/La_boite_a_sons_personnalisable_version_2_-_Annotations_Petite.jpg">
+</a>
+<figcaption>La bo&icirc;te &agrave; sons personnalisable, version 2 - Annotations</figcaption>
+</figure>
+<div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="la_boite_a_sons_personnalisable.php%3Fselection=3.html#Haut_de_page">Je veux remonter !</a>&nbsp;|&nbsp;<a href="la_boite_a_sons_personnalisable.php%3Fselection=3.html#Liste_de_depart">Liste</a>
+</div>
+<a id="Endroit_2-0-0"></a>
+<h2>2) R&eacute;alisation</h2>
+<p>Les sch&eacute;mas &eacute;lectroniques et, lorsqu'il en est question, les codes sources des bo&icirc;tes &agrave; sons personnalisables se trouvent dans cette partie.</p>
+<a id="Endroit_2-1-0"></a>
+<h3>2-1) Version 1 - 2010</h3>
+<a id="Endroit_2-1-1"></a>
+<h4>2-1-1) Sch&eacute;ma &eacute;lectronique</h4>
+<p>Les principaux composants &eacute;lectroniques de la
+bo&icirc;te
+&agrave;
+sons personnalisable, version 1, sont un circuit
+int&eacute;gr&eacute;
+ISD2590P, qui
+est une m&eacute;moire vocale analogique permettant d'enregistrer
+et de
+reproduire des sons,<br />
+et un cicuit int&eacute;gr&eacute;
+logique,
+portant la r&eacute;f&eacute;rence CD4093, qui contient quatre
+portes
+logiques NON-ET, &agrave; trigger de SCHMITT.<br />
+Les portes logiques U2A et U2B forment une bascule R-S, dont la sortie
+passe &agrave; un lorque l'objet a &eacute;t&eacute;
+secou&eacute;, et
+&agrave; z&eacute;ro lorsque la reproduction d'un son est
+termin&eacute;e, ce qui est signal&eacute; par le bref passage
+&agrave;
+z&eacute;ro de la broche rep&eacute;r&eacute;e &laquo;
+~EOM&nbsp;&raquo;, de
+la m&eacute;moire vocale analogique.<br />
+Un bouton-poussoir permet de d&eacute;marrer l'enregistrement d'un
+son, qui reste effectif tant qu'il reste appuy&eacute;.</p>
+<figure>
+<a href="../../../images/LA_BOITE_A_SONS_PERSONNALISABLE_Version_2.png">
+<img alt="LA_BOITE_A_SONS_PERSONNALISABLE_Version_2" src="../../../images/LA_BOITE_A_SONS_PERSONNALISABLE_Version_2_Petite.png">
+</a>
+<figcaption>Sch&eacute;ma de la version 1 de la bo&icirc;te &agrave; sons personnalisable, sans la modification qui permet de rendre le son reproduit al&eacute;atoire</figcaption>
+</figure>
+<a id="Endroit_2-2-0"></a>
+<h3>2-2) Version 2 - 2011</h3>
+<p>La bo&icirc;te &agrave; sons personnalisable, version 2, comporte, entre autres, un circuit
+int&eacute;gr&eacute; qui joue le r&ocirc;le de m&eacute;moire vocale analogique, un microcontr&ocirc;leur et un r&eactue;cepteur radio.<br />
+L'objet est pilotable par une t&eacute;l&eacute;commande radio, dont les caract&eacute;ristiques sont donn&eacute;es ci-apr&egrave;s.</p>
+<a id="Endroit_2-2-1"></a>
+<h4>2-2-1) Sch&eacute;mas &eacute;lectroniques</h4>
+<p>Les principaux composants &eacute;lectroniques de
+la&nbsp;partie
+&laquo;&nbsp;RECEPTEUR&nbsp;&raquo; de la bo&icirc;te &agrave;
+sons personnalisable, version 2, sont un circuit
+int&eacute;gr&eacute;
+ISD2590P, qui est une m&eacute;moire vocale analogique permettant
+d'enregistrer et de reproduire des sons, un r&eacute;cepteur radio
+fonctionnant &agrave; 433MHz, en modulation d'amplitude,<br />
+et un
+microcontr&ocirc;leur PIC16F84A, utilis&eacute; pour
+g&eacute;rer
+l'ensemble du dispositif.<br />
+La d&eacute;tection du mouvement se fait gr&acirc;ce
+&agrave; un fil de
+cuivre dont l'extr&eacute;mit&eacute; a
+&eacute;t&eacute; pourvue d'une
+masselotte, et qui passe dans un autre fil de cuivre, formant un
+cercle autour du premier fil.<br />
+Au repos, ces deux fils ne sont pas en
+contact.<br />
+Lorsque l'objet est secou&eacute;, ces deux fils se touchent
+momentan&eacute;ment, car la masselotte rend l'ensemble plus
+sensible
+aux mouvements, et une information &eacute;lectrique exploitable
+est
+alors produite.</p>
+<p>Les sollicitations externes qui doivent donner lieu &agrave; un
+traitement sp&eacute;cifique de la part du
+microcontr&ocirc;leur sont
+la r&eacute;ception d'un signal radio, l'appui sur le bouton
+&laquo;
+MODE&nbsp;&raquo;, et la d&eacute;tection du mouvement de l'objet.<br />
+Chacun de ces &eacute;v&eacute;nements provoquent une
+interruption dans
+le programme, en transmettant un niveau logique haut sur la broche
+rep&eacute;r&eacute;e &laquo;&nbsp;RB0/INT&nbsp;&raquo; du
+microcontr&ocirc;leur.<br />
+Un codage a &eacute;t&eacute; adopt&eacute; pour permettre
+au
+microcontr&ocirc;leur de diff&eacute;rencier les types de
+sollicitations, il met en&nbsp;&oelig;uvre les broches
+&laquo;&nbsp;RB0/INT
+&raquo;, &laquo;&nbsp;RB1&nbsp;&raquo;, et &laquo;&nbsp;RA4/TOCKI&nbsp;&raquo;, les diodes
+D1, D2, et D3, de type 1N4148, et les r&eacute;sistances de tirage
+vers
+le bas R16, R17, et R19.</p>
+<p></p>
+<table border="1" cellpadding="2" cellspacing="2">
+<tbody>
+<tr>
+<th>Type de sollicitation</th>
+<th colspan="3">Codage transmis aux entr&eacute;es du microcontr&ocirc;leur</th>
+</tr>
+<tr>
+<td></td>
+<th>RB0/INT</th>
+<th>RB1</th>
+<th>RA4/TOCKI</th>
+</tr>
+<tr>
+<td>Aucune sollicitation</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr>
+<td>R&eacute;ception d'un signal radio</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr>
+<td>Appui sur le bouton &laquo;&nbsp;MODE&nbsp;&raquo;</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">0</td>
+</tr>
+<tr>
+<td>D&eacute;tection d'un mouvement de l'objet</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">1</td>
+</tr>
+</tbody>
+</table>
+<p></p>
+<p>Lorsque le mode 1, le mode 3, ou le mode 4 est activ&eacute;, le
+son
+qui doit &ecirc;tre reproduit &agrave; chaque
+op&eacute;ration de
+lecture doit correspondre &agrave; la combinaison form&eacute;e
+par le
+bloc
+des quatre petits interrupteurs.<br />
+Les quatre broches &laquo;&nbsp;RB4&nbsp;&raquo;, &laquo;&nbsp;RB5
+&raquo;, &laquo;
+RB6&nbsp;&raquo;, et &laquo;&nbsp;RB7&nbsp;&raquo; du
+microcontr&ocirc;leur sont alors
+plac&eacute;es dans l'&eacute;tat de haute imp&eacute;dance.<br />
+Chaque micro-interrupteur activ&eacute; transmet un niveau logique
+haut
+&agrave; l'entr&eacute;e d'adresse correspondante de la
+m&eacute;moire
+vocale analogique, via l'une des r&eacute;sistances R9, R11, R13,
+ou
+R15.<br />
+A l'inverse, chaque micro-interrupteur qui n'est pas activ&eacute;
+permet &agrave; l'une des r&eacute;sistances de tirage vers le
+bas R3,
+R10, R12, ou R14, de transmettre un niveau logique bas &agrave;
+l'entr&eacute;e d'adresse correspondante de la m&eacute;moire
+vocale
+analogique.<br />
+Pour ces modes de fonctionnement, le r&ocirc;le du
+microcontr&ocirc;leur est de donner les ordres de lecture
+&agrave; la
+m&eacute;moire vocale analogique.<br />
+Le comportement des quatre broches &laquo;&nbsp;RB4&nbsp;&raquo;,
+&laquo;&nbsp;RB5
+&raquo;, &laquo;&nbsp;RB6&nbsp;&raquo;, et &laquo;&nbsp;RB7
+&raquo; est identique
+lorsque l'objet se trouve dans le mode &laquo;&nbsp;ENREGISTREMENT
+&raquo;.</p>
+<p></p>
+<p>Lorsque le mode 2, le mode 5, ou le mode 6 est activ&eacute;, le
+son
+qui doit &ecirc;tre reproduit &agrave; chaque
+op&eacute;ration de
+lecture ne doit pas d&eacute;pendre de la combinaison
+form&eacute;e par
+le bloc
+des quatre petits interrupteurs.<br />
+Les quatre broches &laquo;&nbsp;RB4&nbsp;&raquo;, &laquo;&nbsp;RB5
+&raquo;, &laquo;
+RB6&nbsp;&raquo;, et &laquo;&nbsp;RB7&nbsp;&raquo; du
+microcontr&ocirc;leur ne sont
+pas plac&eacute;es dans l'&eacute;tat logique bas, mais dans
+l'&eacute;tat de haute imp&eacute;dance, tant qu'aucun son ne
+doit
+&ecirc;tre reproduit.<br />
+Ceci permet d'&eacute;viter une consommation &eacute;lectrique
+inutile,
+qui serait d&ucirc;e au passage d'un courant dans les
+r&eacute;sistances&nbsp;R3,
+R9, R10, R11,&nbsp;R12, R13, R14, ou R15, si l'un ou plusieurs des
+micro-interrupteurs &eacute;tait activ&eacute;.<br />
+Pour reproduire un son, le microcontr&ocirc;leur
+pr&eacute;sente sur
+ses quatre broches&nbsp;&laquo;&nbsp;RB4&nbsp;&raquo;, &laquo;
+RB5&nbsp;&raquo;,
+&laquo;&nbsp;RB6&nbsp;&raquo;, et &laquo;&nbsp;RB7&nbsp;&raquo; la
+combinaison de niveaux
+logiques qui correspond au son qui doit &ecirc;tre jou&eacute;,
+avant
+de donner l'ordre de lecture.<br />
+En effet, ces broches sont directement reli&eacute;es aux
+entr&eacute;es d'adresse correspondantes de la m&eacute;moire
+vocale
+analogique.</p>
+<p></p>
+<p>Pour passer d'un mode &agrave; l'autre, il fait effectuer un appui
+court sur le bouton &laquo;&nbsp;MODE&nbsp;&raquo;.<br />
+La LED rouge confirme le changement de mode de fonctionnement, en
+clignotant un nombre de fois correspondant au num&eacute;ro du mode
+activ&eacute;.<br />
+Pour proc&eacute;der &agrave; l'enregistrement d'un son, il
+faut
+utiliser le microphone de type &eacute;lectret
+incorpor&eacute;, ou
+raccorder une source audio externe dans le connecteur jack 3,5mm,
+pr&eacute;vu &agrave; cet effet.<br />
+Puis, il faut indiquer l'adresse du son &agrave; enregistrer,
+&agrave; l'aide du bloc
+des quatre petits interrupteurs.<br />
+Il convient ensuite de passer dans le mode &laquo;&nbsp;ENREGISTREMENT&nbsp;&raquo;, par un appui long sur le bouton &laquo;&nbsp;MODE&nbsp;&raquo;, et ce,
+quel que soit le mode dans lequel se trouvait l'objet.<br />
+L'allumage fixe de la LED rouge confirme l'activation du mode.<br />
+Le d&eacute;marrage de l'enregistrement se fait en appuyant sur le
+bouton &laquo;&nbsp;MODE&nbsp;&raquo;, qui doit rester appuy&eacute;
+pendant tout
+l'enregistrement.<br />
+La LED rouge doit s'&eacute;teindre bri&egrave;vement, puis
+rester &agrave; nouveau allum&eacute;e fixe.<br />
+Pour quitter le mode, il faut
+secouer l'objet.</p>
+<p></p>
+<p>Ce dernier revient au mode qui &eacute;tait actif auparavant.</p>
+<p>Les signaux de la t&eacute;l&eacute;commande radio peuvent
+&ecirc;tre
+re&ccedil;us &agrave; tout moment, mais ils ne sont pas pris en
+compte
+si la reproduction d'un son est en cours, ou si le mode &laquo;&nbsp;ENREGISTREMENT&nbsp;&raquo; est actif.</p>
+<p>Lorsqu'un c&acirc;ble audio est branch&eacute; dans le
+connecteur jack
+3,5 mm de sortie audio, le haut-parleur du dispositif se
+d&eacute;sactive.</p>
+<figure>
+<a href="../../../images/LA_BOITE_A_SONS_PERSONNALISABLE_Version_2_RECEPTEUR.png">
+<img alt="LA_BOITE_A_SONS_PERSONNALISABLE_Version_2_RECEPTEUR" src="../../../images/LA_BOITE_A_SONS_PERSONNALISABLE_Version_2_RECEPTEUR_Petite.png">
+</a>
+<figcaption>Sch&eacute;ma de la partie &laquo;&nbsp;RECEPTEUR&nbsp;&raquo; de la bo&icirc;te &agrave; sons personnalisable, version 2</figcaption>
+</figure>
+<p>Les principaux composants &eacute;lectroniques de la partie &laquo;&nbsp;EMETTEUR&nbsp;&raquo; de la bo&icirc;te &agrave; sons personnalisable, version 2, sont un ensemble matric&eacute; de seize boutons-poussoirs, un microcontr&ocirc;leur PIC16F84A, et un &eacute;metteur radio fonctionnant &agrave; 433MHz, en modulation d'amplitude.<br />
+Le microcontr&ocirc;leur soumet, &agrave; tour de r&ocirc;le et de fa&ccedil;on p&eacute;riodique, les lignes de l'ensemble des boutons-poussoirs &agrave; un &eacute;tat logique bas, tout en scrutant les colonnes.<br />
+Le code transmis est constitu&eacute; d'une trame de seize impulsions, dans laquelle un z&eacute;ro logique est repr&eacute;sent&eacute; par une longue impulsion, et un un logique, par une courte impulsion.</p>
+<figure>
+<a href="../../../images/LA_BOITE_A_SONS_PERSONNALISABLE_Version_2_EMETTEUR.png">
+<img alt="LA_BOITE_A_SONS_PERSONNALISABLE_Version_2_EMETTEUR" src="../../../images/LA_BOITE_A_SONS_PERSONNALISABLE_Version_2_EMETTEUR_Petite.png">
+</a>
+<figcaption>Sch&eacute;ma de la partie &laquo;&nbsp;EMETTEUR&nbsp;&raquo; de la bo&icirc;te &agrave; sons personnalisable, version 2</figcaption>
+</figure>
+<a id="Endroit_2-2-2"></a>
+<h4>2-2-2) Codes sources</h4>
+<div class="valorisations">
+<div class="programmes">
+<div class="programmes_gauche">
+<img style="width: 32px; height: 32px;" alt="fleche-bas-telecharger-icone-9594-32" src="../../../images/fleche-bas-telecharger-icone-9594-32.png">
+</div>
+<div class="programmes_droite">
+<p>La bo&icirc;te &agrave; sons personnalisable, version 2, &eacute;metteur et r&eacute;cepteur : Fichiers C<br />
+Cible : PIC16F84<br />Compilateur : Hi-Tech C<br /><br />
+<a href="../../../elements/allures/valorisations/programmes.php%3Fprogramme=la_boite_a_sons_personnalisable+1+1">T&eacute;l&eacute;charger le fichier<span>Effectuez un clic droit, puis s&eacute;lectionnez l'option &laquo;&nbsp;Enregistrer la cible du lien sous...&nbsp;&raquo;, pour t&eacute;l&eacute;charger le fichier</span></a> (16.54 Ko)</p></div>
+</div>
+</div>
+<div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="la_boite_a_sons_personnalisable.php%3Fselection=3.html#Haut_de_page">Je veux remonter !</a>&nbsp;|&nbsp;<a href="la_boite_a_sons_personnalisable.php%3Fselection=3.html#Liste_de_depart">Liste</a>
+</div>
+<a id="Endroit_3-0-0"></a>
+<h2>3) Sujets associ&eacute;s</h2>
+<p>Des m&eacute;moires vocales sont utilis&eacute;es dans les bo&icirc;tes &agrave; sons personnalisables.<br />
+Il est &eacute;galement question de t&eacute;l&eacute;commande radio.</p>
+<ul>
+<li><a href="../les_memoires_vocales/les_memoires_vocales_page_1.php.html" title="Ouvrir le lien &laquo;&nbsp;http://www.atrylec.com/fr/electronique/les_memoires_vocales/les_memoires_vocales_page_1.php&nbsp;&raquo;" >Les m&eacute;moires vocales</a>&nbsp;;</li>
+<li><a href="../telecommandes_encodeurs_-_decodeurs/telecommandes_encodeurs_-_decodeurs_page_1.php.html" title="Ouvrir le lien &laquo;&nbsp;http://www.atrylec.com/fr/electronique/telecommandes_encodeurs_-_decodeurs/telecommandes_encodeurs_-_decodeurs_page_1.php&nbsp;&raquo;" >T&eacute;l&eacute;commandes : Encodeurs - D&eacute;codeurs</a>.</li>
+</ul>
+<p></p>
+<div>
+<div class="menu_article">
+<ul class="menu_article_principal">
+<li><a href="la_boite_a_sons_personnalisable.php.html">La bo&icirc;te &agrave; sons personnalisable</a></li>
+</ul>
+<ul class="menu_article_secondaire">
+<li><a href="la_boite_a_sons_personnalisable.php%3Fselection=3.html#Endroit_1-0-0">1) Pr&eacute;sentation</a></li>
+<li>
+<ul>
+<li><a href="la_boite_a_sons_personnalisable.php%3Fselection=3.html#Endroit_1-1-0">1-1) Version 1 - 2010</a></li>
+<li><a href="la_boite_a_sons_personnalisable.php%3Fselection=3.html#Endroit_1-2-0">1-2) Version 2 - 2011</a></li>
+</ul>
+</li>
+<li><a href="la_boite_a_sons_personnalisable.php%3Fselection=3.html#Endroit_2-0-0">2) R&eacute;alisation</a></li>
+<li>
+<ul>
+<li><a href="la_boite_a_sons_personnalisable.php%3Fselection=3.html#Endroit_2-1-0">2-1) Version 1 - 2010</a></li>
+<li>
+<ul>
+<li><a href="la_boite_a_sons_personnalisable.php%3Fselection=3.html#Endroit_2-1-1">2-1-1) Sch&eacute;ma &eacute;lectronique</a></li>
+</ul>
+</li>
+<li><a href="la_boite_a_sons_personnalisable.php%3Fselection=3.html#Endroit_2-2-0">2-2) Version 2 - 2011</a></li>
+<li>
+<ul>
+<li><a href="la_boite_a_sons_personnalisable.php%3Fselection=3.html#Endroit_2-2-1">2-2-1) Sch&eacute;mas &eacute;lectroniques</a></li>
+<li><a href="la_boite_a_sons_personnalisable.php%3Fselection=3.html#Endroit_2-2-2">2-2-2) Codes sources</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="la_boite_a_sons_personnalisable.php%3Fselection=3.html#Endroit_3-0-0">3) Sujets associ&eacute;s</a></li>
+</ul>
+</div>
+</div>
+<div class="commentaires"><a id="Endroits_des_commentaires"></a><p class="sous-titre_commentaires">Commentaires (1)</p><div class="commentaire">
+<div class="commentaire-haut">
+<div class="commentaire-haut-gauche">
+<p>mwouhaha</p></div>
+<div class="commentaire-haut-droite">
+<p>Le samedi 18 juin 2011 &agrave; 22:47</p></div>
+</div>
+<div class="commentaire-bas">
+<p>Vous &ecirc;tes tous nuls!</p></div>
+</div>
+<p class="sous-titre_ajouts">Ajouter un commentaire</p>
+<form id="contact" method="post" action="http://atrylec.com/elements/allures/commentaires/verification.php">
+<fieldset>
+<legend>
+Votre pseudo&nbsp;: 
+</legend>
+<p>
+<label for="pseudo">
+Pseudo&nbsp;: 
+</label>
+<input type="text" id="pseudo" name="pseudo" tabindex="1" required="required">
+</p>
+</fieldset>
+<fieldset>
+<legend>
+Votre commentaire&nbsp;: 
+</legend>
+<p>
+<label for="commentaire">
+Commentaire&nbsp;: 
+</label>
+<textarea id="commentaire" name="commentaire" tabindex="2" cols="50" rows="2" required="required">
+</textarea>
+</p>
+</fieldset>
+<div class="bouton_validation_commentaire">
+<input type="submit" name="Poster" value="Poster" />
+</div>
+</form>
+</div><div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="la_boite_a_sons_personnalisable.php%3Fselection=3.html#Haut_de_page">Je veux remonter !</a>
+</div>
+</section>
+<footer>
+<div class="liens">
+<ul>
+<li><a href="../../contact.php.html">ContaCT</a></li>
+</ul>
+</div>
+<div id="choix_style">
+<div class="presentation">Ravaler la fa&ccedil;ade&nbsp;:</div>
+<a href="la_boite_a_sons_personnalisable.php%3Fselection=1.html" title="Style 1"><div class="choix choix_bleu">&nbsp;</div></a><a href="la_boite_a_sons_personnalisable.php%3Fselection=2.html" title="Style 2"><div class="choix choix_rouge">&nbsp;</div></a><div class="choix choix_orange_choisi">&nbsp;</div></div>
+<div class="remarques">
+<p>Il ne faut pas dire&nbsp;: &laquo;&nbsp;Tondre la pelouse
+&nbsp;&raquo;, mais&nbsp;: &laquo;&nbsp;Abaisser le plancher de bruit
+&nbsp;&raquo;.</p>
+</div>
+<div class="visites">
+<img style="width: 15px; height: 15px;" alt="6_30" src="../../../images/6_30.png">   <img style="width: 15px; height: 15px;" alt="5_30" src="../../../images/5_30.png">   <img style="width: 15px; height: 15px;" alt="0_30" src="../../../images/0_30.png">   <img style="width: 15px; height: 15px;" alt="9_30" src="../../../images/9_30.png">   <img style="width: 15px; height: 15px;" alt="9_30" src="../../../images/9_30.png">   </div>
+</footer>
+</div>
+</body>
+</html>

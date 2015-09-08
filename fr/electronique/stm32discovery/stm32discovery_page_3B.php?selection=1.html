@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>STM32 DISCOVERY - STM32L-DISCOVERY, premiers essais</title>
+<meta name="description" content="Cartes de d&eacute;veloppement &laquo;&nbsp;STM32 DISCOVERY&nbsp;&raquo; : Tutoriel - Page 3B - STM32L-DISCOVERY, premiers essais" />
+<meta name="keywords" content="atrylec electronique schema schemas montage montages realisation realisations microcontroleur entrees sorties programmation code source langage c stm32discovery stm 32 discovery stm32vldiscovery stm 32 vl discovery stm32l discovery stm32 l discovery stm32f100rb stm32l152rbt6 keil micro vision tutoriel tutoriels exemple exemples cours creer projet projets configurer horloge horloges" />
+<link rel="stylesheet" media="screen" type="text/css" title="Style 1" href="../../../elements/allures/style_1.css">
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-42331281-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+<body>
+<div id="page">
+<div id="haut">
+<header id="Haut_de_page">
+<div id="principale">
+<p class="titre_principal_haut">
+<a href="../../../index.php.html"><img style="width: 150px;" alt="Affichage_Atrylec_com" src="../../../images/Affichage_Atrylec_com.png" /><span class="invisible">Atrylec</span></a></p>
+<p class="sous-titre_haut">Vous n'&ecirc;tes pas seuls dans l'Univers !</p>
+</div>
+<div id="additionnelle">
+</div>
+</header>
+<nav>
+<ul id="navigation">
+<li><a href="../../../index.php.html" title="Accueil">Accueil</a></li>
+<li><a class="choisi" href="../index.php.html" title="Electronique">Electronique</a></li>
+<li><a href="../../radio/index.php%3Fnumero=0.html" title="Radio">Radio</a></li>
+<li><a href="../../origami/index.php.html" title="Origami">Origami</a></li>
+<li><a href="../../photographies/index.php%3Fnumero=0.html" title="Photographies">Photographies</a></li>
+<li><a href="../../le_grenier/index.php.html" title="Le grenier">Le grenier</a></li>
+<li><a href="../../contact.php.html" title="ContaCT">ContaCT</a></li>
+</ul>
+</nav>
+</div>
+<section>
+<div id="titre">
+<div id="titre_gauche">
+</div>
+<div id="titre_image">
+<img style="width: 100px; height: 100px;" alt="Transistor_100" src="../../../images/Transistor_100.png">
+</div>
+<div id="titre_texte">
+<p>[</p><h1>STM32 DISCOVERY - STM32L-DISCOVERY, premiers essais</h1><p>]</p>
+</div>
+<div id="titre_droite">
+</div>
+</div>
+<div>
+<p id="introduction">Les premiers essais avec la carte &laquo;&nbsp;STM32L-DISCOVERY&nbsp;&raquo;.</p>
+</div>
+<p>
+<a id="Liste_de_depart"></a>
+</p>
+<div>
+<div class="menu_article">
+<ul class="menu_article_principal">
+<li><a href="stm32discovery_page_1.php.html">Mises en places</a></li>
+<li><ul>
+<li><a href="stm32discovery_page_1.php.html">Pr&eacute;parations mat&eacute;rielles</a></li>
+<li><a href="stm32discovery_page_2.php.html">Pr&eacute;parations logicielles</a></li>
+<li></li>
+<li><a href="stm32discovery_page_3A.php.html">&laquo;&nbsp;STM32VLDISCOVERY&nbsp;&raquo;&nbsp;: Premiers essais</a></li>
+<li><a class="choisi" href="stm32discovery_page_3B.php.html">&laquo;&nbsp;STM32L-DISCOVERY&nbsp;&raquo;&nbsp;: Premiers essais</a></li>
+</ul></li>
+<li><a href="stm32discovery_page_4A.php.html">Programmation de la carte &laquo;&nbsp;STM32VLDISCOVERY&nbsp;&raquo;</a></li>
+<li><a href="stm32discovery_page_4B.php.html">Programmation de la carte &laquo;&nbsp;STM32L-DISCOVERY&nbsp;&raquo;</a></li>
+</ul>
+<ul class="menu_article_secondaire">
+<li><a href="stm32discovery_page_3B.php%3Fselection=1.html#Endroit_1-0-0">1) La saisie des codes sources</a></li>
+<li><a href="stm32discovery_page_3B.php%3Fselection=1.html#Endroit_2-0-0">2) La compilation</a></li>
+<li><a href="stm32discovery_page_3B.php%3Fselection=1.html#Endroit_3-0-0">3) L'envoi du code compil&eacute; au microcontr&ocirc;leur</a></li>
+</ul>
+</div>
+</div>
+<div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="stm32discovery_page_3B.php%3Fselection=1.html#Haut_de_page">Je veux remonter !</a>&nbsp;|&nbsp;<a href="stm32discovery_page_3B.php%3Fselection=1.html#Liste_de_depart">Liste</a>
+</div>
+<a id="Endroit_1-0-0"></a>
+<h2>1) La saisie des codes sources</h2>
+<p>Afin de prendre en main la carte &laquo;&nbsp;STM32L-DISCOVERY&nbsp;&raquo;, je vous propose un premier exemple de programme simple.<br />
+Ce premier programme va faire s'allumer la LED verte de la carte.<br />
+Le sch&eacute;ma &eacute;lectrique de cette carte nous apprend que l'anode de la LED verte est connect&eacute;e &agrave; la broche rep&eacute;r&eacute;e &laquo;&nbsp;PB7&nbsp;&raquo; du microcontr&ocirc;leur &laquo;&nbsp;STM32L152RB&nbsp;&raquo;.<br />
+Cela est d'ailleurs rappel&eacute;e sur la s&eacute;rigraphie de la carte, &agrave; c&ocirc;t&eacute; de la LED verte.<br />
+Cela signifie qu'il faudra que cette broche pr&eacute;sente un &laquo;&nbsp;un&nbsp;&raquo; logique, pour provoquer l'allumage de la LED verte, et un &laquo;&nbsp;<i>z&eacute;ro</i>&nbsp;&raquo; logique, pour provoquer son extinction.<br />
+Le code source suivant permet justement d'obtenir ce &laquo;&nbsp;un&nbsp;&raquo; logique.<br />
+Son fonctionnement vous sera expliqu&eacute; par la suite. Sachez cependant que la base des connaissances du langage C est n&eacute;cessaire pour le comprendre.<br />
+Copiez le code source, et collez-le dans votre fichier &laquo;&nbsp;main.c&nbsp;&raquo;. <small>et c'est le moment de sortir le super colorateur syntaxique de ce site Internet.</small></p>
+<div class="codes-sources-c">
+<div class="codes-sources-c-haut">
+<p>Code source : Exemple 1B - Allumage de la LED verte de la carte</p>
+</div>
+<div class="codes-sources-c-bas">
+<pre>
+<span style="color: rgb(0, 0, 0);">
+<em><span style="color:#009900;">/* Allumage de la LED verte, situ&eacute;e sur la broche PB7 */</span></em>
+
+<strong><span style="color:#FF9900;">#include </span></strong><span style="color:#CC00FF;">"stm32l1xx.h"</span> <em><span style="color:#009900;">/* Inclusion du fichier qui contient
+				toutes les d&eacute;finitions des registres du microcontr&ocirc;leur
+				STM32L152RB */</span></em>
+
+<strong><span style="color:#0000FF;">void</span></strong> ConfigPortB(<strong><span style="color:#0000FF;">void</span></strong>) <em><span style="color:#009900;">/* Fonction qui permet de configurer le port B */</span></em>
+{
+    RCC-&gt;AHBENR |= (<span style="color:#FF0000;">1</span> &lt;&lt; <span style="color:#FF0000;">1</span>); <em><span style="color:#009900;">/* Activation de l'horloge du port B */</span></em>
+    GPIOB-&gt;MODER = ((GPIOB-&gt;MODER &amp; <span style="color:#FF0000;">0xffff3fff</span>) | (<span style="color:#FF0000;">0x00004000</span>)); <em><span style="color:#009900;">/* Configuration de la broche PB7 en
+                                                    sortie &agrave; usage g&eacute;n&eacute;ral */</span></em>
+    GPIOB-&gt;OTYPER = ((GPIOB-&gt;OTYPER &amp; <span style="color:#FF0000;">0xffffff7f</span>) | (<span style="color:#FF0000;">0x00000000</span>)); <em><span style="color:#009900;">/* Configuration de la broche PB7 en
+                                                      sortie push-pull */</span></em>
+    GPIOB-&gt;OSPEEDR = ((GPIOB-&gt;OSPEEDR &amp; <span style="color:#FF0000;">0xffff3fff</span>) | (<span style="color:#FF0000;">0x00000c000</span>)); <em><span style="color:#009900;">/* Configuration de la broche PB7 en
+                                                        sortie 40 MHz */</span></em>
+    GPIOB-&gt;PUPDR = ((GPIOB-&gt;PUPDR &amp; <span style="color:#FF0000;">0xffff3fff</span>) | (<span style="color:#FF0000;">0x00000000</span>)); <em><span style="color:#009900;">/* D&eacute;sactivation des r&eacute;sistances
+                                                      de pull-up et de pull-down
+                                                    de la broche PB7 */</span></em>
+}
+
+<strong><span style="color:#0000FF;">int</span></strong> main(<strong><span style="color:#0000FF;">void</span></strong>) <em><span style="color:#009900;">/* Fonction principale */</span></em>
+{
+    ConfigPortB('Francais', ''); <em><span style="color:#009900;">/* Appel de la fonction qui permet de configurer
+                       le port B */</span></em>
+    <strong><span style="color:#0000FF;">while</span></strong>(<span style="color:#FF0000;">1</span>) <em><span style="color:#009900;">/* Boucle sans fin */</span></em>
+    {
+        GPIOB-&gt;ODR   = ((GPIOB-&gt;ODR &amp; <span style="color:#FF0000;">0xffffff7f</span>) | (<span style="color:#FF0000;">0x00000080</span>)); <em><span style="color:#009900;">/* Envoi d'un &laquo;&nbsp;un&nbsp;&raquo; logique sur la broche PB7 */</span></em>
+    }
+}
+
+<strong><span style="color:#0000FF;">void</span></strong> SystemInit (<strong><span style="color:#0000FF;">void</span></strong>) <em><span style="color:#009900;">/* Fonction qui permet d'effectuer l'initialisation du microcontr&ocirc;leur STM32L152RB.
+				Cette fonction est appel&eacute;e par le fichier &eacute;crit en langage assembleur, qui a &eacute;t&eacute; inclus au d&eacute;but de la cr&eacute;ation du projet.
+				L'appel de la fonction &laquo;&nbsp;main('Francais', '');&nbsp;&raquo; est ensuite effectu&eacute; par le m&ecirc;me fichier. */</span></em>
+{
+
+}
+
+</span>
+</pre>
+</div>
+</div>
+<div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="stm32discovery_page_3B.php%3Fselection=1.html#Haut_de_page">Je veux remonter !</a>&nbsp;|&nbsp;<a href="stm32discovery_page_3B.php%3Fselection=1.html#Liste_de_depart">Liste</a>
+</div>
+<a id="Endroit_2-0-0"></a>
+<h2>2) La compilation</h2>
+<p>Sauvegardez les modifications que vous venez d'apporter au ficher, puis faitez-le compiler par Keil &micro;Vision 4, en cliquant sur le bouton &laquo;&nbsp;Rebuild&nbsp;&raquo;.</p>
+<figure>
+<a href="../../../images/Capture_ecran_14.jpg">
+<img alt="Capture_ecran_14" src="../../../images/Capture_ecran_14.jpg">
+</a>
+</figure>
+<p>Vous verrez des choses d&eacute;filer dans la partie basse de votre &eacute;cran, puis ce d&eacute;filement va s'arr&ecirc;ter.<br />
+Lorsque vous lancez une compilation, Keil &micro;Vision 4 va chercher tous les fichiers sources que vous avez ajout&eacute;s au projet qui est ouvert.<br />
+Il va ensuite lire tous ces fichiers sources, et les traduire en code machine, qui est le seul type de code qui soit compr&eacute;hensible par les microcontr&ocirc;leurs, quel que soit leur mod&egrave;le.<br /> 
+L'apparition du message &laquo;&nbsp;0 errors - 0 warnings&nbsp;&raquo; vous indiquera que tout s'est bien pass&eacute;.<br />
+En cas d'avertissements ou d'erreurs, le logiciel vous le mentionnera, en indiquant leur nombre, et, lorsque c'est possible, l'endroit o&ugrave; se situent les probl&egrave;mes.<br />
+Ces probl&egrave;mes pourront provenir des fichiers sources ou de la configuration du logiciel.</p>
+<div class="valorisations">
+<div class="attention">
+<div class="attention-gauche">
+<img style="width: 32px; height: 32px;" alt="avertissement-icone-9768-32" src="../../../images/avertissement-icone-9768-32.png">
+</div>
+<div class="attention-droite">
+<p>Attention ! Veillez toujours &agrave; laisser la derni&egrave;re ligne vide de chacun de vos fichiers sources.<br />
+                           Le compilateur du logiciel Keil &micro;Vision 4 vous indiquera un avertissement, &agrave; chaque fois qu'un fichier source ne respecte pas cette r&egrave;gle.<br />
+                           Cependant, cela n'emp&ecirc;che pas la compilation de s'effectuer correctement.</p></div>
+</div>
+</div>
+<div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="stm32discovery_page_3B.php%3Fselection=1.html#Haut_de_page">Je veux remonter !</a>&nbsp;|&nbsp;<a href="stm32discovery_page_3B.php%3Fselection=1.html#Liste_de_depart">Liste</a>
+</div>
+<a id="Endroit_3-0-0"></a>
+<h2>3) L'envoi du code compil&eacute; au microcontr&ocirc;leur</h2>
+<p>La compilation s'est bien pass&eacute;e ? Parfait ! Vous pouvez maintenant envoyer le code source compil&eacute; au microcontr&ocirc;leur !</p>
+<p>Pour ce faire, cliquez sur le bouton &laquo;&nbsp;Download&nbsp;&raquo; de Keil &micro;Vision 4.</p>
+<figure>
+<a href="../../../images/Capture_ecran_15.jpg">
+<img alt="Capture_ecran_15" src="../../../images/Capture_ecran_15.jpg">
+</a>
+</figure>
+<p></p>
+<figure>
+<a href="../../../images/Capture_ecran_20.jpg">
+<img alt="Capture_ecran_20" src="../../../images/Capture_ecran_20.jpg">
+</a>
+</figure>
+<p>Fonctionnement en mode &laquo;&nbsp;Pas-&agrave;-pas&nbsp;&raquo;</p>
+<figure>
+<a href="../../../images/Capture_ecran_21.jpg">
+<img alt="Capture_ecran_21" src="../../../images/Capture_ecran_21.jpg">
+</a>
+</figure>
+<p>Vue du d&eacute;boggeur</p>
+<figure>
+<a href="../../../images/Capture_ecran_22.jpg">
+<img alt="Capture_ecran_22" src="../../../images/Capture_ecran_22.jpg">
+</a>
+</figure>
+<div>
+<div class="menu_article">
+<ul class="menu_article_principal">
+<li><a href="stm32discovery_page_1.php.html">Mises en places</a></li>
+<li><ul>
+<li><a href="stm32discovery_page_1.php.html">Pr&eacute;parations mat&eacute;rielles</a></li>
+<li><a href="stm32discovery_page_2.php.html">Pr&eacute;parations logicielles</a></li>
+<li></li>
+<li><a href="stm32discovery_page_3A.php.html">&laquo;&nbsp;STM32VLDISCOVERY&nbsp;&raquo;&nbsp;: Premiers essais</a></li>
+<li><a class="choisi" href="stm32discovery_page_3B.php.html">&laquo;&nbsp;STM32L-DISCOVERY&nbsp;&raquo;&nbsp;: Premiers essais</a></li>
+</ul></li>
+<li><a href="stm32discovery_page_4A.php.html">Programmation de la carte &laquo;&nbsp;STM32VLDISCOVERY&nbsp;&raquo;</a></li>
+<li><a href="stm32discovery_page_4B.php.html">Programmation de la carte &laquo;&nbsp;STM32L-DISCOVERY&nbsp;&raquo;</a></li>
+</ul>
+<ul class="menu_article_secondaire">
+<li><a href="stm32discovery_page_3B.php%3Fselection=1.html#Endroit_1-0-0">1) La saisie des codes sources</a></li>
+<li><a href="stm32discovery_page_3B.php%3Fselection=1.html#Endroit_2-0-0">2) La compilation</a></li>
+<li><a href="stm32discovery_page_3B.php%3Fselection=1.html#Endroit_3-0-0">3) L'envoi du code compil&eacute; au microcontr&ocirc;leur</a></li>
+</ul>
+</div>
+</div>
+<div class="commentaires"><a id="Endroits_des_commentaires"></a><p class="sous-titre_commentaires">Commentaires (0)</p><p class="sous-titre_ajouts">Ajouter un commentaire</p>
+<form id="contact" method="post" action="http://atrylec.com/elements/allures/commentaires/verification.php">
+<fieldset>
+<legend>
+Votre pseudo&nbsp;: 
+</legend>
+<p>
+<label for="pseudo">
+Pseudo&nbsp;: 
+</label>
+<input type="text" id="pseudo" name="pseudo" tabindex="1" required="required">
+</p>
+</fieldset>
+<fieldset>
+<legend>
+Votre commentaire&nbsp;: 
+</legend>
+<p>
+<label for="commentaire">
+Commentaire&nbsp;: 
+</label>
+<textarea id="commentaire" name="commentaire" tabindex="2" cols="50" rows="2" required="required">
+</textarea>
+</p>
+</fieldset>
+<div class="bouton_validation_commentaire">
+<input type="submit" name="Poster" value="Poster" />
+</div>
+</form>
+</div><div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="stm32discovery_page_3B.php%3Fselection=1.html#Haut_de_page">Je veux remonter !</a>
+</div>
+</section>
+<footer>
+<div class="liens">
+<ul>
+<li><a href="../../contact.php.html">ContaCT</a></li>
+</ul>
+</div>
+<div id="choix_style">
+<div class="presentation">Ravaler la fa&ccedil;ade&nbsp;:</div>
+<div class="choix choix_bleu_choisi">&nbsp;</div><a href="stm32discovery_page_3B.php%3Fselection=2.html" title="Style 2"><div class="choix choix_rouge">&nbsp;</div></a><a href="stm32discovery_page_3B.php%3Fselection=3.html" title="Style 3"><div class="choix choix_orange">&nbsp;</div></a></div>
+<div class="remarques">
+<p>Il ne faut pas dire&nbsp;: &laquo;&nbsp;Un beau cavalier
+&nbsp;&raquo;, mais&nbsp;: &laquo;&nbsp;Un joli <i>jumper</i>
+&nbsp;&raquo;.</p>
+</div>
+<div class="visites">
+<img style="width: 15px; height: 15px;" alt="6_30" src="../../../images/6_30.png">   <img style="width: 15px; height: 15px;" alt="5_30" src="../../../images/5_30.png">   <img style="width: 15px; height: 15px;" alt="0_30" src="../../../images/0_30.png">   <img style="width: 15px; height: 15px;" alt="9_30" src="../../../images/9_30.png">   <img style="width: 15px; height: 15px;" alt="9_30" src="../../../images/9_30.png">   </div>
+</footer>
+</div>
+</body>
+</html>

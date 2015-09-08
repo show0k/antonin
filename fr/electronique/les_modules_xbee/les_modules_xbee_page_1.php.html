@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>Les modules XBee</title>
+<meta name="description" content="Les modules XBee&nbsp;: Pr&eacute;sentations, configurations, applications." />
+<meta name="keywords" content="atrylec electronique module xbee pro x ctu digi presentation configuration configurations application usart interruption montage montages realisation microcontroleur entree sortie programmation code source langage c stm32discovery stm 32 discovery stm32vldiscovery stm 32 vl discovery stm32l discovery stm32 l discovery stm32f100rb tutoriel tutoriels exemple exemples cours" />
+<link rel="stylesheet" media="screen" type="text/css" title="Style 3" href="../../../elements/allures/style_3.css">
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-42331281-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+<body>
+<div id="page">
+<div id="haut">
+<header id="Haut_de_page">
+<div id="principale">
+<p class="titre_principal_haut">
+<a href="../../../index.php.html"><img style="width: 150px;" alt="Affichage_Atrylec_com" src="../../../images/Affichage_Atrylec_com.png" /><span class="invisible">Atrylec</span></a></p>
+<p class="sous-titre_haut">Vous n'&ecirc;tes pas seuls dans l'Univers !</p>
+</div>
+<div id="additionnelle">
+</div>
+</header>
+<nav>
+<ul id="navigation">
+<li><a href="../../../index.php.html" title="Accueil">Accueil</a></li>
+<li><a class="choisi" href="../index.php.html" title="Electronique">Electronique</a></li>
+<li><a href="../../radio/index.php%3Fnumero=0.html" title="Radio">Radio</a></li>
+<li><a href="../../origami/index.php.html" title="Origami">Origami</a></li>
+<li><a href="../../photographies/index.php%3Fnumero=0.html" title="Photographies">Photographies</a></li>
+<li><a href="../../le_grenier/index.php.html" title="Le grenier">Le grenier</a></li>
+<li><a href="../../contact.php.html" title="ContaCT">ContaCT</a></li>
+</ul>
+</nav>
+</div>
+<section>
+<div id="titre">
+<div id="titre_gauche">
+</div>
+<div id="titre_image">
+<img style="width: 100px; height: 100px;" alt="Transistor_100" src="../../../images/Transistor_100.png">
+</div>
+<div id="titre_texte">
+<p>/&nbsp;</p><h1>Les modules XBee - Page 1</h1>
+</div>
+<div id="titre_droite">
+</div>
+</div>
+<div>
+<p id="introduction">Pr&eacute;sentations, configurations, applications.<br />
+Les modules XBee sont des modules qui permettent d'envoyer et de recevoir des donn&eacute;es, sans fil, et &agrave; l'aide d'un nombre de composants &eacute;lectroniques p&eacute;riph&eacute;riques minimum.</p>
+</div>
+<p>
+<a id="Liste_de_depart"></a>
+</p>
+<div>
+<div class="menu_article">
+<ul class="menu_article_principal">
+<li><a href="les_modules_xbee_page_1.php.html">Les modules XBee</a></li>
+<li><ul>
+<li><a class="choisi" href="les_modules_xbee_page_1.php.html">Prise en main</a></li>
+<li><a href="les_modules_xbee_page_2.php.html">Se servir des entr&eacute;es-sorties</a></li>
+</ul></li>
+</ul>
+<ul class="menu_article_secondaire">
+<li><a href="les_modules_xbee_page_1.php.html#Endroit_1-0-0">1) Pr&eacute;sentation</a></li>
+<li><a href="les_modules_xbee_page_1.php.html#Endroit_2-0-0">2) Configurer les modules XBee</a></li>
+<li><a href="les_modules_xbee_page_1.php.html#Endroit_3-0-0">3) Etablir une communication s&eacute;rie, sans fil</a></li>
+<li>
+<ul>
+<li><a href="les_modules_xbee_page_1.php.html#Endroit_3-1-0">3-1) Configuration mat&eacute;rielle</a></li>
+<li><a href="les_modules_xbee_page_1.php.html#Endroit_3-2-0">3-2) Configuration des modules</a></li>
+<li><a href="les_modules_xbee_page_1.php.html#Endroit_3-3-0">3-3) Programmation du microcontr&ocirc;leur</a></li>
+<li><a href="les_modules_xbee_page_1.php.html#Endroit_3-4-0">3-4) Les essais</a></li>
+<li><a href="les_modules_xbee_page_1.php.html#Endroit_3-5-0">3-5) Autre exemple d'application</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="les_modules_xbee_page_1.php.html#Haut_de_page">Je veux remonter !</a>&nbsp;|&nbsp;<a href="les_modules_xbee_page_1.php.html#Liste_de_depart">Liste</a>
+</div>
+<a id="Endroit_1-0-0"></a>
+<h2>1) Pr&eacute;sentation</h2>
+<p>Les modules XBee sont des modules qui permettent d'envoyer et de recevoir des donn&eacute;es, sans fil, performants et accessibles. Ils sont caract&eacute;ris&eacute;s par une port&eacute;e tr&egrave;s confortable d'une centaine de m&egrave;tres en environnement d'int&eacute;rieur, et jusqu'&agrave; plus d'un kilom&egrave;tre en zone d&eacute;gag&eacute;e pour les modules XBee-PRO &eacute;quip&eacute;s d'une antenne adapt&eacute;e.<br />
+Ils peuvent &ecirc;tre utilis&eacute;s coupl&eacute;s &agrave; un microcontr&ocirc;leur ou de fa&ccedil;on ind&eacute;pendante.<br />
+Ils sont tr&egrave;s pratiques pour la r&eacute;alisation de nombreux montages &eacute;lectroniques qui doivent pouvoir communiquer entre eux, dont des <a href="../realisations/le_minbee.php.html" title="Ouvrir le lien &laquo;&nbsp;http://www.atrylec.com/fr/electronique/realisations/le_minbee.php&nbsp;&raquo;">montages &agrave; l'utilit&eacute; plus ou moins discutable</a>.</p>
+<figure>
+<table style="text-align: left;" border="0" cellpadding="2" cellspacing="1">
+<tbody>
+<tr>
+<td>
+<a href="../../../images/MODULE_XBEE_ET_MODULE_XBEE_PRO_ENDROIT.jpg">
+<img alt="MODULE_XBEE_ET_MODULE_XBEE_PRO_ENDROIT" src="../../../images/MODULE_XBEE_ET_MODULE_XBEE_PRO_ENDROIT_Petite.jpg">
+</a>
+</td>
+<td>
+<a href="../../../images/MODULE_XBEE_ET_MODULE_XBEE_PRO_ENVERS.jpg">
+<img alt="MODULE_XBEE_ET_MODULE_XBEE_PRO_ENVERS" src="../../../images/MODULE_XBEE_ET_MODULE_XBEE_PRO_ENVERS_Petite.jpg">
+</a>
+</td>
+</tr>
+</tbody>
+</table>
+<figcaption>Module XBee, &agrave; gauche sur les&nbsp;photographies, et module XBee-PRO, &agrave; droite sur les photographies</figcaption>
+</figure>
+<p>Ces modules XBee se basent sur la norme ZigBee pour mettre en place des communications radio. Cette norme est adapt&eacute;e aux r&eacute;seaux personnels sans fil &agrave; faibles d&eacute;bits.</p>
+<p>Elle utilise&nbsp;:</p>
+<ul>
+<li>16 canaux dans la bande de fr&eacute;quences 2,4 GHz,</li>
+<li>10 canaux dans la bande de fr&eacute;quences 900 MHz,</li>
+<li>1 canal dans la bande de fr&eacute;quences 868 MHz.</li>
+</ul>
+<p>Il n'est pas n&eacute;cessaire de conna&icirc;tre en
+d&eacute;tail ce protocole de communication.<br />
+En effet, les composants &eacute;lectroniques pr&eacute;sents
+dans les modules se chargent de la gestion de ce dernier.<br />
+Les modules XBee fonctionnent dans la bande de fr&eacute;quences de
+2,4GHZ.<br />
+Ils disposent, selon leur mod&egrave;le, d'une antenne
+int&eacute;gr&eacute;e miniature,
+int&eacute;gr&eacute;e verticale, d'un emplacement pour souder
+une antenne externe, ou encore d'un connecteur pour raccorder une
+antenne externe.<br />
+La port&eacute;e des modules d&eacute;pend bien
+&eacute;videmment de l'antenne, mais aussi de la configuration de
+la puissance de sortie des modules.<br />
+Celle-ci peut &ecirc;tre r&eacute;gl&eacute;e de
+mani&egrave;re logicielle.<br />
+Le module XBee-PRO permet d'obtenir une puissance de sortie de 60 mW,
+correspondant &agrave; 18 dBm.</p>
+<div class="valorisations">
+<div class="attention">
+<div class="attention-gauche">
+<img style="width: 32px; height: 32px;" alt="avertissement-icone-9768-32" src="../../../images/avertissement-icone-9768-32.png">
+</div>
+<div class="attention-droite">
+<p>Attention&nbsp;: En France, la l&eacute;gislation impose que la puissance de sortie soit limit&eacute;e &agrave; 10 dBm, dans la bande de fr&eacute;quences utilis&eacute;e par les modules XBee, et par les modules XBee-PRO.</p></div>
+</div>
+</div>
+<p>Le tableau suivant reprend quelques caract&eacute;ristiques des modules XBee et XBee-PRO.</p>
+<table border="1" cellpadding="2" cellspacing="2">
+<tbody>
+<tr>
+<th>Mod&egrave;le</th>
+<th>XBee</th>
+<th>XBee-PRO</th>
+</tr>
+<tr>
+<td>Port&eacute;e en int&eacute;rieur</td>
+<td>Jusqu'&agrave; 30 m&egrave;tres</td>
+<td>Jusqu'&agrave; 100 m&egrave;tres</td>
+</tr>
+<tr>
+<td>Port&eacute;e en ext&eacute;rieur</td>
+<td>Jusqu'&agrave; 100 m&egrave;tres</td>
+<td>Jusqu'&agrave; 1500 m&egrave;tres</td>
+</tr>
+<tr>
+<td>Puissance de sortie</td>
+<td>1 mW</td>
+<td>60 mW</td>
+</tr>
+<tr>
+<td>Possibilit&eacute; de r&eacute;gler la puissance de sortie de fa&ccedil;on logicielle</td>
+<td>Non</td>
+<td>Oui</td>
+</tr>
+<tr>
+<td>D&eacute;bit des donn&eacute;es RF</td>
+<td>250 000 bps</td>
+<td>250 000 bps</td>
+</tr>
+<tr>
+<td>D&eacute;bit des donn&eacute;es UART</td>
+<td>De 1200 bps &agrave; 115 200 bps</td>
+<td>De 1200 bps &agrave; 115 200 bps</td>
+</tr>
+<tr>
+<td>Sensibilit&eacute;</td>
+<td>-92 dBm</td>
+<td>-100 dBm</td>
+</tr>
+<tr>
+<td>Tension d'alimentation</td>
+<td>De 2,8 V &agrave; 3,4 V</td>
+<td>De 2,8 V &agrave; 3,4 V</td>
+</tr>
+<tr>
+<td>Courant consomm&eacute; lors d'une &eacute;mission</td>
+<td>45 mA &agrave; 3,3 V</td>
+<td>
+<ul>
+<li>10 dBm&nbsp;: 137 mA &agrave; 3,3 V</li>
+<li>12 dBm&nbsp;: 155 mA &agrave; 3,3 V</li>
+<li>14 dBm&nbsp;: 170 mA &agrave; 3,3 V</li>
+<li>16 dBm&nbsp;: 188 mA &agrave; 3,3 V</li>
+<li>18 dBm&nbsp;: 215 mA &agrave; 3,3 V</li>
+</ul>
+</tr>
+<tr>
+<td>Courant consomm&eacute; lors d'une attente ou d'une r&eacute;ception</td>
+<td>50 mA &agrave; 3,3 V</td>
+<td>50 mA &agrave; 3,3 V</td>
+</tr>
+<tr>
+<td>Courant consomm&eacute; en mode &laquo;&nbsp;SLEEP&nbsp;&raquo;</td>
+<td>Moins de 10 &micro;A</td>
+<td>Moins de 10 &micro;A</td>
+</tr>
+</tbody>
+</table>
+<p><img alt="LIEN_EXTERNE" src="../../../images/LIEN_EXTERNE.png" />&nbsp;<a href="http://ftp1.digi.com/support/documentation/90000982_B.pdf" title="Ouvrir le lien &laquo;&nbsp;http://ftp1.digi.com/support/documentation/90000982_B.pdf&nbsp;&raquo; dans une nouvelle fen&ecirc;tre, ou dans un nouvel onglet" target="_blank">La <i>datasheet</i> des modules XBee et des modules XBee-PRO</a></p>
+<p>La consommation des modules XBee en attente ou en r&eacute;ception est importante. S'ils sont utilis&eacute;s dans une application o&ugrave; la gestion de l'&eacute;nergie est pr&eacute;pond&eacute;rante, par exemple dans le cas d'un
+syst&egrave;me dont l'alimentation &eacute;lectrique provient de piles ou de&nbsp; batteries, il sera judicieux de r&eacute;duire le courant consomm&eacute; par les modules.<br />
+C'est le r&ocirc;le du mode &laquo;&nbsp;SLEEP&nbsp;&raquo;, qui se d&eacute;cline en diff&eacute;rentes variantes, selon la configuration qui a &eacute;t&eacute; appliqu&eacute;e aux modules.<br />
+La broche 9 des modules peut servir &agrave; passer dans le mode &laquo;&nbsp;SLEEP&nbsp;&raquo;, si un niveau logique haut y est pr&eacute;sent&eacute;.<br />
+La sortie du mode &laquo;&nbsp;SLEEP&nbsp;&raquo; se fait si un niveau logique bas y est pr&eacute;sent&eacute;.<br />
+La consommation peut alors &ecirc;tre r&eacute;duite de 10 &micro;A, et la sortie se fait apr&egrave;s un d&eacute;lai de 13,2 ms, ou de 50 &micro;A avec un temps r&eacute;duit &agrave; 2 ms.<br />
+Le passage en mode &laquo;&nbsp;SLEEP&nbsp;&raquo; &nbsp;peut &eacute;galement se faire de fa&ccedil;on r&eacute;guli&egrave;re, et le module en sortira alors &agrave; intervalles r&eacute;guliers, afin de v&eacute;rifier si des donn&eacute;es sont disponibles.</p>
+<p>Les transmissions radio peuvent se faire suivant deux modes&nbsp;: le mode &laquo;&nbsp;Unicast&nbsp;&raquo;, ou le&nbsp;mode &laquo; Broadcast&nbsp;&raquo;.<br />
+Dans le premier mode, lorsqu'un module envoie des donn&eacute;es, chaque module r&eacute;cepteur concern&eacute; envoie un accus&eacute; de r&eacute;ception &agrave; l'&eacute;metteur. Si l'&eacute;metteur ne re&ccedil;oit pas d'accus&eacute; de r&eacute;ception, il r&eacute;it&egrave;re son envoi, jusqu'&agrave; trois fois cons&eacute;cutives.<br />
+Dans le second mode, chaque module r&eacute;cepteur concern&eacute; re&ccedil;oit les donn&eacute;es, et il n'envoie pas d'accus&eacute; de r&eacute;ception en retour. L'envoi des donn&eacute;es ne se fait qu'une seule fois.</p>
+<div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="les_modules_xbee_page_1.php.html#Haut_de_page">Je veux remonter !</a>&nbsp;|&nbsp;<a href="les_modules_xbee_page_1.php.html#Liste_de_depart">Liste</a>
+</div>
+<a id="Endroit_2-0-0"></a>
+<h2>2) Configurer les modules XBee</h2>
+<p>Pour configurer les modules XBee, &nbsp;il faut les alimenter et leur envoyer des commandes de configuration &nbsp;par le biais de leurs entr&eacute;es DI.<br />
+Cela peut s'effectuer en connectant les modules &agrave; une alimentation adapt&eacute;e et au port s&eacute;rie d'un ordinateur.</p>
+<p>Si vous n'avez pas d'ordinateur &eacute;quip&eacute; d'au moins un port s&eacute;rie, vous pouvez utiliser un adaptateur USB - s&eacute;rie, que vous trouverez dans le commerce ou que vous pourrez fabriquer.<br />
+Il est possible de construire un tel adaptateur en utilisant le circuit int&eacute;gr&eacute;&nbsp;&laquo;&nbsp;FT232R&nbsp; &raquo;.<br />
+Il existe &eacute;galement des cartes qui sont sp&eacute;cialement fabriqu&eacute;es pour accueillir des modules XBee.<br />
+Ces cartes permettent la connexion &agrave; un ordinateur et l'alimentation des modules gr&acirc;ce &agrave; un port USB.<br />
+Elles donnent &eacute;galement acc&egrave;s aux broches des modules.</p>
+<figure>
+<a href="../../../images/Exemple_platine_1.jpg">
+<img alt="Exemple_platine_1" src="../../../images/Exemple_platine_1_Petite.jpg">
+</a>
+<figcaption>Un exemple de carte sp&eacute;cialement fabriqu&eacute;e pour recevoir des modules XBee</figcaption>
+</figure>
+<p></p>
+<figure>
+<a href="../../../images/Exemple_platine_2.jpg">
+<img alt="Exemple_platine_2" src="../../../images/Exemple_platine_2_Petite.jpg">
+</a>
+<figcaption>Un exemple de carte permettant d'adapter le pas non standard de 2 millim&egrave;tres des modules XBee &agrave; un pas standard de 2,54 millim&egrave;tres</figcaption>
+</figure>
+<p></p>
+<figure>
+<a href="../../../images/Collection_objets_XBee.jpg">
+<img alt="Collection_objets_XBee" src="../../../images/Collection_objets_XBee_Petite.jpg">
+</a>
+<figcaption>Toute la collection XBee automne-hiver 2011</figcaption>
+</figure>
+<p><img alt="LIEN_EXTERNE" src="../../../images/LIEN_EXTERNE.png" />&nbsp;<a href="http://www.ftdichip.com/Support/Documents/DataSheets/ICs/DS_FT232R.pdf" title="Ouvrir le lien &laquo;&nbsp;http://www.ftdichip.com/Support/Documents/DataSheets/ICs/DS_FT232R.pdf&nbsp;&raquo; dans une nouvelle fen&ecirc;tre, ou dans un nouvel onglet" target="_blank">La <i>datasheet</i> du circuit int&eacute;gr&eacute; FT232R</a></p>
+<p>L'envoi de commandes aux modules, et la r&eacute;ception des informations, n&eacute;cessite qu'un terminal de liaison soit install&eacute; dans l'ordinateur.<br />
+Le module doit ensuite &ecirc;tre plac&eacute; dans le mode&nbsp;&laquo;&nbsp;commande&nbsp;&raquo;.<br />
+Cela s'effectue en lui envoyant la s&eacute;quence &laquo;&nbsp;+++&nbsp;&raquo;.<br />
+Si tout est bien en place, le module envoie alors la r&eacute;ponse &laquo;&nbsp;OK&nbsp;&raquo;.<br />
+Les commandes &agrave; envoyer ensuite aux modules sont des commandes AT, qui sont utilis&eacute;es par certains modems.<br />
+Elles se pr&eacute;sentent sous la forme&nbsp;:<br />
+&laquo;&nbsp;AT + Commande ASCII + Espace + Param&egrave;tre + Retour chariot&nbsp;&raquo;.<br />
+Par exemple, l'envoi de la commande&nbsp;&laquo;&nbsp;ATBD 0&nbsp;&raquo; permet de r&eacute;gler&nbsp; l'interface s&eacute;rie &agrave; 1200 bps.<br />
+La sauvegarde des modifications qui ont &eacute;t&eacute; effectu&eacute;es se fait en envoyant la commande &laquo;&nbsp;ATWR&nbsp;&raquo;.<br />
+Pour quitter le mode &laquo;&nbsp;commande&nbsp;&raquo;, dans lequel &eacute;tait plac&eacute; le module XBee, il faut envoyer &laquo;&nbsp;ATCN&nbsp;&raquo;.</p>
+<div class="questions-reponses">
+<div class="questions-reponses-haut">
+<div class="questions-reponses-haut-gauche">
+<img style="width: 32px; height: 32px;" alt="daide-un-point-interrogation-icone-6123-32" src="../../../images/daide-un-point-interrogation-icone-6123-32.png">
+</div>
+<div class="questions-reponses-haut-droit">
+<p>Question&nbsp;: Vous ne trouvez pas que ces commandes sont ou seraient un peu fastidieuses &agrave; entrer ?</p></div>
+</div>
+<div class="questions-reponses-bas">
+<div class="questions-reponses-bas-gauche">
+<img style="width: 32px; height: 32px;" alt="fleche-droite-icone-8334-32" src="../../../images/fleche-droite-icone-8334-32.png">
+</div>
+<div class="questions-reponses-bas-droit">
+<p>Si jamais, il existe un logiciel qui a &eacute;t&eacute; d&eacute;velopp&eacute; par Digi, qui est la soci&eacute;t&eacute; qui fabrique les modules XBee, et qui permet de simplifier l'envoi et la r&eacute;ception de ces commandes.</p></div>
+</div>
+</div>
+<p>Ce logiciel se nomme X-CTU, et il est gratuit et t&eacute;l&eacute;chargeable <a href="http://www.digi.com/support/productdetail?pid=3352&osvid=57&type=utilities">ici</a>.<br />
+Il permet d'ouvrir le port s&eacute;rie&nbsp;de son ordinateur associ&eacute; au module XBee qui y est reli&eacute;, ou d'utiliser le port USB qui est reli&eacute; &agrave; l'interface USB - s&eacute;rie reli&eacute;e au module XBee.<br />
+X-CTU permet notamment de choisir les param&egrave;tres que l'on souhaite consulter ou appliquer au module XBee, et se charge d'envoyer et de recevoir les commandes AT correspondantes.</p>
+<p>Les quatre onglets qu'il comporte sont les suivants&nbsp;:</p>
+<ul>
+<li>&laquo;&nbsp;PC Settings&nbsp;&raquo;, pour permettre de configurer la connexion du module &agrave; l'ordinateur, et pour s'assurer que cette derni&egrave;re est pleinement fonctionnelle,</li>
+<li>&laquo;&nbsp;Range Test&nbsp;&raquo;, pour faire des essais de communications entre plusieurs modules,</li>
+<li>&laquo;&nbsp;Terminal&nbsp;&raquo;, pour saisir et envoyer des commandes AT au module, ainsi que pour visualiser les donn&eacute;es evoy&eacute;es et re&ccedil;ues par le module,</li>
+<li>&laquo;&nbsp;Modem Configuration&nbsp;&raquo;, pour lire et modifier l'int&eacute;gralit&eacute; des param&egrave;tres du module, ainsi que pour t&eacute;l&eacute;charger son <i>firmware</i>.</li>
+</ul>
+<figure>
+<a href="../../../images/X-CTU_1.png">
+<img alt="X-CTU_1" src="../../../images/X-CTU_1.png">
+</a>
+<figcaption>Configuration de la liaison s&eacute;rie entre l'ordinateur et le module XBee, par le biais de la platine d'adaptation</figcaption>
+</figure>
+<p></p>
+<figure>
+<a href="../../../images/X-CTU_2.png">
+<img alt="X-CTU_2" src="../../../images/X-CTU_2.png">
+</a>
+<figcaption>Onglet &laquo;&nbsp;Modem Configuration&nbsp;&raquo;, qui permet de r&eacute;gler le module XBee</figcaption>
+</figure>
+<p></p>
+<figure>
+<a href="../../../images/X-CTU_3.png">
+<img alt="X-CTU_3" src="../../../images/X-CTU_3.png">
+</a>
+<figcaption>Ca roule !</figcaption>
+</figure>
+<p>Vous pouvez enregistrer une configuration et la restaurer plus tard dans le m&ecirc;me module, ou dans un autre module du m&ecirc;me type.<br />
+Cela est tr&egrave;s pratique en cas d'erreur faite lors des r&eacute;glages d'un module, par exemple.<br />
+Les boutons &laquo;&nbsp;Save&nbsp;&raquo; et &laquo;&nbsp;Load&nbsp;&raquo;, disponibles dans l'onglet &laquo;&nbsp;Modem Configuration&nbsp;&raquo;, sont &agrave; utiliser pour ces fonctionnalit&eacute;s.</p>
+<div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="les_modules_xbee_page_1.php.html#Haut_de_page">Je veux remonter !</a>&nbsp;|&nbsp;<a href="les_modules_xbee_page_1.php.html#Liste_de_depart">Liste</a>
+</div>
+<a id="Endroit_3-0-0"></a>
+<h2>3) Etablir une communication s&eacute;rie, sans fil</h2>
+<p>Cet partie explique comment &eacute;tablir une commmunication s&eacute;rielle entre un ordinateur et une carte de d&eacute;veloppement de type &laquo;&nbsp;STM32VLDISCOVERY&nbsp;&raquo;, &agrave; l'aide de deux modules XBee.<br />
+Vous trouverez plus d'informations &agrave; propos des cartes de d&eacute;veloppement &laquo;&nbsp;STM32VLDISCOVERY&nbsp;&raquo; et &laquo;&nbsp;STM32L-DISCOVERY&nbsp;&raquo; sur <a href="../stm32discovery/stm32discovery_page_1.php.html" title="Ouvrir le lien &laquo;&nbsp;http://www.atrylec.com/fr/electronique/stm32discovery/stm32discovery_page_1.php&nbsp;&raquo;" >cette page</a>.</p>
+<div class="valorisations">
+<div class="informations">
+<div class="informations-gauche">
+<img style="width: 32px; height: 32px;" alt="documentaires-des-proprietes-icone-5224-32" src="../../../images/documentaires-des-proprietes-icone-5224-32.png">
+</div>
+<div class="informations-droite">
+<p>Remarque&nbsp;: Il n'est pas n&eacute;cessaire d'utiliser de telles cartes de d&eacute;veloppement, pour mettre en &oelig;uvre des modules XBee.<br />
+N'importe quel microcontr&ocirc;leur peut en effet &ecirc;tre mis &agrave; contribution.<br />
+Pour bien faire les choses, il est cependant souhaitable que ce dernier dispose d'un USART.</p></div>
+</div>
+</div>
+<a id="Endroit_3-1-0"></a>
+<h3>3-1) Configuration mat&eacute;rielle</h3>
+<p>Ici, un des modules XBee est reli&eacute; &agrave; un ordinateur par le biais d'une carte d'adaptation s&eacute;rie - USB.<br />
+Le second module est&nbsp;connect&eacute; &agrave; la carte de d&eacute;veloppement STM32VLDISCOVERY gr&acirc;ce &agrave; une seconde carte d'adaptation, similaire &agrave; la
+premi&egrave;re, mais utilis&eacute;e ici pour rendre accessibles les diff&eacute;rentes broches du module XBee.<br />
+En effet, les supports de broches des plaques d'exp&eacute;rimentations standard, comme celle qui est
+utilis&eacute;e ici, sont dispos&eacute;es au pas de 2,54 millim&egrave;tres, alors que les broches des modules Xbee le sont au pas de 2 millim&egrave;tres.<br />
+La carte d'adaptation sert &eacute;galement &agrave; produire la tension de 3,3 volts, n&eacute;cessaire au module, &agrave; partir de la tension d'alimentation de 5 volts, qui est disponible sur l'une des broches de la carte de d&eacute;veloppement.</p>
+<p>Les broches de ce second module sont&nbsp;donc connect&eacute;es, &agrave; travers la carte d'adaptation, &agrave; la carte de d&eacute;veloppement STM32VLDISCOVERY comme indiqu&eacute; dans le tableau suivant.</p>
+<table border="1" cellpadding="2" cellspacing="2">
+<tbody>
+<tr>
+<th>Carte de d&eacute;veloppement&nbsp; STM32VLDISCOVERY</th>
+<td>+3,3V</td>
+<td>0V</td>
+<td>PA9</td>
+<td>PA10</td>
+</tr>
+<tr>
+<th>Carte d'adaptation reli&eacute;e au module XBee</th>
+<td>+3,3V</td>
+<td>0V</td>
+<td>TX</td>
+<td>RX</td>
+</tr>
+</tbody>
+</table>
+<figure>
+<a href="../../../images/Montage_liaisons_XBee.jpg">
+<img alt="Montage_liaisons_XBee" src="../../../images/Montage_liaisons_XBee_Petite.jpg">
+</a>
+<figcaption>Le montage, au grand complet</figcaption>
+</figure>
+<p>
+<a id="Endroit_3-2-0"></a>
+<h3>3-2) Configuration des modules</h3>
+<p>Tout d'abord, il faut v&eacute;rifier que les modules fonctionnent bien.<br />
+Pour chacun d'eux, le placer sur la carte d'adaptation s&eacute;rie - USB, en ayant bien pris soin de ne pas la relier tout de suite &agrave; l'ordinateur.<br />
+Une fois le module correctement plac&eacute;, vous pourrez relier la carte &agrave; un port USB.</p>
+<p>Lancez alors le logiciel X-CTU, prenez l'onglet &laquo;&nbsp;PC Settings&nbsp;&raquo;, et cliquez alors sur le bouton &laquo;&nbsp;Test/Query&nbsp;&raquo;.<br />
+Si tout est bien branch&eacute; et en &eacute;tat de marche, une fen&ecirc;tre s'ouvre et vous indique que la communication avec le module se passe bien, quel est son type, et quelle est la version du <i>firmware</i> qu'il contient.</p>
+<p>Exemple de param&eacute;trage des modules fonctionnel, pour l'application envisag&eacute;e&nbsp;:</p>
+<table border="1" cellpadding="2" cellspacing="2">
+<tbody>
+<tr>
+<th>Nom du param&egrave;tre</th>
+<th>Module 1</th>
+<th>Module 2</th>
+</tr>
+<tr>
+<td>CH - Channel</td>
+<td>C</td>
+<td>C</td>
+</tr>
+<tr>
+<td>ID - PAN ID</td>
+<td>FFFF</td>
+<td>FFFF</td>
+</tr>
+<tr>
+<td>DH - Destination Address High</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>DL - Destination Address Low </td>
+<td>1234</td>
+<td>5678</td>
+</tr>
+<tr>
+<td>MY - 16-bit Source Address </td>
+<td>5678</td>
+<td>1234</td>
+</tr>
+<tr>
+<td>BD - Interface Data Rate </td>
+<td>7 - 115200 Bauds</td>
+<td>7 - 115200&nbsp;Bauds</td>
+</tr>
+</tbody>
+</table>
+<a id="Endroit_3-3-0"></a>
+<h3>3-3) Programmation du microcontr&ocirc;leur</h3>
+<p>La programmation du microcontr&ocirc;leur doit permettre de configurer l'USART, et de g&eacute;rer les fonctions d'envoi et de r&eacute;ception de celui-ci.</p>
+<p>Le programme suivant permet, entre autres, d'obtenir l'allumage de la led bleue lorsque l'on envoie au module XBee, c&ocirc;t&eacute; ordinateur, le code ASCII correspondant au chiffre &laquo;&nbsp;1&nbsp;&raquo; (0x31), et son extinction lorsque l'on envoie le code ASCII correspondant au chiffre &laquo;&nbsp;0&nbsp;&raquo; (0x30).</p>
+<div class="codes-sources-c">
+<div class="codes-sources-c-haut">
+<p>Code source&nbsp;: Exemple 1 - Lecture en permanence des donn&eacute;es re&ccedil;ues par l'USART 1</p>
+</div>
+<div class="codes-sources-c-bas">
+<pre><span style="color: rgb(0, 0, 0);">
+<strong><span style="color:#FF9900;">#include </span></strong>&lt;stm32f10x_lib.h&gt;
+
+<strong><span style="color:#0000FF;">void</span></strong> Delai(<strong><span style="color:#0000FF;">int</span></strong> t)   <em><span style="color:#009900;">/* Fonction qui sert &agrave; faire perdre son temps au STM32F100RB */</span></em>
+{
+	<strong><span style="color:#0000FF;">int</span></strong> k;
+	<strong><span style="color:#0000FF;">for</span></strong>(k = <span style="color:#FF0000;">0</span>; k &lt; (<span style="color:#FF0000;">100</span> * t); k++);
+}
+
+
+<strong><span style="color:#0000FF;">void</span></strong> ConfigurerPortC()
+{
+	RCC-&gt;APB2ENR |= (<span style="color:#FF0000;">1</span> &lt;&lt; <span style="color:#FF0000;">4</span>);
+	GPIOC-&gt;CRH = ((GPIOC-&gt;CRH &amp; <span style="color:#FF0000;">0x00000000</span>) | (<span style="color:#FF0000;">0x00000033</span>));
+	GPIOC-&gt;CRL = ((GPIOC-&gt;CRL &amp; <span style="color:#FF0000;">0x00000000</span>) | (<span style="color:#FF0000;">0x30000000</span>));
+}
+
+
+<strong><span style="color:#0000FF;">void</span></strong> ConfigurerUSART1()
+{
+	RCC-&gt;APB2ENR |= <span style="color:#FF0000;">0x00000001</span>;   <em><span style="color:#009900;">/* Activation de l&#039;horloge pour les fonctions d&#039;entr&eacute;es-sorties alternatives */</span></em>
+	AFIO-&gt;MAPR &amp;= ~(<span style="color:#FF0000;">1</span> &lt;&lt; <span style="color:#FF0000;">2</span>); <em><span style="color:#009900;">/* Remise &agrave; z&eacute;ro du USART 1 remap */</span></em>
+
+	RCC-&gt;APB2ENR |= <span style="color:#FF0000;">0x00000004</span>;   <em><span style="color:#009900;">/* Activation de l&#039;horloge du port GPIOA */</span></em>
+	GPIOA-&gt;CRH = ((GPIOA-&gt;CRH &amp; <span style="color:#FF0000;">0xFFFFF00F</span>) | (<span style="color:#FF0000;">0x000004B0</span>));   <em><span style="color:#009900;">/* USART 1 Tx se situe sur la broche PA9,
+	qui doit &ecirc;tre configur&eacute;e en &laquo;&nbsp;Alternate Output Push-Pull&nbsp;&raquo;,
+	USART 1 Rx se situe sur la broche PA10,
+	qui doit &ecirc;tre configur&eacute;e en &laquo;&nbsp;Input Floating&nbsp;&raquo; */</span></em>
+
+	RCC-&gt;APB2ENR |= <span style="color:#FF0000;">0x00004000</span>;   <em><span style="color:#009900;">/* Activation de l&#039;horloge de l&#039;USART 1 */</span></em>
+
+	USART1-&gt;BRR = <span style="color:#FF0000;">8000000</span> / <span style="color:#FF0000;">115200</span>;   <em><span style="color:#009900;">/* USART1-&gt;BRR = 0b1000100*&nbsp;: USARTDIV 1 = 4 + (5 / 16) = 4,3125 */</span></em>
+
+	USART1-&gt;CR1 = <span style="color:#FF0000;">0</span>;
+	USART1-&gt;CR2 = <span style="color:#FF0000;">0</span>;
+	USART1-&gt;CR3 = <span style="color:#FF0000;">0</span>;
+	USART1-&gt;CR1 |= <span style="color:#FF0000;">0x0000000C</span>;   <em><span style="color:#009900;">/* Activation de l'&eacute;metteur et du r&eacute;cepteur */</span></em>
+
+	USART1-&gt;CR1 |= <span style="color:#FF0000;">0x00002000</span>;   <em><span style="color:#009900;">/* Activation de l'USART 1 */</span></em>
+}
+
+<strong><span style="color:#0000FF;">int</span></strong> ObtenirOctetRecu()   <em><span style="color:#009900;">/* Fonction qui attend que l'USART 1 ait re&ccedil;u une donn&eacute;e pour renvoyer cette donn&eacute;e */</span></em>
+{
+	<strong><span style="color:#0000FF;">while</span></strong> (!(USART1-&gt;SR &amp; USART_FLAG_RXNE));   <em><span style="color:#009900;">/* On attend que l&#039;USART 1 signale la r&eacute;ception d&#039;un octet */</span></em>
+	<strong><span style="color:#0000FF;">return</span></strong> ((<strong><span style="color:#0000FF;">int</span></strong>)(USART1-&gt;DR &amp; <span style="color:#FF0000;">0x1FF</span>));   <em><span style="color:#009900;">/* L&#039;octet que l'USART 1 a re&ccedil;u<br />se trouve dans le registre &laquo;&nbsp;USART1-&gt;DR&nbsp;&raquo; */</span></em>
+}
+
+<strong><span style="color:#0000FF;">void</span></strong> EnvoyerOctet(<strong><span style="color:#0000FF;">unsigned</span></strong> <strong><span style="color:#0000FF;">char</span></strong> donnee)   <em><span style="color:#009900;">/* Permet d'envoyer un octet par l'USART 1 */</span></em> 
+{
+	<strong><span style="color:#0000FF;">while</span></strong> (!(USART1-&gt;SR &amp; USART_FLAG_TXE));   <em><span style="color:#009900;">/* On attend que l&#039;USART 1 soit pr&ecirc;t &agrave; envoyer une donn&eacute;e */</span></em>
+
+	USART1-&gt;DR = donnee;   <em><span style="color:#009900;">/* L&#039;envoi de 'octet par l'USART 1 d&eacute;marre<br />quand on &eacute;crit l'octet dans le registre &laquo;&nbsp;USART1-&gt;DR&nbsp;&raquo; */</span></em>
+}
+
+<strong><span style="color:#0000FF;">void</span></strong> EnvoyerPlusieursOctets(<strong><span style="color:#0000FF;">unsigned</span></strong> <strong><span style="color:#0000FF;">char</span></strong> *paquet)   <em><span style="color:#009900;">/* Permet d&#039;envoyer une cha&icirc;ne de caract&egrave;res par l&#039;USART 1 */</span></em>
+{
+<strong><span style="color:#0000FF;">while</span></strong>(*paquet != <span style="color:#CC00FF;">&#039;\0&#039;</span>)   <em><span style="color:#009900;">/* Tant que l&#039;on est pas arriv&eacute; &agrave; la fin de la cha&icirc;ne de caract&egrave;res */</span></em>
+	{
+		EnvoyerOctet(*paquet);   <em><span style="color:#009900;">/* On envoie le caract&egrave;re courant de la cha&icirc;ne de caract&egrave;res */</span></em>
+		paquet++;
+	}
+}
+
+<strong><span style="color:#0000FF;">int</span></strong> main(<strong><span style="color:#0000FF;">void</span></strong>)
+{
+	ConfigurerPortC();   <em><span style="color:#009900;">/* Configuration des broches reli&eacute;es &agrave; la LED verte et &agrave; la LED bleue */</span></em>
+
+	ConfigurerUSART1();   <em><span style="color:#009900;">/* Configuration de l&#039;USART 1&nbsp;: 115200 bauds */</span></em>
+	EnvoyerPlusieursOctets(<span style="color:#CC00FF;">&quot;Bonjour !\r&quot;</span>);   <em><span style="color:#009900;">/* Envoi d&#039;un message pour montrer<br />que la communication est fonctionnelle dans le sens STM32F100RB -&gt; Ordinateur via les modules XBee */</span></em>
+	<strong><span style="color:#0000FF;">while</span></strong>(<span style="color:#FF0000;">1</span>)
+	{
+		<strong><span style="color:#0000FF;">if</span></strong>(ObtenirOctetRecu() == <span style="color:#CC00FF;">&#039;1&#039;</span>)
+		{
+			GPIOC-&gt;ODR |= (<span style="color:#FF0000;">1</span> &lt;&lt; <span style="color:#FF0000;">8</span>);   <em><span style="color:#009900;">/* Allumage de la LED bleue */</span></em>
+
+			EnvoyerPlusieursOctets(<span style="color:#CC00FF;">&quot;LED bleue allum&eacute;e !\r&quot;</span>);   <em><span style="color:#009900;">/* Envoi d&#039;un accus&eacute; de r&eacute;ception<br />de la demande d&#039;allumage de la LED bleue */</span></em>
+			Delai(<span style="color:#FF0000;">10000</span>);
+		}
+		<strong><span style="color:#0000FF;">if</span></strong>(ObtenirOctetRecu() == <span style="color:#CC00FF;">&#039;0&#039;</span>)
+		{
+			GPIOC-&gt;ODR &amp;= ~(<span style="color:#FF0000;">1</span> &lt;&lt; <span style="color:#FF0000;">8</span>); <em><span style="color:#009900;">/* Extinction de la LED bleue */</span></em>
+
+			EnvoyerPlusieursOctets(<span style="color:#CC00FF;">&quot;LED bleue &eacute;teinte !\r&quot;</span>);   <em><span style="color:#009900;">/* Envoi d&#039;un accus&eacute; de r&eacute;ception<br />de la demande d&#039;extinction de la LED bleue */</span></em>
+			Delai(<span style="color:#FF0000;">10000</span>);
+		}
+	}
+}
+
+<strong><span style="color:#0000FF;">void</span></strong> SystemInit (<strong><span style="color:#0000FF;">void</span></strong>)
+{ 
+
+}
+
+</span>
+</pre>
+</div>
+</div>
+<div class="codes-sources-c">
+<div class="codes-sources-c-haut">
+<p>Code source&nbsp;: Exemple 2 - Lecture des donn&eacute;es re&ccedil;ues par l'USART 1 en utilisant les interruptions</p>
+</div>
+<div class="codes-sources-c-bas">
+<pre><span style="color: rgb(0, 0, 0);">
+<strong><span style="color:#FF9900;">#include </span></strong>&lt;stm32f10x_lib.h&gt;
+
+<strong><span style="color:#0000FF;">void</span></strong> Delai(<strong><span style="color:#0000FF;">int</span></strong> t)   <em><span style="color:#009900;">/* Fonction qui sert &agrave; faire perdre son temps au STM32F100RB */</span></em>
+{
+	<strong><span style="color:#0000FF;">int</span></strong> k;
+	<strong><span style="color:#0000FF;">for</span></strong>(k = <span style="color:#FF0000;">0</span>; k &lt; (<span style="color:#FF0000;">100</span> * t); k++);
+}
+
+
+<strong><span style="color:#0000FF;">void</span></strong> ConfigurerPortC()
+{
+	RCC-&gt;APB2ENR |= (<span style="color:#FF0000;">1</span> &lt;&lt; <span style="color:#FF0000;">4</span>);
+
+	GPIOC-&gt;CRH = ((GPIOC-&gt;CRH &amp; <span style="color:#FF0000;">0x00000000</span>) | (<span style="color:#FF0000;">0x00000033</span>));
+	GPIOC-&gt;CRL = ((GPIOC-&gt;CRL &amp; <span style="color:#FF0000;">0x00000000</span>) | (<span style="color:#FF0000;">0x30000000</span>));
+}
+
+
+<strong><span style="color:#0000FF;">void</span></strong> ConfigurerUSART1()
+{
+	RCC-&gt;APB2ENR |= <span style="color:#FF0000;">0x00000001</span>;   <em><span style="color:#009900;">/* Activation de l&#039;horloge pour les fonctions d&#039;entr&eacute;es-sorties alternatives */</span></em>
+	AFIO-&gt;MAPR &amp;= ~(<span style="color:#FF0000;">1</span> &lt;&lt; <span style="color:#FF0000;">2</span>); <em><span style="color:#009900;">/* Remise &agrave; z&eacute;ro du USART 1 remap */</span></em>
+
+	RCC-&gt;APB2ENR |= <span style="color:#FF0000;">0x00000004</span>;   <em><span style="color:#009900;">/* Activation de l&#039;horloge du port GPIOA */</span></em>
+	GPIOA-&gt;CRH = ((GPIOA-&gt;CRH &amp; <span style="color:#FF0000;">0xFFFFF00F</span>) | (<span style="color:#FF0000;">0x000004B0</span>));   <em><span style="color:#009900;">/* USART 1 Tx se situe sur la broche PA9,
+	qui doit &ecirc;tre configur&eacute;e en &laquo;&nbsp;Alternate Output Push-Pull&nbsp;&raquo;,
+	USART 1 Rx se situe sur la broche PA10,
+	qui doit &ecirc;tre configur&eacute;e en &laquo;&nbsp;Input Floating&nbsp;&raquo; */</span></em>
+
+	RCC-&gt;APB2ENR |= <span style="color:#FF0000;">0x00004000</span>;   <em><span style="color:#009900;">/* Activation de l&#039;horloge de l&#039;USART 1 */</span></em>
+	USART1-&gt;BRR = <span style="color:#FF0000;">8000000</span> / <span style="color:#FF0000;">115200</span>;   <em><span style="color:#009900;">/* USART1-&gt;BRR = 0b1000100*&nbsp;: USARTDIV 1 = 4 + (5 / 16) = 4,3125 */</span></em>
+
+	USART1-&gt;CR1 = <span style="color:#FF0000;">0</span>;
+	USART1-&gt;CR2 = <span style="color:#FF0000;">0</span>;
+	USART1-&gt;CR3 = <span style="color:#FF0000;">0</span>;
+	USART1-&gt;CR1 |= <span style="color:#FF0000;">0x0000000C</span>;
+	USART1-&gt;CR1 |= <span style="color:#FF0000;">0x00002000</span>;
+	USART1-&gt;CR1 |= (<span style="color:#FF0000;">1</span> &lt;&lt; <span style="color:#FF0000;">5</span>); <em><span style="color:#009900;">/* Activation de l&#039;interruption de l&#039;USART 1, lors de la r&eacute;ception d&#039;un octet */</span></em>
+}
+
+<strong><span style="color:#0000FF;">int</span></strong> ObtenirOctetRecu()   <em><span style="color:#009900;">/* Fonction qui attend que l'USART 1 ait re&ccedil;u une donn&eacute;e pour renvoyer cette donn&eacute;e */</span></em>
+{
+	<strong><span style="color:#0000FF;">while</span></strong> (!(USART1-&gt;SR &amp; USART_FLAG_RXNE));   <em><span style="color:#009900;">/* On attend que l&#039;USART 1 signale la r&eacute;ception d&#039;un octet */</span></em>
+
+	<strong><span style="color:#0000FF;">return</span></strong> ((<strong><span style="color:#0000FF;">int</span></strong>)(USART1-&gt;DR &amp; <span style="color:#FF0000;">0x1FF</span>));   <em><span style="color:#009900;">/* L&#039;octet que l&#039;USART 1 a re&ccedil;u<br />se trouve dans le registre &laquo;&nbsp;USART1-&gt;DR&nbsp;&raquo; */</span></em>
+}
+
+<strong><span style="color:#0000FF;">void</span></strong> EnvoyerOctet(<strong><span style="color:#0000FF;">unsigned</span></strong> <strong><span style="color:#0000FF;">char</span></strong> donnee)   <em><span style="color:#009900;">/* Permet d&#039;envoyer un octer par l&#039;USART 1 */</span></em> 
+{
+	<strong><span style="color:#0000FF;">while</span></strong> (!(USART1-&gt;SR &amp; USART_FLAG_TXE));   <em><span style="color:#009900;">/* On attend que l&#039;USART 1 soit pr&ecirc;t &agrave; envoyer une donn&eacute;e */</span></em>
+
+	USART1-&gt;DR = donnee;   <em><span style="color:#009900;">/* L&#039;envoi de l&#039;octet par l&#039;USART 1 d&eacute;marre<br />quand on &eacute;crit l'octet dans le registre &laquo;&nbsp;USART1-&gt;DR&nbsp;&raquo; */</span></em>
+}
+
+<strong><span style="color:#0000FF;">void</span></strong> EnvoyerPlusieursOctets(<strong><span style="color:#0000FF;">unsigned</span></strong> <strong><span style="color:#0000FF;">char</span></strong> *paquet)   <em><span style="color:#009900;">/* Permet d&#039;envoyer une cha&icirc;ne de caract&egrave;res par l&#039;USART 1 */</span></em>
+{
+<strong><span style="color:#0000FF;">while</span></strong>(*paquet != <span style="color:#CC00FF;">&#039;\0&#039;</span>)   <em><span style="color:#009900;">/* Tant que l&#039;on est pas arriv&eacute; &agrave; la fin de la cha&icirc;ne de caract&egrave;res */</span></em>
+	{
+		EnvoyerOctet(*paquet);   <em><span style="color:#009900;">/* On envoie le caract&egrave;re courant de la cha&icirc;ne de caract&egrave;res */</span></em>
+		paquet++;
+	}
+}
+
+<strong><span style="color:#0000FF;">void</span></strong> USART1_IRQHandler(<strong><span style="color:#0000FF;">void</span></strong>) __irq   <em><span style="color:#009900;">/* Fonction appel&eacute;e lorsque l&#039;USART 1 provoque une interruption */</span></em>
+{   
+	<strong><span style="color:#0000FF;">int</span></strong> reception;    
+	<strong><span style="color:#0000FF;">if</span></strong>((USART1-&gt;SR &amp; USART_FLAG_RXNE))
+	{
+		reception = (<strong><span style="color:#0000FF;">int</span></strong>)(USART1-&gt;DR &amp; <span style="color:#FF0000;">0x1FF</span>);   <em><span style="color:#009900;">/* La donn&eacute;e re&ccedil;ue par l&#039;USART 1<br />est mise dans la variable &laquo;&nbsp;reception&nbsp;&raquo; */</span></em>
+
+		<strong><span style="color:#0000FF;">if</span></strong>(reception == <span style="color:#CC00FF;">&#039;1&#039;</span>)
+		{
+			GPIOC-&gt;ODR |= (<span style="color:#FF0000;">1</span> &lt;&lt; <span style="color:#FF0000;">8</span>);   <em><span style="color:#009900;">/* Allumage de la LED bleue */</span></em>
+			EnvoyerPlusieursOctets(<span style="color:#CC00FF;">&quot;LED bleue allum&eacute;e !\r&quot;</span>);   <em><span style="color:#009900;">/* Envoi d&#039;un accus&eacute; de r&eacute;ception<br />de la demande d'allumage de la LED bleue */</span></em> 
+		}
+		<strong><span style="color:#0000FF;">if</span></strong>(reception == <span style="color:#CC00FF;">&#039;0&#039;</span>)
+		{
+			GPIOC-&gt;ODR &amp;= ~(<span style="color:#FF0000;">1</span> &lt;&lt; <span style="color:#FF0000;">8</span>); <em><span style="color:#009900;">/* Extinction de la LED bleue */</span></em>
+
+			EnvoyerPlusieursOctets(<span style="color:#CC00FF;">&quot;LED bleue &eacute;teinte !\r&quot;</span>);   <em><span style="color:#009900;">/* Envoi d&#039;un accus&eacute; de r&eacute;ception<br />de la demande d'extinction de la LED bleue */</span></em>
+		}
+	}
+	USART1-&gt;SR = <span style="color:#FF0000;">0</span>;   <em><span style="color:#009900;">/* R&eacute;armement de l&#039;interruption provoqu&eacute;e par l&#039;USART 1 */</span></em>
+}
+
+<strong><span style="color:#0000FF;">void</span></strong> initITUSART1()   <em><span style="color:#009900;">/* Fonction qui permet d&#039;autoriser l&#039;interruption provoqu&eacute;e par l&#039;USART 1 */</span></em>
+{
+	NVIC-&gt;ISER[<span style="color:#FF0000;">1</span>] |= (<span style="color:#FF0000;">1</span> &lt;&lt; (USART1_IRQChannel &amp; <span style="color:#FF0000;">0x1F</span>));   <em><span style="color:#009900;">/* NVIC-&gt;ISER[1] |= (1 &lt;&lt; 5); */</span></em>
+}
+
+<strong><span style="color:#0000FF;">int</span></strong> main(<strong><span style="color:#0000FF;">void</span></strong>)
+{
+	ConfigurerPortC();   <em><span style="color:#009900;">/* Configuration des broches reli&eacute;es &agrave; la LED verte et &agrave; la LED bleue */</span></em>
+	ConfigurerUSART1();   <em><span style="color:#009900;">/* Configuration de l&#039;USART 1&nbsp;: 115200 bauds */</span></em>
+
+	initITUSART1();   <em><span style="color:#009900;">/* Autorisation de l&#039;interruption provoqu&eacute;e par l&#039;USART 1 */</span></em>
+
+	EnvoyerPlusieursOctets(<span style="color:#CC00FF;">&quot;Bonjour !\r&quot;</span>);   <em><span style="color:#009900;">/* Envoi d&#039;un message pour montrer<br />que la communication est fonctionnelle dans le sens STM32F100RB -&gt; Ordinateur, via les modules XBee */</span></em>
+	<strong><span style="color:#0000FF;">while</span></strong>(<span style="color:#FF0000;">1</span>)
+	{
+		GPIOC-&gt;ODR |= <span style="color:#FF0000;">0x00000200</span>; <em><span style="color:#009900;">/* Allumage de la LED verte */</span></em>
+
+		Delai(<span style="color:#FF0000;">10000</span>);
+		GPIOC-&gt;ODR &amp;= ~(<span style="color:#FF0000;">0x00000200</span>); <em><span style="color:#009900;">/* Extinction de la LED verte */</span></em>
+		Delai(<span style="color:#FF0000;">10000</span>);
+	}
+}
+
+<strong><span style="color:#0000FF;">void</span></strong> SystemInit (<strong><span style="color:#0000FF;">void</span></strong>)
+{ 
+
+}
+
+</span>
+</pre>
+</div>
+</div>
+<a id="Endroit_3-4-0"></a>
+<h3>3-4) Les essais</h3>
+<p>Connectez votre carte d'exp&eacute;rimentation STM32VLDISCOVERY &agrave; votre ordinateur, compilez votre programme et programmez la m&eacute;moire du microcontr&ocirc;leur.<br />
+Dans le logiciel X-CTU, choisissez l'onglet &laquo;&nbsp;Terminal&nbsp;&raquo;.<br />
+Peu apr&egrave;s que le programme ait &eacute;t&eacute; lanc&eacute;, le texte &laquo;&nbsp;Bonjour !&nbsp;&raquo;, suivi d'un retour &agrave; la ligne, devraient appara&icirc;tre dans le terminal.<br />
+En envoyant &laquo;&nbsp;1&nbsp;&raquo; ou &laquo;&nbsp;0&nbsp;&raquo;, la LED bleue de la carte STM32VLDISCOVERY devrait respectivement s'allumer ou s'&eacute;teindre.<br />
+Ces changements d'&eacute;tats de la LED devraient s'accompagner de la r&eacute;ception d'un texte qui correspond au nouvel &eacute;tat de la LED, suivi d'un retour &agrave; la ligne.</p>
+<figure>
+<a href="../../../images/Transmissions_XBee_Actives.png">
+<img alt="Transmissions_XBee_Actives" src="../../../images/Transmissions_XBee_Actives.png">
+</a>
+<figcaption>R&eacute;sultat obtenu dans le terminal du logiciel X-CTU, dans le cas o&ugrave; les donn&eacute;es re&ccedil;ues par l'USART 1 sont lues en permanence</figcaption>
+</figure>
+<p></p>
+<figure>
+<a href="../../../images/Transmissions_XBee_Interruptions.png">
+<img alt="Transmissions_XBee_Interruptions" src="../../../images/Transmissions_XBee_Interruptions.png">
+</a>
+<figcaption>R&eacute;sultat obtenu dans le terminal du logiciel X-CTU, dans le cas o&ugrave; l'interruption de l'USART 1 est utilis&eacute;e</figcaption>
+</figure>
+<p>Lorsque les donn&eacute;es re&ccedil;ues par l'USART 1 sont lues en permanence, le syst&egrave;me ne r&eacute;agit pas toujours quand une donn&eacute;e qui correspond &agrave; un
+ordre valide lui est transmise, et il met du temps &agrave; traiter les ordres, du fait des d&eacute;lais qui sont pr&eacute;sents entre chacune des op&eacute;rations de lecture de l'USART 1.<br />
+Ces d&eacute;fauts disparaissent quand l'interruption de l'USART 1
+est utilis&eacute;e, car le microcontr&ocirc;leur STM32F100RB ne r&eacute;agit qu'&agrave; la r&eacute;ception d'une nouvelle donn&eacute;e par l'USART 1.<br />
+Le cligotement de la LED verte de la carte STM32VLDISCOVERY, qui se fait &agrave; l'aide d'une attente active, est per&ccedil;u normalement, m&ecirc;me quand des donn&eacute;es sont envoy&eacute;es &agrave; l'USART 1.</p>
+<a id="Endroit_3-5-0"></a>
+<h3>3-5) Autre exemple d'application</h3>
+<p>Pour en savoir plus sur le pilotage d'un afficheur alphanum&eacute;rique avec un bus I2C, ouvrez <a href="../i2c_et_lcd/i2c_et_lcd_page_1.php.html" title="Ouvrir le lien &laquo;&nbsp;http://www.atrylec.com/fr/electronique/i2c_et_lcd/i2c_et_lcd_page_1.php&nbsp;&raquo;" >ce lien</a>.</p>
+<p>L'afficheur alphanum&eacute;rique, et le syst&egrave;me qui le commande, ne sont l&agrave; que pour mettre en &eacute;vidence la transmission et la r&eacute;ception des donn&eacute;es par le microcontr&ocirc;leur STM32F100RB.<br />
+Cet afficheur, &agrave; commande parall&egrave;le, a ses broches &laquo;&nbsp;R/S&nbsp;&raquo;, &laquo;&nbsp;R/W&nbsp;&raquo;, &laquo;&nbsp;E&raquo;, et &laquo;&nbsp;DB0&nbsp;&raquo; &agrave; &laquo;&nbsp;DB7&nbsp;&raquo;,&nbsp; reli&eacute;es &agrave; un circuit int&eacute;gr&eacute; MCP23017.<br />
+Ce dernier est un expanseur de ports commandable par un bus I2C, et les connexions entre ce circuit et la carte de d&eacute;veloppement STM32VLDISCOVERY sont indiqu&eacute;es dans le tableau ci apr&egrave;s.<br />
+Les broches &laquo;&nbsp;PB6&nbsp;&raquo; et &laquo;&nbsp;PB7&nbsp;&raquo; sont reli&eacute;es au + 5 volts par des r&eacute;sistances de tirage de 1 kilo Ohm.</p>
+<table border="1" cellpadding="2" cellspacing="2">
+<tbody>
+<tr>
+<th>Carte de d&eacute;veloppement STM32VLDISCOVERY</th>
+<td>+5V</td>
+<td>0V</td>
+<td>PB6</td>
+<td>PB7</td>
+</tr>
+<tr>
+<th>Circuit int&eacute;gr&eacute; MCP23017</th>
+<td>+5V</td>
+<td>0V</td>
+<td>SCL</td>
+<td>SDA</td>
+</tr>
+</tbody>
+</table>
+<p>Le but de cette application est d'envoyer des caract&egrave;res depuis un ordinateur, et de les faire appara&icirc;tre sur l'afficheur une fois qu'un caract&egrave;re retour chariot a &eacute;t&eacute; envoy&eacute;.<br />
+Le retour chariot est un caract&egrave;re non affichable qui correspond &agrave; l'appui sur la touche &laquo;&nbsp;Entr&eacute;e&nbsp;&raquo; d'un ordinateur.<br />
+Son code ASCII est &laquo;&nbsp;0x0D&nbsp;&raquo;.</p>
+<p>Le programme permet aussi de recevoir un accus&eacute; de r&eacute;ception et d'affichage des donn&eacute;es, sur l'ordinateur.</p>
+<p>Il peut &ecirc;tre utile pour le pilotage &agrave; distance d'un objet, par exemple d'un robot, &agrave; partir d'un ordinateur.</p>
+<figure>
+<a href="../../../images/Montage_XBee_afficheur.jpg">
+<img alt="Montage_XBee_afficheur" src="../../../images/Montage_XBee_afficheur_Petite.jpg">
+</a>
+<figcaption>Le montage, dont la beaut&eacute; est absolument indiscutable</figcaption>
+</figure>
+<p></p>
+<figure>
+<a href="../../../images/Envoi_reception_donnees.png">
+<img alt="Envoi_reception_donnees" src="../../../images/Envoi_reception_donnees.png">
+</a>
+<figcaption>Le r&eacute;sultat, dans l'onglet &laquo;&nbsp;Terminal&nbsp;&raquo; de X-CTU</figcaption>
+</figure>
+<div class="valorisations">
+<div class="programmes">
+<div class="programmes_gauche">
+<img style="width: 32px; height: 32px;" alt="fleche-bas-telecharger-icone-9594-32" src="../../../images/fleche-bas-telecharger-icone-9594-32.png">
+</div>
+<div class="programmes_droite">
+<p>Liaison sans fil &agrave; l'aide de modules XBee&nbsp;: Fichiers C<br />
+Cible&nbsp;: STM32F100RB<br />Compilateur&nbsp;: Keil &micro;Vision 4<br />
+<a href="../../../elements/allures/valorisations/programmes.php%3Fprogramme=les_modules_xbee_page_1+1+1">T&eacute;l&eacute;charger le fichier<span>Effectuez un clic droit, puis s&eacute;lectionnez l'option &laquo;&nbsp;Enregistrer la cible du lien sous...&nbsp;&raquo;, pour t&eacute;l&eacute;charger le fichier</span></a> (3.7 Ko)</p></div>
+</div>
+</div>
+<div>
+<div class="menu_article">
+<ul class="menu_article_principal">
+<li><a href="les_modules_xbee_page_1.php.html">Les modules XBee</a></li>
+<li><ul>
+<li><a class="choisi" href="les_modules_xbee_page_1.php.html">Prise en main</a></li>
+<li><a href="les_modules_xbee_page_2.php.html">Se servir des entr&eacute;es-sorties</a></li>
+</ul></li>
+</ul>
+<ul class="menu_article_secondaire">
+<li><a href="les_modules_xbee_page_1.php.html#Endroit_1-0-0">1) Pr&eacute;sentation</a></li>
+<li><a href="les_modules_xbee_page_1.php.html#Endroit_2-0-0">2) Configurer les modules XBee</a></li>
+<li><a href="les_modules_xbee_page_1.php.html#Endroit_3-0-0">3) Etablir une communication s&eacute;rie, sans fil</a></li>
+<li>
+<ul>
+<li><a href="les_modules_xbee_page_1.php.html#Endroit_3-1-0">3-1) Configuration mat&eacute;rielle</a></li>
+<li><a href="les_modules_xbee_page_1.php.html#Endroit_3-2-0">3-2) Configuration des modules</a></li>
+<li><a href="les_modules_xbee_page_1.php.html#Endroit_3-3-0">3-3) Programmation du microcontr&ocirc;leur</a></li>
+<li><a href="les_modules_xbee_page_1.php.html#Endroit_3-4-0">3-4) Les essais</a></li>
+<li><a href="les_modules_xbee_page_1.php.html#Endroit_3-5-0">3-5) Autre exemple d'application</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="commentaires"><a id="Endroits_des_commentaires"></a><p class="sous-titre_commentaires">Commentaires (8)</p><div class="commentaire">
+<div class="commentaire-haut">
+<div class="commentaire-haut-gauche">
+<p>apprendre </p></div>
+<div class="commentaire-haut-droite">
+<p>Le  31 mars 2013 &agrave; 22:24</p></div>
+</div>
+<div class="commentaire-bas">
+<p>Alors la tu m'inpressionne beaucoup mes je comprends rien donc si possible que tu m'aide un peu plus car c'est un projet qui me tiens a coeur mes que je ne conclus pas Si possible que tu m'explique plus en d&eacute;tail tien mon adresse email si tu veux basri.h@hotmail.fr<br />
+Merci beaucoup !</p></div>
+</div>
+<div class="commentaire">
+<div class="commentaire-haut">
+<div class="commentaire-haut-gauche">
+<p><i>Atrylec</i></p></div>
+<div class="commentaire-haut-droite">
+<p>Le  31 mars 2013 &agrave; 20:17</p></div>
+</div>
+<div class="commentaire-bas">
+<p>Salut !
+Il te faudra connecter un module XBee &agrave; la carte Arduino, en utilisant les entr&eacute;es &laquo;&nbsp;DIN&nbsp;&raquo; et &laquo;&nbsp;DOUT&nbsp;&raquo; du module, et la liaison USART de la carte Arduino. Ce dernier devra &ecirc;tre programm&eacute; de fa&ccedil;on &agrave; lire la position du joystick, et &agrave; envoyer cette position par la liaison s&eacute;rie, donc par le module XBee !
+L'autre module XBee sera connect&eacute; de la m&ecirc;me manière, sur le robot !
+
+Remarque : Il est possible de connecter directement le joystick au module XBee de la t&eacute;l&eacute;commande, si ce joystick est de type &laquo;&nbsp;Analogique&nbsp;&raquo;. Le param&eacute;trage du module XBee devra alors en tenir compte.
+
+Bon courage !</p></div>
+</div>
+<div class="commentaire">
+<div class="commentaire-haut">
+<div class="commentaire-haut-gauche">
+<p>apprendre</p></div>
+<div class="commentaire-haut-droite">
+<p>Le samedi 30 mars 2013 &agrave; 19:30</p></div>
+</div>
+<div class="commentaire-bas">
+<p>excuse moi je voulais dire ecrire une chose pour recevoir les donn&eacute;es<br />
+</p></div>
+</div>
+<div class="commentaire">
+<div class="commentaire-haut">
+<div class="commentaire-haut-gauche">
+<p>apprendre</p></div>
+<div class="commentaire-haut-droite">
+<p>Le samedi 30 mars 2013 &agrave; 13:16</p></div>
+</div>
+<div class="commentaire-bas">
+<p>Salut!<br />
+Moi j'aimerais faire un programme d'envoie de donn&eacute; d'une carte arduino avec un joystick etc vers un robot pololu M3pi Les deux ayant des xbee <br />
+Mes je n'arrive pas a les programm&eacute; pour l'envoie des donn&eacute; car apparement il faudrait que j'ecrive quelque chose pour envoyer les donn&eacute; que j'ai besoin et une chose pour ecrire les donn&eacute; que j'ai besoin !<br />
+la carte arduino et cens&eacute;e etre une t&eacute;l&eacute;commande pour le robot !! Merci d'avance<br />
+</p></div>
+</div>
+<div class="commentaire">
+<div class="commentaire-haut">
+<div class="commentaire-haut-gauche">
+<p><i>Atrylec</i></p></div>
+<div class="commentaire-haut-droite">
+<p>Le lundi 25 mars 2013 &agrave; 22:54</p></div>
+</div>
+<div class="commentaire-bas">
+<p>Salut !
+L'exemple de configuration des modules, qui est indiqu&eacute; sur cette page, suffit &agrave; effectuer l'envoi et la r&eacute;ception de donn&eacute;es, de fa&ccedil;on s&eacute;rielle.<br />
+Si cela ne fonctionne pas, pr&eacute;cise-moi ce que tu veux faire exactement avec les modules XBee !</p></div>
+</div>
+<div class="commentaire">
+<div class="commentaire-haut">
+<div class="commentaire-haut-gauche">
+<p>apprendre</p></div>
+<div class="commentaire-haut-droite">
+<p>Le lundi 25 mars 2013 &agrave; 0:15</p></div>
+</div>
+<div class="commentaire-bas">
+<p>Salut ! <br />
+Que faut t'il marquer dans la programmation pour l'envoie des donn&eacute; , et dans l'autre pour la reception svp car je le fait d'un carte arduino vers un robot pour qu'il puisse tourn&eacute; gauche droite tout droit derriere etc! Merci d'avance<br />
+</p></div>
+</div>
+<div class="commentaire">
+<div class="commentaire-haut">
+<div class="commentaire-haut-gauche">
+<p><i>Atrylec</i></p></div>
+<div class="commentaire-haut-droite">
+<p>Le mardi 26 f&eacute;vrier 2013 &agrave; 23:40</p></div>
+</div>
+<div class="commentaire-bas">
+<p>Salut !
+Bien s&ucirc;r qu'il y a moyen de faire communiquer deux modules XBee sans l'aide d'un ordinateur, il faut pour ce faire utiliser les entr&eacute;es &laquo;&nbsp;DIN&nbsp;&raquo; et &laquo;&nbsp;DOUT&nbsp;&raquo; pour communiquer en s&eacute;rie, par exemple.</p></div>
+</div>
+<div class="commentaire">
+<div class="commentaire-haut">
+<div class="commentaire-haut-gauche">
+<p>Vlad</p></div>
+<div class="commentaire-haut-droite">
+<p>Le mardi 26 f&eacute;vrier 2013 &agrave; 19:58</p></div>
+</div>
+<div class="commentaire-bas">
+<p>Salut ! Les &eacute;xplications sont bien claires, mais y a moyen de faire communiquer deux xBee sans que l'une d'elles ne soient branch&eacute;es sur un pc ?</p></div>
+</div>
+<p class="sous-titre_ajouts">Ajouter un commentaire</p>
+<form id="contact" method="post" action="http://atrylec.com/elements/allures/commentaires/verification.php">
+<fieldset>
+<legend>
+Votre pseudo&nbsp;: 
+</legend>
+<p>
+<label for="pseudo">
+Pseudo&nbsp;: 
+</label>
+<input type="text" id="pseudo" name="pseudo" tabindex="1" required="required">
+</p>
+</fieldset>
+<fieldset>
+<legend>
+Votre commentaire&nbsp;: 
+</legend>
+<p>
+<label for="commentaire">
+Commentaire&nbsp;: 
+</label>
+<textarea id="commentaire" name="commentaire" tabindex="2" cols="50" rows="2" required="required">
+</textarea>
+</p>
+</fieldset>
+<div class="bouton_validation_commentaire">
+<input type="submit" name="Poster" value="Poster" />
+</div>
+</form>
+</div><div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="les_modules_xbee_page_1.php.html#Haut_de_page">Je veux remonter !</a>
+</div>
+</section>
+<footer>
+<div class="liens">
+<ul>
+<li><a href="../../contact.php.html">ContaCT</a></li>
+</ul>
+</div>
+<div id="choix_style">
+<div class="presentation">Ravaler la fa&ccedil;ade&nbsp;:</div>
+<a href="les_modules_xbee_page_1.php%3Fselection=1.html" title="Style 1"><div class="choix choix_bleu">&nbsp;</div></a><a href="les_modules_xbee_page_1.php%3Fselection=2.html" title="Style 2"><div class="choix choix_rouge">&nbsp;</div></a><div class="choix choix_orange_choisi">&nbsp;</div></div>
+<div class="remarques">
+<p>Il ne faut pas dire&nbsp;: &laquo;&nbsp;Un outil d'aff&ucirc;tage
+&nbsp;&raquo;, mais&nbsp;: &laquo;&nbsp;Un g&eacute;n&eacute;rateur de dents de scies
+&nbsp;&raquo;.</p>
+</div>
+<div class="visites">
+<img style="width: 15px; height: 15px;" alt="6_30" src="../../../images/6_30.png">   <img style="width: 15px; height: 15px;" alt="5_30" src="../../../images/5_30.png">   <img style="width: 15px; height: 15px;" alt="0_30" src="../../../images/0_30.png">   <img style="width: 15px; height: 15px;" alt="9_30" src="../../../images/9_30.png">   <img style="width: 15px; height: 15px;" alt="8_30" src="../../../images/8_30.png">   </div>
+</footer>
+</div>
+</body>
+</html>

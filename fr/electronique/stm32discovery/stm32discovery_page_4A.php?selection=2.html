@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>STM32 DISCOVERY - STM32VLDISCOVERY, configurer l'horloge principale du STM32F100RB.</title>
+<meta name="description" content="Cartes de d&eacute;veloppement &laquo;&nbsp;STM32 DISCOVERY&nbsp;&raquo;&nbsp;: Tutoriel - Page 4A - STM32VLDISCOVERY, configurer l'horloge principale du STM32F100RB." />
+<meta name="keywords" content="atrylec electronique schema schemas montage montages realisation realisations microcontroleur entrees sorties programmation code source langage c stm32discovery stm 32 discovery stm32vldiscovery stm 32 vl discovery stm32l discovery stm32 l discovery stm32f100rb stm32l152rbt6 keil micro vision tutoriel tutoriels exemple exemples cours creer projet projets configurer horloge horloges" />
+<link rel="stylesheet" media="screen" type="text/css" title="Style 2" href="../../../elements/allures/style_2.css">
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-42331281-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+<body>
+<div id="page">
+<div id="haut">
+<header id="Haut_de_page">
+<div id="principale">
+<p class="titre_principal_haut">
+<a href="../../../index.php.html"><img style="width: 150px;" alt="Affichage_Atrylec_com" src="../../../images/Affichage_Atrylec_com.png" /><span class="invisible">Atrylec</span></a></p>
+<p class="sous-titre_haut">Vous n'&ecirc;tes pas seuls dans l'Univers !</p>
+</div>
+<div id="additionnelle">
+</div>
+</header>
+<nav>
+<ul id="navigation">
+<li><a href="../../../index.php.html" title="Accueil">Accueil</a></li>
+<li><a class="choisi" href="../index.php.html" title="Electronique">Electronique</a></li>
+<li><a href="../../radio/index.php%3Fnumero=0.html" title="Radio">Radio</a></li>
+<li><a href="../../origami/index.php.html" title="Origami">Origami</a></li>
+<li><a href="../../photographies/index.php%3Fnumero=0.html" title="Photographies">Photographies</a></li>
+<li><a href="../../le_grenier/index.php.html" title="Le grenier">Le grenier</a></li>
+<li><a href="../../contact.php.html" title="ContaCT">ContaCT</a></li>
+</ul>
+</nav>
+</div>
+<section>
+<div id="titre">
+<div id="titre_gauche">
+</div>
+<div id="titre_image">
+<img style="width: 100px; height: 100px;" alt="Transistor_100" src="../../../images/Transistor_100.png">
+</div>
+<div id="titre_texte">
+<p>/&nbsp;</p><h1>STM32VLDISCOVERY&nbsp;: Horloges</h1>
+</div>
+<div id="titre_droite">
+</div>
+</div>
+<div style="position: relative; top: 72px; left: 502px;">
+<span style="font-style: italic;">Sp&eacute;cial ZanX' &agrave; &laquo;&nbsp;NonoxX&nbsp;&raquo;</span> !<br />
+</div>
+<div>
+<p id="introduction">Configurer l'horloge principale du STM32F100RB.</p>
+</div>
+<p>
+<a id="Liste_de_depart"></a>
+</p>
+<div>
+<div class="menu_article">
+<ul class="menu_article_principal">
+<li><a href="stm32discovery_page_1.php.html">Mises en places</a></li>
+<li><a href="stm32discovery_page_4A.php.html">Programmation de la carte &laquo;&nbsp;STM32VLDISCOVERY&nbsp;&raquo;</a></li>
+<li><ul>
+<li><a class="choisi" href="stm32discovery_page_4A.php.html">Configuration de l'horloge</a></li>
+<li><a href="stm32discovery_page_5A.php.html">Utiliser les ports d'entr&eacute;es-sorties</a></li>
+<li><a href="les_interruptions_STM32F100RB.php.html">STM32F100RB : Interruptions</a></li>
+<li><a href="l_i2c_stm32F100RB.php.html">STM32F100RB : Le bus I2C</a></li>
+<li></li>
+<li><a href="stm32vldiscovery_exemples_programmes.php.html">Exemples de programmes</a></li>
+</ul></li>
+<li><a href="stm32discovery_page_4B.php.html">Programmation de la carte &laquo;&nbsp;STM32L-DISCOVERY&nbsp;&raquo;</a></li>
+</ul>
+<ul class="menu_article_secondaire">
+<li><a href="stm32discovery_page_4A.php%3Fselection=2.html#Endroit_1-0-0">1) Pr&eacute;sentation</a></li>
+<li><a href="stm32discovery_page_4A.php%3Fselection=2.html#Endroit_2-0-0">2) Oscillateur interne, utilis&eacute; tel quel</a></li>
+<li><a href="stm32discovery_page_4A.php%3Fselection=2.html#Endroit_3-0-0">3) Oscillateur interne, utilis&eacute; avec la PLL</a></li>
+<li><a href="stm32discovery_page_4A.php%3Fselection=2.html#Endroit_4-0-0">4) Les autres oscillateurs</a></li>
+<li>
+<ul>
+<li><a href="stm32discovery_page_4A.php%3Fselection=2.html#Endroit_4-1-0">4-1) L'horloge rapide externe HSE</a></li>
+<li><a href="stm32discovery_page_4A.php%3Fselection=2.html#Endroit_4-2-0">4-2) L'horloge interne MSI</a></li>
+<li><a href="stm32discovery_page_4A.php%3Fselection=2.html#Endroit_4-3-0">4-3) Les horloges basse fr&eacute;quence</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div style="position: relative; top: 72px; left: 502px;">
+<span style="font-style: italic;">Sp&eacute;cial ZanX' &agrave; &laquo;&nbsp;NonoxX&nbsp;&raquo;</span> !<br />
+</div>
+<div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="stm32discovery_page_4A.php%3Fselection=2.html#Haut_de_page">Je veux remonter !</a>&nbsp;|&nbsp;<a href="stm32discovery_page_4A.php%3Fselection=2.html#Liste_de_depart">Liste</a>
+</div>
+<a id="Endroit_1-0-0"></a>
+<h2>1) Pr&eacute;sentation</h2>
+<p>Les microcontr&ocirc;leurs sont, comme presque tout en
+&eacute;lectronique num&eacute;rique, des composants
+synchrones, c'est &agrave; dire qu'ils ont besoin d'une horloge
+pour synchroniser toutes les op&eacute;rations.<br />
+Le
+STM32F100RB poss&egrave;de de nombreuses sources d'horloge, certaines
+rapides, d'autres plus lentes, internes ou
+externes...<br />
+Le but de ce cours est donc de vous apprendre &agrave;
+configurer une horloge par un exemple,
+ici sur le STM32F100RB pr&eacute;sent sur la carte
+STM32VLDISCOVERY.<br />
+La fa&ccedil;on dont on proc&egrave;de pour r&eacute;gler
+l'horloge principale d'un microcontr&ocirc;leur, c'est d'aller dans
+le
+manuel de r&eacute;f&eacute;rence, chercher l'arborescence des
+horloges (&laquo;&nbsp;Clock Tree&nbsp;&raquo;).<br />
+Dans le manuel des
+STM32, il se trouve dans le chapitre &laquo;&nbsp;Reset and Clock
+Control (RCC)&nbsp;&raquo;, au d&eacute;but du paragraphe
+&laquo;&nbsp;Clocks&nbsp;&raquo;.<br />
+On mettra l'initialisation de l'horloge principale en premier dans la
+fonction main ou dans la
+fonction SystemInit, afin que celle-ci soit faite avant toute
+op&eacute;ration.</p>
+<div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="stm32discovery_page_4A.php%3Fselection=2.html#Haut_de_page">Je veux remonter !</a>&nbsp;|&nbsp;<a href="stm32discovery_page_4A.php%3Fselection=2.html#Liste_de_depart">Liste</a>
+</div>
+<a id="Endroit_2-0-0"></a>
+<h2>2) Oscillateur interne, utilis&eacute; tel quel</h2>
+<p>Nous allons maintenant traiter un cas simple, afin de bien comprendre
+comment fonctionne le
+syst&egrave;me d'horloges du STM32. Il dispose d'une horloge
+interne rapide HSI (&laquo;&nbsp;High Speed
+Internal&nbsp;&raquo;) cadenc&eacute;e &agrave; une
+fr&eacute;quence fixe de 16 MHz. Nous allons directement cadencer
+le
+microcontr&ocirc;leur &agrave; cette fr&eacute;quence.
+Jetons un oeil &agrave; l'arbre des horloges.</p>
+<figure>
+<a href="../../../images/CAPTURE_DATASHEET_STM32F100XX_LD_MD_EXTRAIT_ARBRE_HORLOGES.png">
+<img alt="CAPTURE_DATASHEET_STM32F100XX_LD_MD_EXTRAIT_ARBRE_HORLOGES" src="../../../images/CAPTURE_DATASHEET_STM32F100XX_LD_MD_EXTRAIT_ARBRE_HORLOGES.png">
+</a>
+<figcaption>Arbre des horloges du STM32F100RB&nbsp;: chemin &agrave; suivre pour avoir une horloge de 16MHz</figcaption>
+</figure>
+<p>L'horloge syst&egrave;me est toujours SYSCLK, quoi qu'il arrive.
+Dans le cas du STM32L152, il est
+pr&eacute;cis&eacute; que cette horloge ne doit pas
+d&eacute;passer 24 MHz. Pas de probl&egrave;me on en veut 16
+MHz. Sur
+l'arbre a &eacute;t&eacute; ajout&eacute; en rouge le
+cheminement que nous voulons pour l'horloge. Une bonne pratique
+est de configurer l'horloge en suivant l'arbre de gauche &agrave;
+droite.
+Comme le STM32 est un composant optimis&eacute; en consommation
+d'&eacute;nergie, par d&eacute;faut tout (ou
+presque...) est &eacute;teinte dedans, y compris l'horloge HSI.
+Nous allons donc commencer par la mettre
+en route. Pour savoir comment faire on cherche dans le manuel de
+r&eacute;f&eacute;rence le paragraphe qui d&eacute;crit
+le HSI, c'est le paragraphe 4.2.2.
+Ce paragraphe nous indique que le HSI n'est pas extr&ecirc;mement
+pr&eacute;cis, qu'il peut &ecirc;tre calibr&eacute;, ce
+dont
+on ne s'occupera pas, mais surtout qu'il se met en route en utilisant
+le bit HSION du registre
+RCC_CR, et que le bit HSIRDY de ce m&ecirc;me registre indique que
+son fonctionnement est stable.</p>
+<figure>
+<a href="../../../images/Capture_datasheet_2.png">
+<img alt="Capture_datasheet_2" src="../../../images/Capture_datasheet_2.png">
+</a>
+<figcaption>HSI clock</figcaption>
+</figure>
+<p>On va donc regarder de quoi est fait ce fameux registre RCC_CR au paragraphe 4.3.1.</p>
+<figure>
+<a href="../../../images/Capture_datasheet_3.png">
+<img alt="Capture_datasheet_3" src="../../../images/Capture_datasheet_3.png">
+</a>
+<figcaption>Clock control register (RCC_CR)</figcaption>
+</figure>
+<p>On peut donc (entre autre) lire sur ce plan de registre que les bits HSION et HSIRDY sont respectivement les bits 0 et 1 du registre RCC_CR.<br />
+On va donc allumer le HSI en mettant le bit 0 (HSION) de RCC_CR &agrave; 1, et attendre que le HSI soit pr&ecirc;t en attendant que le bit 1 (HSIRDY) soit &agrave; 1.
+<br />Ensuite on va rediriger HSI vers SYSCLK (l'horloge syst&egrave;me) via le multiplexeur situ&eacute; &agrave; gauche sur l'arbre des horloges (en vert ci-dessus).<br />
+On voit sur cet arbre que le multiplexeur se contr&ocirc;le par des bits SW, mais on n'a aucune id&eacute;e du registre dans lequel ces bits se trouvent.
+<br />On parcourt alors un peu la section &laquo;&nbsp;Clocks&nbsp;&raquo; du manuel, et on tombe sur la section 4.3.3. &laquo;&nbsp;Clock Configuration Register&nbsp;&raquo; qui d&eacute;crit le registre RCC_CFGR dans lequel on retrouve SW.</p>
+<figure>
+<a href="../../../images/Capture_datasheet_4.png">
+<img alt="Capture_datasheet_4" src="../../../images/Capture_datasheet_4.png">
+</a>
+<figcaption>SW[1:0]: System clock switch</figcaption>
+</figure>
+<p>On peut donc y voir que les bits SW[1:0] sont les deux premiers bits de
+RCC_CFGR, et que pour
+s&eacute;lectionner HSI comme horloge syst&egrave;me, il faut
+les placer sur 01.
+&Ccedil;a y est, on a fini ! Notre STM32 fonctionne maintenant sur
+son horloge interne rapide HSI, &agrave; une
+cadence de 16 MHz. On peut maintenant commencer &agrave; programmer
+quelque-chose sur le
+microcontr&ocirc;leur. Malgr&eacute; la richesse du STM32, la
+configuration de l'horloge n'est pas tr&egrave;s
+compliqu&eacute;e, n&eacute;anmoins il est important de bien la
+ma&icirc;triser car sans horloge, le microcontr&ocirc;leur ne
+fonctionne pas.</p>
+<div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="stm32discovery_page_4A.php%3Fselection=2.html#Haut_de_page">Je veux remonter !</a>&nbsp;|&nbsp;<a href="stm32discovery_page_4A.php%3Fselection=2.html#Liste_de_depart">Liste</a>
+</div>
+<a id="Endroit_3-0-0"></a>
+<h2>3) Oscillateur interne, utilis&eacute; avec la PLL</h2>
+<p>Afin de se rendre encore plus &agrave; l'aise avec les horloges du
+STM32 on va tenter de mettre l'horloge
+principale SYSCLK &agrave; sa valeur maximale, c'est &agrave;
+dire 32 MHz sur notre carte. On va donc devoir
+mettre en route un multiplicateur de fr&eacute;quence, la PLL. Mais
+on ne va pas s'en contenter ! On va
+faire d'une pierre deux coups et g&eacute;n&eacute;rer une
+fr&eacute;quence de 48 MHz pour l'USB avec ce m&ecirc;me
+oscillateur
+HSI. Retour donc sur l'arbre des horloges.</p>
+<figure>
+<a href="../../../images/Capture_datasheet_5.png">
+<img alt="Capture_datasheet_5" src="../../../images/Capture_datasheet_5.png">
+</a>
+<figcaption>Arbre des horloges du STM32F100RB&nbsp;: chemin &agrave; suivre pour avoir une horloge de 48MHz et avoir une horloge de 32MHz</figcaption>
+</figure>
+<p>Comme dans le paragraphe pr&eacute;c&eacute;dent nous allons
+allumer HSI et attendre sa stabilisation. On voit
+ensuite qu'il faut passer par un multiplexeur (violet) qui permet de
+rentrer sur la PLL soit HSI, soit
+HSE, l'oscillateur rapide externe. Ce multiplexeur est
+command&eacute; par le bit PLLSRC dans le registre
+RCC_CFGR.</p>
+<figure>
+<a href="../../../images/Capture_datasheet_6.png">
+<img src="../../../images/Capture_datasheet_6.png">
+</a>
+<figcaption>PLLSRC: PLL entry clock source</figcaption>
+</figure>
+<p>On veut HSI en entr&eacute;e de la PLL, il faut donc mettre le bit
+16 de RCC_CFGR (PLLSRC) &agrave; 0.
+On continue ensuite notre chemin sur l'arbre des horloges et on arrive
+sur la PLL &agrave; proprement
+parler, c'est &agrave; dire le multiplicateur de
+fr&eacute;quence (en orange). On veut envoyer 48 MHz &agrave;
+l'USB,
+mais l'arbre indique que l'horloge envoy&eacute;e &agrave;
+l'USB sera la moiti&eacute; de la fr&eacute;quence de sortie de
+la PLL
+(USBCLK = PLLVCO/2). On veut donc en sortie de la PLL 96 MHz ! Le
+manuel de r&eacute;f&eacute;rence
+pr&eacute;cise qu'il ne faut pas d&eacute;passer 96 MHz en
+sortie de la PLL. On est &agrave; la limite donc pas de
+probl&egrave;me. On va donc multiplier la fr&eacute;quence par
+6 (car 16 MHz x 6 = 96 MHz).</p>
+<figure>
+<a href="../../../images/Capture_datasheet_7.png">
+<img alt="Capture_datasheet_7" src="../../../images/Capture_datasheet_7_Petite.png">
+</a>
+<figcaption>PLLMUL[3:0]: PLL multiplication factor</figcaption>
+</figure>
+<p>Cette op&eacute;ration se fait par la configuration des bits 21
+&agrave; 18 de RCC_CFGR. Dans notre cas ils
+doivent prendre la valeur qui correspond &agrave; un coefficient de
+multiplication de 6, c'est &agrave; dire 0010.
+On va maintenant configurer le diviseur de sortie (bleu) de la PLL afin
+d'obtenir les 32 MHz que
+nous d&eacute;sirons comme horloge syst&egrave;me. On va donc
+configurer le diviseur pour qu'il effectue une
+division par 3 (96 MHz / 3 = 32 MHz).</p>
+<figure>
+<a href="../../../images/Capture_datasheet_8.png">
+<img alt="Capture_datasheet_8" src="../../../images/Capture_datasheet_8_Petite.png">
+</a>
+<figcaption>PLLDIV[1:0]: PLL output division</figcaption>
+</figure>
+<p>On configure donc les bits 23 et 22 de RCC_CFGR, mais ce coup
+l&agrave; en for&ccedil;ant le 1 avant le 0, car il
+ne faut pas tomber sur PLLDIV[1:0] = 00, car c'est une valeur interdite
+(&laquo;&nbsp;not allowed&nbsp;&raquo;).
+Comme pr&eacute;cis&eacute; pr&eacute;c&eacute;demment,
+par d&eacute;faut, dans le STM32, (presque) tout est
+&eacute;teint. Ce n'est pas
+pr&eacute;cis&eacute; sur l'arbre des horloges, mais la PLL ne
+d&eacute;roge pas &agrave; cette r&egrave;gle. On va devoir
+l'allumer. Il
+est important de savoir qu'une fois la PLL allum&eacute;e, on ne
+peut plus changer son coefficient
+multiplicateur. Il faut d'abord l'&eacute;teindre, changer le
+coefficient, et la rallumer, c'est pour cela que
+nous l'avons configur&eacute;e avant de la mettre en marche.</p>
+<figure>
+<a href="../../../images/Capture_datasheet_9.png">
+<img alt="Capture_datasheet_9" src="../../../images/Capture_datasheet_9_Petite.png">
+</a>
+<figcaption>PLLRDY: PLL clock ready flag - PLLON: PLL enable</figcaption>
+</figure>
+<p>On va donc mettre &agrave; 1 le bit 24 de RCC_CFGR qui correspond
+&agrave; PLLON, l'activation de la PLL, et
+attendre que la PLL soit verrouill&eacute;e, c'est &agrave;
+dire qu'elle fonctionne correctement dans son r&eacute;gime
+&eacute;tabli.
+La derni&egrave;re &eacute;tape est, comme pour la mise en
+place simple de l'oscillateur HSI, de configurer le
+multiplexeur qui redirigera l'horloge de la PLL (PLLCLK) vers l'horloge
+syst&egrave;me (SYSCLK).
+Et &ccedil;a y est enfin ! Nous avons configur&eacute; notre
+oscillateur interne de fa&ccedil;on &agrave; ce qu'il cadence
+notre
+microcontr&ocirc;leur &agrave; sa vitesse maximale de 32 MHz,
+et le p&eacute;riph&eacute;rique USB &agrave; 48 MHz.</p>
+<div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="stm32discovery_page_4A.php%3Fselection=2.html#Haut_de_page">Je veux remonter !</a>&nbsp;|&nbsp;<a href="stm32discovery_page_4A.php%3Fselection=2.html#Liste_de_depart">Liste</a>
+</div>
+<a id="Endroit_4-0-0"></a>
+<h2>4) Les autres oscillateurs</h2>
+<p>Dans le cadre de ce cours j'ai uniquement
+d&eacute;taill&eacute; l'utilisation de l'oscillateur interne
+rapide HSI,
+afin de vous faire comprendre comment on configure l'horloge
+syst&egrave;me dans ce composant.<br />
+Il existe
+&eacute;galement deux autres horloges disponibles comme horloge
+syst&egrave;me.<br />
+Quoi qu'il en soit, si vous &ecirc;tes
+capable de mettre en oeuvre l'horloge HSI selon les modes
+&eacute;tudi&eacute;s dans ce cours, les autres horloges
+ne devraient pas vous poser de soucis.</p>
+<a id="Endroit_4-1-0"></a>
+<h3>4-1) L'horloge rapide externe HSE</h3>
+<p>L'oscillateur HSE permet de g&eacute;n&eacute;rer une horloge
+rapide entre 1 et 24 MHz soit via un oscillateur
+compl&egrave;tement externe, comme par exemple qui
+g&eacute;n&egrave;re un signal carr&eacute;, soit via un
+r&eacute;sonateur
+c&eacute;ramique (ou &agrave; quartz) externe
+accompagn&eacute; de deux condensateurs.<br />
+Utiliser ce dispositif
+co&ucirc;te
+plus cher que d'utiliser le HSI, mais la pr&eacute;cision de
+l'horloge est nettement plus grande, car on sait
+fabriquer des quartz avec une fr&eacute;quence de
+r&eacute;sonance de quelques m&eacute;gahertz &agrave;
+quelques pulsations
+par minute (ppm) pr&egrave;s, alors que l'oscillateur utilise une
+cellule R-C, il va donc avoir une fr&eacute;quence
+d'oscillation d&eacute;pendant entre autres significativement de la
+temp&eacute;rature.</p>
+<a id="Endroit_4-2-0"></a>
+<h3>4-2) L'horloge interne MSI</h3>
+<p>L'horloge interne MSI est une horloge r&eacute;glable en
+fr&eacute;quence entre 65,536 kHz et 4,194 MHz via la
+configuration du registre RCC_ICSCR.<br />
+Apr&egrave;s un Reset, le
+STM32 d&eacute;marre par d&eacute;faut sur cette
+horloge &agrave; 2,097 MHz.<br />
+Elle peut aussi &ecirc;tre
+utilis&eacute; comme horloge de secours en cas de
+d&eacute;faillance de
+l'horloge externe.</p>
+<a id="Endroit_4-3-0"></a>
+<h3>4-3) Les horloges basse fr&eacute;quence</h3>
+<p>Dans le STM32, il existe deux horloges basse fr&eacute;quence, l'une externe, la LSE, qui fonctionne avec un quartz dit d'horloger de 32768 Hz, l'autre interne la LSI qui fonctionne &agrave; 37 kHz ou 40 kHz selon le mod&egrave;le exact du microcontr&ocirc;leur.<br />
+Ces horloges ne peuvent pas &ecirc;tre utilis&eacute;es comme horloge syst&egrave;me, mais on les utilise pour cadencer certains p&eacute;riph&eacute;riques comme le driver de LCD ou l'horloge temps r&eacute;el (RTC).</p>
+<div>
+<div class="menu_article">
+<ul class="menu_article_principal">
+<li><a href="stm32discovery_page_1.php.html">Mises en places</a></li>
+<li><a href="stm32discovery_page_4A.php.html">Programmation de la carte &laquo;&nbsp;STM32VLDISCOVERY&nbsp;&raquo;</a></li>
+<li><ul>
+<li><a class="choisi" href="stm32discovery_page_4A.php.html">Configuration de l'horloge</a></li>
+<li><a href="stm32discovery_page_5A.php.html">Utiliser les ports d'entr&eacute;es-sorties</a></li>
+<li><a href="les_interruptions_STM32F100RB.php.html">STM32F100RB : Interruptions</a></li>
+<li><a href="l_i2c_stm32F100RB.php.html">STM32F100RB : Le bus I2C</a></li>
+<li></li>
+<li><a href="stm32vldiscovery_exemples_programmes.php.html">Exemples de programmes</a></li>
+</ul></li>
+<li><a href="stm32discovery_page_4B.php.html">Programmation de la carte &laquo;&nbsp;STM32L-DISCOVERY&nbsp;&raquo;</a></li>
+</ul>
+<ul class="menu_article_secondaire">
+<li><a href="stm32discovery_page_4A.php%3Fselection=2.html#Endroit_1-0-0">1) Pr&eacute;sentation</a></li>
+<li><a href="stm32discovery_page_4A.php%3Fselection=2.html#Endroit_2-0-0">2) Oscillateur interne, utilis&eacute; tel quel</a></li>
+<li><a href="stm32discovery_page_4A.php%3Fselection=2.html#Endroit_3-0-0">3) Oscillateur interne, utilis&eacute; avec la PLL</a></li>
+<li><a href="stm32discovery_page_4A.php%3Fselection=2.html#Endroit_4-0-0">4) Les autres oscillateurs</a></li>
+<li>
+<ul>
+<li><a href="stm32discovery_page_4A.php%3Fselection=2.html#Endroit_4-1-0">4-1) L'horloge rapide externe HSE</a></li>
+<li><a href="stm32discovery_page_4A.php%3Fselection=2.html#Endroit_4-2-0">4-2) L'horloge interne MSI</a></li>
+<li><a href="stm32discovery_page_4A.php%3Fselection=2.html#Endroit_4-3-0">4-3) Les horloges basse fr&eacute;quence</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="commentaires"><a id="Endroits_des_commentaires"></a><p class="sous-titre_commentaires">Commentaires (2)</p><div class="commentaire">
+<div class="commentaire-haut">
+<div class="commentaire-haut-gauche">
+<p><i>Atrylec</i></p></div>
+<div class="commentaire-haut-droite">
+<p>Le vendredi 17 mai 2013 &agrave; 23:34</p></div>
+</div>
+<div class="commentaire-bas">
+<p>Bonsoir,
+
+Vous avez raison&nbsp;: la capture d'&eacute;cran provenait du &laquo;&nbsp;REFERENCE MANUAL&nbsp;&raquo; du STM32F152, et non de celui du STM32F100.
+
+Cependant, la d&eacute;marche de configuration des horloges reste identique.
+
+L'erreur a &eacute;t&eacute; corrig&eacute;e.
+
+Merci de m'en avoir fait part !
+</p></div>
+</div>
+<div class="commentaire">
+<div class="commentaire-haut">
+<div class="commentaire-haut-gauche">
+<p>trabelsi</p></div>
+<div class="commentaire-haut-droite">
+<p>Le lundi 13 mai 2013 &agrave; 19:37</p></div>
+</div>
+<div class="commentaire-bas">
+<p>le sch&eacute;ma d'horloge a la d&eacute;but de la page ne concernant pas stm32f100RB C4EST FAUX<br />
+</p></div>
+</div>
+<p class="sous-titre_ajouts">Ajouter un commentaire</p>
+<form id="contact" method="post" action="http://atrylec.com/elements/allures/commentaires/verification.php">
+<fieldset>
+<legend>
+Votre pseudo&nbsp;: 
+</legend>
+<p>
+<label for="pseudo">
+Pseudo&nbsp;: 
+</label>
+<input type="text" id="pseudo" name="pseudo" tabindex="1" required="required">
+</p>
+</fieldset>
+<fieldset>
+<legend>
+Votre commentaire&nbsp;: 
+</legend>
+<p>
+<label for="commentaire">
+Commentaire&nbsp;: 
+</label>
+<textarea id="commentaire" name="commentaire" tabindex="2" cols="50" rows="2" required="required">
+</textarea>
+</p>
+</fieldset>
+<div class="bouton_validation_commentaire">
+<input type="submit" name="Poster" value="Poster" />
+</div>
+</form>
+</div><div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="stm32discovery_page_4A.php%3Fselection=2.html#Haut_de_page">Je veux remonter !</a>
+</div>
+</section>
+<footer>
+<div class="liens">
+<ul>
+<li><a href="../../contact.php.html">ContaCT</a></li>
+</ul>
+</div>
+<div id="choix_style">
+<div class="presentation">Ravaler la fa&ccedil;ade&nbsp;:</div>
+<a href="stm32discovery_page_4A.php%3Fselection=1.html" title="Style 1"><div class="choix choix_bleu">&nbsp;</div></a><div class="choix choix_rouge_choisi">&nbsp;</div><a href="stm32discovery_page_4A.php%3Fselection=3.html" title="Style 3"><div class="choix choix_orange">&nbsp;</div></a></div>
+<div class="remarques">
+<p>Il ne faut pas dire&nbsp;: &laquo;&nbsp;Un fant&ocirc;me qui fait demi-tour
+&nbsp;&raquo;, mais&nbsp;: &laquo;&nbsp;Un retournement spectral
+&nbsp;&raquo;.</p>
+</div>
+<div class="visites">
+<img style="width: 15px; height: 15px;" alt="6_30" src="../../../images/6_30.png">   <img style="width: 15px; height: 15px;" alt="5_30" src="../../../images/5_30.png">   <img style="width: 15px; height: 15px;" alt="0_30" src="../../../images/0_30.png">   <img style="width: 15px; height: 15px;" alt="9_30" src="../../../images/9_30.png">   <img style="width: 15px; height: 15px;" alt="9_30" src="../../../images/9_30.png">   </div>
+</footer>
+</div>
+</body>
+</html>

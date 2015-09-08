@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>STM32 DISCOVERY - STM32VLDISCOVERY, utiliser les ports d'entr&eacute;es-sorties</title>
+<meta name="description" content="Cartes de d&eacute;veloppement &laquo;&nbsp;STM32 DISCOVERY&nbsp;&raquo; : Tutoriel - Page 5B - STM32VLDISCOVERY, utiliser les ports d'entr&eacute;es-sorties" />
+<meta name="keywords" content="atrylec electronique schema schemas montage montages realisation realisations microcontroleur entrees sorties programmation code source langage c stm32discovery stm 32 discovery stm32vldiscovery stm 32 vl discovery stm32l discovery stm32 l discovery stm32f100rb stm32l152rbt6 keil micro vision tutoriel tutoriels exemple exemples cours creer projet projets configurer horloge horloges" />
+<link rel="stylesheet" media="screen" type="text/css" title="Style 2" href="../../../elements/allures/style_2.css">
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-42331281-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+<body>
+<div id="page">
+<div id="haut">
+<header id="Haut_de_page">
+<div id="principale">
+<p class="titre_principal_haut">
+<a href="../../../index.php.html"><img style="width: 150px;" alt="Affichage_Atrylec_com" src="../../../images/Affichage_Atrylec_com.png" /><span class="invisible">Atrylec</span></a></p>
+<p class="sous-titre_haut">Vous n'&ecirc;tes pas seuls dans l'Univers !</p>
+</div>
+<div id="additionnelle">
+</div>
+</header>
+<nav>
+<ul id="navigation">
+<li><a href="../../../index.php.html" title="Accueil">Accueil</a></li>
+<li><a class="choisi" href="../index.php.html" title="Electronique">Electronique</a></li>
+<li><a href="../../radio/index.php%3Fnumero=0.html" title="Radio">Radio</a></li>
+<li><a href="../../origami/index.php.html" title="Origami">Origami</a></li>
+<li><a href="../../photographies/index.php%3Fnumero=0.html" title="Photographies">Photographies</a></li>
+<li><a href="../../le_grenier/index.php.html" title="Le grenier">Le grenier</a></li>
+<li><a href="../../contact.php.html" title="ContaCT">ContaCT</a></li>
+</ul>
+</nav>
+</div>
+<section>
+<div id="titre">
+<div id="titre_gauche">
+</div>
+<div id="titre_image">
+<img style="width: 100px; height: 100px;" alt="Transistor_100" src="../../../images/Transistor_100.png">
+</div>
+<div id="titre_texte">
+<p>/&nbsp;</p><h1>STM32VLDISCOVERY : Ports d'entr&eacute;es-sorties</h1>
+</div>
+<div id="titre_droite">
+</div>
+</div>
+<div style="position: relative; top: 72px; left: 502px;">
+<span style="font-style: italic;">Sp&eacute;cial ZanX' &agrave; &laquo;&nbsp;NonoxX&nbsp;&raquo;</span> !<br />
+</div>
+<div>
+<p id="introduction">Utiliser les ports d'entr&eacute;es-sorties du STM32L152RB</p>
+</div>
+<p>
+<a id="Liste_de_depart"></a>
+</p>
+<div>
+<div class="menu_article">
+<ul class="menu_article_principal">
+<li><a href="stm32discovery_page_1.php.html">Mises en places</a></li>
+<li><a href="stm32discovery_page_4A.php.html">Programmation de la carte &laquo;&nbsp;STM32VLDISCOVERY&nbsp;&raquo;</a></li>
+<li><a href="stm32discovery_page_4B.php.html">Programmation de la carte &laquo;&nbsp;STM32L-DISCOVERY&nbsp;&raquo;</a></li>
+<li><ul>
+<li><a href="stm32discovery_page_4B.php.html">Configuration de l'horloge</a></li>
+<li><a class="choisi" href="stm32discovery_page_5B.php.html">Utiliser les ports d'entr&eacute;es-sorties</a></li>
+</ul></li>
+</ul>
+<ul class="menu_article_secondaire">
+<li><a href="stm32discovery_page_5B.php%3Fselection=2.html#Endroit_1-0-0">1) Pr&eacute;sentation</a></li>
+<li><a href="stm32discovery_page_5B.php%3Fselection=2.html#Endroit_2-0-0">2) L'allumage de LED</a></li>
+<li><a href="stm32discovery_page_5B.php%3Fselection=2.html#Endroit_3-0-0">3) Application : un gyrophare</a></li>
+<li><a href="stm32discovery_page_5B.php%3Fselection=2.html#Endroit_4-0-0">4) Utiliser une broche en entr&eacute;e</a></li>
+<li><a href="stm32discovery_page_5B.php%3Fselection=2.html#Endroit_5-0-0">5) Conclusion</a></li>
+</ul>
+</div>
+</div>
+<div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="stm32discovery_page_5B.php%3Fselection=2.html#Haut_de_page">Je veux remonter !</a>&nbsp;|&nbsp;<a href="stm32discovery_page_5B.php%3Fselection=2.html#Liste_de_depart">Liste</a>
+</div>
+<a id="Endroit_1-0-0"></a>
+<h2>1) Pr&eacute;sentation</h2>
+<p>Sur le STM32, la quasi-totalit&eacute; des pattes sont accessibles en entr&eacute;e-sortie tout-ou-rien. Les broches sont regroup&eacute;es par paquets de 16, appel&eacute;s ports.<br />
+Chaque port est g&eacute;r&eacute; par un p&eacute;riph&eacute;rique appel&eacute; GPIO (&laquo;&nbsp;General Purpose Input/Output&nbsp;&raquo;).<br />
+Par exemple le p&eacute;riph&eacute;rique GPIOA g&egrave;re le PORTA, c'est &agrave; dire les pattes PA0 &agrave; PA15. Ce cours utilisera comme support la carte STM32L-DISCOVERY du fabricant STMicroelectronics.</p>
+<div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="stm32discovery_page_5B.php%3Fselection=2.html#Haut_de_page">Je veux remonter !</a>&nbsp;|&nbsp;<a href="stm32discovery_page_5B.php%3Fselection=2.html#Liste_de_depart">Liste</a>
+</div>
+<a id="Endroit_2-0-0"></a>
+<h2>2) L'allumage de LED</h2>
+<p>Comme toujours sur un microcontr&ocirc;leur, il faut commencer par configurer l'horloge syst&egrave;me.<br />
+L'horloge HSI a &eacute;t&eacute; choisie directement comme SYSCLK - voir <a href="stm32discovery_page_4B.php.html" title="Ouvrir le lien &laquo;&nbsp;http://www.atrylec.com/fr/electronique/stm32discovery/stm32discovery_page_4B.php&nbsp;&raquo;" >le cours sur les horloges</a>.</p>
+<figure>
+<a href="../../../images/Capture_notice_1.png">
+<img alt="Capture_notice_1" src="../../../images/Capture_notice_1.png">
+</a>
+<figcaption>C&acirc;blage des LED</figcaption>
+</figure>
+<p>Nous allons dans un premier temps voir comment allumer
+des LEDs avec<br />
+un STM32. Sur la carte STM32L-DISCOVERY, il y a deux LEDs (LD3<br />
+et LD4) que l'on peut utiliser &agrave; sa guise. Ces deux LEDs
+sont connect&eacute;es<br />
+aux broches PB6 et PB7 du composant. On va donc utiliser le<br />
+p&eacute;riph&eacute;rique GPIOB.</p>
+<p>Le STM32 &eacute;tant un composant con&ccedil;u dans le but de
+consommer le moins d'&eacute;nergie possible, tous
+ses p&eacute;riph&eacute;riques sont
+d&eacute;sactiv&eacute;s par d&eacute;faut. Pour les mettre
+en route, il faut activer leur horloge.
+Dans le cas du GPIOB, il faut mettre &agrave; 1 le bit 1 (GPIOBEN)
+du registre RCC_AHBENR.
+Puisque nous allons utiliser ces broches pour sortir une information du
+microcontr&ocirc;leur (allumer
+une LED en l&rsquo;occurrence), nous allons configurer PB6 et PB7
+en sortie.</p>
+<figure>
+<a href="../../../images/Capture_datasheet_10.png">
+<img alt="Capture_datasheet_10" src="../../../images/Capture_datasheet_10_Petite.png">
+</a>
+<figcaption>MODERy[1:0]: Port x configuration bits (0= 0..15)</figcaption>
+</figure>
+<p>Le manuel de r&eacute;f&eacute;rence du composant nous indique
+qu'il existe un registre GPIOx_MODER (avec x
+le nom du port, ici B) permettant de configurer chaque patte en
+entr&eacute;e, en sortie, ou d'autres
+fonctions. Pour configurer la patte y du port x en sortie, il faut
+configurer la paire de bits
+MODEy[1:0] du registre GPIOx_MODER sur la valeur 01.</p>
+<p>Le STM32 propose deux modes de sortie :</p>
+<ul>
+<li>Le mode Push-Pull dans lequel la broche peur forcer un &eacute;tat logique 0 ou 1,</li>
+<li>Le mode Drain Ouvert dans lequel la broche peut forcer un &eacute;tat logique bas, ou se placer dans un &eacute;tat haute imp&eacute;dance, c'est utile notamment pour certains protocoles de communication.<br />
+On l'utilise en g&eacute;n&eacute;ral avec une r&eacute;sistance de pull-up, qui va permettre &agrave; la sortie d'&ecirc;tre &agrave; 1 lorsqu'elle se trouve en haute imp&eacute;dance.</li>
+</ul>
+<p>Dans notre cas comme dans la plupart des applications, nous allons utiliser la sortie en Push-Pull, car il faut pouvoir forcer un 1 logique pour alimenter une LED. Cette configuration se fait par le registre GPIOB_OTYPER, en y pla&ccedil;ant les bits 6 et 7 &agrave; 0.<br />
+Un autre r&eacute;glage est disponible pour les ports en sortie : la fr&eacute;quence maximale de rafra&icirc;chissement du port. Elle peut prendre 4 valeurs : 400 kHz, 2 MHz, 20 MHz, et 40 MHz.<br />
+Dans notre cas, &ccedil;a n'a pas vraiment d'importance, on va commander des LED &agrave; des
+fr&eacute;quences visibles par l&rsquo;oeil humain - typiquement inf&eacute;rieures &agrave; 10 Hz. On va donc choisir le r&eacute;glage minimal de 400 kHz.<br />
+On a acc&egrave;s &agrave; ce param&egrave;tre avec le registre GPIOB-&gt;OSPEEDR.<br />
+Les broches PB6 et PB7 sont maintenant configur&eacute;es correctement pour piloter nos LED. Il ne nous reste plus qu'&agrave; les allumer.<br />
+Pour allumer la LED LD4, branch&eacute;e sur la broche PB6, il faut mettre &agrave; 1 le bit 6 du registre GPIOB-&gt;ODR, une valeur &agrave; 0 de ce m&ecirc;me bit &eacute;teindra la LED. Pour la broche PB7, c'est le bit 7 qu'il faudra modifier.<br />
+Vous avez maintenant fini d'&eacute;crire le code n&eacute;cessaire &agrave; l'initialisation des broches PB6 et PB7 en sortie <i>push-pull</i>, et fix&eacute; la valeur de PB6 &agrave; 1 et PB7 &agrave; 0. N'oubliez pas de terminer votre programme par une boucle infinie.<br />
+Compilez, chargez votre programme sur le composant et appuyez sur le bouton &laquo;&nbsp;Reset&nbsp;&raquo; de la carte. Si tout s'est bien pass&eacute;, vous devriez voir s'allumer la LED bleue (LD4), et la LED verte (LD3) devrait rester &eacute;teinte.</p>
+<div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="stm32discovery_page_5B.php%3Fselection=2.html#Haut_de_page">Je veux remonter !</a>&nbsp;|&nbsp;<a href="stm32discovery_page_5B.php%3Fselection=2.html#Liste_de_depart">Liste</a>
+</div>
+<a id="Endroit_3-0-0"></a>
+<h2>3) Application : un gyrophare</h2>
+<p>Nous allons maintenant programmer un gyrophare pour les voiture de
+police d'un pays tr&egrave;s &eacute;trange
+et lointain (vous avez reconnu l'Allemagne), dans lequel les couleurs
+de la police (<i>Polizei</i>) sont le
+vert et le bleu.
+On se permettra d'&eacute;quiper une belle automobile sportive de
+l'ex-Allemagne de l'Est aux couleurs de
+la <i>Polizei</i> d'un feu clignotant alternativement bleu et vert.
+Pour ceux &agrave; qui cela &eacute;voque quelque-chose, nous
+n'allons pas utiliser d'interruptions dans ce cours,
+mais nous y viendrons un peu plus tard. Nous allons nous contenter
+d'une attente active entre les
+alternances de couleurs. C'est &agrave; dire que entre deux
+couleurs diff&eacute;rentes, nous allons attendre un
+certain temps en consommant du temps processeur dans une boucle qui ne
+fait rien d'autre que de
+passer le temps. Essayez de r&eacute;aliser ce gyrophare par vous
+m&ecirc;me avec les LED de votre carte
+STM32L-DISCOVERY, avant de regarder la r&eacute;ponse ci-dessous.</p>
+<figure>
+<a href="../../../images/POLIZEI.jpg">
+<img alt="POLIZEI" src="../../../images/POLIZEI.jpg">
+</a>
+<figcaption>POLIZEI</figcaption>
+</figure>
+<p>Vous avez r&eacute;ussi ? Bravo ! Sinon voyons ensemble ce qu'il fallait faire. Tout d'abord il fallait (comme toujours) configurer l'horloge syst&egrave;me. Ensuite, il fallait configurer les ports PB6 et PB7 correspondant au LEDs en sortie, comme nous l'avons fait au paragraphe pr&eacute;c&eacute;dent. Ensuite il fallait lancer notre programme dans une boucle infinie. En C, cela se traduit par exemple par un &laquo;&nbsp;while(1)&nbsp;&raquo;.</p>
+<p>Dans cette boucle nous allons faire dans l'ordre :</p>
+<p>1) Eteindre LD3 et allumer LD4,<br />
+2) Attendre,<br />
+3) Eteindre LD4 et allumer LD3,<br />
+4) Attendre.</p>
+<p>Pour les op&eacute;rations d'allumage et d'extinction des LED, vous devriez savoir le faire. Je vous invite &agrave; relire le paragraphe pr&eacute;c&eacute;dent si cela vous a pos&eacute; probl&egrave;me. Pour l'attente par contre, il est possible que ce soit la premi&egrave;re fois que vous y ayez &agrave; faire. Pour se faire, cr&eacute;ez simplement une boucle qui ne fait rien :</p>
+<p>Cette boucle suit le comportement suivant :</p>
+<p>1) Mettre i &agrave; 0,<br />
+2) Si i &lt; 1000000<br />
+2)1) Augmenter i de 1,<br />
+2)2) Aller &agrave; 2),<br />
+3) Sinon sortir de la boucle.</p>
+<p>Et chacune de ces op&eacute;rations sera traduite par le compilateur en instructions dans le microcontr&ocirc;leur, et toutes les instructions prennent du temps pour &ecirc;tre ex&eacute;cut&eacute;es (au moins un front d'horloge). En comptant jusqu'&agrave; 1000000, nous allons consommer suffisamment de temps pour que le clignotement des LEDs soit visible. Par cette m&eacute;thode on peut difficilement obtenir des temporisations pr&eacute;cise mais elle a l'avantage d'&ecirc;tre tr&egrave;s simple. Le code complet du gyrophare (hors initialisations) est donc :</p>
+<div class="codes-sources-c">
+<div class="codes-sources-c-haut">
+<p>Code source : Exemple 5B1 - Un gyrophare</p>
+</div>
+<div class="codes-sources-c-bas">
+<pre>
+<span style="color: rgb(0, 0, 0);">
+<strong>
+<span style="color:#0000FF;">while</span></strong>(<span style="color:#FF0000;">1</span>)
+{
+    GPIOB-&gt;ODR &amp;= ~(<span style="color:#FF0000;">1</span> &lt;&lt; <span style="color:#FF0000;">7</span>); <em><span style="color:#009900;">/* Extinction de LD3 */</span></em>
+    GPIOB-&gt;ODR |= <span style="color:#FF0000;">1</span> &lt;&lt; <span style="color:#FF0000;">6</span>; <em><span style="color:#009900;">/* Allumage de LD4 */</span></em>
+      
+    <strong><span style="color:#0000FF;">for</span></strong>(i = <span style="color:#FF0000;">0</span>; i &lt; <span style="color:#FF0000;">1000000</span>; i++); <em><span style="color:#009900;">/* Attente */</span></em>
+         
+    GPIOB-&gt;ODR &amp;= ~(<span style="color:#FF0000;">1</span> &lt;&lt; <span style="color:#FF0000;">6</span>); <em><span style="color:#009900;">/* Extinction de LD4 */</span></em>
+    GPIOB-&gt;ODR |= <span style="color:#FF0000;">1</span> &lt;&lt; <span style="color:#FF0000;">7</span>; <em><span style="color:#009900;">/* Allumage de LD3 */</span></em>      
+         
+    <strong><span style="color:#0000FF;">for</span></strong>(i = <span style="color:#FF0000;">0</span>; i &lt; <span style="color:#FF0000;">1000000</span>; i++); <em><span style="color:#009900;">/* Attente */</span></em>      
+}
+<br />
+</span>
+</pre>
+</div>
+</div>
+<div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="stm32discovery_page_5B.php%3Fselection=2.html#Haut_de_page">Je veux remonter !</a>&nbsp;|&nbsp;<a href="stm32discovery_page_5B.php%3Fselection=2.html#Liste_de_depart">Liste</a>
+</div>
+<a id="Endroit_4-0-0"></a>
+<h2>4) Utiliser une broche en entr&eacute;e</h2>
+<p>Il peut dans de nombreux cas &ecirc;tre utile d'utiliser une broche
+en entr&eacute;e, comme par exemple dans le
+cas d'un bouton. Afin de s&rsquo;entra&icirc;ner &agrave;
+mettre en place cette fonction de base, nous allons cr&eacute;er
+&agrave;
+partir d'un bouton &agrave; action momentan&eacute;e comme
+celui pr&eacute;sent sur la carte STM32L-DISCOVERY,
+un interrupteur &agrave; action maintenue (&laquo;&nbsp;latched
+&raquo;).<br />
+Avant de nous lancer t&ecirc;te baiss&eacute;e dans la
+programmation voici une description de ce que nous allons
+programmer :</p>
+<p>1) Initialisations (horloge et ports),<br />
+2) Attente bouton appuy&eacute;,<br />
+3) Allumer la LED,<br />
+4) Attente bouton rel&acirc;ch&eacute;,<br />
+5) Attente bouton appuy&eacute;,<br />
+6) Eteindre la LED,<br />
+7) Attendre bouton rel&acirc;ch&eacute;,<br />
+8) Aller &agrave; l'&eacute;tape 2).</p>
+<p>Dans un premier temps, configurez correctement l'horloge
+syst&egrave;me, activez l'horloge du GPIOB,
+configurez PB7 en sortie et &eacute;teignez la LED.</p>
+<figure>
+<a href="../../../images/Capture_notice_2.png">
+<img alt="Capture_notice_2" src="../../../images/Capture_notice_2.png">
+</a>
+<figcaption>C&acirc;blage du bouton-poussoir bleu</figcaption>
+</figure>
+<p>D'apr&egrave;s le manuel de l'utilisateur de la carte STM32LDISCOVERY,<br />
+on voit que le bouton utilisateur est connect&eacute; &agrave; la<br />
+broche PA0, et que lorsqu'il est press&eacute;, il renvoie un &eacute;tat logique 1,<br />
+un &eacute;tat 0 sinon.<br />
+Nous allons donc utiliser des broches du PORTD, donc le<br />
+p&eacute;riph&eacute;rique GPIOC. La premi&egrave;re chose &agrave; faire est donc... de<br />
+l'activer. Comme nous avions proc&eacute;d&eacute; pour activer GPIOB<br />
+pr&eacute;c&eacute;demment, nous mettons &agrave; 1 le bit 2 (GPIOCEN) du registre<br />
+RCC_AHBENR.</p>
+<p>Ensuite, nous allons configurer la broche PC0 en entr&eacute;e. Il
+suffit de mettre &agrave; 00 les bits
+MODER0[1:0] du registre GPIOC_MODER.
+&Ccedil;a y est, notre broche PA0 est configur&eacute;e en
+entr&eacute;e. C'est un peu plus simple que de la configurer en
+sortie.
+Pour conna&icirc;tre l'&eacute;tat d'une entr&eacute;e, on
+fait appel au registre GPIOC_IDR (&laquo;&nbsp;Input Data Register
+&raquo;).
+Son fonctionnement est simple. Chaque bit de ce registre est
+l'&eacute;tat des entr&eacute;es du port. Si le bit 0 est
+&agrave; 1, cela signifie que l'entr&eacute;e PA0 est
+&agrave; l'&eacute;tat haut. S'il est &agrave; 0,
+l'entr&eacute;e est &agrave; l'&eacute;tat bas.
+Vous devriez maintenant &ecirc;tre capable de programmer cet
+interrupteur...
+Voici une solution qui fonctionne (mais qui n'est pas la seule !).</p>
+<div class="codes-sources-c">
+<div class="codes-sources-c-haut">
+<p>Code source : Exemple 5B2 - Lecture de l'&eacute;tat logique d'une broche</p>
+</div>
+<div class="codes-sources-c-bas">
+<pre>
+<span style="color: rgb(0, 0, 0);">
+<strong><span style="color: rgb(255, 153, 0);">#include </span></strong>&lt;stm32l1xx.h&gt;
+
+<strong><span style="color: rgb(0, 0, 255);">void</span></strong> SystemInit(<strong><span style="color: rgb(0, 0, 255);">void</span></strong>) <em><span style="color: rgb(0, 153, 0);">/*  Fonction qui permet d'effectuer l'initialisation du microcontr&ocirc;leur STM32L152RB.
+                                                         Cette fonction est appel&eacute;e par le fichier &eacute;crit en langage assembleur, qui a &eacute;t&eacute; inclus au d&eacute;but de la cr&eacute;ation du projet.
+                                                         L'appel de la fonction &laquo;&nbsp;main('Francais', '');&nbsp;&raquo; est ensuite effectu&eacute; par le m&ecirc;me fichier.  */</span></em>
+{
+   RCC-&gt;CR |= <span style="color: rgb(255, 0, 0);">1</span>; <em><span style="color: rgb(0, 153, 0);">/*  Allumage du HSI  */</span></em>
+   <strong><span style="color: rgb(0, 0, 255);">while</span></strong>((RCC-&gt;CR &amp; (<span style="color: rgb(255, 0, 0);">1</span> &lt;&lt; <span style="color: rgb(255, 0, 0);">1</span>)) == <span style="color: rgb(255, 0, 0);">0</span>); <em><span style="color: rgb(0, 153, 0);">/*  Attente que le HSI soit stable  */</span></em>
+
+      
+   RCC-&gt;CFGR &amp;= ~(<span style="color: rgb(255, 0, 0);">1</span> &lt;&lt; <span style="color: rgb(255, 0, 0);">1</span>); <em><span style="color: rgb(0, 153, 0);">/*  Mise &agrave; 0 de SW[1] par masquage  */</span></em>
+   RCC-&gt;CFGR |= <span style="color: rgb(255, 0, 0);">1</span> &lt;&lt; <span style="color: rgb(255, 0, 0);">0</span>; <em><span style="color: rgb(0, 153, 0);">/*  Mise &agrave; 1 de SW[0] par masquage  */</span></em>
+
+}
+
+<strong><span style="color: rgb(0, 0, 255);">int</span></strong> main(<strong><span style="color: rgb(0, 0, 255);">void</span></strong>) <em><span style="color: rgb(0, 153, 0);">/*  Fonction principale  */</span></em>
+{
+   RCC-&gt;AHBENR |= <span style="color: rgb(255, 0, 0);">1</span> &lt;&lt; <span style="color: rgb(255, 0, 0);">1</span>; <em><span style="color: rgb(0, 153, 0);">/*  Activation de l'horloge du GPIOB  */</span></em>
+
+      
+   GPIOB-&gt;MODER &amp;= ~(<span style="color: rgb(255, 0, 0);">0xF</span> &lt;&lt; <span style="color: rgb(255, 0, 0);">12</span>); <em><span style="color: rgb(0, 153, 0);">/*  configuration de PB6 et PB7...  */</span></em>
+   GPIOB-&gt;MODER |= ((<span style="color: rgb(255, 0, 0);">1</span> &lt;&lt; <span style="color: rgb(255, 0, 0);">12</span>) + (<span style="color: rgb(255, 0, 0);">1</span> &lt;&lt; <span style="color: rgb(255, 0, 0);">14</span>)); <em><span style="color: rgb(0, 153, 0);">/*  ...en sortie  */</span></em>
+
+      
+   GPIOB-&gt;OTYPER &amp;= ~(<span style="color: rgb(255, 0, 0);">0x3</span> &lt;&lt; <span style="color: rgb(255, 0, 0);">6</span>); <em><span style="color: rgb(0, 153, 0);">/*  Configuration de PB6 et PB7 en sortie push-pull  */</span></em>
+      
+   GPIOB-&gt;OSPEEDR &amp;= ~(<span style="color: rgb(255, 0, 0);">0xF</span> &lt;&lt; <span style="color: rgb(255, 0, 0);">12</span>); <em><span style="color: rgb(0, 153, 0);">/*  Taux de rafra&icirc;chissement : 40kHz  */</span></em>
+
+      
+   RCC-&gt;AHBENR |= (<span style="color: rgb(255, 0, 0);">1</span> &lt;&lt; <span style="color: rgb(255, 0, 0);">0</span>); <em><span style="color: rgb(0, 153, 0);">/*  Activation de l'horloge du GPIOA  */</span></em>
+      
+   GPIOA-&gt;MODER &amp;= (~<span style="color: rgb(255, 0, 0);">0x3</span>); <em><span style="color: rgb(0, 153, 0);">/*  Configuration de PA0 en entr&eacute;e  */</span></em>
+
+      
+   <strong><span style="color: rgb(0, 0, 255);">while</span></strong>(<span style="color: rgb(255, 0, 0);">1</span>)
+   {
+      <strong><span style="color: rgb(0, 0, 255);">while</span></strong>((GPIOA-&gt;IDR &amp; (<span style="color: rgb(255, 0, 0);">1</span> &lt;&lt; <span style="color: rgb(255, 0, 0);">0</span>)) == <span style="color: rgb(255, 0, 0);">0</span>); <em><span style="color: rgb(0, 153, 0);">/*  Attente de l'appui du bouton   */</span></em>
+
+               
+      GPIOB-&gt;ODR |= <span style="color: rgb(255, 0, 0);">1</span> &lt;&lt; <span style="color: rgb(255, 0, 0);">7</span>; <em><span style="color: rgb(0, 153, 0);">/*  Allumage de LD3  */</span></em>
+      GPIOB-&gt;ODR |= (<span style="color: rgb(255, 0, 0);">1</span> &lt;&lt; <span style="color: rgb(255, 0, 0);">6</span>);
+                  
+      <strong><span style="color: rgb(0, 0, 255);">while</span></strong>((GPIOA-&gt;IDR &amp; (<span style="color: rgb(255, 0, 0);">1</span> &lt;&lt; <span style="color: rgb(255, 0, 0);">0</span>)) != <span style="color: rgb(255, 0, 0);">0</span>); <em><span style="color: rgb(0, 153, 0);">/*  Attente du rel&acirc;chement du bouton   */</span></em>
+
+               
+      GPIOB-&gt;ODR &amp;= ~(<span style="color: rgb(255, 0, 0);">1</span> &lt;&lt; <span style="color: rgb(255, 0, 0);">6</span>);
+                  
+      <strong><span style="color: rgb(0, 0, 255);">while</span></strong>((GPIOA-&gt;IDR &amp; (<span style="color: rgb(255, 0, 0);">1</span> &lt;&lt; <span style="color: rgb(255, 0, 0);">0</span>)) == <span style="color: rgb(255, 0, 0);">0</span>); <em><span style="color: rgb(0, 153, 0);">/*  Attente de l'appui du bouton   */</span></em>
+
+               
+      GPIOB-&gt;ODR |= (<span style="color: rgb(255, 0, 0);">1</span> &lt;&lt; <span style="color: rgb(255, 0, 0);">6</span>);
+      GPIOB-&gt;ODR |= ~(<span style="color: rgb(255, 0, 0);">1</span> &lt;&lt; <span style="color: rgb(255, 0, 0);">7</span>); <em><span style="color: rgb(0, 153, 0);">/*  Extinction de LD3  */</span></em>   
+                  
+      <strong><span style="color: rgb(0, 0, 255);">while</span></strong>((GPIOA-&gt;IDR &amp; (<span style="color: rgb(255, 0, 0);">1</span> &lt;&lt; <span style="color: rgb(255, 0, 0);">0</span>)) != <span style="color: rgb(255, 0, 0);">0</span>); <em><span style="color: rgb(0, 153, 0);">/*  Attente du rel&acirc;chement du bouton   */</span></em>
+
+               
+      GPIOB-&gt;ODR &amp;= ~(<span style="color: rgb(255, 0, 0);">1</span> &lt;&lt; <span style="color: rgb(255, 0, 0);">6</span>);   
+   }
+}
+<br />
+</span>
+</pre>
+</div>
+</div>
+<div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="stm32discovery_page_5B.php%3Fselection=2.html#Haut_de_page">Je veux remonter !</a>&nbsp;|&nbsp;<a href="stm32discovery_page_5B.php%3Fselection=2.html#Liste_de_depart">Liste</a>
+</div>
+<a id="Endroit_5-0-0"></a>
+<h2>5) Conclusion</h2>
+<p>Vous &ecirc;tes maintenant capable d'utiliser les entr&eacute;es-sorties tout-ou-rien du STM32L15x de fa&ccedil;on basique dans vos projets. Dans le cours sur les interruptions, vous verrez une autre mani&egrave;re d'utiliser les entr&eacute;es, un peu plus complexe, mais qui permet de ne pas occuper le processeur &agrave; 100 % rien que pour attendre l'appui d'un bouton.</p>
+<div>
+<div class="menu_article">
+<ul class="menu_article_principal">
+<li><a href="stm32discovery_page_1.php.html">Mises en places</a></li>
+<li><a href="stm32discovery_page_4A.php.html">Programmation de la carte &laquo;&nbsp;STM32VLDISCOVERY&nbsp;&raquo;</a></li>
+<li><a href="stm32discovery_page_4B.php.html">Programmation de la carte &laquo;&nbsp;STM32L-DISCOVERY&nbsp;&raquo;</a></li>
+<li><ul>
+<li><a href="stm32discovery_page_4B.php.html">Configuration de l'horloge</a></li>
+<li><a class="choisi" href="stm32discovery_page_5B.php.html">Utiliser les ports d'entr&eacute;es-sorties</a></li>
+</ul></li>
+</ul>
+<ul class="menu_article_secondaire">
+<li><a href="stm32discovery_page_5B.php%3Fselection=2.html#Endroit_1-0-0">1) Pr&eacute;sentation</a></li>
+<li><a href="stm32discovery_page_5B.php%3Fselection=2.html#Endroit_2-0-0">2) L'allumage de LED</a></li>
+<li><a href="stm32discovery_page_5B.php%3Fselection=2.html#Endroit_3-0-0">3) Application : un gyrophare</a></li>
+<li><a href="stm32discovery_page_5B.php%3Fselection=2.html#Endroit_4-0-0">4) Utiliser une broche en entr&eacute;e</a></li>
+<li><a href="stm32discovery_page_5B.php%3Fselection=2.html#Endroit_5-0-0">5) Conclusion</a></li>
+</ul>
+</div>
+</div>
+<div class="commentaires"><a id="Endroits_des_commentaires"></a><p class="sous-titre_commentaires">Commentaires (4)</p><div class="commentaire">
+<div class="commentaire-haut">
+<div class="commentaire-haut-gauche">
+<p><i>Atrylec</i></p></div>
+<div class="commentaire-haut-droite">
+<p>Le mercredi 24 octobre 2012 &agrave; 19:55</p></div>
+</div>
+<div class="commentaire-bas">
+<p>Gaby, l'utilisation du bus &laquo;&nbsp;I2C&nbsp;&raquo; du STM32F100RB est &eacute;voqu&eacute; ici :<br />
+<img alt="LIEN_EXTERNE" src="../../../images/LIEN_EXTERNE.png" />&nbsp;<a href="http://www.atrylec.com/fr/electronique/stm32discovery/l_i2c_stm32F100RB.php" target="_blank" title="Ouvrir le lien &laquo;&nbsp;http://www.atrylec.com/fr/electronique/stm32discovery/l_i2c_stm32F100RB.php&nbsp;&raquo; dans une nouvelle fen&ecirc;tre, ou dans un nouvel onglet">http://www.atrylec.com/fr/electronique/stm32discovery/l_i2c_stm32F100RB.php</a> <br />
+<br />
+tunimaestro, les interruptions du STM32F100RB sont expliqu&eacute;es ici :<br />
+<img alt="LIEN_EXTERNE" src="../../../images/LIEN_EXTERNE.png" />&nbsp;<a href="http://www.atrylec.com/fr/electronique/stm32discovery/les_interruptions_STM32F100RB.php" target="_blank" title="Ouvrir le lien &laquo;&nbsp;http://www.atrylec.com/fr/electronique/stm32discovery/les_interruptions_STM32F100RB.php&nbsp;&raquo; dans une nouvelle fen&ecirc;tre, ou dans un nouvel onglet">http://www.atrylec.com/fr/electronique/stm32discovery/les_interruptions_STM32F100RB.php</a> <br />
+<br />
+Kako,<br />
+pour d&eacute;terminer si un mot de passe saisi par quelqu'un est identique &agrave; un mot de passe de r&eacute;f&eacute;rence, tu peux comparer, caract&egrave;re par caract&egrave;re, les deux mots en question, je te propose cette petite fonction &eacute;crite en langage C :
+<br />
+</p>
+<pre>
+<span style="color: rgb(0, 0, 0);">
+<strong><span style="color:#0000FF;">unsigned</span></strong> <strong><span style="color:#0000FF;">char</span></strong> ComparerMots(<strong><span style="color:#0000FF;">unsigned</span></strong> <strong><span style="color:#0000FF;">char</span></strong> *  MotDePasseATester)
+{
+   <strong><span style="color:#0000FF;">unsigned</span></strong> <strong><span style="color:#0000FF;">char</span></strong> k = <span style="color:#FF0000;">0</span>;
+   <strong><span style="color:#0000FF;">unsigned</span></strong> <strong><span style="color:#0000FF;">char</span></strong> MotDePasse = <span style="color:#CC00FF;">"Confidentiel\0"</span>;
+   <strong><span style="color:#0000FF;">while</span></strong>((k &lt; <span style="color:#FF0000;">255</span>) &amp;&amp; (MotDePasseATester[k] != <span style="color:#CC00FF;">'\0'</span>))   <em><span style="color:#009900;">/* Tant que l'on a pas compar&eacute; plus de 255 caract&egrave;res
+               et tant que l'on est pas arriv&eacute; &agrave; la fin
+               du mot de passe original */</span></em>
+   {
+      <strong><span style="color:#0000FF;">if</span></strong>(MotDePasse[k] != MotDePasseATester[k])
+      {
+         <strong><span style="color:#0000FF;">return</span></strong> <span style="color:#FF0000;">0</span>;   <em><span style="color:#009900;">/* Les deux mots de passe &agrave; comparer ne sont pas identiques */</span></em>
+      }
+      k++;
+   }
+   <strong><span style="color:#0000FF;">return</span></strong> <span style="color:#FF0000;">1</span>;   <em><span style="color:#009900;">/* Les deux mots de passe &agrave; comparer sont identiques,
+         ou le mot de passe &agrave; tester est plus long
+         que le mot de passe original */</span></em>
+}</span></pre>
+<p>
+<br />
+<br />
+Attention, dans certains cas, il peut &ecirc;tre plus s&ucirc;r de parcourir toute la cha&icirc;ne de caract&egrave;res du mot de passe qui a &eacute;t&eacute; soumis pour comparaison, afin de ne pas donner d'indication sur la position du premier caract&egrave;re qui diff&egrave;re du bon mot de passe !<br />
+<br />
+<br />
+Bonne continuation !<br />
+<br />
+<br /></p></div>
+</div>
+<div class="commentaire">
+<div class="commentaire-haut">
+<div class="commentaire-haut-gauche">
+<p>Kako</p></div>
+<div class="commentaire-haut-droite">
+<p>Le jeudi 18 octobre 2012 &agrave; 16:49</p></div>
+</div>
+<div class="commentaire-bas">
+<p>Ton tuto est genial merci mais je dois gerer une entree d une chaine de caractere pour faire un reconnaisseur de mot de passe comment gerer une telle entree?</p></div>
+</div>
+<div class="commentaire">
+<div class="commentaire-haut">
+<div class="commentaire-haut-gauche">
+<p>tunimaestro</p></div>
+<div class="commentaire-haut-droite">
+<p>Le mardi 28 ao&ucirc;t 2012 &agrave; 11:35</p></div>
+</div>
+<div class="commentaire-bas">
+<p>Oui justement. Pourriez vous nous indiquer o&ugrave; trouver votre cours sur les interruptions ? Merci</p></div>
+</div>
+<div class="commentaire">
+<div class="commentaire-haut">
+<div class="commentaire-haut-gauche">
+<p>Gaby</p></div>
+<div class="commentaire-haut-droite">
+<p>Le jeudi 8 mars 2012 &agrave; 12:07</p></div>
+</div>
+<div class="commentaire-bas">
+<p>Ou peut on trouver ton cours sur les interruptions? Proposes tu &eacute;galement un tutoriel sur la communication I2C avec ce module? Merci ^^</p></div>
+</div>
+<p class="sous-titre_ajouts">Ajouter un commentaire</p>
+<form id="contact" method="post" action="http://atrylec.com/elements/allures/commentaires/verification.php">
+<fieldset>
+<legend>
+Votre pseudo&nbsp;: 
+</legend>
+<p>
+<label for="pseudo">
+Pseudo&nbsp;: 
+</label>
+<input type="text" id="pseudo" name="pseudo" tabindex="1" required="required">
+</p>
+</fieldset>
+<fieldset>
+<legend>
+Votre commentaire&nbsp;: 
+</legend>
+<p>
+<label for="commentaire">
+Commentaire&nbsp;: 
+</label>
+<textarea id="commentaire" name="commentaire" tabindex="2" cols="50" rows="2" required="required">
+</textarea>
+</p>
+</fieldset>
+<div class="bouton_validation_commentaire">
+<input type="submit" name="Poster" value="Poster" />
+</div>
+</form>
+</div><div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="stm32discovery_page_5B.php%3Fselection=2.html#Haut_de_page">Je veux remonter !</a>
+</div>
+</section>
+<footer>
+<div class="liens">
+<ul>
+<li><a href="../../contact.php.html">ContaCT</a></li>
+</ul>
+</div>
+<div id="choix_style">
+<div class="presentation">Ravaler la fa&ccedil;ade&nbsp;:</div>
+<a href="stm32discovery_page_5B.php%3Fselection=1.html" title="Style 1"><div class="choix choix_bleu">&nbsp;</div></a><div class="choix choix_rouge_choisi">&nbsp;</div><a href="stm32discovery_page_5B.php%3Fselection=3.html" title="Style 3"><div class="choix choix_orange">&nbsp;</div></a></div>
+<div class="remarques">
+<p>Il ne faut pas dire&nbsp;: &laquo;&nbsp;Un pot de fleurs
+&nbsp;&raquo;, mais&nbsp;: &laquo;&nbsp;Un support tulipes
+&nbsp;&raquo;.</p>
+</div>
+<div class="visites">
+<img style="width: 15px; height: 15px;" alt="6_30" src="../../../images/6_30.png">   <img style="width: 15px; height: 15px;" alt="5_30" src="../../../images/5_30.png">   <img style="width: 15px; height: 15px;" alt="0_30" src="../../../images/0_30.png">   <img style="width: 15px; height: 15px;" alt="9_30" src="../../../images/9_30.png">   <img style="width: 15px; height: 15px;" alt="9_30" src="../../../images/9_30.png">   </div>
+</footer>
+</div>
+</body>
+</html>

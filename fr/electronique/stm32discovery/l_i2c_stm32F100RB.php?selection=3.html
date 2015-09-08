@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>STM32 : Le bus I2C</title>
+<meta name="description" content="Cartes de d&eacute;veloppement &laquo;&nbsp;STM32 DISCOVERY&nbsp;&raquo;&nbsp;: Tutoriel - Le bus I2C" />
+<meta name="keywords" content="atrylec electronique montage montages realisation realisations microcontroleur entrees sorties programmation code source langage c stm32discovery stm 32 discovery stm32vldiscovery stm 32 vl discovery stm32l discovery stm32 l discovery stm32f100rb tutoriel tutoriels exemple exemples cours" />
+<link rel="stylesheet" media="screen" type="text/css" title="Style 3" href="../../../elements/allures/style_3.css">
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-42331281-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+<body>
+<div id="page">
+<div id="haut">
+<header id="Haut_de_page">
+<div id="principale">
+<p class="titre_principal_haut">
+<a href="../../../index.php.html"><img style="width: 150px;" alt="Affichage_Atrylec_com" src="../../../images/Affichage_Atrylec_com.png" /><span class="invisible">Atrylec</span></a></p>
+<p class="sous-titre_haut">Vous n'&ecirc;tes pas seuls dans l'Univers !</p>
+</div>
+<div id="additionnelle">
+</div>
+</header>
+<nav>
+<ul id="navigation">
+<li><a href="../../../index.php.html" title="Accueil">Accueil</a></li>
+<li><a class="choisi" href="../index.php.html" title="Electronique">Electronique</a></li>
+<li><a href="../../radio/index.php%3Fnumero=0.html" title="Radio">Radio</a></li>
+<li><a href="../../origami/index.php.html" title="Origami">Origami</a></li>
+<li><a href="../../photographies/index.php%3Fnumero=0.html" title="Photographies">Photographies</a></li>
+<li><a href="../../le_grenier/index.php.html" title="Le grenier">Le grenier</a></li>
+<li><a href="../../contact.php.html" title="ContaCT">ContaCT</a></li>
+</ul>
+</nav>
+</div>
+<section>
+<div id="titre">
+<div id="titre_gauche">
+</div>
+<div id="titre_image">
+<img style="width: 100px; height: 100px;" alt="Transistor_100" src="../../../images/Transistor_100.png">
+</div>
+<div id="titre_texte">
+<p>/&nbsp;</p><h1>STM32 : Le bus I2C</h1>
+</div>
+<div id="titre_droite">
+</div>
+</div>
+<div>
+<p id="introduction">STM32 : Le bus I2C.</p>
+</div>
+<p>
+<a id="Liste_de_depart"></a>
+</p>
+<div>
+<div class="menu_article">
+<ul class="menu_article_principal">
+<li><a href="stm32discovery_page_1.php.html">Mises en places</a></li>
+<li><a href="stm32discovery_page_4A.php.html">Programmation de la carte &laquo;&nbsp;STM32VLDISCOVERY&nbsp;&raquo;</a></li>
+<li><ul>
+<li><a href="stm32discovery_page_4A.php.html">Configuration de l'horloge</a></li>
+<li><a href="stm32discovery_page_5A.php.html">Utiliser les ports d'entr&eacute;es-sorties</a></li>
+<li><a href="les_interruptions_STM32F100RB.php.html">STM32F100RB : Interruptions</a></li>
+<li><a class="choisi" href="l_i2c_stm32F100RB.php.html">STM32F100RB : Le bus I2C</a></li>
+<li></li>
+<li><a href="stm32vldiscovery_exemples_programmes.php.html">Exemples de programmes</a></li>
+</ul></li>
+<li><a href="stm32discovery_page_4B.php.html">Programmation de la carte &laquo;&nbsp;STM32L-DISCOVERY&nbsp;&raquo;</a></li>
+</ul>
+<ul class="menu_article_secondaire">
+<li><a href="l_i2c_stm32F100RB.php%3Fselection=3.html#Endroit_1-0-0">1) Pr&eacute;sentation</a></li>
+<li><a href="l_i2c_stm32F100RB.php%3Fselection=3.html#Endroit_2-0-0">2) Le bus I2C et le STM32F100RB</a></li>
+<li><a href="l_i2c_stm32F100RB.php%3Fselection=3.html#Endroit_3-0-0">3) Exemples de mises en &oelig;uvre, en tant que &laquo;&nbsp;Ma&icirc;tre&nbsp;&raquo;</a></li>
+<li>
+<ul>
+<li><a href="l_i2c_stm32F100RB.php%3Fselection=3.html#Endroit_3-1-0">3-1) Routines de lecture-&eacute;criture</a></li>
+<li><a href="l_i2c_stm32F100RB.php%3Fselection=3.html#Endroit_3-2-0">3-2) Utiliser des expanseurs de ports I2C</a></li>
+<li><a href="l_i2c_stm32F100RB.php%3Fselection=3.html#Endroit_3-3-0">3-3) Utiliser des capteurs de temp&eacute;rature I2C</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="l_i2c_stm32F100RB.php%3Fselection=3.html#Haut_de_page">Je veux remonter !</a>&nbsp;|&nbsp;<a href="l_i2c_stm32F100RB.php%3Fselection=3.html#Liste_de_depart">Liste</a>
+</div>
+<a id="Endroit_1-0-0"></a>
+<h2>1) Pr&eacute;sentation</h2>
+<p>Le bus I2C est un bus de type s&eacute;rie. Le terme &laquo;
+I2C&nbsp;&raquo; signifie :
+&laquo;&nbsp;<i>Inter Integrated Circuits </i>&raquo;.<br />
+Il a &eacute;t&eacute; cr&eacute;&eacute; par la
+soci&eacute;t&eacute; PHILIPS en 1982, pour permettre de
+connecter plusieurs circuits ensembles, sans pour autant recourir
+&agrave; un nombre important de connexions entre ces circuits.<br />
+Cela permet de simplifier la conception des cartes
+&eacute;lectroniques qui mettent en &oelig;uvre des composants
+compatibles avec le bus I2C.</p>
+<p>En effet, le bus I2C n'utilise que trois fils :</p>
+<ul>
+<li>Un fil pour faire transiter des donn&eacute;es, nomm&eacute; &laquo;&nbsp;SDA&nbsp;&raquo;, pour &laquo;&nbsp;<i>Serial DAta</i>&nbsp;&raquo;,</li>
+<li>Un fil pour faire transiter les signaux d'horloges, afin de synchroniser l'&eacute;mission ou la r&eacute;ception des donn&eacute;es, nomm&eacute; &laquo;&nbsp;SCL&nbsp;&raquo;, pour &laquo;&nbsp;<i>Serial CLock</i>&nbsp;&raquo;,</li>
+<li>Un fil de mise &agrave; la masse, pour fixer le potentiel &eacute;lectrique servant de r&eacute;f&eacute;rence, nomm&eacute; g&eacute;n&eacute;ralement &laquo;&nbsp;GND&nbsp;&raquo;.</li>
+</ul>
+<p>De nombreux composants utilisent le bus I2C, parmi lesquels :</p>
+<ul>
+<li>Des microcontr&ocirc;leurs,<br />
+<li><a href="../les_expanseurs_de_port_i2c/les_expanseurs_de_port_i2c_page_1.php.html" title="Ouvrir le lien &laquo;&nbsp;http://www.atrylec.com/fr/electronique/les_expanseurs_de_port_i2c/les_expanseurs_de_port_i2c_page_1.php&nbsp;&raquo;" >Des expanseurs de port</a>,</li>
+<li>Des m&eacute;moires, dont <a href="../laboratoire/tests_de_memoires_eeprom_i2c.php.html" title="Ouvrir le lien &laquo;&nbsp;http://www.atrylec.com/fr/electronique/laboratoire/tests_de_memoires_eeprom_i2c.php&nbsp;&raquo;" >des m&eacute;moires de type EEPROM</a>,</li>
+<li>Des capteurs divers, dont <a href="../laboratoire/tests_de_sondes_de_temperature_i2c.php.html" title="Ouvrir le lien &laquo;&nbsp;http://www.atrylec.com/fr/electronique/laboratoire/tests_de_sondes_de_temperature_i2c.php&nbsp;&raquo;" >des capteurs de temp&eacute;rature</a>,</li>
+<li>Des circuits de gestion audio,</li>
+<li>Des circuits de gestion de boucles &agrave; verrouillage de phase (&nbsp;&laquo;&nbsp;<i>Phase - Looked Loop</i>&nbsp;&raquo; - &laquo;&nbsp;PLL&nbsp;&raquo;&nbsp;).</li>
+</ul>
+<div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="l_i2c_stm32F100RB.php%3Fselection=3.html#Haut_de_page">Je veux remonter !</a>&nbsp;|&nbsp;<a href="l_i2c_stm32F100RB.php%3Fselection=3.html#Liste_de_depart">Liste</a>
+</div>
+<a id="Endroit_2-0-0"></a>
+<h2>2) Le bus I2C et le STM32F100RB</h2>
+<div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="l_i2c_stm32F100RB.php%3Fselection=3.html#Haut_de_page">Je veux remonter !</a>&nbsp;|&nbsp;<a href="l_i2c_stm32F100RB.php%3Fselection=3.html#Liste_de_depart">Liste</a>
+</div>
+<a id="Endroit_3-0-0"></a>
+<h2>3) Exemples de mises en &oelig;uvre, en tant que &laquo;&nbsp;Ma&icirc;tre&nbsp;&raquo;</h2>
+<a id="Endroit_3-1-0"></a>
+<h3>3-1) Routines de lecture-&eacute;criture</h3>
+<a id="Endroit_3-2-0"></a>
+<h3>3-2) Utiliser des expanseurs de ports I2C</h3>
+<p>Les expanseurs de port I2C sont des composants qui permettent d'ajouter des entr&eacute;es-sorties &agrave; un microcontr&ocirc;leur, qui dispose d'une liaison I2C activ&eacute;e.<br />
+Pour en savoir plus sur les expanseurs de port I2C, ouvrez <a href="../les_expanseurs_de_port_i2c/les_expanseurs_de_port_i2c_page_1.php.html" title="Ouvrir le lien &laquo;&nbsp;http://www.atrylec.com/fr/electronique/les_expanseurs_de_port_i2c/les_expanseurs_de_port_i2c_page_1.php&nbsp;&raquo;" >ce lien</a>.</p>
+<p>Exemple mettant en &oelig;uvre deux cartes &agrave; expanseurs PCF8574, un expanseur MCP23017 et une carte de d&eacute;veloppement de type &laquo;&nbsp;STM32VLDISCOVERY&nbsp;&raquo;, &eacute;quip&eacute; d'un microcontr&ocirc;leur &laquo;&nbsp;STM32F100RB&nbsp;&raquo;.<br />
+<ul>
+<li><img alt="LIEN_EXTERNE" src="../../../images/LIEN_EXTERNE.png" />&nbsp;<a href="http://www.nxp.com/documents/data_sheet/PCF8574.pdf" title="Ouvrir le lien &laquo;&nbsp;http://www.nxp.com/documents/data_sheet/PCF8574.pdf&nbsp;&raquo; dans une nouvelle fen&ecirc;tre, ou dans un nouvel onglet" target="_blank">La <i>datasheet</i> du PCF8574 et du PCF8574A</a>,</li>
+<li><img alt="LIEN_EXTERNE" src="../../../images/LIEN_EXTERNE.png" />&nbsp;<a href="http://ww1.microchip.com/downloads/en/DeviceDoc/21952b.pdf" title="Ouvrir le lien &laquo;&nbsp;http://ww1.microchip.com/downloads/en/DeviceDoc/21952b.pdf&nbsp;&raquo; dans une nouvelle fen&ecirc;tre, ou dans un nouvel onglet" target="_blank">La <i>datasheet</i> du MCP23017 et du MCP23S17</a>.</li>
+</ul>
+<p>Les connexions entre les expanseurs et la carte de d&eacute;veloppement sont indiqu&eacute;es dans le tableau ci-apr&egrave;s.</p>
+<p>Les broches &laquo;&nbsp;PB6&nbsp;&raquo; et &laquo;&nbsp;PB7&nbsp;&raquo; sont reli&eacute;es au + 5 volts par des r&eacute;sistances de tirage de 1 kilo Ohm.<p>
+<table border="1" cellpadding="2" cellspacing="2">
+<tbody>
+<tr>
+<th>Carte de d&eacute;veloppement &laquo;&nbsp;STM32VLDISCOVERY&nbsp;&raquo;</th>
+<td>+5V</td>
+<td>0V</td>
+<td>PB6</td>
+<td>PB7</td>
+</tr>
+<tr>
+<th>Circuits int&eacute;gr&eacute;s PCF8574</th>
+<td>+5V</td>
+<td>0V</td>
+<td>SCL</td>
+<td>SDA</td>
+</tr>
+<tr>
+<th>Circuit int&eacute;gr&eacute; MCP23017</th>
+<td>+5V</td>
+<td>0V</td>
+<td>SCL</td>
+<td>SDA</td>
+</tr>
+</tbody>
+</table>
+<p></p>
+<table border="0" cellpadding="2" cellspacing="1">
+<tbody>
+<tr>
+<td>
+<a href="../../../images/Expanseur_I2C_modele_PCF8574_et_STM32VLDISCOVERY_1.jpg">
+<img alt="Expanseur_I2C_modele_PCF8574_et_STM32VLDISCOVERY_1" src="../../../images/Expanseur_I2C_modele_PCF8574_et_STM32VLDISCOVERY_1_Petite.jpg">
+</a>
+</td>
+<td>
+<a href="../../../images/Expanseur_I2C_modele_PCF8574_et_STM32VLDISCOVERY_2.jpg">
+<img alt="Expanseur_I2C_modele_PCF8574_et_STM32VLDISCOVERY_2" src="../../../images/Expanseur_I2C_modele_PCF8574_et_STM32VLDISCOVERY_2_Petite.jpg">
+</a>
+</td>
+<td>
+<a href="../../../images/Expanseur_I2C_modele_PCF8574_et_STM32VLDISCOVERY_3.jpg">
+<img alt="Expanseur_I2C_modele_PCF8574_et_STM32VLDISCOVERY_3" src="../../../images/Expanseur_I2C_modele_PCF8574_et_STM32VLDISCOVERY_3_Petite.jpg">
+</a>
+</td>
+</tr>
+</tbody>
+</table>
+<figcaption>Essais avec deux cartes &agrave; expanseurs &laquo;&nbsp;PCF8574&nbsp;&raquo; et une carte de d&eacute;veloppement de type &laquo;&nbsp;STM32VLDISCOVERY&nbsp;&raquo;</figcaption>
+</figure>
+<div class="valorisations">
+<div class="programmes">
+<div class="programmes_gauche">
+<img style="width: 32px; height: 32px;" alt="fleche-bas-telecharger-icone-9594-32" src="../../../images/fleche-bas-telecharger-icone-9594-32.png">
+</div>
+<div class="programmes_droite">
+<p>Communiquer avec des expanseurs de port I2C : Fichier C<br />
+Cible : STM32F100RB<br />Compilateur : Keil &micro;Vision4<br />
+<a href="../../../elements/allures/valorisations/programmes.php%3Fprogramme=l_i2c_stm32F100RB+1+1">T&eacute;l&eacute;charger le fichier<span>Effectuez un clic droit, puis s&eacute;lectionnez l'option &laquo;&nbsp;Enregistrer la cible du lien sous...&nbsp;&raquo;, pour t&eacute;l&eacute;charger le fichier</span></a> (3.11 Ko)</p></div>
+</div>
+</div>
+<a id="Endroit_3-3-0"></a>
+<h3>3-3) Utiliser des capteurs de temp&eacute;rature I2C</h3>
+<p>Pour en savoir plus sur les sondes de temp&eacute;rature utilis&eacute;es, ouvrez <a href="../laboratoire/tests_de_sondes_de_temperature_i2c.php.html" title="Ouvrir le lien &laquo;&nbsp;http://www.atrylec.com/fr/electronique/laboratoire/tests_de_sondes_de_temperature_i2c.php&nbsp;&raquo;" >ce lien</a>.</p>
+<p>Les exemples donn&eacute;s ci-apr&egrave;s mettent en &oelig;uvre deux sondes de temp&eacute;rature diff&eacute;rentes :</p>
+<ul>
+<li>Le composant TMP100, fabriqu&eacute; par Texas Instruments,</li>
+<li>Le composant TCN75A, fabriqu&eacute; par Microchip.</li>
+</ul>
+<ul>
+<li><img alt="LIEN_EXTERNE" src="../../../images/LIEN_EXTERNE.png" />&nbsp;<a href="http://www.ti.com/lit/ds/symlink/tmp100.pdf" title="Ouvrir le lien &laquo;&nbsp;http://www.ti.com/lit/ds/symlink/tmp100.pdf&nbsp;&raquo; dans une nouvelle fen&ecirc;tre, ou dans un nouvel onglet" target="_blank">La <i>datasheet</i> de la sonde de temp&eacute;rature TMP100 et TMP101</a>,</li>
+<li><img alt="LIEN_EXTERNE" src="../../../images/LIEN_EXTERNE.png" />&nbsp;<a href="http://ww1.microchip.com/downloads/en/devicedoc/21935a.pdf" title="Ouvrir le lien &laquo;&nbsp;http://ww1.microchip.com/downloads/en/devicedoc/21935a.pdf&nbsp;&raquo; dans une nouvelle fen&ecirc;tre, ou dans un nouvel onglet" target="_blank">La <i>datasheet</i> de la sonde de temp&eacute;rature TCN75A</a>.</li>
+</ul>
+<figure>
+<a href="../../../images/Sonde_temperature_TMP100_I2C_avec_STM32VLDISCOVERY.jpg">
+<img alt="Sonde_temperature_TMP100_I2C_avec_STM32VLDISCOVERY" src="../../../images/Sonde_temperature_TMP100_I2C_avec_STM32VLDISCOVERY_Petite.jpg">
+</a>
+<figcaption>Sonde de temp&eacute;rature, de type &laquo;&nbsp;TMP100&nbsp;&raquo;, super bien soud&eacute;e</figcaption>
+</figure>
+<p></p>
+<div class="valorisations">
+<div class="programmes">
+<div class="programmes_gauche">
+<img style="width: 32px; height: 32px;" alt="fleche-bas-telecharger-icone-9594-32" src="../../../images/fleche-bas-telecharger-icone-9594-32.png">
+</div>
+<div class="programmes_droite">
+<p>Communiquer avec des capteurs de temp&eacute;rature I2C : Fichier C<br />
+Cible : STM32F100RB<br />Compilateur : Keil &micro;Vision4<br />
+<a href="../../../elements/allures/valorisations/programmes.php%3Fprogramme=l_i2c_stm32F100RB+2+1">T&eacute;l&eacute;charger le fichier<span>Effectuez un clic droit, puis s&eacute;lectionnez l'option &laquo;&nbsp;Enregistrer la cible du lien sous...&nbsp;&raquo;, pour t&eacute;l&eacute;charger le fichier</span></a> (2.89 Ko)</p></div>
+</div>
+</div>
+<div>
+<div class="menu_article">
+<ul class="menu_article_principal">
+<li><a href="stm32discovery_page_1.php.html">Mises en places</a></li>
+<li><a href="stm32discovery_page_4A.php.html">Programmation de la carte &laquo;&nbsp;STM32VLDISCOVERY&nbsp;&raquo;</a></li>
+<li><ul>
+<li><a href="stm32discovery_page_4A.php.html">Configuration de l'horloge</a></li>
+<li><a href="stm32discovery_page_5A.php.html">Utiliser les ports d'entr&eacute;es-sorties</a></li>
+<li><a href="les_interruptions_STM32F100RB.php.html">STM32F100RB : Interruptions</a></li>
+<li><a class="choisi" href="l_i2c_stm32F100RB.php.html">STM32F100RB : Le bus I2C</a></li>
+<li></li>
+<li><a href="stm32vldiscovery_exemples_programmes.php.html">Exemples de programmes</a></li>
+</ul></li>
+<li><a href="stm32discovery_page_4B.php.html">Programmation de la carte &laquo;&nbsp;STM32L-DISCOVERY&nbsp;&raquo;</a></li>
+</ul>
+<ul class="menu_article_secondaire">
+<li><a href="l_i2c_stm32F100RB.php%3Fselection=3.html#Endroit_1-0-0">1) Pr&eacute;sentation</a></li>
+<li><a href="l_i2c_stm32F100RB.php%3Fselection=3.html#Endroit_2-0-0">2) Le bus I2C et le STM32F100RB</a></li>
+<li><a href="l_i2c_stm32F100RB.php%3Fselection=3.html#Endroit_3-0-0">3) Exemples de mises en &oelig;uvre, en tant que &laquo;&nbsp;Ma&icirc;tre&nbsp;&raquo;</a></li>
+<li>
+<ul>
+<li><a href="l_i2c_stm32F100RB.php%3Fselection=3.html#Endroit_3-1-0">3-1) Routines de lecture-&eacute;criture</a></li>
+<li><a href="l_i2c_stm32F100RB.php%3Fselection=3.html#Endroit_3-2-0">3-2) Utiliser des expanseurs de ports I2C</a></li>
+<li><a href="l_i2c_stm32F100RB.php%3Fselection=3.html#Endroit_3-3-0">3-3) Utiliser des capteurs de temp&eacute;rature I2C</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="commentaires"><a id="Endroits_des_commentaires"></a><p class="sous-titre_commentaires">Commentaires (0)</p><p class="sous-titre_ajouts">Ajouter un commentaire</p>
+<form id="contact" method="post" action="http://atrylec.com/elements/allures/commentaires/verification.php">
+<fieldset>
+<legend>
+Votre pseudo&nbsp;: 
+</legend>
+<p>
+<label for="pseudo">
+Pseudo&nbsp;: 
+</label>
+<input type="text" id="pseudo" name="pseudo" tabindex="1" required="required">
+</p>
+</fieldset>
+<fieldset>
+<legend>
+Votre commentaire&nbsp;: 
+</legend>
+<p>
+<label for="commentaire">
+Commentaire&nbsp;: 
+</label>
+<textarea id="commentaire" name="commentaire" tabindex="2" cols="50" rows="2" required="required">
+</textarea>
+</p>
+</fieldset>
+<div class="bouton_validation_commentaire">
+<input type="submit" name="Poster" value="Poster" />
+</div>
+</form>
+</div><div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="l_i2c_stm32F100RB.php%3Fselection=3.html#Haut_de_page">Je veux remonter !</a>
+</div>
+</section>
+<footer>
+<div class="liens">
+<ul>
+<li><a href="../../contact.php.html">ContaCT</a></li>
+</ul>
+</div>
+<div id="choix_style">
+<div class="presentation">Ravaler la fa&ccedil;ade&nbsp;:</div>
+<a href="l_i2c_stm32F100RB.php%3Fselection=1.html" title="Style 1"><div class="choix choix_bleu">&nbsp;</div></a><a href="l_i2c_stm32F100RB.php%3Fselection=2.html" title="Style 2"><div class="choix choix_rouge">&nbsp;</div></a><div class="choix choix_orange_choisi">&nbsp;</div></div>
+<div class="remarques">
+<p>Il ne faut pas dire&nbsp;: &laquo;&nbsp;Un auteur en continu
+&nbsp;&raquo;, mais&nbsp;: &laquo;&nbsp;Un &eacute;crivain d'essais
+&nbsp;&raquo;.</p>
+</div>
+<div class="visites">
+<img style="width: 15px; height: 15px;" alt="6_30" src="../../../images/6_30.png">   <img style="width: 15px; height: 15px;" alt="5_30" src="../../../images/5_30.png">   <img style="width: 15px; height: 15px;" alt="0_30" src="../../../images/0_30.png">   <img style="width: 15px; height: 15px;" alt="9_30" src="../../../images/9_30.png">   <img style="width: 15px; height: 15px;" alt="9_30" src="../../../images/9_30.png">   </div>
+</footer>
+</div>
+</body>
+</html>

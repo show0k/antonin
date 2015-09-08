@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>La Grosse Horloge</title>
+<meta name="description" content="Horloge &agrave; LED &agrave; base de microcontr&ocirc;leur : sch&eacute;mas, typons et codes sources" />
+<meta name="keywords" content="audiovore electronique horloge led capteur capteurs temperature affichage 7 segment sept pic pic18f4550 tmp100" />
+<link rel="stylesheet" media="screen" type="text/css" title="Style 1" href="../../../elements/allures/style_1.css">
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-42331281-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+<body>
+<div id="page">
+<div id="haut">
+<header id="Haut_de_page">
+<div id="principale">
+<p class="titre_principal_haut">
+<a href="../../../index.php.html"><img style="width: 150px;" alt="Affichage_Atrylec_com" src="../../../images/Affichage_Atrylec_com.png" /><span class="invisible">Atrylec</span></a></p>
+<p class="sous-titre_haut">Vous n'&ecirc;tes pas seuls dans l'Univers !</p>
+</div>
+<div id="additionnelle">
+</div>
+</header>
+<nav>
+<ul id="navigation">
+<li><a href="../../../index.php.html" title="Accueil">Accueil</a></li>
+<li><a class="choisi" href="../index.php.html" title="Electronique">Electronique</a></li>
+<li><a href="../../radio/index.php%3Fnumero=0.html" title="Radio">Radio</a></li>
+<li><a href="../../origami/index.php.html" title="Origami">Origami</a></li>
+<li><a href="../../photographies/index.php%3Fnumero=0.html" title="Photographies">Photographies</a></li>
+<li><a href="../../le_grenier/index.php.html" title="Le grenier">Le grenier</a></li>
+<li><a href="../../contact.php.html" title="ContaCT">ContaCT</a></li>
+</ul>
+</nav>
+</div>
+<section>
+<div id="titre">
+<div id="titre_gauche">
+</div>
+<div id="titre_image">
+<img style="width: 100px; height: 100px;" alt="Transistor_100" src="../../../images/Transistor_100.png">
+</div>
+<div id="titre_texte">
+<p>[</p><h1>La Grosse Horloge</h1><p>]</p>
+</div>
+<div id="titre_droite">
+</div>
+</div>
+<div>
+<p id="introduction">La Grosse Horloge donnera un certain charme &agrave; votre int&eacute;rieur, voire &agrave; votre ext&eacute;rieur, surtout si vous comptez l'installer dans votre gare !</p>
+</div>
+<figure>
+<a href="../../../images/LA_GROSSE_HORLOGE_HEURE_GENERALE.jpg">
+<img alt="LA_GROSSE_HORLOGE_HEURE_GENERALE" src="../../../images/LA_GROSSE_HORLOGE_HEURE_GENERALE_Petite.jpg">
+</a>
+<figcaption>La Grosse Horloge, version 1, qui tr&ocirc;ne au-dessus d'un bureau</figcaption>
+</figure>
+<p>
+<a id="Liste_de_depart"></a>
+</p>
+<div>
+<div class="menu_article">
+<ul class="menu_article_principal">
+<li><a href="la_grosse_horloge.php.html">La Grosse Horloge</a></li>
+</ul>
+<ul class="menu_article_secondaire">
+<li><a href="la_grosse_horloge.php%3Fselection=1.html#Endroit_1-0-0">1) Pr&eacute;sentation</a></li>
+<li>
+<ul>
+<li><a href="la_grosse_horloge.php%3Fselection=1.html#Endroit_1-1-0">1-1) Version 1 - 2012</a></li>
+</ul>
+</li>
+<li><a href="la_grosse_horloge.php%3Fselection=1.html#Endroit_2-0-0">2) R&eacute;alisation</a></li>
+<li>
+<ul>
+<li><a href="la_grosse_horloge.php%3Fselection=1.html#Endroit_2-1-0">2-1) Version 1 - 2012</a></li>
+<li>
+<ul>
+<li><a href="la_grosse_horloge.php%3Fselection=1.html#Endroit_2-1-1">2-1-1) Sch&eacute;mas &eacute;lectroniques</a></li>
+<li><a href="la_grosse_horloge.php%3Fselection=1.html#Endroit_2-1-2">2-1-2) Typons</a></li>
+<li><a href="la_grosse_horloge.php%3Fselection=1.html#Endroit_2-1-3">2-1-3) Codes sources</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="la_grosse_horloge.php%3Fselection=1.html#Endroit_3-0-0">3) Sujets associ&eacute;s</a></li>
+</ul>
+</div>
+</div>
+<div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="la_grosse_horloge.php%3Fselection=1.html#Haut_de_page">Je veux remonter !</a>&nbsp;|&nbsp;<a href="la_grosse_horloge.php%3Fselection=1.html#Liste_de_depart">Liste</a>
+</div>
+<a id="Endroit_1-0-0"></a>
+<h2>1) Pr&eacute;sentation</h2>
+<a id="Endroit_1-1-0"></a>
+<h3>1-1) Version 1 - 2012</h3>
+<p></p>
+<div class="valorisations">
+<div class="attention">
+<div class="attention-gauche">
+<img style="width: 32px; height: 32px;" alt="avertissement-icone-9768-32" src="../../../images/avertissement-icone-9768-32.png">
+</div>
+<div class="attention-droite">
+<p>Attention ! Les LED bleues utilis&eacute;es sont caract&eacute;ris&eacute;es par une tr&egrave;s grande intensit&eacute; lumineuse.<br />
+Il ne faut donc mettre un cache sur cette premi&egrave;re version de la Grosse Horloge, afin de ne pas &ecirc;tre &eacute;bloui, de faire diffuser la lumi&egrave;re, et, surtout, de ne pas se br&ucirc;ler les r&eacute;tines en regardant l'objet !</p></div>
+</div>
+</div>
+<p></p>
+<figure>
+<a href="../../../images/LA_GROSSE_HORLOGE_HEURE_1.jpg">
+<img alt="LA_GROSSE_HORLOGE_HEURE_1" src="../../../images/LA_GROSSE_HORLOGE_HEURE_1_Petite.jpg">
+</a>
+<a href="../../../images/LA_GROSSE_HORLOGE_HEURE_2.jpg">
+<img alt="LA_GROSSE_HORLOGE_HEURE_2" src="../../../images/LA_GROSSE_HORLOGE_HEURE_2_Petite.jpg">
+</a>
+<a href="../../../images/LA_GROSSE_HORLOGE_HEURE_3.jpg">
+<img alt="LA_GROSSE_HORLOGE_HEURE_3" src="../../../images/LA_GROSSE_HORLOGE_HEURE_3_Petite.jpg">
+</a>
+<figcaption>Autres photographies de la Grosse Horloge, version 1</figcaption>
+</figure>
+<p>Cette premi&egrave;re version de la Grosse Horloge est &eacute;quip&eacute;e, en plus des &eacute;lements n&eacute;cessaires &agrave; l'affichage de l'heure, de deux capteurs de temp&eacute;rature.</p>
+<figure>
+<a href="../../../images/LA_GROSSE_HORLOGE_TEMPERATURE_INTERIEURE.jpg">
+<img alt="LA_GROSSE_HORLOGE_TEMPERATURE_INTERIEURE" src="../../../images/LA_GROSSE_HORLOGE_TEMPERATURE_INTERIEURE_Petite.jpg">
+</a>
+<figcaption>Affichages de la temp&eacute;rature du premier capteur, en degr&eacute;s Celsius</figcaption>
+</figure>
+<p></p>
+<figure>
+<a href="../../../images/LA_GROSSE_HORLOGE_TEMPERATURE_EXTERIEURE.jpg">
+<img alt="LA_GROSSE_HORLOGE_TEMPERATURE_EXTERIEURE" src="../../../images/LA_GROSSE_HORLOGE_TEMPERATURE_EXTERIEURE_Petite.jpg">
+</a>
+<figcaption>Affichages de la temp&eacute;rature du deuxi&egrave;me capteur, en degr&eacute;s Celsius</figcaption>
+</figure>
+<p></p>
+<figure>
+<a href="../../../images/HORLOGE_ARRIERE_CARTE.jpg">
+<img alt="HORLOGE_ARRIERE_CARTE" src="../../../images/HORLOGE_ARRIERE_CARTE_Petite.jpg">
+</a>
+<figcaption>L'arri&egrave;re de la grosse horloge, version 1</figcaption>
+</figure>
+<p></p>
+<div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="la_grosse_horloge.php%3Fselection=1.html#Haut_de_page">Je veux remonter !</a>&nbsp;|&nbsp;<a href="la_grosse_horloge.php%3Fselection=1.html#Liste_de_depart">Liste</a>
+</div>
+<a id="Endroit_2-0-0"></a>
+<h2>2) R&eacute;alisation</h2>
+<a id="Endroit_2-1-0"></a>
+<h3>2-1) Version 1 - 2012</h3>
+<a id="Endroit_2-1-1"></a>
+<h4>2-1-1) Sch&eacute;mas &eacute;lectroniques</h4>
+<p></p>
+<p>Alimentation</p>
+<p></p>
+<p>La Grosse Horloge, version 1, est pr&eacute;vue pour &ecirc;tre
+aliment&eacute;e par deux sources distinctes, qui
+d&eacute;livrent&nbsp;12 V continus.<br />
+Ces deux sources peuvent ne pas &ecirc;tre utilis&eacute;es
+simultan&eacute;ment. Cependant, l'alimentation est
+con&ccedil;ue sur
+le principe d'avoir une alimentation principale et une alimentation de
+secours.<br />
+La premi&egrave;re source pourrait &ecirc;tre l'alimentation
+redress&eacute;e issue d'un bloc secteur, d&eacute;livrant 12 V.<br />
+La deuxi&egrave;me source serait alors une batterie de 12 V, qui
+viendrait secourir l'alimentation principale, en cas d'abscence de
+celle-ci.</p>
+<p>La tension issue de la source d'alimentation principale est
+att&eacute;nu&eacute;e par un pont redresseur form&eacute;
+par R59 et
+R60, et limit&eacute;e &agrave; + 5,6 V par la diode
+z&eacute;ner D6.<br />
+Cette tension est fournie &agrave; une des broches
+d'entr&eacute;es -
+sorties du&nbsp;microcontr&ocirc;leur qui g&egrave;re
+l'appareil.<br />
+Il lui est donc possible d'allumer en permanence l'horloge lorsque
+celle-ci est aliment&eacute;e par la source d'alimentation
+principale,
+et de ne l'allumer que lorsque cela est
+n&eacute;c&eacute;ssaire, quand
+elle est sur l'alimentation secondaire.</p>
+<p>Deux diodes, D4 et D5, permettent de choisir la tension la plus
+positive des deux alimentations. Cette tension, abaiss&eacute;e par
+la
+chute de tension inh&eacute;rente au passage dans l'une ou l'autre
+des
+diodes, sera ainsi fournie en entr&eacute;e du montage
+r&eacute;gulateur, stabilis&eacute; &agrave; + 5 V,
+construit &agrave;
+l'aide d'IC3 et de ses condensateurs de d&eacute;couplages.</p>
+<p></p>
+<p>Affichage</p>
+<p></p>
+<p>L'affichage requiert de pouvoir piloter:</p>
+<ul>
+<li>4 fois 7 segments, constitu&eacute;s de 3 LED chacuns, pour les symboles, incluant les caract&egrave;res sp&eacute;ciaux non num&eacute;riques, tels que &laquo;&nbsp;-&nbsp;&raquo; ou &laquo;&nbsp;&deg;&nbsp;&raquo;, et les chiffres, de &laquo;&nbsp;0&nbsp;&raquo; &agrave; &laquo;&nbsp;9&nbsp;&raquo;,</li>
+<li>60 LED, pour la mat&eacute;rialisation des secondes,</li>
+<li>12 LED, pour le rep&eacute;rage des secondes,</li>
+<li>3 LED, pour permettre l'affichage des symboles &laquo;&nbsp;.
+&raquo;, &laquo;&nbsp;,&nbsp;&raquo;, et &laquo;&nbsp;:&nbsp;&raquo;.</li>
+</ul>
+<p>Le nombre d'entr&eacute;es - sorties disponibles sur tout bon
+microcontr&ocirc;leur de taille &laquo;&nbsp;raisonnable&nbsp;&raquo;
+ne permet
+pas de relier chaque LED &agrave; une broche d'entr&eacute;e -
+sortie.<br />
+Un multiplexage a donc &eacute;t&eacute; adopt&eacute;.<br />
+Cela consiste, &agrave; chaque instant, &agrave; n'allumer
+qu'une
+partie des LED de l'horloge, en ne raccordant leurs cathodes et leurs
+anodes simultan&eacute;ment aux p&ocirc;les de l'alimentation
+que
+pendant une partie du temps.<br />
+Le principe du multiplexage temporel repose sur la persistance
+r&eacute;tinienne de nos yeux, qui fait que, si la succession des
+allumages et des extinctions se font suffisament rapidement, les yeux
+auront l'impression que toutes les LED sont alum&eacute;es
+simultan&eacute;ment.<br />
+Dans le cas pr&eacute;sent, les LED des symboles, ainsi que celles
+associ&eacute;es &agrave; la mat&eacute;rialisation et au
+rep&eacute;rage des secondes, sont s&eacute;par&eacute;es
+en quatre
+groupes. Ces groupes sont form&eacute;s chacuns d'un quart du
+cercle
+des secondes, et d'un des symboles.</p>
+<table border="1" cellpadding="2" cellspacing="2">
+<tbody>
+<tr>
+<th>Phase du multiplexage</th>
+<th>LED des symboles s&eacute;lectionn&eacute;es</th>
+<th>LED des secondes s&eacute;lectionn&eacute;es</th>
+</tr>
+<tr>
+<td>1</td>
+<td>Heures, dizaines</td>
+<td>45 &agrave; 59</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Heures, unit&eacute;s</td>
+<td>30 &agrave; 44</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Minutes, dizaines</td>
+<td>15 &agrave; 29</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Minutes, unit&eacute;s</td>
+<td>0 &agrave; 14</td>
+</tr>
+</tbody>
+</table>
+<p></p>
+<figure>
+<table border="0" cellpadding="2" cellspacing="1">
+<tbody>
+<tr>
+<td>
+<a href="../../../images/HORLOGE_MULTIPLEXAGE_1.jpg">
+<img alt="HORLOGE_MULTIPLEXAGE_1" src="../../../images/HORLOGE_MULTIPLEXAGE_1_Petite.jpg">
+</a>
+</td>
+<td>
+<a href="../../../images/HORLOGE_MULTIPLEXAGE_2.jpg">
+<img alt="HORLOGE_MULTIPLEXAGE_2" src="../../../images/HORLOGE_MULTIPLEXAGE_2_Petite.jpg">
+</a>
+</td>
+<td>
+<a href="../../../images/HORLOGE_MULTIPLEXAGE_3.jpg">
+<img alt="HORLOGE_MULTIPLEXAGE_3" src="../../../images/HORLOGE_MULTIPLEXAGE_3_Petite.jpg">
+</a>
+</td>
+<td>
+<a href="../../../images/HORLOGE_MULTIPLEXAGE_4.jpg">
+<img alt="HORLOGE_MULTIPLEXAGE_4" src="../../../images/HORLOGE_MULTIPLEXAGE_4_Petite.jpg">
+</a>
+</td>
+</tr>
+<tr>
+<td>Phase 1</td>
+<td>Phase 2</td>
+<td>Phase 3</td>
+<td>Phase 4</td>
+</tr>
+</tbody>
+</table>
+<figcaption>Phases du multiplexage de la Grosse Horloge, version 1</figcaption>
+</figure>
+<p></p>
+<figure>
+<a href="../../../images/HORLOGE_MULTIPLEXAGE_RENDU.jpg">
+<img alt="HORLOGE_MULTIPLEXAGE_RENDU" src="../../../images/HORLOGE_MULTIPLEXAGE_RENDU_Petite.jpg">
+</a>
+<figcaption>Rendu du multiplexage sur la Grosse Horloge</figcaption>
+</figure>
+<p>L'affichage apparait moins lumineux que pour chaque phase, car les LED des &eacute;l&eacute;ments d'affichages sont sollicit&eacute;es pendant 1 / 4 du temps pour la Grosse Horloge.</p>
+<p>Les anodes des LED multiplex&eacute;es sont aliment&eacute;es par des transitors de type NPN.<br />
+Les bases de ces transistors sont pilot&eacute;es par le microcontr&ocirc;leur, apr&egrave;s une adaptation de niveau de 0 V / + 5 V &agrave; 0 V / + 12 V, effectu&eacute;e par des amplificateurs op&eacute;rationnels, contenus dans IC2, un LM324.</p>
+<p>Les cathodes des LED sont pilot&eacute;es par les broches associ&eacute;es du microcontr&ocirc;leur, par l'interm&eacute;diaire de transitors qui sont &eacute;galement de type NPN.</p>
+<p>Les 3 LED qui permettent l'affichage des symboles &laquo;&nbsp;.&nbsp;&raquo;,  &laquo;&nbsp;,&nbsp;&raquo;, et &laquo;&nbsp;:&nbsp;&raquo;, ne sont pas multiplex&eacute;es.</p>
+<p>Elles sont connect&eacute;es &agrave; 3 broches d'un expanseur de port.</p>
+<p></p>
+<p>Expanseur de port</p>
+<p></p>
+<p>Un expanseur de port, pilot&eacute; par un bus I2C, rep&eacute;r&eacute; IC4, et de r&eacute;f&eacute;rence PCF8574, est utilis&eacute;.<br />
+Il permet au microcontr&ocirc;leur de lire l'&eacute;tat des 3 boutons - poussiors de l'horloge, de modifier l'&eacute;tat des 3 LED cit&eacute;es pr&eacute;cedemment, et de commander une entr&eacute;e - sortie auxiliaire. L'expanseur n'utilisant que deux broches du micfrocontr&ocirc;leur pour la liaison I2C, et une broche d'interruption.<br />
+Ces 3 broches sont partag&eacute;es avec l'horloge temps r&eacute;el, associ&eacute;e au diviseur de fr&eacute;quence.</p>
+<p>La broche d'iterruption est initialement &agrave; un. Elle passe &agrave; z&eacute;ro lorsqu'une au moins des entr&eacute;es - sorties a chang&eacute; d'&eacute;tat, depuis la derni&egrave;re fois que le circuit int&eacute;gr&eacute; a &eacute;t&eacute; interrog&eacute;.<br />
+<p>L'entr&eacute;e - sortie auxiliaire peut &ecirc;tre raccord&eacute;e &agrave; un relais, pour commander la mise en fonction d'un appareil, ou d'une sonnerie.</p>
+<p>Cela peut aussi bien &ecirc;tre une entr&eacute;e suppl&eacute;mentaire, pour ajouter un quatri&egrave;me bouton - poussoir &agrave; l'ensemble.</p>
+<p></p>
+<table border="1" cellpadding="2" cellspacing="2">
+<tbody>
+<tr>
+<th>Entr&eacute;e - sortie de l'expanseur de port</th>
+<th>Element associ&eacute;</th>
+</tr>
+<tr>
+<td>0</td>
+<td>Bouton - poussoir &laquo;&nbsp;MODE&nbsp;&raquo;</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Bouton - poussoir &laquo;&nbsp;HEURES&nbsp;&raquo;</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Bouton - poussoir &laquo;&nbsp;MINUTES&nbsp;&raquo;</td>
+</tr>
+<tr>
+<td>3</td>
+<td>LED du haut du symbole &laquo;&nbsp;:&nbsp;&raquo;</td>
+</tr>
+<tr>
+<td>4</td>
+<td>LED du bas du symbole &laquo;&nbsp;:&nbsp;&raquo;</td>
+</tr>
+<tr>
+<td>5</td>
+<td>LED de gauche du symbole &laquo;&nbsp;,&nbsp;&raquo;</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Groupe de 3 LED du rep&eacute;rage des secondes</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Entr&eacute;e - sortie auxiliaire</td>
+</tr>
+</tbody>
+</table>
+<p></p>
+<p>Horloge temps r&eacute;el<p>
+<p></p>
+<p>Le comptage du temps est confi&eacute; &agrave; une horloge temps r&eacute;el. Ces composants sont des circuit int&eacute;gr&eacute; sp&eacute;cialis&eacute;, qui compte les heures, les minutes et les secondes, mais aussi, pour la majorit&eacute; d'entre eux, les jours, les mois, et les ann&eacute;es. Certains offrent aussi des fonctions de calendrier et de r&eacute;veil.</p>
+<p>Le composant utilis&eacute; dans l'application pr&eacute;sente est le DS3232, fabriqu&eacute; par MAXIM IC.</p>
+<p></p>
+<p>La <i>datasheet</i> de l'horloge temps r&eacute;el &laquo;&nbsp;DS3232&nbsp;&raquo; :</p>
+<p><img alt="LIEN_EXTERNE" src="../../../images/LIEN_EXTERNE.png" />&nbsp;<a href="http://datasheets.maximintegrated.com/en/ds/DS3232.pdf" title="Ouvrir le lien &laquo;&nbsp;http://datasheets.maximintegrated.com/en/ds/DS3232.pdf&nbsp;&raquo; dans une nouvelle fen&ecirc;tre, ou dans un nouvel onglet" target="_blank">http://datasheets.maximintegrated.com/en/ds/DS3232.pdf</a>.</p>
+<p></p>
+<p>Ce composant dispose d'un oscillateur int&eacute;gr&eacute;, de type &laquo;&nbsp;MEMS&nbsp;&raquo; , ce qui permet de se passer d'un quartz, et de ses habituelles capacit&eacute;s n&eacute;c&eacute;ssaires pour pouvoir le charger et le faire osciller.<br />
+Il int&egrave;gre &eacute;galement un calendrier et&nbsp;peut ainsi fournir le num&eacute;ro du jour de la semaine qui correspond &agrave; la date pour laquelle ils a &eacute;t&eacute; r&eacute;gl&eacute;.<br />
+Les donn&eacute;es concernant le r&eacute;glage du circuit et les param&egrave;tres de la date et de l'heure sont accessibles gr&acirc;ce &agrave; une liaison I2C.<br />
+Une broche d&eacute;livre un signal &agrave; 32 768 Hz. Ce signal est utilis&eacute; par l'appareil pour compter le temps.<br />
+Une source d'alimentation eacute;lectrique de secours peut lui &ecirc;tre associ&eacute;e, assurant une sauvegarde de l'heure m&ecirc;me lorsque le reste de l'horloge est mis hors tension.<br />
+Pour le projet, les informations de date et d'heure sont secourues par deux piles rondes, de type &laquo;&nbsp;AAA&nbsp;&raquo; , mais il est &eacute;galement possible d'utiliser une seule pile bouton, ou encore, une batterie ou une super capacit&eacute;.</p>
+<p></p>
+<p>Diviseur</p>
+<p></p>
+<p>Le signal de 32 768 Hz fourni par l'horloge temps r&eacute;el est divis&eacute; 14 fois par 2 par le circuit int&eacute;gr&eacute; IC5, qui porte la r&eacute;f&eacute;rence CD4060.<br />
+A sa sortie, un signal de fr&eacute;quence 2 Hz est pr&eacute;sent.</p>
+<p>Les capteurs de temp&eacute;rature utilis&eacute;s sont des TMP100, fabriqu&eacute;s par TEXAS INSTRUMENTS.<br />
+Ils effectuent la conversion de la temp&eacute;rature en une valeur num&eacute;rique.<br />
+Ils poss&egrave;dent donc une sortie num&eacute;rique, qui est interrogeable par un bus de type I2C.</p>
+<p></p>
+<p>Microcontr&ocirc;leur</p>
+<p></p>
+<p>Le microcontr&ocirc;leur utilis&eacute; est IC1, un PIC18F4550, produit par MICROCHIP.<br />
+Le connecteur J9, &agrave; 5 broches, permet de le programmer &agrave; l'aide d'un appareil tel qu'un PICKIT2 ou un PICKIT3.<br />
+Il g&egrave;re l'affichage et la communication avec les
+p&eacute;riph&eacute;riques du bus I2C.<br />
+Cela lui permet de conna&icirc;tre le mode de fonctionnement
+&agrave; donner &agrave; l'horloge.<br />
+Lors de la mise sous tension, il interroge l'horloge temps
+r&eacute;el
+pour conna&icirc;tre la date et l'heure. Puis, il compte le temps
+au
+rythme des fronts montants du signal &agrave; 2 Hz, dont
+l'obtention
+est d&eacute;crite plus haut. en cas de r&eacute;glage de la
+date et de
+l'heure par l'utilisateur, il met &agrave; jour les informations de
+l'horloge temps r&eacute;el. Cela permet de retrouver des valeurs
+correctes &agrave; la prochaine remise sous tension, &agrave;
+condition
+que l'horloge temps r&eacute;el ait une pile ou une batterie de
+sauvegarde.<br />
+Afin de limiter le nombre de broches utilis&eacute;es, une seule
+broche
+d'interruption sert au pr&eacute;diviseur et &agrave;
+l'expanseur de
+ports.<br />
+Les diodes D2 et D3, ainsi que la r&eacute;sitance de <i>pull-up</i> R52
+r&eacute;alisent un &laquo;&nbsp;ET C&acirc;bl&eacute;
+&raquo;, qui impose
+un z&eacute;ro logique si le signal &agrave; 2 Hz passe
+&agrave;
+z&eacute;ro ou si la broche d'interruption de l'expanseur de ports
+passe &agrave; z&eacute;ro. Dans ce cas, une autre broche du
+microcontr&ocirc;leu passe &agrave; z&eacute;ro, ce qui lui
+permet
+d'identifier la source de l'interruption, et d'agir en
+cons&eacute;quence.<br />
+Il dispose &eacute;galement de l'information qui permet
+d'identifier la source d'alimentation du dispositif.</p>
+<p></p>
+<table border="1" cellpadding="2" cellspacing="2">
+<tbody>
+<tr>
+<th>P&eacute;riph&eacute;rique I2C</th>
+<th>Adresse sur le bus I2C</th>
+</tr>
+<tr>
+<td>Capteur de temp&eacute;rature 1</td>
+<td>0x90</td>
+</tr>
+<tr>
+<td>Capteur de temp&eacute;rature 2</td>
+<td>0x94</td>
+</tr>
+<tr>
+<td>Expanseur de ports</td>
+<td>0x42</td>
+</tr>
+<tr>
+<td>Horloge temps r&eacute;el</td>
+<td>0xD0</td>
+</tr>
+</tbody>
+</table>
+<p></p>
+<figure>
+<a href="../../../images/SCHEMA_LA_GROSSE_HORLOGE_1_PRINCIPALE.png">
+<img alt="SCHEMA_LA_GROSSE_HORLOGE_1_PRINCIPALE" src="../../../images/SCHEMA_LA_GROSSE_HORLOGE_1_PRINCIPALE_Petite.png">
+</a>
+<figcaption>Le Gros Sch&eacute;ma Electronique de la carte principale de la version 1</figcaption>
+</figure>
+<p></p>
+<figure>
+<a href="../../../images/SCHEMA_HORLOGE_TEMPS_REEL_DS3232.png">
+<img alt="SCHEMA_HORLOGE_TEMPS_REEL_DS3232" src="../../../images/SCHEMA_HORLOGE_TEMPS_REEL_DS3232_Petite.png">
+</a>
+<figcaption>Le sch&eacute;ma &eacute;lectronique de la carte qui supporte l'horloge temps r&eacute;el &laquo;&nbsp;DS3232&nbsp;&raquo; , avec oscillateur &agrave; &laquo;&nbsp;MEMS&nbsp;&raquo; int&eacute;gr&eacute;</figcaption>
+</figure>
+<a id="Endroit_2-1-2"></a>
+<h4>2-1-2) Typons</h4>
+<figure>
+<a href="../../../images/TYPON_LA_GROSSE_HORLOGE_1_PRINCIPALE.png">
+<img alt="TYPON_LA_GROSSE_HORLOGE_1_PRINCIPALE" src="../../../images/TYPON_LA_GROSSE_HORLOGE_1_PRINCIPALE_Petite.png">
+</a>
+<figcaption>Le Gros Typon de la carte principale de la version 1</figcaption>
+</figure>
+<p></p>
+<figure>
+<a href="../../../images/TYPON_HORLOGE_TEMPS_REEL_DS3232.png">
+<img alt="TYPON_HORLOGE_TEMPS_REEL_DS3232" src="../../../images/TYPON_HORLOGE_TEMPS_REEL_DS3232_Petite.png">
+</a>
+<figcaption>Le typon de la carte qui supporte l'horloge temps r&eacute;el &laquo;&nbsp;DS3232&nbsp;&raquo;</figcaption>
+</figure>
+<div class="valorisations">
+<div class="programmes">
+<div class="programmes_gauche">
+<img style="width: 32px; height: 32px;" alt="fleche-bas-telecharger-icone-9594-32" src="../../../images/fleche-bas-telecharger-icone-9594-32.png">
+</div>
+<div class="programmes_droite">
+<p>La Grosse Horloge, version 1 : Gros Sch&eacute;mas &eacute;lectroniques, et Gros Typons<br />
+Logiciel de dessin : EAGLE 6.4.0<br />
+<a href="../../../elements/allures/valorisations/programmes.php%3Fprogramme=la_grosse_horloge+1+1">T&eacute;l&eacute;charger le fichier<span>Effectuez un clic droit, puis s&eacute;lectionnez l'option &laquo;&nbsp;Enregistrer la cible du lien sous...&nbsp;&raquo;, pour t&eacute;l&eacute;charger le fichier</span></a> (1.62 Mo)</p></div>
+</div>
+</div>
+<a id="Endroit_2-1-3"></a>
+<h4>2-1-3) Codes sources</h4>
+<div class="valorisations">
+<div class="programmes">
+<div class="programmes_gauche">
+<img style="width: 32px; height: 32px;" alt="fleche-bas-telecharger-icone-9594-32" src="../../../images/fleche-bas-telecharger-icone-9594-32.png">
+</div>
+<div class="programmes_droite">
+<p>La Grosse Horloge, version 1 : Gros Fichiers C<br />
+Cible : PIC18F4550<br />Compilateur : MCC18<br />
+<a href="../../../elements/allures/valorisations/programmes.php%3Fprogramme=la_grosse_horloge+1+2">T&eacute;l&eacute;charger le fichier<span>Effectuez un clic droit, puis s&eacute;lectionnez l'option &laquo;&nbsp;Enregistrer la cible du lien sous...&nbsp;&raquo;, pour t&eacute;l&eacute;charger le fichier</span></a> (64.99 Ko)</p></div>
+</div>
+</div>
+<div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="la_grosse_horloge.php%3Fselection=1.html#Haut_de_page">Je veux remonter !</a>&nbsp;|&nbsp;<a href="la_grosse_horloge.php%3Fselection=1.html#Liste_de_depart">Liste</a>
+</div>
+<a id="Endroit_3-0-0"></a>
+<h2>3) Sujets associ&eacute;s</h2>
+<p>La Grosse Horloge est un syst&egrave;me d'affichage &agrave; LED.<br />
+Elle inclus, en plus, deux capteurs de temp&eacute;rature.</p>
+<ul>
+<li><a href="../afficheurs_a_led_circuits_de_pilotage/afficheurs_a_led_circuits_de_pilotage_page_1.php.html" title="Ouvrir le lien &laquo;&nbsp;http://www.atrylec.com/fr/electronique/afficheurs_a_led_circuits_de_pilotage/afficheurs_a_led_circuits_de_pilotage_page_1.php&nbsp;&raquo;" >Afficheurs &agrave; LED : Circuits de pilotage</a>,</li>
+<li><a href="../les_expanseurs_de_port_i2c/les_expanseurs_de_port_i2c.php.html" title="Ouvrir le lien &laquo;&nbsp;http://www.atrylec.com/fr/electronique/les_expanseurs_de_port_i2c/les_expanseurs_de_port_i2c.php&nbsp;&raquo;" >Les expanseurs de port I2C</a>.</li>
+</ul>
+<p></p>
+<div>
+<div class="menu_article">
+<ul class="menu_article_principal">
+<li><a href="la_grosse_horloge.php.html">La Grosse Horloge</a></li>
+</ul>
+<ul class="menu_article_secondaire">
+<li><a href="la_grosse_horloge.php%3Fselection=1.html#Endroit_1-0-0">1) Pr&eacute;sentation</a></li>
+<li>
+<ul>
+<li><a href="la_grosse_horloge.php%3Fselection=1.html#Endroit_1-1-0">1-1) Version 1 - 2012</a></li>
+</ul>
+</li>
+<li><a href="la_grosse_horloge.php%3Fselection=1.html#Endroit_2-0-0">2) R&eacute;alisation</a></li>
+<li>
+<ul>
+<li><a href="la_grosse_horloge.php%3Fselection=1.html#Endroit_2-1-0">2-1) Version 1 - 2012</a></li>
+<li>
+<ul>
+<li><a href="la_grosse_horloge.php%3Fselection=1.html#Endroit_2-1-1">2-1-1) Sch&eacute;mas &eacute;lectroniques</a></li>
+<li><a href="la_grosse_horloge.php%3Fselection=1.html#Endroit_2-1-2">2-1-2) Typons</a></li>
+<li><a href="la_grosse_horloge.php%3Fselection=1.html#Endroit_2-1-3">2-1-3) Codes sources</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="la_grosse_horloge.php%3Fselection=1.html#Endroit_3-0-0">3) Sujets associ&eacute;s</a></li>
+</ul>
+</div>
+</div>
+<div class="commentaires"><a id="Endroits_des_commentaires"></a><p class="sous-titre_commentaires">Commentaires (0)</p><p class="sous-titre_ajouts">Ajouter un commentaire</p>
+<form id="contact" method="post" action="http://atrylec.com/elements/allures/commentaires/verification.php">
+<fieldset>
+<legend>
+Votre pseudo&nbsp;: 
+</legend>
+<p>
+<label for="pseudo">
+Pseudo&nbsp;: 
+</label>
+<input type="text" id="pseudo" name="pseudo" tabindex="1" required="required">
+</p>
+</fieldset>
+<fieldset>
+<legend>
+Votre commentaire&nbsp;: 
+</legend>
+<p>
+<label for="commentaire">
+Commentaire&nbsp;: 
+</label>
+<textarea id="commentaire" name="commentaire" tabindex="2" cols="50" rows="2" required="required">
+</textarea>
+</p>
+</fieldset>
+<div class="bouton_validation_commentaire">
+<input type="submit" name="Poster" value="Poster" />
+</div>
+</form>
+</div><div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="la_grosse_horloge.php%3Fselection=1.html#Haut_de_page">Je veux remonter !</a>
+</div>
+</section>
+<footer>
+<div class="liens">
+<ul>
+<li><a href="../../contact.php.html">ContaCT</a></li>
+</ul>
+</div>
+<div id="choix_style">
+<div class="presentation">Ravaler la fa&ccedil;ade&nbsp;:</div>
+<div class="choix choix_bleu_choisi">&nbsp;</div><a href="la_grosse_horloge.php%3Fselection=2.html" title="Style 2"><div class="choix choix_rouge">&nbsp;</div></a><a href="la_grosse_horloge.php%3Fselection=3.html" title="Style 3"><div class="choix choix_orange">&nbsp;</div></a></div>
+<div class="remarques">
+<p>Il ne faut pas dire&nbsp;: &laquo;&nbsp;Un fant&ocirc;me qui fait demi-tour
+&nbsp;&raquo;, mais&nbsp;: &laquo;&nbsp;Un retournement spectral
+&nbsp;&raquo;.</p>
+</div>
+<div class="visites">
+<img style="width: 15px; height: 15px;" alt="6_30" src="../../../images/6_30.png">   <img style="width: 15px; height: 15px;" alt="5_30" src="../../../images/5_30.png">   <img style="width: 15px; height: 15px;" alt="0_30" src="../../../images/0_30.png">   <img style="width: 15px; height: 15px;" alt="9_30" src="../../../images/9_30.png">   <img style="width: 15px; height: 15px;" alt="9_30" src="../../../images/9_30.png">   </div>
+</footer>
+</div>
+</body>
+</html>

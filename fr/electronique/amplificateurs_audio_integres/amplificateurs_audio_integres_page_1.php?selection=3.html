@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>Amplificateurs audio int&eacute;gr&eacute;s : Adaptations et essais</title>
+<meta name="description" content="Utilisation d'amplificateurs audio int&eacute;gr&eacute;s : sch&eacute;mas, typons et essais." />
+<meta name="keywords" content="atrylec electronique amplificateur audio integre schema typon TDA8551 TPA4861" />
+<link rel="stylesheet" media="screen" type="text/css" title="Style 3" href="../../../elements/allures/style_3.css">
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-42331281-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+<body>
+<div id="page">
+<div id="haut">
+<header id="Haut_de_page">
+<div id="principale">
+<p class="titre_principal_haut">
+<a href="../../../index.php.html"><img style="width: 150px;" alt="Affichage_Atrylec_com" src="../../../images/Affichage_Atrylec_com.png" /><span class="invisible">Atrylec</span></a></p>
+<p class="sous-titre_haut">Vous n'&ecirc;tes pas seuls dans l'Univers !</p>
+</div>
+<div id="additionnelle">
+</div>
+</header>
+<nav>
+<ul id="navigation">
+<li><a href="../../../index.php.html" title="Accueil">Accueil</a></li>
+<li><a class="choisi" href="../index.php.html" title="Electronique">Electronique</a></li>
+<li><a href="../../radio/index.php%3Fnumero=0.html" title="Radio">Radio</a></li>
+<li><a href="../../origami/index.php.html" title="Origami">Origami</a></li>
+<li><a href="../../photographies/index.php%3Fnumero=0.html" title="Photographies">Photographies</a></li>
+<li><a href="../../le_grenier/index.php.html" title="Le grenier">Le grenier</a></li>
+<li><a href="../../contact.php.html" title="ContaCT">ContaCT</a></li>
+</ul>
+</nav>
+</div>
+<section>
+<div id="titre">
+<div id="titre_gauche">
+</div>
+<div id="titre_image">
+<img style="width: 100px; height: 100px;" alt="Transistor_100" src="../../../images/Transistor_100.png">
+</div>
+<div id="titre_texte">
+<p>/&nbsp;</p><h1>Amplificateurs audio int&eacute;gr&eacute;s : Adaptations et essais</h1>
+</div>
+<div id="titre_droite">
+</div>
+</div>
+<div>
+<p id="introduction">Amplificateurs audio int&eacute;gr&eacute;s : Adaptations et essais.<br />
+Il existe des applications &eacute;lectroniques qui n&eacute;c&eacute;ssitent d'attaquer de petits haut-parleurs, tels que ceux que l'on peut rencontrer dans des radios-r&eacute;veils.<br />
+Pour r&eacute;aliser les &eacute;tages d'amplifications n&eacute;c&eacute;ssaires, il est possible de recourir &agrave; des composants discrets, comme des transistors, ou &nbsp;des amplificateurs op&eacute;rationnels.<br />
+Il est &eacute;galement possible d'utiliser des circuits int&eacute;gr&eacute;s sp&eacute;cialis&eacute;s.<br />
+Cet article d&eacute;crit plusieurs circuits int&eacute;gr&eacute;s qui r&eacute;alisent la fonction d'amplification audio, en ne requ&eacute;rant qu'un strict minimum de composants &eacute;lectroniques externes.<br />
+Cela permet ainsi de simplifier les conceptions de circuits imprim&eacute;s.</p>
+</div>
+<p>
+<a id="Liste_de_depart"></a>
+</p>
+<div>
+<div class="menu_article">
+<ul class="menu_article_principal">
+<li><a href="amplificateurs_audio_integres_page_1.php.html">Amplificateurs audio int&eacute;gr&eacute;s : Adaptations et essais</a></li>
+</ul>
+<ul class="menu_article_secondaire">
+<li><a href="amplificateurs_audio_integres_page_1.php%3Fselection=3.html#Endroit_1-0-0">1) Le TDA8551</a></li>
+<li>
+<ul>
+<li><a href="amplificateurs_audio_integres_page_1.php%3Fselection=3.html#Endroit_1-1-0">1-1) G&eacute;n&eacute;ralit&eacute;s</a></li>
+</ul>
+</li>
+<li><a href="amplificateurs_audio_integres_page_1.php%3Fselection=3.html#Endroit_2-0-0">2) Le TPA4861</a></li>
+<li>
+<ul>
+<li><a href="amplificateurs_audio_integres_page_1.php%3Fselection=3.html#Endroit_2-1-0">2-1) G&eacute;n&eacute;ralit&eacute;s</a></li>
+<li><a href="amplificateurs_audio_integres_page_1.php%3Fselection=3.html#Endroit_2-2-0">2-2) Sch&eacute;ma &eacute;lectronique</a></li>
+<li><a href="amplificateurs_audio_integres_page_1.php%3Fselection=3.html#Endroit_2-3-0">2-3) Typon</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="amplificateurs_audio_integres_page_1.php%3Fselection=3.html#Haut_de_page">Je veux remonter !</a>&nbsp;|&nbsp;<a href="amplificateurs_audio_integres_page_1.php%3Fselection=3.html#Liste_de_depart">Liste</a>
+</div>
+<a id="Endroit_1-0-0"></a>
+<h2>1) Le TDA8551</h2>
+<a id="Endroit_1-1-0"></a>
+<h3>1-1) G&eacute;n&eacute;ralit&eacute;s</h3>
+<p>Le circuit int&eacute;gr&eacute; TDA8551 est un amplificateur audio monophonique, de puissance d'1 W, et qui est fabriqu&eacute; par NXP.</p>
+<p>La <i>datasheet</i> du circuit int&eacute;gr&eacute; TDA8551 :</p>
+<p><img alt="LIEN_EXTERNE" src="../../../images/LIEN_EXTERNE.png" />&nbsp;<a href="http://www.nxp.com/documents/data_sheet/TDA8551_T.pdf" title="Ouvrir le lien &laquo;&nbsp;http://www.nxp.com/documents/data_sheet/TDA8551_T.pdf&nbsp;&raquo; dans une nouvelle fen&ecirc;tre, ou dans un nouvel onglet" target="_blank">http://www.nxp.com/documents/data_sheet/TDA8551_T.pdf</a></p>
+<p></p>
+<p>Ce composant est de type pont&eacute;, ce qui signifie qu'il contient deux amplificateurs, en opposition de phase, qui d&eacute;bitent &agrave; travers la m&ecirc;me charge.<br />
+Cette configuration permet d'augmenter la puissance envoy&eacute;e dans la charge, par rapport &agrave; un simple amplificateur.<br />
+Elle permet, en plus, de ne pas utiliser de condensateur de liaison, &agrave; placer entre la sortie de l'amplificateur, et la charge.<br />
+Cela effectue une r&eacute;duction du nombre de composants, sur le sch&eacute;ma, et une r&eacute;duction de l'encombrement, sur le circuit imprim&eacute;.<br />
+Ce circuit int&eacute;gr&eacute; poss&egrave;de un contr&ocirc;le du volume, celui-ci est r&eacute;glable par l'envoi d'impulsions sur l'une des broches du composant.</p>
+<p></p>
+<div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="amplificateurs_audio_integres_page_1.php%3Fselection=3.html#Haut_de_page">Je veux remonter !</a>&nbsp;|&nbsp;<a href="amplificateurs_audio_integres_page_1.php%3Fselection=3.html#Liste_de_depart">Liste</a>
+</div>
+<a id="Endroit_2-0-0"></a>
+<h2>2) Le TPA4861</h2>
+<a id="Endroit_2-1-0"></a>
+<h3>2-1) G&eacute;n&eacute;ralit&eacute;s</h3>
+<p>Le circuit int&eacute;gr&eacute; TPA4861 est un amplificateur
+audio monophonique, de puissance d'1 W, et qui est fabriqu&eacute; par TEXAS INSTRUMENTS.</p>
+<p>La <i>datasheet</i> du circuit int&eacute;gr&eacute; TPA4861 :</p>
+<p><a href="http://www.ti.com/lit/ds/symlink/tpa4861.pdf" title="Ouvrir le lien &laquo;&nbsp;http://www.atrylec.comhttp://www.ti.com/lit/ds/symlink/tpa4861.pdf&nbsp;&raquo;" >http://www.ti.com/lit/ds/symlink/tpa4861.pdf</a></p>
+<p></p>
+<p>Ce composant est de type pont&eacute;.<br />
+Le gain est configurable par les valeurs de deux r&eacute;sistances.</p>
+<p></p>
+<figure>
+<a href="../../../images/MONTAGE_TPA4861_1.jpg">
+<img alt="MONTAGE_TPA4861_1" src="../../../images/MONTAGE_TPA4861_1_Petite.jpg">
+</a>
+<figcaption>Le montage d'essai de la carte d'adaptation du circuit int&eacute;gr&eacute; TPA4861</figcaption>
+</figure>
+<p></p>
+<div class="valorisations">
+<div class="informations">
+<div class="informations-gauche">
+<img style="width: 32px; height: 32px;" alt="documentaires-des-proprietes-icone-5224-32" src="../../../images/documentaires-des-proprietes-icone-5224-32.png">
+</div>
+<div class="informations-droite">
+<p>Attention : Le circuit int&eacute;gr&eacute; TPA4861 ne peut pas &ecirc;tre aliment&eacute; avec une tension de plus de 6 V !<br />
+Si vous souhaitez le tester &agrave; l'aide d'une pile carr&eacute; de 9 V, utilisez une pile qui n'est pas ou qui n'est plus compl&egrave;tement charg&eacute;e !<br />
+Vous pouvez &eacute;galement utiliser d'autres piles, dont les tensions de sorties sont compatibles avec celles accept&eacute;es par le composant.<br /></p></div>
+</div>
+</div>
+<p></p>
+<figure>
+<a href="../../../images/MONTAGE_TPA4861_2.jpg">
+<img alt="MONTAGE_TPA4861_2" src="../../../images/MONTAGE_TPA4861_2_Petite.jpg">
+</a>
+<figcaption>Vue de la carte d'adaptation du circuit int&eacute;gr&eacute; TPA4861</figcaption>
+</figure>
+<p></p>
+<figure>
+<a href="../../../images/MONTAGE_TPA4861_3.jpg">
+<img alt="MONTAGE_TPA4861_3" src="../../../images/MONTAGE_TPA4861_3_Petite.jpg">
+</a>
+<figcaption>Haut-parleur utilis&eacute; pour l'essai de la carte d'adaptation du circuit int&eacute;gr&eacute; TPA4861</figcaption>
+</figure>
+<p></p>
+<figure>
+<p></p>
+<table border="0" cellpadding="2" cellspacing="1">
+<tbody>
+<tr>
+<td>
+<a href="../../../images/CARTE_TPA4861_1.jpg">
+<img alt="CARTE_TPA4861_1" src="../../../images/CARTE_TPA4861_1_Petite.jpg">
+</a>
+</td>
+<td>
+<a href="../../../images/CARTE_TPA4861_2.jpg">
+<img alt="CARTE_TPA4861_2" src="../../../images/CARTE_TPA4861_2_Petite.jpg">
+</a>
+</td>
+<td>
+<a href="../../../images/CARTE_TPA4861_3.jpg">
+<img alt="CARTE_TPA4861_3" src="../../../images/CARTE_TPA4861_3_Petite.jpg">
+</a>
+</td>
+</tr>
+</tbody>
+</table>
+<figcaption>Photographies de la carte d'adaptation du circuit int&eacute;gr&eacute; TPA4861</figcaption>
+</figure>
+<p></p>
+<a id="Endroit_2-2-0"></a>
+<h3>2-2) Sch&eacute;ma &eacute;lectronique</h3>
+<p></p>
+<figure>
+<a href="../../../images/SCHEMA_ADAPTATION_TPA4861.png">
+<img alt="SCHEMA_ADAPTATION_TPA4861" src="../../../images/SCHEMA_ADAPTATION_TPA4861_Petite.png">
+</a>
+<figcaption>Sch&eacute;ma &eacute;lectronique de la carte d'adaptation du circuit int&eacute;gr&eacute; TPA4861</figcaption>
+</figure>
+<p></p>
+<a id="Endroit_2-3-0"></a>
+<h3>2-3) Typon</h3>
+<p></p>
+<figure>
+<a href="../../../images/TYPON_ADAPTATION_TPA4861.png">
+<img alt="TYPON_ADAPTATION_TPA4861" src="../../../images/TYPON_ADAPTATION_TPA4861_Petite.png">
+</a>
+<figcaption>Typon de la carte d'adaptation du circuit int&eacute;gr&eacute; TPA4861</figcaption>
+</figure>
+<p></p>
+<div class="valorisations">
+<div class="programmes">
+<div class="programmes_gauche">
+<img style="width: 32px; height: 32px;" alt="fleche-bas-telecharger-icone-9594-32" src="../../../images/fleche-bas-telecharger-icone-9594-32.png">
+</div>
+<div class="programmes_droite">
+<p>Sch&eacute;ma &eacute;lectronique et typon de la carte d'adaptation du TPA4861<br />
+Logiciel de dessin : EAGLE 6.4.0<br />
+<a href="../../../elements/allures/valorisations/programmes.php%3Fprogramme=amplificateurs_audio_integres_page_1+1+1">T&eacute;l&eacute;charger le fichier<span>Effectuez un clic droit, puis s&eacute;lectionnez l'option &laquo;&nbsp;Enregistrer la cible du lien sous...&nbsp;&raquo;, pour t&eacute;l&eacute;charger le fichier</span></a> (153.32 Ko)</p></div>
+</div>
+</div>
+<p></p>
+<div>
+<div class="menu_article">
+<ul class="menu_article_principal">
+<li><a href="amplificateurs_audio_integres_page_1.php.html">Amplificateurs audio int&eacute;gr&eacute;s : Adaptations et essais</a></li>
+</ul>
+<ul class="menu_article_secondaire">
+<li><a href="amplificateurs_audio_integres_page_1.php%3Fselection=3.html#Endroit_1-0-0">1) Le TDA8551</a></li>
+<li>
+<ul>
+<li><a href="amplificateurs_audio_integres_page_1.php%3Fselection=3.html#Endroit_1-1-0">1-1) G&eacute;n&eacute;ralit&eacute;s</a></li>
+</ul>
+</li>
+<li><a href="amplificateurs_audio_integres_page_1.php%3Fselection=3.html#Endroit_2-0-0">2) Le TPA4861</a></li>
+<li>
+<ul>
+<li><a href="amplificateurs_audio_integres_page_1.php%3Fselection=3.html#Endroit_2-1-0">2-1) G&eacute;n&eacute;ralit&eacute;s</a></li>
+<li><a href="amplificateurs_audio_integres_page_1.php%3Fselection=3.html#Endroit_2-2-0">2-2) Sch&eacute;ma &eacute;lectronique</a></li>
+<li><a href="amplificateurs_audio_integres_page_1.php%3Fselection=3.html#Endroit_2-3-0">2-3) Typon</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="commentaires"><a id="Endroits_des_commentaires"></a><p class="sous-titre_commentaires">Commentaires (0)</p><p class="sous-titre_ajouts">Ajouter un commentaire</p>
+<form id="contact" method="post" action="http://atrylec.com/elements/allures/commentaires/verification.php">
+<fieldset>
+<legend>
+Votre pseudo&nbsp;: 
+</legend>
+<p>
+<label for="pseudo">
+Pseudo&nbsp;: 
+</label>
+<input type="text" id="pseudo" name="pseudo" tabindex="1" required="required">
+</p>
+</fieldset>
+<fieldset>
+<legend>
+Votre commentaire&nbsp;: 
+</legend>
+<p>
+<label for="commentaire">
+Commentaire&nbsp;: 
+</label>
+<textarea id="commentaire" name="commentaire" tabindex="2" cols="50" rows="2" required="required">
+</textarea>
+</p>
+</fieldset>
+<div class="bouton_validation_commentaire">
+<input type="submit" name="Poster" value="Poster" />
+</div>
+</form>
+</div><div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="amplificateurs_audio_integres_page_1.php%3Fselection=3.html#Haut_de_page">Je veux remonter !</a>
+</div>
+</section>
+<footer>
+<div class="liens">
+<ul>
+<li><a href="../../contact.php.html">ContaCT</a></li>
+</ul>
+</div>
+<div id="choix_style">
+<div class="presentation">Ravaler la fa&ccedil;ade&nbsp;:</div>
+<a href="amplificateurs_audio_integres_page_1.php%3Fselection=1.html" title="Style 1"><div class="choix choix_bleu">&nbsp;</div></a><a href="amplificateurs_audio_integres_page_1.php%3Fselection=2.html" title="Style 2"><div class="choix choix_rouge">&nbsp;</div></a><div class="choix choix_orange_choisi">&nbsp;</div></div>
+<div class="remarques">
+<p>Il ne faut pas dire&nbsp;: &laquo;&nbsp;Un bus non-croyant
+&nbsp;&raquo;, mais&nbsp;: &laquo;&nbsp;Un karat&eacute;
+&nbsp;&raquo;.</p>
+</div>
+<div class="visites">
+<img style="width: 15px; height: 15px;" alt="6_30" src="../../../images/6_30.png">   <img style="width: 15px; height: 15px;" alt="5_30" src="../../../images/5_30.png">   <img style="width: 15px; height: 15px;" alt="0_30" src="../../../images/0_30.png">   <img style="width: 15px; height: 15px;" alt="9_30" src="../../../images/9_30.png">   <img style="width: 15px; height: 15px;" alt="9_30" src="../../../images/9_30.png">   </div>
+</footer>
+</div>
+</body>
+</html>

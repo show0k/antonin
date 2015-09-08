@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>L'afficheur &agrave; quatorze LED</title>
+<meta name="description" content="Cartes de d&eacute;veloppement &laquo;&nbsp;STM32 DISCOVERY&nbsp;&raquo;&nbsp;: Tutoriel - Page 2 - Pr&eacute;parations logicielles" />
+<meta name="keywords" content="atrylec electronique schema schemas montage montages realisation realisations microcontroleur entrees sorties programmation code source langage c stm32discovery stm 32 discovery stm32vldiscovery stm 32 vl discovery stm32l discovery stm32 l discovery stm32f100rb stm32l152rbt6 keil micro vision tutoriel tutoriels exemple exemples cours creer projet projets configurer horloge horloges" />
+<link rel="stylesheet" media="screen" type="text/css" title="Style 2" href="../../../elements/allures/style_2.css">
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-42331281-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+<body>
+<div id="page">
+<div id="haut">
+<header id="Haut_de_page">
+<div id="principale">
+<p class="titre_principal_haut">
+<a href="../../../index.php.html"><img style="width: 150px;" alt="Affichage_Atrylec_com" src="../../../images/Affichage_Atrylec_com.png" /><span class="invisible">Atrylec</span></a></p>
+<p class="sous-titre_haut">Vous n'&ecirc;tes pas seuls dans l'Univers !</p>
+</div>
+<div id="additionnelle">
+</div>
+</header>
+<nav>
+<ul id="navigation">
+<li><a href="../../../index.php.html" title="Accueil">Accueil</a></li>
+<li><a class="choisi" href="../index.php.html" title="Electronique">Electronique</a></li>
+<li><a href="../../radio/index.php%3Fnumero=0.html" title="Radio">Radio</a></li>
+<li><a href="../../origami/index.php.html" title="Origami">Origami</a></li>
+<li><a href="../../photographies/index.php%3Fnumero=0.html" title="Photographies">Photographies</a></li>
+<li><a href="../../le_grenier/index.php.html" title="Le grenier">Le grenier</a></li>
+<li><a href="../../contact.php.html" title="ContaCT">ContaCT</a></li>
+</ul>
+</nav>
+</div>
+<section>
+<div id="titre">
+<div id="titre_gauche">
+</div>
+<div id="titre_image">
+<img style="width: 100px; height: 100px;" alt="Transistor_100" src="../../../images/Transistor_100.png">
+</div>
+<div id="titre_texte">
+<p>/&nbsp;</p><h1>L'afficheur &agrave; quatorze LED</h1>
+</div>
+<div id="titre_droite">
+</div>
+</div>
+<div>
+<p id="introduction">Le projet permet d&rsquo;afficher des messages lisibles gr&acirc;ce &agrave; une double colonne de sept LED.<br />
+Ces LED sont dispos&eacute;es &agrave; intervalles r&eacute;guliers, avec une colonne de LED rouges et une autre de vertes.<br />
+L&rsquo;allumage et l&rsquo;extinction de ces diodes produit, par d&eacute;placement, l&rsquo;apparition des messages.<br />
+En effet, &agrave; partir d&rsquo;une certaine vitesse de d&eacute;placement, l'&oelig;il humain ne suit plus et per&ccedil;oit le message, alors qu&rsquo;en r&eacute;alit&eacute;, &agrave; chaque instant, une seule colonne de LED est active.<br />
+Le r&ocirc;le de la partie &eacute;lectronique est donc de commander cette double colonne de diodes pour produire l&rsquo;affichage voulu.</p>
+</div>
+<p></p>
+<div class="valorisations">
+<div class="informations">
+<div class="informations-gauche">
+<img style="width: 32px; height: 32px;" alt="documentaires-des-proprietes-icone-5224-32" src="../../../images/documentaires-des-proprietes-icone-5224-32.png">
+</div>
+<div class="informations-droite">
+<p>Information&nbsp;:<br />
+Ce projet a servi de sujet de T.P.E. - Travaux Personnels Encadr&eacute;s, en classe de premi&egrave;re.<br />
+Il n'utilise pas de microcontr&ocirc;leur, mais uniquement de la logique c&acirc;bl&eacute;e.<br />
+Des m&eacute;moires de type &laquo;&nbsp;RAM&nbsp;&raquo;, &agrave; acc&egrave;s parall&egrave;le, permettent de compl&eacute;ter le dispositif.</p></div>
+</div>
+</div>
+<p></p>
+<p>Le syst&egrave;me se compose de trois ensembles&nbsp;: le clavier qui permet d&rsquo;entrer les donn&eacute;es, la partie &eacute;lectronique et son alimentation qui traitent ces donn&eacute;es, et les deux colonnes de LED ultra lumineuses rouges et vertes. Le fonctionnement de chacun de ces ensembles va &ecirc;tre d&eacute;taill&eacute; ci-apr&egrave;s.</p>
+<figure>
+<a href="../../../images/TPE2007.jpg">
+<img alt="TPE2007" src="../../../images/TPE2007_Petite.jpg">
+</a>
+<figcaption>Un exemple d'affichage que peut g&eacute;n&eacute;rer le projet</figcaption>
+</figure>
+<p></p>
+<p class="sous-titre_version">Version 1 - 2007</p>
+<p>1) Le clavier</p>
+<p>Comme la solution de l&rsquo;interfa&ccedil;age avec un clavier d&rsquo;ordinateur a d&ucirc; &ecirc;tre abandonn&eacute;e, il a fallu r&eacute;aliser un clavier sp&eacute;cifique au projet. Il est compos&eacute; d&rsquo;une s&eacute;rie de 37 boutons-poussoirs classiques qui correspondent aux caract&egrave;res alphanum&eacute;riques. Il comprend &eacute;galement trois commandes sp&eacute;ciales qui sont&nbsp;: le bouton&nbsp;&laquo;&nbsp; FIN message&nbsp;&raquo;, un bouton de s&eacute;lection de la couleur et un bouton R&agrave;Z de remise &agrave; z&eacute;ro. Un bus de dix conducteurs permet la communication avec la partie &eacute;lectronique.</p>
+<p>Le bouton &laquo;&nbsp;<font face="Courier New, monospace">FIN message</font>&nbsp;&raquo; ins&egrave;re un caract&egrave;re sp&eacute;cial qui sera reconnu lors de la reproduction du message. Ceci provoquera imm&eacute;diatement la reproduction du message depuis le d&eacute;but. Cette fonction permet de reboucler le message sur lui-m&ecirc;me &agrave; l&rsquo;infini.
+<p>Le bouton &laquo;&nbsp;<font face="Courier New, monospace">couleur</font>&nbsp;&raquo; est un interrupteur miniature &agrave; enclenchement. La position enclench&eacute;e correspond &agrave; la couleur rouge s&eacute;lectionn&eacute;e et &agrave; l&rsquo;apparition du potentiel de l&rsquo;alimentation sur la ligne&nbsp;&laquo;&nbsp;COUL&nbsp;&raquo; du bus (1 logique). Lorsqu&rsquo;il n&rsquo;est pas enclench&eacute;, le vert est s&eacute;lectionn&eacute; (0 logique).</p>
+<p>Un dernier poussoir permet la s&eacute;lection d&rsquo;un caract&egrave;re sp&eacute;cial comme les signes de ponctuation par exemple. Pour saisir un caract&egrave;re de ce type, il faut maintenir le bouton et appuyer sur la touche alphanum&eacute;rique correspondante.</p>
+<p>Le bouton &laquo;&nbsp;<font face="Courier New, monospace">remise &agrave; z&eacute;ro</font>&nbsp;&raquo;, quant &agrave; lui, permet de corriger le message lors de la saisie, s&rsquo;il a &eacute;t&eacute; mal entr&eacute;.</p>
+<p>Ces trois boutons sont reli&eacute;s d&rsquo;un c&ocirc;t&eacute; directement au potentiel d&rsquo;alimentation, et de l&rsquo;autre c&ocirc;t&eacute; &agrave; leur fil respectif du bus.</p>
+<p>Les touches alphanum&eacute;riques transmettent un signal binaire sur six fils du bus, et bien s&ucirc;r chaque touche a sa propre combinaison. Par exemple l&rsquo;appui sur le &laquo;&nbsp;A&nbsp;&raquo; transmet un <i>z&eacute;ro</i> logique sur les cinq premiers fils et un <i>un</i> logique sur le dernier conducteur. L&rsquo;adresse binaire re&ccedil;ue par l&rsquo;&eacute;lectronique est donc &laquo;&nbsp;000001&nbsp;&raquo;. Le premier conducteur correspond au <i>bit</i> de poids fort, tandis que le dernier conducteur achemine le <i>bit</i> de poids faible. Pour g&eacute;n&eacute;rer le signal binaire &agrave; partir de l&rsquo;appui d&rsquo;une touche, un r&eacute;seau de diodes a &eacute;t&eacute; utilis&eacute; (type 1N4148). Ainsi le bouton &laquo;&nbsp;O&nbsp;&raquo; qui transmet le signal &laquo;&nbsp;001111&nbsp;&raquo; est reli&eacute; -comme tous les autres- au potentiel d&rsquo;alimentation et &agrave; quatre diodes anti-retour qui renvoient ce potentiel sur les quatre premi&egrave;res lignes binaires. Les lignes non reli&eacute;es au potentiel de l&rsquo;alimentation sont consid&eacute;r&eacute;es comme des z&eacute;ros logiques.</p>
+<p>Le bouton &laquo;&nbsp;<font face="Courier New, monospace">caract&egrave;re sp&eacute;cial</font>&nbsp;&raquo; force le <i>bit</i> de poids fort &agrave; 1 quand une touche alphanum&eacute;rique est sollicit&eacute;e. Cela permet de pouvoir saisir les adresses binaires correspondant aux caract&egrave;res sp&eacute;ciaux suivant le 9. D&rsquo;un point de vue &eacute;lectronique, cinq diodes rassemblent les signaux des cinq premi&egrave;res lignes d&rsquo;adresses. Un <i>un</i> logique est donc pr&eacute;sent &agrave; ce point du clavier d&egrave;s que l&rsquo;on appuie une touche. Ce signal arrive au bouton &laquo;&nbsp;caract&egrave;re sp&eacute;cial&nbsp;&raquo;, qui le r&eacute;injecte dans la derni&egrave;re ligne d&rsquo;adresse lorsqu&rsquo;il est appuy&eacute;. Ainsi le <i>bit</i> de poids fort est mis &agrave; 1.</p>
+<figure>
+<a href="../../../images/Clavier.png">
+<img alt="Clavier" src="../../../images/Clavier_Petite.png">
+</a>
+<figcaption>Sch&eacute;ma du clavier, sans l'ensemble des touches</figcaption>
+</figure>
+<p>2) L&rsquo;ensemble &eacute;lectronique</p>
+<p>Cette partie est la plus cons&eacute;quente. Elle est bas&eacute;e sur l&rsquo;utilisation de deux m&eacute;moires &agrave; acc&egrave;s parall&egrave;les et de deux circuits int&eacute;gr&eacute;s renfermant chacun deux compteurs binaires synchrones 4 bits. Une partie utilisant des portes logiques, des condensateurs, des r&eacute;sistances et des transistors assure la gestion de l&rsquo;ensemble. L&rsquo;alimentation est architectur&eacute;e autour d&rsquo;un r&eacute;gulateur de tension 5 Volt.</p>
+<p>Les r&eacute;f&eacute;rences des composants &eacute;voqu&eacute;s ci-dessus seront indiqu&eacute;es par la suite.</p>
+<p>a) L&rsquo;alimentation</p>
+<p>La source de courant du projet est fournie par une pile rechargeable de 9 Volt. Il est n&eacute;anmoins possible de l&rsquo;alimenter en 12 Volt continus, par exemple avec la tension d&rsquo;un allume-cigare. Le courant ainsi d&eacute;livr&eacute; est filtr&eacute; par les condensateurs C1 et C2, tandis que la diode D1 mont&eacute;e en inverse assure une protection en cas d&rsquo;erreur de branchements. Cette tension qui b&eacute;n&eacute;ficie d&rsquo;un premier filtrage arrive au r&eacute;gulateur L7805. Ce dernier d&eacute;livre 5 Volt &agrave; partir d&rsquo;une tension d&rsquo;alimentation comprise entre 9V et 15V. Un second filtrage est op&eacute;r&eacute; sur cette tension r&eacute;gul&eacute;e&nbsp;: C4 permet de fournir de l&rsquo;&eacute;nergie en cas de baisse de tension, d&ucirc; par exemple &agrave; l&rsquo;allumage des sept LED simultan&eacute;ment. Tous les circuits int&eacute;gr&eacute;s sont aliment&eacute;s par cette tension de 5 Volt. Il est &agrave; noter que la tension fournie par la source d&rsquo;alimentation est envoy&eacute;e directement au clavier.</p>
+<figure>
+<a href="../../../images/Alimentation.png">
+<img alt="Alimentation" src="../../../images/Alimentation.png">
+</a>
+<figcaption>Sch&eacute;ma de l'alimentation &eacute;lectrique</figcaption>
+</figure>
+<p>b) Les m&eacute;moires</p>
+<p>Le circuit int&egrave;gre deux m&eacute;moires RAM &agrave; acc&egrave;s parall&egrave;le. La premi&egrave;re, MEM1, sert &agrave; m&eacute;moriser le message &agrave; reproduire en tant que tel. Cela signifie que ce sont les adresses binaires de chaque caract&egrave;re qui y sont m&eacute;moris&eacute;s, accompagn&eacute;es de leur <i>bit</i> renseignant sur leur couleur.</p>
+<p>La seconde m&eacute;moire, MEM2, contient la <i>table de caract&egrave;res</i>.
+C&rsquo;est elle qui permet, &agrave; partir des adresses binaires, de g&eacute;n&eacute;rer un caract&egrave;re en activant les LEDs correspondantes, en fonction du temps. Les m&eacute;moires utilis&eacute;es poss&egrave;dent, comme toute m&eacute;moire RAM &agrave; acc&egrave;s parall&egrave;le&nbsp;:
+<p>- Des entr&eacute;es d&rsquo;adresse (ici 11) permettant de s&eacute;lectionner une zone de la m&eacute;moire</p>
+<p>- Des entr&eacute;es/sorties de donn&eacute;es (ici 8) permettant d&rsquo;&eacute;crire ou de lire dans la m&eacute;moire</p>
+<p>- Des entr&eacute;es de contr&ocirc;le (ici 3) permettant de choisir le mode de fonctionnement de la puce m&eacute;moire&nbsp;: lecture/&eacute;criture, d&eacute;sactivation des sorties, d&eacute;sactivation de la puce</p>
+<p>- Deux broches r&eacute;serv&eacute;es &agrave; l&rsquo;alimentation (ici le 0V et le +5V).</p>
+<br />
+<br />
+<br />
+<ul>
+<li>
+<p>M&eacute;moire &laquo;&nbsp;message&nbsp;&raquo;</p>
+</li>
+</ul>
+<br />
+<br />
+<p>La
+puce m&eacute;moire contenant le message voit ses
+entr&eacute;es/sorties reli&eacute;es
+aux six lignes d&rsquo;adresses provenant du clavier, au fil
+transmettant
+l&rsquo;information&nbsp;&laquo;&nbsp;COUL&nbsp;&raquo;
+et &agrave; celui transmettant le
+signal &laquo;&nbsp;FIN message&nbsp;&raquo;. Il faut
+pr&eacute;ciser que des
+r&eacute;sistances de 1K&#8486; sont ins&eacute;r&eacute;es entre
+les lignes provenant du
+clavier et les entr&eacute;es/sorties de la m&eacute;moire.
+Leur but est de
+ramener la tension transmise par le clavier &agrave; 5V afin de ne
+pas
+d&eacute;t&eacute;riorer la m&eacute;moire. Si une
+entr&eacute;e/sortie ne re&ccedil;oit pas le
+potentiel de l&rsquo;alimentation du &agrave; l&rsquo;appui
+d&rsquo;une touche, elle
+est ramen&eacute;e au 0V par l&rsquo;interm&eacute;diaire
+d&rsquo;une des huit
+r&eacute;sistances de 10K&#8486;. Chaque broche E/S re&ccedil;oit
+donc 0V (ligne du
+bus clavier correspondante sans potentiel) ou 5V (ligne du bus au
+potentiel de l&rsquo;alimentation).</p>
+<p>Les
+huit premi&egrave;res entr&eacute;es d&rsquo;adressage sont
+command&eacute;es par deux
+compteurs binaires synchrones 4 bits, A et B, tandis que les trois
+autres restantes sont inutilis&eacute;es et donc reli&eacute;es
+au 0V. Il y a
+huit lignes d&rsquo;adressage utilis&eacute;es, ce qui permet
+de m&eacute;moriser
+jusqu&rsquo;&agrave; 2 puissance 8, soit 256
+caract&egrave;res (256 octets). Ce
+nombre est largement suffisant pour cette application.</p>
+<p>Il y
+a &eacute;galement trois entr&eacute;es de contr&ocirc;le
+de la m&eacute;moire. L&rsquo;entr&eacute;e
+/CE qui permet d&rsquo;activer la puce, est reli&eacute;e au 0V
+car elle est
+active sur niveau bas. Ainsi la puce est en permanence
+s&eacute;lectionn&eacute;e.
+L&rsquo;entr&eacute;e /OE qui place les sorties en haute
+imp&eacute;dance lorsqu&rsquo;elle
+est &agrave; 1, est elle aussi reli&eacute;e en permanence au
+0V. Enfin, l&rsquo;entr&eacute;e
+la plus importante pour cette r&eacute;alisation est
+l&rsquo;entr&eacute;e /WE. Cette
+entr&eacute;e, essentielle &agrave; toute puce
+m&eacute;moire, permet de provoquer la
+m&eacute;morisation des donn&eacute;es pr&eacute;sentes sur
+les huit entr&eacute;es/sorties.
+Pour la m&eacute;moire utilis&eacute;e ici, ce
+ph&eacute;nom&egrave;ne de m&eacute;morisation se
+produit quand /WE est &agrave; niveau bas. Si /WE re&ccedil;oit
+un niveau haut,
+la puce est en mode lecture et pour une certaine adresse binaire, la
+puce transmet les donn&eacute;es correspondantes.</p>
+<p>La
+broche /WE est contr&ocirc;l&eacute;e par la partie logique du
+projet. Il en est
+de m&ecirc;me pour l&rsquo;entr&eacute;e
+d&rsquo;horloge /CPa du compteur binaire A
+contenu dans le circuit int&eacute;gr&eacute; 4520. Le compteur
+B, contenu dans
+le m&ecirc;me bo&icirc;tier, est boucl&eacute; sur le
+compteur A gr&acirc;ce &agrave; la liaison /CPb et Q3a.
+L&rsquo;entr&eacute;e d&rsquo;horloge CPa active sur front
+montant
+du compteur A est command&eacute;e par une broche de la table de
+caract&egrave;res, comme cela sera expliqu&eacute; par la
+suite. Enfin, il faut
+signaler que les entr&eacute;es de remise &agrave;
+z&eacute;ro des deux compteurs sont
+reli&eacute;es entre elles et &agrave; la partie logique.</p>
+<br />
+<br />
+<br />
+<ul>
+<li>
+<p>M&eacute;moire &laquo;&nbsp;Table de caract&egrave;res&nbsp;&raquo;</p>
+</li>
+</ul>
+<br />
+<br />
+<p>Cette
+m&eacute;moire poss&egrave;de les m&ecirc;mes
+caract&eacute;ristiques que la m&eacute;moire
+&laquo;&nbsp;message&nbsp;&raquo; mais elle est en plus
+dot&eacute;e d&rsquo;une pile de
+sauvegarde et d&rsquo;un circuit d&rsquo;&eacute;conomie
+d&rsquo;&eacute;nergie. Cela lui
+permet donc d&rsquo;&ecirc;tre plus facilement programmable
+qu&rsquo;une m&eacute;moire
+FLASH car elle se comporte comme une RAM avec sauvegarde en cas de
+coupure de l&rsquo;alimentation.</p>
+
+<p>Elle
+poss&egrave;de aussi 11 entr&eacute;es d&rsquo;adresse dont
+les deux derni&egrave;res, A9
+et A10 sont inutilis&eacute;es et donc reli&eacute;es au 0V.
+Les six entr&eacute;es
+allant de A3 jusqu&rsquo;&agrave; A8 servent &agrave;
+s&eacute;lectionner un caract&egrave;re
+dans la table de caract&egrave;re. Elles sont en fait
+reli&eacute;es directement
+aux entr&eacute;es/sorties de la
+m&eacute;moire&nbsp;&laquo;&nbsp;Message&nbsp;&raquo;
+qui
+peut donc indiquer &agrave; la table de caract&egrave;res ce
+qui doit &ecirc;tre
+affich&eacute;. Les trois premi&egrave;res entr&eacute;es,
+A0, A1 et A2 sont utilis&eacute;es
+pour d&eacute;terminer la COLONNE du caract&egrave;re
+s&eacute;lectionn&eacute; dans la
+m&eacute;moire. Il y a 8 combinaisons possibles pour ces
+entr&eacute;es, ce qui
+permet d&rsquo;avoir des caract&egrave;res
+s&rsquo;&eacute;talant sur 8 colonnes au
+maximum. Le fonctionnement est donc le suivant&nbsp;: un
+caract&egrave;re
+est demand&eacute; par la
+m&eacute;moire&nbsp;&laquo;&nbsp;Message&nbsp;&raquo;
+qui
+transmet l&rsquo;adresse correspondante aux entr&eacute;es
+A3~A8 de la table de
+caract&egrave;res. Le compteur binaire C fait d&eacute;filer
+les adresses des
+colonnes de ce caract&egrave;re sur les entr&eacute;es A0~A2.
+Sur les sorties de
+la m&eacute;moire &laquo;&nbsp;Table de
+caract&egrave;res&nbsp;&raquo; on
+r&eacute;cup&egrave;re des
+<i>z&eacute;ro</i> et des <i>un</i>
+logiques. Lorsqu&rsquo;une sortie est &agrave;
+<i>un</i>, la LED qui s&rsquo;y rattache
+s&rsquo;allume. Un <i>z&eacute;ro</i>
+provoque son extinction.</p>
+
+<p>Pour
+que chaque caract&egrave;re puisse avoir une largeur
+adapt&eacute;e, il a fallu
+recourir &agrave; une astuce. On remarque que les
+entr&eacute;es/sorties de la
+m&eacute;moire sont au nombre de 8, mais que seules 7 sorties sont
+utilis&eacute;es pour piloter les LED. La derni&egrave;re
+sortie est donc
+utilis&eacute;e ici comme signal &laquo;&nbsp;FIN du
+caract&egrave;re&nbsp;&raquo;.
+Lorsqu&rsquo;un caract&egrave;re est en cours de reproduction,
+cette 8&egrave; sortie
+pr&eacute;sente un <i>z&eacute;ro</i> logique.
+Quand la reproduction d&rsquo;un
+caract&egrave;re est termin&eacute;e, elle transmet un niveau
+haut. Ce signal
+provoque la remise &agrave; z&eacute;ro du compteur C, qui fait
+d&eacute;filer les
+adresses des colonnes du caract&egrave;re. Il incr&eacute;mente
+&eacute;galement le
+compteur A, ce qui provoque l&rsquo;apparition de
+l&rsquo;adresse binaire
+correspondant au caract&egrave;re suivant.</p>
+<figure>
+<a href="../../../images/Principe_de_fonctionnement.png">
+<img alt="Principe_de_fonctionnement" src="../../../images/Principe_de_fonctionnement_Petite.png">
+</a>
+<figcaption>Principe de fonctionnement de la table de caract&egrave;res</figcaption>
+</figure>
+<p></p>
+<figure>
+<a href="../../../images/Schema_global.png">
+<img alt="Schema_global" src="../../../images/Schema_global_Petite.png">
+</a>
+<figcaption>Sch&eacute;ma global&nbsp;: partie num&eacute;rique</figcaption>
+</figure>
+<p>Comme indiqu&eacute; sur le sch&eacute;ma, des r&eacute;sistances de protections sont ins&eacute;r&eacute;es entre les broches de la m&eacute;moire MEM2 et les anodes des LED.<br />
+Leurs valeurs ohmiques se d&eacute;terminent connaissant la tension de fonctionnement Vf des LED, leur intensit&eacute; de fonctionnement et la tension V apparaissant sur les broches de la puce MEM2.</p>
+<p>Pour d&eacute;terminer la valeur de Rp on applique la loi d'Ohm, et on trouve&nbsp;:</p>
+<p>Rp = (V - Vf) / If</p>
+<p>Ici, on consid&egrave;re que V vaut 5V.</p>
+<p>En consultant les donn&eacute;es fabricant, pour les LED vertes utilis&eacute;es par ce projet, on trouve&nbsp;: Vf = 2,5V et If = 20mA</p>
+<p>Pour les LED rouges utilis&eacute;es par ce projet&nbsp;: Vf=2V et If=40mA.</p>
+<p>Comme l'anode d'une LED rouge est reli&eacute;e &agrave; l'anode de la LED verte correspondante, il faut choisir la valeur de Rp la plus grande des deux pour &ecirc;tre s&ucirc;r d'avoir un fonctionnement normal des LED. On a pris comme valeur 220&Omega; afin de garantir une protection maximale.</p>
+<figure>
+<a href="../../../images/Cablage_des_LED.png">
+<img alt="Cablage_des_LED" src="../../../images/Cablage_des_LED.png">
+</a>
+<figcaption>Sch&eacute;ma du c&acirc;blage des LED</figcaption>
+</figure>
+<p>c) Partie en logique c&acirc;bl&eacute;e</p>
+<p>Cette partie de l&rsquo;ensemble &eacute;lectronique contient tout ce qui est n&eacute;cessaire pour contr&ocirc;ler les m&eacute;moires, les compteurs et les couleurs des LED.<br />
+De plus, des &eacute;l&eacute;ments tels qu&rsquo;un buzzer et une LED bicolore ont &eacute;t&eacute;s rajout&eacute;s.<br />
+Le buzzer &eacute;met un signal acoustique lorsqu&rsquo;un caract&egrave;re est saisi. Il faut donc lui joindre un circuit oscillateur.<br />
+La LED bicolore renseigne sur la couleur d&rsquo;un caract&egrave;re lors de la saisie.<br />
+Elle peut s&rsquo;illuminer en rouge ou en vert et poss&egrave;de aussi son circuit de commande.</p>
+<p>1) Monostables</p>
+<p>Les
+monostables pr&eacute;sents sur le projet servent &agrave;
+provoquer le passage
+bref &agrave; un niveau bas de l&rsquo;entr&eacute;e /WE de
+la m&eacute;moire contenant le
+message et l&rsquo;incr&eacute;mentation du compteur A. Cela
+permet de saisir
+un message dans cette m&eacute;moire, une adresse apr&egrave;s
+l&rsquo;autre. Ce
+processus de mise en m&eacute;moire puis
+d&rsquo;incr&eacute;mentation du compteur se
+d&eacute;clenche d&egrave;s qu&rsquo;une touche
+alphanum&eacute;rique est appuy&eacute;e. Le
+syst&egrave;me sait qu&rsquo;une touche est
+sollicit&eacute;e gr&acirc;ce &agrave; six diodes
+dont les anodes sont reli&eacute;es aux lignes A0 &agrave; A5
+du connecteur du
+clavier. Leurs cathodes sont rassembl&eacute;es et
+reli&eacute;es, via une
+r&eacute;sistance R2, de 1k&#8486;, &agrave;
+l&rsquo;entr&eacute;e de d&eacute;clenchement du premier
+monostable. Une autre r&eacute;sistance R1, de 10k&#8486;,
+ram&egrave;ne cette entr&eacute;e
+au 0V lorsque aucune touche n&rsquo;est appuy&eacute;e. Ce
+premier monostable,
+de type non red&eacute;clenchable, s&rsquo;active quand un
+front montant est
+appliqu&eacute; sur son entr&eacute;e, gr&acirc;ce
+&agrave; l&rsquo;inverseur U3A. Sa sortie est
+reli&eacute;e &agrave; la broche /WE de la m&eacute;moire
+&laquo;&nbsp;message&nbsp;&raquo;. On
+r&eacute;cup&egrave;re sur cette sortie un bref niveau bas qui
+entra&icirc;ne la
+m&eacute;morisation des donn&eacute;es binaires correspondant
+&agrave; la touche
+appuy&eacute;e au clavier. Enfin, il faut noter que ces monostables
+ont
+aussi un r&ocirc;le anti-rebond afin de filtrer les signaux
+transmis par
+les poussoirs du clavier.<br />
+
+Le
+temps T pendant lequel la sortie est &agrave; niveau bas est
+donn&eacute; par la
+relation&nbsp;:<br />
+
+T&asymp;0.69
+x R x C<br />
+
+R et C sont les valeurs de la r&eacute;sistance (en Ohm) et du
+condensateur (en Farad) d&eacute;terminant la temporisation.<br />
+
+Ici,
+on souhaite avoir une temporisation de 0.1seconde au maximum, afin
+que la proc&eacute;dure d&rsquo;enregistrement des
+donn&eacute;es soit rapide. En
+appliquant la relation pr&eacute;c&eacute;dente avec une
+r&eacute;sistance de 10k&#8486; et
+un condensateur de 10&micro;F, on obtient T&asymp; 0.07 sec, ce
+qui est
+compatible avec les caract&eacute;ristiques requises.<br />
+
+<br />
+
+La
+suite de la proc&eacute;dure d&rsquo;enregistrement
+d&rsquo;un caract&egrave;re se
+caract&eacute;rise par l&rsquo;incr&eacute;mentation du
+compteur A qui sert &agrave;
+l&rsquo;adressage de la m&eacute;moire message. Cette
+incr&eacute;mentation est
+assur&eacute;e par le second &eacute;l&eacute;ment
+monostable. Son entr&eacute;e de
+d&eacute;clenchement est reli&eacute;e &agrave; la sortie
+du premier monostable et est
+active sur front montant du fait de l&rsquo;inverseur U3C. La
+sortie, qui
+pr&eacute;sente un niveau bas pendant moins de 0.1 seconde,
+commande la
+broche d&rsquo;horloge /CPa du compteur A.</p>
+<figure>
+<a href="../../../images/Chronogrammes.png">
+<img alt="Chronogrammes" src="../../../images/Chronogrammes_Petite.png">
+</a>
+<figcaption>Chronogrammes pour expliquer le fonctionnement</figcaption>
+</figure>
+<p></p>
+<figure>
+<a href="../../../images/Monostables.png">
+<img alt="Monostables" src="../../../images/Monostables_Petite.png">
+</a>
+<figcaption>Sch&eacute;ma des monostables</figcaption>
+</figure>
+<p>2) G&eacute;n&eacute;rateur de signal acoustique</p>
+<p>Comme
+cela a d&eacute;j&agrave; &eacute;t&eacute;
+indiqu&eacute;, le projet est pourvu d&rsquo;un buzzer qui
+g&eacute;n&egrave;re un signal lorsqu&rsquo;un
+caract&egrave;re est saisi au clavier et mis
+en m&eacute;moire. Ce signal joue un r&ocirc;le de confirmation
+pour
+l&rsquo;utilisateur. Lorsqu&rsquo;il est &eacute;mis, on
+peut &ecirc;tre certain que le
+clavier est correctement raccord&eacute; au dispositif et que le
+bouton-poussoir a &eacute;t&eacute; appuy&eacute; une fois.
+Si jamais deux signaux se
+font entendre pour un appui, cela signifie que la touche a
+&eacute;t&eacute; mal
+appuy&eacute;e. A ce moment-la, on peut corriger &agrave;
+l&rsquo;aide du bouton
+&laquo;&nbsp;Remise &agrave;
+z&eacute;ro&nbsp;&raquo;. De plus, l&rsquo;absence de
+signal
+indique que la pile est trop faible, car ce signal n&rsquo;est
+g&eacute;n&eacute;r&eacute;
+qu&rsquo;&agrave; partir d&rsquo;une certaine tension de
+seuil &agrave; l&rsquo;alimentation.<br />
+
+<br />
+
+Cet
+oscillateur est r&eacute;alis&eacute; gr&acirc;ce
+&agrave; un astable contenant une porte
+NON-ET et un inverseur. L&rsquo;avantage est que l&rsquo;on
+dispose d&rsquo;une
+entr&eacute;e de commande qui, lorsqu&rsquo;elle est soumise
+&agrave; un niveau haut,
+permet l&rsquo;oscillation. Les composants d&eacute;terminant
+la fr&eacute;quence
+sont la r&eacute;sistance R1 et le condensateur C1. Le but de cet
+oscillateur est de produire un son caract&eacute;ris&eacute;
+par une fr&eacute;quence
+audible avoisinant les 1000 Hz. La fr&eacute;quence
+d&rsquo;oscillation d&rsquo;un
+tel montage est donn&eacute;e par&nbsp;:<br />
+
+<br />
+
+f=1/(0.65.R.C)<br />
+
+<br />
+
+En
+consid&eacute;rant que la valeur du condensateur C1 sera
+fix&eacute;e, un simple
+calcul permet de d&eacute;terminer la valeur de la
+r&eacute;sistance R1 pour
+obtenir la fr&eacute;quence voulue. Avec les composants
+utilis&eacute;s ici, la
+fr&eacute;quence de l&rsquo;oscillateur avoisine les 1500Hz. Le
+r&ocirc;le du
+transistor Q1 est de fournir un courant suffisant au buzzer, sans
+perturber l&rsquo;oscillateur.<br />
+
+<br />
+
+C&rsquo;est le circuit des
+monostables qui commande l&rsquo;entr&eacute;e de commande.</p>
+<figure>
+<a href="../../../images/Generateur_de_signal.png">
+<img alt="Generateur_de_signal" src="../../../images/Generateur_de_signal.png">
+</a>
+<figcaption>Sch&eacute;ma du g&eacute;n&eacute;rateur de signal acoustique</figcaption>
+</figure>
+<p>3) Oscillateur principal avec circuit de Marche/Arr&ecirc;t</p>
+<p>Pour fournir un signal d&rsquo;horloge au syst&egrave;me, un
+circuit astable
+faisant appel &agrave; une porte NON-ET et un inverseur logique a
+&eacute;t&eacute; mis
+&agrave; contribution. Cet oscillateur permet d&rsquo;assurer
+le d&eacute;filement
+des caract&egrave;res composant le message. Il est pourvu
+d&rsquo;une
+r&eacute;sistance variable AJ1 qui permet d&rsquo;influer sur
+la fr&eacute;quence
+d&rsquo;oscillation, et donc d&rsquo;agir sur la largeur
+apparente des
+caract&egrave;res lors de l&rsquo;affichage. Ce signal
+d&rsquo;horloge incr&eacute;mente
+le compteur C qui fait d&eacute;filer un caract&egrave;re
+colonne apr&egrave;s colonne.
+Rappelons que le passage au caract&egrave;re suivant se fait
+gr&acirc;ce au
+signal &laquo;&nbsp;FIN
+caract&egrave;re&nbsp;&raquo; transmis par la table de
+caract&egrave;res. La r&eacute;sistance R4 de 1k&#8486; sert de
+r&eacute;sistance &laquo;&nbsp;seuil&nbsp;&raquo;
+pour le r&eacute;glage de la fr&eacute;quence. Pour
+d&eacute;terminer la fr&eacute;quence on
+utilise la m&ecirc;me relation que pour le
+g&eacute;n&eacute;rateur de signal
+acoustique.<br />
+
+<br />
+
+Ceci permet de dire que la fr&eacute;quence minimale de cet
+oscillateur
+avoisine les 150Hz quand on a la r&eacute;sistance maximale de
+101k&#8486;, et
+d&eacute;passe les 15kHz pour la valeur maximale de la
+r&eacute;sistance, soit 1
+k&#8486;.<br />
+
+<br />
+
+Comme cet astable conditionne le fonctionnement du projet, il a fallu
+y rajouter un dispositif de commande qui est
+d&eacute;clench&eacute; par
+l&rsquo;utilisateur gr&acirc;ce &agrave; un poussoir. Pour
+ce faire, il a fallu
+faire appel au dernier compteur binaire contenu dans le second
+circuit CD4520. Il est utilis&eacute; simplement en tant que
+diviseur par
+deux de fr&eacute;quence. On peut alors parler de comportement
+similaire &agrave;
+une bascule T&nbsp;: la sortie change d&rsquo;&eacute;tat
+&agrave; chaque front
+montant pr&eacute;sent&eacute; sur
+l&rsquo;entr&eacute;e. Ceci permet
+d&rsquo;&eacute;viter d&rsquo;avoir
+&agrave; rajouter un circuit int&eacute;gr&eacute;, qui
+prend de la place et n&eacute;cessite
+une alimentation, pour obtenir le m&ecirc;me fonctionnement. Pour
+compl&eacute;ter ce dispositif, la cellule R1 et C1
+r&eacute;alise un circuit
+anti-rebond afin d&rsquo;&eacute;viter que la sortie ne change
+d&rsquo;&eacute;tat &agrave;
+chaque rebond lors de l&rsquo;appui du poussoir
+Marche/Arr&ecirc;t.<br />
+
+<br />
+
+Les compteurs A et B, contenus dans le m&ecirc;me circuit
+int&eacute;gr&eacute;,
+servent &agrave; adresser la m&eacute;moire contenant le
+message. Afin de
+synchroniser l&rsquo;affichage avec le d&eacute;placement, ils
+sont remis &agrave;
+z&eacute;ro par le signal transmis par un
+&laquo;&nbsp;balancier&nbsp;&raquo; qui
+d&eacute;tecte l&rsquo;arriv&eacute;e en fin de position
+lorsque le syst&egrave;me est
+agit&eacute; manuellement. Ces compteurs sont aussi remis
+&agrave; z&eacute;ro par le
+signal &laquo;&nbsp;FIN message&nbsp;&raquo; transmis
+par la m&eacute;moire contenant
+le message. Toutefois, cette remise &agrave; z&eacute;ro par
+&laquo;&nbsp;FIN
+message&nbsp;&raquo; ne doit s&rsquo;effectuer
+qu&rsquo;&agrave; la condition que le
+message soit en cours de reproduction, d&rsquo;o&ugrave; la
+porte ET r&eacute;alis&eacute;e
+avec deux NON-ET. En effet lors de l&rsquo;insertion du signal
+&laquo;&nbsp;FIN
+message&nbsp;&raquo; lors de la saisie au clavier, on provoque
+la mise &agrave;
+<i>un</i> de l&rsquo;entr&eacute;e FIN_Mess qui, si
+elle &eacute;tait directement
+reli&eacute;e aux entr&eacute;es de remise &agrave;
+z&eacute;ro des compteurs A et B,
+provoquerait leur r&eacute;initialisation
+pr&eacute;matur&eacute;ment, avant que
+l&rsquo;ordre&nbsp;&laquo;&nbsp;FIN
+message&nbsp;&raquo; n&rsquo;aie pu s&rsquo;enregistrer.<br />
+
+<br />
+
+L&rsquo;appui sur le bouton de Marche/Arr&ecirc;t provoque
+&eacute;galement la
+remise &agrave; z&eacute;ro des trois compteurs A, B et C afin
+de pr&eacute;parer
+l&rsquo;enregistrement d&rsquo;un message suivant et
+d&rsquo;&eacute;viter le blocage
+du compteur C sur une adresse de colonne d&rsquo;un
+caract&egrave;re, ce qui
+provoquerait l&rsquo;allumage permanent des LED. Enfin, le compteur
+C
+est aussi remis &agrave; z&eacute;ro si la ligne
+&laquo;&nbsp;FIN_Caract&nbsp;&raquo; passe
+&agrave; 1. Il faut rappeler que cette ligne est
+contr&ocirc;l&eacute;e par la
+derni&egrave;re sortie de la table de caract&egrave;res.<br />
+
+<br />
+
+Le balancier transmet son signal sur la
+ligne&nbsp;&laquo;&nbsp;Bal&nbsp;&raquo;,
+la sortie CPc incr&eacute;mente le compteur C sur front montant,
+MRa_b
+remet les compteurs A et B &agrave; z&eacute;ro tandis que MRc
+r&eacute;initialise C.</p>
+<figure>
+<a href="../../../images/Oscillateur.png">
+<img alt="Oscillateur" src="../../../images/Oscillateur_Petite.png">
+</a>
+<figcaption>Sch&eacute;ma de l'oscillateur principal</figcaption>
+</figure>
+<p>4) Circuit de contr&ocirc;le de la LED bicolore</p>
+<p>Pour faciliter la programmation d&rsquo;un message, le
+syst&egrave;me est
+pourvu d&rsquo;une diode &eacute;lectroluminescente bicolore
+&agrave; cathode
+commune. Elle peut s&rsquo;illuminer en vert ou en rouge et
+renseigne sur
+la couleur du caract&egrave;re saisi. Durant la reproduction du
+message,
+cette LED s&rsquo;&eacute;teint, pour ne pas perturber
+l&rsquo;affichage. Le
+circuit g&eacute;rant ceci est tr&egrave;s simple car il ne
+fait appel qu&rsquo;&agrave;
+deux transistors, tous deux de type PNP. Pour &eacute;tudier son
+fonctionnement, il y a trois cas.</p>
+<p>Cas
+1&nbsp;: Syst&egrave;me arr&ecirc;t&eacute; et
+bouton&nbsp;&laquo;&nbsp;COULEUR&nbsp;&raquo;
+du clavier enclench&eacute;</p>
+<p>Le fait que le syst&egrave;me ne reproduise pas de message impose
+qu&rsquo;un
+z&eacute;ro logique soit pr&eacute;sent sur la base de Q2, via
+la r&eacute;sistance R5.</p>
+<p>Ce transistor voit son collecteur reli&eacute;
+&agrave; la cathode commune
+de la LED bicolore et son &eacute;metteur est reli&eacute; au
+0V. On consid&egrave;re
+que Q2 se sature et que la cathode commune est alors reli&eacute;e
+au 0V.<br />
+
+<br />
+
+Comme
+le bouton &laquo;&nbsp;COULEUR&nbsp;&raquo; est
+enclench&eacute;, la ligne
+&laquo;&nbsp;COUL&nbsp;&raquo;
+est au potentiel de la pile, et la LED s&rsquo;allume en ROUGE car
+elle
+est reli&eacute;e au +9V via la r&eacute;sistance de protection
+R2.<br />
+
+<br />
+
+Dans
+le m&ecirc;me temps, le transistor Q1 est bloqu&eacute;, la
+diff&eacute;rence de
+potentiel entre l&rsquo;anode et la cathode de la LED verte est
+quasi-nulle et celle-ci ne brille pas.<br />
+
+<br />
+
+La
+broche I/O7 de la m&eacute;moire message est soumise &agrave;
+un <i>1</i>
+logique.</p>
+<p>Cas
+2&nbsp;: Syst&egrave;me arr&ecirc;t&eacute; et bouton
+&laquo;&nbsp;COULEUR&nbsp;&raquo;
+rel&acirc;ch&eacute;</p>
+<p>L&rsquo;interpr&eacute;tation pour Q2 est la m&ecirc;me que
+pr&eacute;c&eacute;demment et on
+consid&egrave;re que la LED bicolore voit sa cathode
+reli&eacute;e au 0V.<br />
+
+<br />
+
+Le bouton &laquo;&nbsp;COULEUR&nbsp;&raquo;
+n&rsquo;&eacute;tant pas appuy&eacute;, la ligne
+&laquo;&nbsp;COUL&nbsp;&raquo; est port&eacute;e au
+0V par la r&eacute;sistance R6. La LED
+rouge ne peut donc pas s&rsquo;allumer mais la base du transistor
+Q1 est
+aussi reli&eacute;e au 0V ce qui provoque l&rsquo;apparition du
++5V sur son
+&eacute;metteur &eacute;tant donn&eacute; que son
+collecteur est reli&eacute; au +5V. La LED
+verte peut donc s&rsquo;allumer.<br />
+
+<br />
+
+En parall&egrave;le, la broche I/O7 de la m&eacute;moire
+&laquo;&nbsp;Message&nbsp;&raquo;
+voit un z&eacute;ro logique du fait de la r&eacute;sistance R4.</p>
+<p>Cas 3&nbsp;:
+Syst&egrave;me reproduisant un message</p>
+<p>Comme le syst&egrave;me reproduit un message, la ligne Q0d
+pr&eacute;sente un
+&eacute;tat haut. Cela se r&eacute;percute sur la base de Q2
+qui devient bloqu&eacute;.
+La LED bicolore n&rsquo;ayant plus sa cathode reli&eacute;e au
+0V demeure
+&eacute;teinte.</p>
+<figure>
+<a href="../../../images/Controle.png">
+<img alt="Controle" src="../../../images/Controle_Petite.png">
+</a>
+<figcaption>Sch&eacute;ma du circuit de contr&ocirc;le de la LED bicolore</figcaption>
+</figure>
+<p>5) Gestion des couleurs et des interruptions des LED</p>
+<p>Les LEDs ultra lumineuses permettant de g&eacute;n&eacute;rer
+les caract&egrave;res
+sont organis&eacute;es en deux colonnes de sept LED&nbsp;: une rouge et
+une verte. Par s&eacute;lection d&rsquo;une de ces colonnes, le
+caract&egrave;re
+reproduit sera vert ou rouge. Comme les LED rouges sont
+l&eacute;g&egrave;rement
+espac&eacute;es des vertes, il n&rsquo;a pas
+&eacute;t&eacute; retenu de permettre aux deux
+colonnes d&rsquo;&ecirc;tre actives en m&ecirc;me temps,
+pour afficher du jaune.<br />
+
+<br />
+
+Afin d&rsquo;avoir un affichage correct des lettres, il a fallu
+ajouter
+un circuit permettant d&rsquo;interrompre l&rsquo;allumage des
+LED bri&egrave;vement durant la reproduction du message, et ce pour
+chaque
+colonne d&rsquo;un caract&egrave;re.</p>
+<figure>
+<a href="../../../images/Effet.png">
+<img alt="Effet" src="../../../images/Effet_Petite.png">
+</a>
+<figcaption>Effet du dispositif d'interruption</figcaption>
+</figure>
+<p>Le syst&egrave;me permettant de contr&ocirc;ler la
+s&eacute;lection d'une colonne de
+LED se base sur l'alimentation ou la coupure de l'alimentation de
+leurs cathodes. Les LED rouges ont leurs cathodes reli&eacute;es
+entre
+elles et au collecteur du transistor Q1. Si ce dernier est
+satur&eacute;,
+on peut consid&eacute;rer que les cathodes sont reli&eacute;es
+au 0V et que les
+LED rouges peuvent &ecirc;tre allum&eacute;es. Le principe est
+identique pour
+les LED vertes, contr&ocirc;l&eacute;es par Q2. Il est
+&agrave; rappeler que les
+anodes de chacune des LED sont reli&eacute;es aux sorties de la
+table de
+caract&egrave;res.<br />
+
+<br />
+
+Pour d&eacute;terminer quelle colonne doit &ecirc;tre
+activ&eacute;e, seules deux
+portes NON-ET ont &eacute;t&eacute; employ&eacute;es,
+formant un circuit logique
+correspondant &agrave; l'effet d&eacute;sir&eacute;. Ce
+circuit logique commande les
+deux transistors PNP Q1 et Q2. Le signal Q0c, qui provient du
+compteur C, sert de signal d'interruption et contr&ocirc;le
+l'entr&eacute;e
+&laquo;&nbsp;INT&nbsp;&raquo; du circuit logique de
+gestion de la couleur.
+Lorsqu'il est &agrave; niveau haut, les LED sont obligatoirement
+&eacute;teintes.
+Quand au signal &laquo;&nbsp;COUL&nbsp;&raquo;, il
+provient de la m&eacute;moire
+message et renseigne sur la couleur du caract&egrave;re
+&agrave; reproduire.</p>
+<figure>
+<a href="../../../images/Gestion.png">
+<img alt="Gestion" src="../../../images/Gestion.png">
+</a>
+<figcaption>Couleurs et interruptions</figcaption>
+</figure>
+<p></p>
+<figure>
+<a href="../../../images/Couleurs.png">
+<img alt="Couleurs" src="../../../images/Couleurs.png">
+</a>
+<figcaption>Sch&eacute;ma du circuit de gestion de la couleur</figcaption>
+</figure>
+<div class="commentaires"><a id="Endroits_des_commentaires"></a><p class="sous-titre_commentaires">Commentaires (1)</p><div class="commentaire">
+<div class="commentaire-haut">
+<div class="commentaire-haut-gauche">
+<p>zadok78</p></div>
+<div class="commentaire-haut-droite">
+<p>Le samedi 26 novembre 2011 &agrave; 22:55</p></div>
+</div>
+<div class="commentaire-bas">
+<p>Super ton site!</p></div>
+</div>
+<p class="sous-titre_ajouts">Ajouter un commentaire</p>
+<form id="contact" method="post" action="http://atrylec.com/elements/allures/commentaires/verification.php">
+<fieldset>
+<legend>
+Votre pseudo&nbsp;: 
+</legend>
+<p>
+<label for="pseudo">
+Pseudo&nbsp;: 
+</label>
+<input type="text" id="pseudo" name="pseudo" tabindex="1" required="required">
+</p>
+</fieldset>
+<fieldset>
+<legend>
+Votre commentaire&nbsp;: 
+</legend>
+<p>
+<label for="commentaire">
+Commentaire&nbsp;: 
+</label>
+<textarea id="commentaire" name="commentaire" tabindex="2" cols="50" rows="2" required="required">
+</textarea>
+</p>
+</fieldset>
+<div class="bouton_validation_commentaire">
+<input type="submit" name="Poster" value="Poster" />
+</div>
+</form>
+</div><div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="l_afficheur_a_quatorze_led.php%3Fselection=2.html#Haut_de_page">Je veux remonter !</a>
+</div>
+</section>
+<footer>
+<div class="liens">
+<ul>
+<li><a href="../../contact.php.html">ContaCT</a></li>
+</ul>
+</div>
+<div id="choix_style">
+<div class="presentation">Ravaler la fa&ccedil;ade&nbsp;:</div>
+<a href="l_afficheur_a_quatorze_led.php%3Fselection=1.html" title="Style 1"><div class="choix choix_bleu">&nbsp;</div></a><div class="choix choix_rouge_choisi">&nbsp;</div><a href="l_afficheur_a_quatorze_led.php%3Fselection=3.html" title="Style 3"><div class="choix choix_orange">&nbsp;</div></a></div>
+<div class="remarques">
+<p>Il ne faut pas dire&nbsp;: &laquo;&nbsp;Un bus non-croyant
+&nbsp;&raquo;, mais&nbsp;: &laquo;&nbsp;Un karat&eacute;
+&nbsp;&raquo;.</p>
+</div>
+<div class="visites">
+<img style="width: 15px; height: 15px;" alt="6_30" src="../../../images/6_30.png">   <img style="width: 15px; height: 15px;" alt="5_30" src="../../../images/5_30.png">   <img style="width: 15px; height: 15px;" alt="0_30" src="../../../images/0_30.png">   <img style="width: 15px; height: 15px;" alt="9_30" src="../../../images/9_30.png">   <img style="width: 15px; height: 15px;" alt="9_30" src="../../../images/9_30.png">   </div>
+</footer>
+</div>
+</body>
+</html>

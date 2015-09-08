@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>Lire une manette de NINTENDO NES</title>
+<meta name="description" content="Lire une manette de NINTENDO NES." />
+<meta name="keywords" content="atrylec electronique manette NINTENDO nes lire montage montages realisation realisations microcontroleur entrees sorties programmation code source langage c pic18f4550 pic microcontroleur tutoriel tutoriels exemple exemples cours" />
+<link rel="stylesheet" media="screen" type="text/css" title="Style 2" href="../../../elements/allures/style_2.css">
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-42331281-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+<body>
+<div id="page">
+<div id="haut">
+<header id="Haut_de_page">
+<div id="principale">
+<p class="titre_principal_haut">
+<a href="../../../index.php.html"><img style="width: 150px;" alt="Affichage_Atrylec_com" src="../../../images/Affichage_Atrylec_com.png" /><span class="invisible">Atrylec</span></a></p>
+<p class="sous-titre_haut">Vous n'&ecirc;tes pas seuls dans l'Univers !</p>
+</div>
+<div id="additionnelle">
+</div>
+</header>
+<nav>
+<ul id="navigation">
+<li><a href="../../../index.php.html" title="Accueil">Accueil</a></li>
+<li><a class="choisi" href="../index.php.html" title="Electronique">Electronique</a></li>
+<li><a href="../../radio/index.php%3Fnumero=0.html" title="Radio">Radio</a></li>
+<li><a href="../../origami/index.php.html" title="Origami">Origami</a></li>
+<li><a href="../../photographies/index.php%3Fnumero=0.html" title="Photographies">Photographies</a></li>
+<li><a href="../../le_grenier/index.php.html" title="Le grenier">Le grenier</a></li>
+<li><a href="../../contact.php.html" title="ContaCT">ContaCT</a></li>
+</ul>
+</nav>
+</div>
+<section>
+<div id="titre">
+<div id="titre_gauche">
+</div>
+<div id="titre_image">
+<img style="width: 100px; height: 100px;" alt="Transistor_100" src="../../../images/Transistor_100.png">
+</div>
+<div id="titre_texte">
+<p>/&nbsp;</p><h1>Lire une manette de NINTENDO NES</h1>
+</div>
+<div id="titre_droite">
+</div>
+</div>
+<div>
+<p id="introduction">Lire une manette de NINTENDO NES.</p>
+</div>
+<p>
+<a id="Liste_de_depart"></a>
+</p>
+<div>
+<div class="menu_article">
+<ul class="menu_article_principal">
+<li><a href="manette_nintendo_nes.php.html">Lire une manette de NINTENDO NES</a></li>
+</ul>
+<ul class="menu_article_secondaire">
+<li><a href="manette_nintendo_nes.php%3Fselection=2.html#Endroit_1-0-0">1) Pr&eacute;sentation</a></li>
+<li><a href="manette_nintendo_nes.php%3Fselection=2.html#Endroit_2-0-0">2) Investigations</a></li>
+<li><a href="manette_nintendo_nes.php%3Fselection=2.html#Endroit_3-0-0">3) Application</a></li>
+<li>
+<ul>
+<li><a href="manette_nintendo_nes.php%3Fselection=2.html#Endroit_3-1-0">3-1) Configuration mat&eacute;rielle</a></li>
+<li><a href="manette_nintendo_nes.php%3Fselection=2.html#Endroit_3-2-0">3-2) Programmation du microcontr&ocirc;leur</a></li>
+<li><a href="manette_nintendo_nes.php%3Fselection=2.html#Endroit_3-3-0">3-3) Les essais</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="manette_nintendo_nes.php%3Fselection=2.html#Haut_de_page">Je veux remonter !</a>&nbsp;|&nbsp;<a href="manette_nintendo_nes.php%3Fselection=2.html#Liste_de_depart">Liste</a>
+</div>
+<a id="Endroit_1-0-0"></a>
+<h2>1) Pr&eacute;sentation</h2>
+<p>Le &laquo;&nbsp;NES&nbsp;&raquo; est une console de jeux fabriqu&eacute;e par la firme japonaise NINTENDO.<br />
+&laquo;&nbsp;NES&nbsp;&raquo; est l'abr&eacute;viation anglaise de &laquo;&nbsp;<i>NINTENDO Entertainment System</i>&nbsp;&raquo;, que l'on peut traduire en fran&ccedil;ais par &laquo;&nbsp;Syst&egrave;me de Divertissement de NINTENDO&nbsp;&raquo;.<br />
+Cette console de jeux vid&eacute;os, sortie &agrave; partir de 1985 en Am&eacute;rique du Nord, a &eacute;t&eacute; un grand succ&egrave;s.<br />
+La manette qui &eacute;quipe cette console est de conception &eacute;lectronique simple.<br />
+Elle peut s'obtenir seule, par Internet.</p>
+<figure>
+<a href="../../../images/Face_avant_a_plat_manette_NINTENDO_NES.jpg">
+<img alt="Face_avant_a_plat_manette_NINTENDO_NES" src="../../../images/Face_avant_a_plat_manette_NINTENDO_NES_Petite.jpg">
+</a>
+<figcaption>Un sp&eacute;cimen de manette de NINTENDO NES, qui ne se doute pas encore de ce qu'il va lui arriver</figcaption>
+</figure>
+<div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="manette_nintendo_nes.php%3Fselection=2.html#Haut_de_page">Je veux remonter !</a>&nbsp;|&nbsp;<a href="manette_nintendo_nes.php%3Fselection=2.html#Liste_de_depart">Liste</a>
+</div>
+<a id="Endroit_2-0-0"></a>
+<h2>2) Investigations</h2>
+<br />
+<br />
+Afin de pouvoir utiliser cette manette dans des montages &eacute;lectroniques, il faut en ma&icirc;triser le fonctionnement.<br />
+Il s'agit donc d'ouvrir cette derni&egrave;re.<br />
+Pour ce faire, un petit tournevis cruciforme suffira.</p>
+<figure>
+<table border="0" cellpadding="2" cellspacing="1">
+<tbody>
+<tr>
+<td>
+<a href="../../../images/Vue_interieur_arriere_a_plat_manette_NINTENDO_NES.jpg">
+<img alt="Vue_interieur_arriere_a_plat_manette_NINTENDO_NES" src="../../../images/Vue_interieur_arriere_a_plat_manette_NINTENDO_NES_Petite.jpg">
+</a>
+</td>
+<td>
+<a href="../../../images/Vue_interieur_avant_detail_circuit_imprime_manette_NINTENDO_NES.jpg">
+<img alt="Vue_interieur_avant_detail_circuit_imprime_manette_NINTENDO_NES" src="../../../images/Vue_interieur_avant_detail_circuit_imprime_manette_NINTENDO_NES_Petite.jpg">
+</a>
+</td>
+<td>
+<a href="../../../images/Vue_interieur_arriere_detail_circuit_imprime_manette_NINTENDO_NES.jpg">
+<img alt="Vue_interieur_arriere_detail_circuit_imprime_manette_NINTENDO_NES" src="../../../images/Vue_interieur_arriere_detail_circuit_imprime_manette_NINTENDO_NES_Petite.jpg">
+</a>
+</td>
+</tr>
+</tbody>
+</table>
+<figcaption>Ce que cache la manette dans ses entrailles</figcaption>
+</figure>
+<p>La manette ne renferme qu'un seul circuit int&eacute;gr&eacute;&nbsp;: un composant qui porte la r&eacute;f&eacute;rence TC4021BP, qui est un registre &agrave; d&eacute;calage &agrave; huit &eacute;tages, avec la possibilit&eacute; d'avoir un chargement asynchrone d'une donn&eacute;e, pour chacun de ces huit &eacute;tages.<br />
+Cela tombe bien, car il y a pr&eacute;sis&eacute;ment huit touches sur la manette.<br />
+Sur la photographie du centre, les endroits noirs qui ne correspondent pas &agrave; l'emplacement des huit touches sont des r&eacute;sistances de tirage imprim&eacute;es.<br />
+Elles servent &agrave; relier chacune des entr&eacute;es &laquo;&nbsp;PI1&nbsp;&raquo; &agrave; &laquo;&nbsp;PI8&nbsp;&raquo; du circuit int&eacute;gr&eacute; &agrave; la tension positive d'alimentation, ce qui correspond &agrave; un &laquo;&nbsp;1&nbsp;&raquo; logique, quand une touche n'est pas appuy&eacute;e.<br />
+Ceci permet d'&eacute;viter d'avoir un niveau logique ind&eacute;termin&eacute; sur les entr&eacute;es &laquo;&nbsp;PI1&nbsp;&raquo; &agrave; &laquo;&nbsp;PI8&nbsp;&raquo;.<br />
+Lorsqu'une touche est appuy&eacute;e, la broche correspondante est reli&eacute;e &agrave; la masse du circuit, ce qui produit un &laquo;&nbsp;0&nbsp;&raquo; logique.<br />
+Le circuit int&eacute;gr&eacute; TC4021BP permet d'acc&eacute;der aux trois derniers &eacute;tages du registre &agrave; d&eacute;calage, &agrave; savoir &laquo;&nbsp;Q6&nbsp;&raquo;, &laquo;&nbsp;Q7&nbsp;&raquo; et &laquo;&nbsp;Q8&nbsp;&raquo;, mais seul le dernier &eacute;tage est utilis&eacute; par la console de jeux vid&eacute;os.</p>
+<p>Lorsque l'entr&eacute;e &laquo;&nbsp;P/~S&nbsp;&raquo; est soumise &agrave; un &laquo;&nbsp;1&nbsp;&raquo; logique, chacun des huit &eacute;tages du registre &agrave; d&eacute;calage prend un &eacute;tat bas si la touche correspondante est appuy&eacute;e, ou un &eacute;tat haut sinon.<br />
+La sortie &laquo;&nbsp;Q8&nbsp;&raquo; repr&eacute;sente donc l'&eacute;tat de la touche connect&eacute;e &agrave; la broche &laquo;&nbsp;PI8&nbsp;&raquo;.<br />
+Pour obtenir l'&eacute;tat des autres touches &agrave; partir de la seule information logique de la sortie &laquo;&nbsp;Q8&nbsp;&raquo;, il faut mettre l'entr&eacute;e &laquo;&nbsp;P/~S&nbsp;&raquo;&nbsp; &agrave; un &laquo;&nbsp;0&nbsp;&raquo; logique.<br />
+A chaque fois qu'un front montant est appliqu&eacute; sur l'entr&eacute;e &laquo;&nbsp;CLOCK&nbsp;&raquo; du circuit int&eacute;gr&eacute;, le contenu du registre &agrave; d&eacute;calage est d&eacute;cal&eacute; vers la sortie &laquo;&nbsp;Q8&nbsp;&raquo;, ce qui fait qu'apr&egrave;s le premier front montant sur l'entr&eacute;e &laquo;&nbsp;CLOCK&nbsp;&raquo;, &laquo;&nbsp;Q8&nbsp;&raquo; repr&eacute;sente d&eacute;sormais l'&eacute;tat logique de la touche connect&eacute;e &agrave; &laquo;&nbsp;PI7&nbsp;&raquo;, puis, apr&egrave;s le deuxi&egrave;me front montant, celui de la touche connect&eacute;e &agrave; &laquo;&nbsp;PI6&nbsp;&raquo;.<br />
+Il faut donc un total de sept fronts montants &agrave;&nbsp;appliquer sur l'entr&eacute;e &laquo;&nbsp;CLOCK&nbsp;&raquo;, pour obtenir l'&eacute;tat de toutes les touches de la manette.<br />
+Les fronts montants doivent &ecirc;tre suffisament proches pour permettre d'actualiser fr&eacute;quemment cette information.</p>
+<p><img alt="LIEN_EXTERNE" src="../../../images/LIEN_EXTERNE.png" />&nbsp;<a href="http://pdf.dzsc.com/TC4/TC4021.pdf" title="Ouvrir le lien &laquo;&nbsp;http://pdf.dzsc.com/TC4/TC4021.pdf&nbsp;&raquo; dans une nouvelle fen&ecirc;tre, ou dans un nouvel onglet" target="_blank">La <i>datasheet</i> du circuit int&eacute;gr&eacute; TC4021</a></p>
+<p>Le tableau suivant indique les connexions entre la manette et le circuit int&eacute;gr&eacute; de registre &agrave; d&eacute;calage.</p>
+<table border="1" cellpadding="2" cellspacing="2">
+<tbody>
+<tr>
+<th>Bouton</th>
+<th>Entr&eacute;e du circuit int&eacute;gr&eacute; TC4021</th>
+<th>Position du bit</th>
+</tr>
+<tr>
+<td>Croix directionnelle, DROITE</td>
+<td>PI1 - Broche 7</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Croix directionnelle, GAUCHE</td>
+<td>PI2 - Broche 6</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Croix directionnelle, BAS</td>
+<td>PI3 - Broche 5</td>
+<td>3</td>
+</tr>
+<tr>
+<td>Croix directionnelle, HAUT</td>
+<td>PI4 - Broche 4</td>
+<td>4</td>
+</tr>
+<tr>
+<td>START</td>
+<td>PI5 - Broche 13</td>
+<td>5</td>
+</tr>
+<tr>
+<td>SELECT</td>
+<td>PI6 - Broche 14</td>
+<td>6</td>
+</tr>
+<tr>
+<td>B</td>
+<td>PI7 - Broche 15</td>
+<td>7</td>
+</tr>
+<tr>
+<td>A</td>
+<td>PI8 - Broche 1</td>
+<td>8</td>
+</tr>
+</tbody>
+</table>
+<div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="manette_nintendo_nes.php%3Fselection=2.html#Haut_de_page">Je veux remonter !</a>&nbsp;|&nbsp;<a href="manette_nintendo_nes.php%3Fselection=2.html#Liste_de_depart">Liste</a>
+</div>
+<a id="Endroit_3-0-0"></a>
+<h2>3) Application</h2>
+<p>L'application propos&eacute;e ici lit l'&eacute;tat logique de chacune des huit touches de la manette de NINTENDO NES, et l'affiche &eacute;ventuellement sur un afficheur alphanum&eacute;rique, command&eacute par un bus I2C.</p>
+<div class="valorisations">
+<div class="informations">
+<div class="informations-gauche">
+<img style="width: 32px; height: 32px;" alt="documentaires-des-proprietes-icone-5224-32" src="../../../images/documentaires-des-proprietes-icone-5224-32.png">
+</div>
+<div class="informations-droite">
+<p>Remarque&nbsp;: Il n'est pas n&eacute;cessaire d'utiliser ce montage, et d'y  int&eacute;grer un afficheur LCD.<br />
+L'ensemble qui va suivre est donn&eacute; &agrave; titre d'exemple.<br />
+L'emploi d'un afficheur alphanum&eacute;rique permet de visualiser le bon fonctionnement du dispositif, mais des LED pourraient tout aussi bien faire l'affaire.</p></div>
+</div>
+</div>
+<a id="Endroit_3-1-0"></a>
+<h3>3-1) Configuration mat&eacute;rielle</h3>
+<p>Pour en savoir plus sur le pilotage d'un afficheur alphanum&eacute;rique avec un bus I2C, ouvrez <a href="http://www.audiovore.zxq.net/electronique/i2c_et_lcd/i2c_et_lcd_page_1.php">ce lien</a>.<br />
+L'afficheur alphanum&eacute;rique, et le syst&egrave;me qui le commande, ne sont l&agrave; que pour mettre en &eacute;vidence la bonne lecture de l'&eacute;tat des touches de la manette de la NINTENDO NES par le microcontr&ocirc;leur PIC18F4550.<br />
+Cet afficheur, &agrave; commande parall&egrave;le, a ses broches &laquo;&nbsp;R/S&nbsp;&raquo;, &laquo;&nbsp;R/W&nbsp;&raquo;, &laquo;&nbsp;E&raquo;, et &laquo;&nbsp;DB0&nbsp;&raquo; &agrave; &laquo;&nbsp;DB7&nbsp;&raquo;,&nbsp; reli&eacute;es &agrave; un circuit int&eacute;gr&eacute; MCP23017.<br />
+Ce dernier est un expanseur de ports commandable par un bus I2C, et les connexions entre ce circuit et le microcontr&ocirc;leur PIC18F4550 sont indiqu&eacute;es dans le tableau ci-apr&egrave;s.<br />
+Les broches &laquo;&nbsp;RB1 / AN10 / INT1 / SCK / SCL&nbsp;&raquo; et &laquo;&nbsp;RB0 / AN12 / INT0 / FLT0 / SDI / SDA&nbsp;&raquo; sont reli&eacute;es au + 5 volts par des r&eacute;sistances de tirage de 10 kilo Ohms.</p>
+<table border="1" cellpadding="2" cellspacing="2">
+<tbody>
+<tr>
+<th>Microcontr&ocirc;leur PIC18F4550</th>
+<td>+5V</td>
+<td>0V</td>
+<td>RB1/AN10/INT1/SCK/SCL</td>
+<td>RB0/AN12/INT0/FLT0/SDI/SDA</td>
+</tr>
+<tr>
+<th>Circuit int&eacute;gr&eacute; MCP23017</th>
+<td>+5V</td>
+<td>0V</td>
+<td>SCL</td>
+<td>SDA</td>
+</tr>
+</tbody>
+</table>
+<p>Le tableau suivant montre comment est connect&eacute; le microcontr&ocirc;leur PIC18F4550 &agrave; la manette de NINTENDO NES.</p>
+<table border="1" cellpadding="2" cellspacing="2">
+<tbody>
+<tr>
+<th>Microcontr&ocirc;leur PIC18F4550</th>
+<td>+5V</td>
+<td>0V</td>
+<td>RD0/SPP0</td>
+<td>RD1/SPP1</td>
+<td>RD2/SPP2</td>
+</tr>
+<tr>
+<th>Manette de NINTENDO NES</th>
+<td>+5V - Fil blanc</td>
+<td>0V - Fil brun</td>
+<td>CLOCK - Fil rouge</td>
+<td>P/~S - Fil orange</td>
+<td>Q8 - Fil jaune</td>
+</tr>
+</tbody>
+</table>
+<figure>
+<a href="../../../images/Vue_montage_complet_manette_NINTENDO_NES.jpg">
+<img alt="Vue_montage_complet_manette_NINTENDO_NES" src="../../../images/Vue_montage_complet_manette_NINTENDO_NES_Petite.jpg">
+</a>
+<figcaption>Le montage &eacute;lectronique</figcaption>
+</figure>
+<a id="Endroit_3-2-0"></a>
+<h3>3-2) Programmation du microcontr&ocirc;leur</h3>
+<p>Les exemples de fonctions qui suivent sont &eacute;crites en langage C pour fonctionner avec le compilateur MCC18.<br />
+Ils peuvent n&eacute;anmoins &ecirc;tre utilis&eacute;s pour d'autres compilateurs.</p>
+<p>Il faut indiquer au compilateur, avec des directives du type &laquo;&nbsp;<i>#define</i>&nbsp;&raquo;, &agrave; quoi correspondent les termes &laquo;&nbsp;CLOCK&nbsp;&raquo;, &laquo;&nbsp;PS&nbsp;&raquo; et &laquo;&nbsp;Q8&nbsp;&raquo;.<br />
+Dans l'exemple pr&eacute;sent&eacute; ici, cela a &eacute;t&eacute; fait au d&eacute;but du fichier source, comme suit&nbsp;:</p>
+<p>#define CLOCK PORTDbits.RD0<br />
+#define PS PORTDbits.RD1<br />
+#define Q8 PORTDbits.RD2</p>
+<p>Il convient &eacute;galement d'indiquer que les broches correspondant aux signaux &laquo;&nbsp;CLOCK&nbsp;&raquo; et &laquo;&nbsp;PS&nbsp;&raquo; sont utilis&eacute;es en sorties, et que la broche correspondant au signal &laquo;&nbsp;Q8&nbsp;&raquo; est utilis&eacute;e comme entr&eacute;e.<br />
+Dans le cas pr&eacute;sent, cela revient &agrave; ajouter les trois lignes suivantes&nbsp;:</p>
+<p>TRISDbits.TRISD0 = 0;<br />
+TRISDbits.TRISD1 = 0;<br />
+TRISDbits.TRISD2 = 1;</p>
+<p>La fonction pr&eacute;sent&eacute;e dans l'exemple 2 n&eacute;c&eacute;ssite la cr&eacute;ation d'un tableau global, nomm&eacute; &laquo;&nbsp;touches&nbsp;&raquo;, et qui contient huit donn&eacute;es de type &laquo <i>unsigned char</i>&nbsp;&raquo;.<br />
+Ce tableau est &agrave; d&eacute;clarer comme ceci&nbsp;:</p>
+<p>unsigned char touches[8] = {0};</p>
+<div class="codes-sources-c">
+<div class="codes-sources-c-haut">
+<p>Code source&nbsp;: Exemple 1 - Affichage de l'&eacute;tat de chacune des huit touches de la manette</p>
+</div>
+<div class="codes-sources-c-bas">
+<pre><span style="color: rgb(0, 0, 0);">
+<strong><span style="color:#0000FF;">void</span></strong> AfficherLectureManette(<strong><span style="color:#0000FF;">void</span></strong>)
+{
+	<strong><span style="color:#0000FF;">int</span></strong> k;
+	PS = <span style="color:#FF0000;">1</span>;   <em><span style="color:#009900;">/* M&eacute;morisation des &eacute;tats logiques correspondants
+	&agrave; chacune des huit touches de la manette */</span></em>
+
+	Delai(<span style="color:#FF0000;">3</span>);
+	PS = <span style="color:#FF0000;">0</span>;
+	<strong><span style="color:#0000FF;">if</span></strong>(Q8 == <span style="color:#FF0000;">0</span>)   <em><span style="color:#009900;">/* L&#039;&eacute;tat logique de la sortie &laquo;&nbsp;Q8&nbsp;&raquo; repr&eacute;sente
+	celui de la touche reli&eacute;e
+	&agrave; la broche &laquo;&nbsp;PI8&nbsp;&raquo; */</span></em>
+
+	{
+		AfficheCaractere(<span style="color:#CC00FF;">&#039;0&#039;</span>);
+	}
+	<strong><span style="color:#0000FF;">else</span></strong>
+	{
+		AfficheCaractere(<span style="color:#CC00FF;">&#039;1&#039;</span>);
+	}
+	CLOCK = <span style="color:#FF0000;">1</span>;   <em><span style="color:#009900;">/* Envoi d&#039;un front montant
+	sur l&#039;entr&eacute;e &laquo;&nbsp;CLOCK&nbsp;&raquo; du registre 
+	&agrave; d&eacute;calage */</span></em>
+
+	Delai(<span style="color:#FF0000;">3</span>);
+	CLOCK = <span style="color:#FF0000;">0</span>;
+	<strong><span style="color:#0000FF;">for</span></strong>(k = <span style="color:#FF0000;">0</span>; k &lt; <span style="color:#FF0000;">7</span>; k++)   <em><span style="color:#009900;">/* Il faut envoyer
+	sept fronts montants pour lire
+	tout le contenu du registre &agrave; d&eacute;calage */</span></em>
+
+	{
+		<strong><span style="color:#0000FF;">if</span></strong>(Q8 == <span style="color:#FF0000;">0</span>)   <em><span style="color:#009900;">/* L&#039;&eacute;tat logique de la sortie &laquo;&nbsp;Q8&nbsp;&raquo; repr&eacute;sente
+		celui de la touche reli&eacute;e
+		&agrave; la broche &laquo;&nbsp;PI(8 - k - 1)&nbsp;&raquo; */</span></em>
+		{
+		AfficheCaractere(<span style="color:#CC00FF;">&#039;0&#039;</span>);
+		}
+		<strong><span style="color:#0000FF;">else</span></strong>
+		{
+		AfficheCaractere(<span style="color:#CC00FF;">&#039;1&#039;</span>);
+		}
+		CLOCK = <span style="color:#FF0000;">1</span>;   <em><span style="color:#009900;">/* Envoi d&#039;un front montant
+		sur l&#039;entr&eacute;e &laquo;&nbsp;CLOCK&nbsp;&raquo; du registre 
+		&agrave; d&eacute;calage */</span></em>
+
+	Delai(<span style="color:#FF0000;">3</span>);
+	CLOCK = <span style="color:#FF0000;">0</span>;
+	}
+}
+
+</span>
+</pre>
+</div>
+</div>
+<div class="codes-sources-c">
+<div class="codes-sources-c-haut">
+<p>Code source&nbsp;: Exemple 2 - Enregistrement de l'&eacute;tat de chacune des huit touches dans un tableau</p>
+</div>
+<div class="codes-sources-c-bas">
+<pre><span style="color: rgb(0, 0, 0);">
+<pre><strong><span style="color: rgb(0, 0, 255);">void</span></strong> EnregistrerLectureTableau(<strong><span style="color: rgb(0, 0, 255);">void</span></strong>)
+{
+	<strong><span style="color: rgb(0, 0, 255);">int</span></strong> k;
+	PS = <span style="color: rgb(255, 0, 0);">1</span>;   <em><span style="color: rgb(0, 153, 0);">/* M&eacute;morisation des &eacute;tats logiques correspondants
+	&agrave; chacune des huit touches de la manette */</span></em>
+
+	Delai(<span style="color: rgb(255, 0, 0);">3</span>);
+	PS = <span style="color: rgb(255, 0, 0);">0</span>;   
+	touches[<span style="color: rgb(255, 0, 0);">8</span>] = Q8;   <em><span style="color: rgb(0, 153, 0);">/* L'&eacute;tat logique de la sortie &laquo;&nbsp;Q8&nbsp;&raquo; repr&eacute;sente
+	celui de la touche reli&eacute;e
+	&agrave; la broche &laquo;&nbsp;PI8&nbsp;&raquo; */</span></em>
+	CLOCK = <span style="color: rgb(255, 0, 0);">1</span>;   <em><span style="color: rgb(0, 153, 0);">/* Envoi d'un front montant
+	sur l'entr&eacute;e &laquo;&nbsp;CLOCK&nbsp;&raquo; du registre 
+	&agrave; d&eacute;calage */</span></em>
+	Delai(<span style="color: rgb(255, 0, 0);">3</span>);
+	CLOCK = <span style="color: rgb(255, 0, 0);">0</span>;
+	<strong><span style="color: rgb(0, 0, 255);">for</span></strong>(k = <span style="color: rgb(255, 0, 0);">7</span>; k &gt; <span style="color: rgb(255, 0, 0);">0</span>; k--)   <em><span style="color: rgb(0, 153, 0);">/* Il faut envoyer
+	sept fronts montants pour lire
+	tout le contenu du registre &agrave; d&eacute;calage */</span></em>
+	{
+		touches[k] = Q8;   <em><span style="color: rgb(0, 153, 0);">/* L'&eacute;tat logique de la sortie &laquo;&nbsp;Q8&nbsp;&raquo; repr&eacute;sente
+		celui de la touche reli&eacute;e
+		&agrave; la broche &laquo;&nbsp;PI(8 - k - 1)&nbsp;&raquo; */</span></em>
+		CLOCK = <span style="color: rgb(255, 0, 0);">1</span>;   <em><span style="color: rgb(0, 153, 0);">/* Envoi d'un front montant
+		sur l'entr&eacute;e &laquo;&nbsp;CLOCK&nbsp;&raquo; du registre 
+		&agrave; d&eacute;calage */</span></em>
+		Delai(<span style="color: rgb(255, 0, 0);">3</span>);
+		CLOCK = <span style="color: rgb(255, 0, 0);">0</span>;
+	}
+}
+
+</span>
+</pre>
+</div>
+</div>
+<div class="codes-sources-c">
+<div class="codes-sources-c-haut">
+<p>Code source&nbsp;: Exemple 3 - R&eacute;cup&eacute;ration de l'&eacute;tat de chacune des huit touches dans une variable</p>
+</div>
+<div class="codes-sources-c-bas">
+<pre><span style="color: rgb(0, 0, 0);">
+<pre><strong><span style="color: rgb(0, 0, 255);">unsigned</span></strong> <strong><span style="color: rgb(0, 0, 255);">char</span></strong> ObtenirLectureVariable(<strong><span style="color: rgb(0, 0, 255);">void</span></strong>)
+{
+	<strong><span style="color: rgb(0, 0, 255);">int</span></strong> k;
+	<strong><span style="color: rgb(0, 0, 255);">unsigned</span></strong> <strong><span style="color: rgb(0, 0, 255);">char</span></strong> valeur = <span style="color: rgb(255, 0, 0);">0</span>;
+	PS = <span style="color: rgb(255, 0, 0);">1</span>;   <em><span style="color: rgb(0, 153, 0);">/* M&eacute;morisation des &eacute;tats logiques correspondants
+	&agrave; chacune des huit touches de la manette */</span></em>
+
+	Delai(<span style="color: rgb(255, 0, 0);">3</span>);
+	PS = <span style="color: rgb(255, 0, 0);">0</span>;   
+	valeur |= (Q8 &lt;&lt; <span style="color: rgb(255, 0, 0);">7</span>);   <em><span style="color: rgb(0, 153, 0);">/* L'&eacute;tat logique de la sortie &laquo;&nbsp;Q8&nbsp;&raquo; repr&eacute;sente
+	celui de la touche reli&eacute;e
+	&agrave; la broche &laquo;&nbsp;PI8&nbsp;&raquo; */</span></em>
+	CLOCK = <span style="color: rgb(255, 0, 0);">1</span>;   <em><span style="color: rgb(0, 153, 0);">/* Envoi d'un front montant
+	sur l'entr&eacute;e &laquo;&nbsp;CLOCK&nbsp;&raquo; du registre 
+	&agrave; d&eacute;calage */</span></em>
+
+	Delai(<span style="color: rgb(255, 0, 0);">3</span>);
+	CLOCK = <span style="color: rgb(255, 0, 0);">0</span>;
+	<strong><span style="color: rgb(0, 0, 255);">for</span></strong>(k = <span style="color: rgb(255, 0, 0);">7</span>; k &gt; <span style="color: rgb(255, 0, 0);">0</span>; k--)   <em><span style="color: rgb(0, 153, 0);">/* Il faut envoyer
+	sept fronts montants pour lire
+	tout le contenu du registre &agrave; d&eacute;calage */</span></em>
+	{
+		valeur |= (Q8 &lt;&lt; (k - <span style="color: rgb(255, 0, 0);">1</span>));   <em><span style="color: rgb(0, 153, 0);">/* L'&eacute;tat logique de la sortie &laquo;&nbsp;Q8&nbsp;&raquo; repr&eacute;sente
+		celui de la touche reli&eacute;e
+		&agrave; la broche &laquo;&nbsp;PI(8 - k - 1)&nbsp;&raquo; */</span></em>
+
+		CLOCK = <span style="color: rgb(255, 0, 0);">1</span>;   <em><span style="color: rgb(0, 153, 0);">/* Envoi d'un front montant
+		sur l'entr&eacute;e &laquo;&nbsp;CLOCK&nbsp;&raquo; du registre 
+		&agrave; d&eacute;calage */</span></em>
+		Delai(<span style="color: rgb(255, 0, 0);">3</span>);
+		CLOCK = <span style="color: rgb(255, 0, 0);">0</span>;
+	}
+	<strong><span style="color: rgb(0, 0, 255);">return</span></strong> valeur;
+}
+
+</span>
+</pre>
+</div>
+</div>
+<a id="Endroit_3-3-0"></a>
+<h3>3-3) Les essais</h3>
+<p>L'afficheur alphanum&eacute;rique indique la valeur des bits obtenus en sortie du registre &agrave; d&eacute;calage.<br />
+Le huiti&egrave;me bit est affich&eacute; &agrave; gauche.<br />
+L'affichage d'un &laquo;&nbsp;0&nbsp;&raquo; correspond &agrave; l'appui d'une touche, et l'affichage d'un &laquo;&nbsp;1&nbsp;&raquo; correspond &agrave; une touche qui n'est pas appuy&eacute;e.</p>
+<figure>
+<table style="text-align: left; width: 100px;" border="0" cellpadding="2" cellspacing="1">
+<tbody>
+<tr>
+<td>
+<a href="../../../images/Essai_touche_HAUT_detail_montage_manette_NINTENDO_NES.jpg">
+<img alt="Essai_touche_HAUT_detail_montage_manette_NINTENDO_NES" src="../../../images/Essai_touche_HAUT_detail_montage_manette_NINTENDO_NES_Petite.jpg">
+</a>
+</td>
+<td>
+<a href="../../../images/Essai_touche_START_detail_montage_manette_NINTENDO_NES.jpg">
+<img alt="Essai_touche_START_detail_montage_manette_NINTENDO_NES" src="../../../images/Essai_touche_START_detail_montage_manette_NINTENDO_NES_Petite.jpg">
+</a>
+</td>
+<td>
+<a href="../../../images/Essai_touches_DROITE_et_START_detail_montage_manette_NINTENDO_NES.jpg">
+<img alt="Essai_touches_DROITE_et_START_detail_montage_manette_NINTENDO_NES" src="../../../images/Essai_touches_DROITE_et_START_detail_montage_manette_NINTENDO_NES_Petite.jpg">
+</a>
+</td>
+</tr>
+</tbody>
+</table>
+<figcaption>Appui sur la touche &laquo;&nbsp;HAUT&nbsp;&raquo;, appui sur la touche &laquo;&nbsp;START&nbsp;&raquo;, appui simultan&eacute; sur les touches &laquo;&nbsp;DROITE&nbsp;&raquo; et &laquo;&nbsp;START&nbsp;&raquo; et &laquo;&nbsp;B&nbsp;&raquo;</figcaption>
+</figure>
+<div>
+<div class="menu_article">
+<ul class="menu_article_principal">
+<li><a href="manette_nintendo_nes.php.html">Lire une manette de NINTENDO NES</a></li>
+</ul>
+<ul class="menu_article_secondaire">
+<li><a href="manette_nintendo_nes.php%3Fselection=2.html#Endroit_1-0-0">1) Pr&eacute;sentation</a></li>
+<li><a href="manette_nintendo_nes.php%3Fselection=2.html#Endroit_2-0-0">2) Investigations</a></li>
+<li><a href="manette_nintendo_nes.php%3Fselection=2.html#Endroit_3-0-0">3) Application</a></li>
+<li>
+<ul>
+<li><a href="manette_nintendo_nes.php%3Fselection=2.html#Endroit_3-1-0">3-1) Configuration mat&eacute;rielle</a></li>
+<li><a href="manette_nintendo_nes.php%3Fselection=2.html#Endroit_3-2-0">3-2) Programmation du microcontr&ocirc;leur</a></li>
+<li><a href="manette_nintendo_nes.php%3Fselection=2.html#Endroit_3-3-0">3-3) Les essais</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="commentaires"><a id="Endroits_des_commentaires"></a><p class="sous-titre_commentaires">Commentaires (0)</p><p class="sous-titre_ajouts">Ajouter un commentaire</p>
+<form id="contact" method="post" action="http://atrylec.com/elements/allures/commentaires/verification.php">
+<fieldset>
+<legend>
+Votre pseudo&nbsp;: 
+</legend>
+<p>
+<label for="pseudo">
+Pseudo&nbsp;: 
+</label>
+<input type="text" id="pseudo" name="pseudo" tabindex="1" required="required">
+</p>
+</fieldset>
+<fieldset>
+<legend>
+Votre commentaire&nbsp;: 
+</legend>
+<p>
+<label for="commentaire">
+Commentaire&nbsp;: 
+</label>
+<textarea id="commentaire" name="commentaire" tabindex="2" cols="50" rows="2" required="required">
+</textarea>
+</p>
+</fieldset>
+<div class="bouton_validation_commentaire">
+<input type="submit" name="Poster" value="Poster" />
+</div>
+</form>
+</div><div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="manette_nintendo_nes.php%3Fselection=2.html#Haut_de_page">Je veux remonter !</a>
+</div>
+</section>
+<footer>
+<div class="liens">
+<ul>
+<li><a href="../../contact.php.html">ContaCT</a></li>
+</ul>
+</div>
+<div id="choix_style">
+<div class="presentation">Ravaler la fa&ccedil;ade&nbsp;:</div>
+<a href="manette_nintendo_nes.php%3Fselection=1.html" title="Style 1"><div class="choix choix_bleu">&nbsp;</div></a><div class="choix choix_rouge_choisi">&nbsp;</div><a href="manette_nintendo_nes.php%3Fselection=3.html" title="Style 3"><div class="choix choix_orange">&nbsp;</div></a></div>
+<div class="remarques">
+<p>Il ne faut pas dire&nbsp;: &laquo;&nbsp;Une convolution de sentiments
+&nbsp;&raquo;, mais&nbsp;: &laquo;&nbsp;Un filtre d'amour
+&nbsp;&raquo;.</p>
+</div>
+<div class="visites">
+<img style="width: 15px; height: 15px;" alt="6_30" src="../../../images/6_30.png">   <img style="width: 15px; height: 15px;" alt="5_30" src="../../../images/5_30.png">   <img style="width: 15px; height: 15px;" alt="0_30" src="../../../images/0_30.png">   <img style="width: 15px; height: 15px;" alt="9_30" src="../../../images/9_30.png">   <img style="width: 15px; height: 15px;" alt="9_30" src="../../../images/9_30.png">   </div>
+</footer>
+</div>
+</body>
+</html>

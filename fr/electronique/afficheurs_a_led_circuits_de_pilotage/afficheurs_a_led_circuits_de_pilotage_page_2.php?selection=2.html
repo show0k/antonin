@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>Afficheurs &agrave; LED&nbsp;: Circuits de pilotage - Utilisation de composants discrets</title>
+<meta name="description" content="M&eacute;thodes permettant le pilotage d'afficheurs &agrave; LED &agrave; l'aide de composants &eacute;lectroniques discrets." />
+<meta name="keywords" content="atrylec electronique afficheur led 7 segments sept matrice 8 cablage huit multiplexage charlieplexage multiplexing charlieplexing pilote driver max7219 max7221 tlc5940 essai test schema schemas montage montages realisation realisations microcontroleur programmation code source langage c stm32discovery stm 32 discovery stm32vldiscovery stm 32 vl discovery stm32f100rb exemple projet configurer" />
+<link rel="stylesheet" media="screen" type="text/css" title="Style 2" href="../../../elements/allures/style_2.css">
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-42331281-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+<body>
+<div id="page">
+<div id="haut">
+<header id="Haut_de_page">
+<div id="principale">
+<p class="titre_principal_haut">
+<a href="../../../index.php.html"><img style="width: 150px;" alt="Affichage_Atrylec_com" src="../../../images/Affichage_Atrylec_com.png" /><span class="invisible">Atrylec</span></a></p>
+<p class="sous-titre_haut">Vous n'&ecirc;tes pas seuls dans l'Univers !</p>
+</div>
+<div id="additionnelle">
+</div>
+</header>
+<nav>
+<ul id="navigation">
+<li><a href="../../../index.php.html" title="Accueil">Accueil</a></li>
+<li><a class="choisi" href="../index.php.html" title="Electronique">Electronique</a></li>
+<li><a href="../../radio/index.php%3Fnumero=0.html" title="Radio">Radio</a></li>
+<li><a href="../../origami/index.php.html" title="Origami">Origami</a></li>
+<li><a href="../../photographies/index.php%3Fnumero=0.html" title="Photographies">Photographies</a></li>
+<li><a href="../../le_grenier/index.php.html" title="Le grenier">Le grenier</a></li>
+<li><a href="../../contact.php.html" title="ContaCT">ContaCT</a></li>
+</ul>
+</nav>
+</div>
+<section>
+<div id="titre">
+<div id="titre_gauche">
+</div>
+<div id="titre_image">
+<img style="width: 100px; height: 100px;" alt="Transistor_100" src="../../../images/Transistor_100.png">
+</div>
+<div id="titre_texte">
+<p>/&nbsp;</p><h1>Afficheurs &agrave; LED&nbsp;: Circuits de pilotage - Page 2</h1>
+</div>
+<div id="titre_droite">
+</div>
+</div>
+<div>
+<p id="introduction">Utilisation de composants discrets.<br />
+Les composants d'usage g&eacute;n&eacute;rique peuvent &ecirc;tre utilis&eacute;s pour piloter des afficheurs &agrave; LED.</p>
+</div>
+<p>
+<a id="Liste_de_depart"></a>
+</p>
+<div>
+<div class="menu_article">
+<ul class="menu_article_principal">
+<li><a href="afficheurs_a_led_circuits_de_pilotage_page_1.php.html">Afficheurs &agrave; LED&nbsp;: Circuits de pilotage</a></li>
+<li><ul>
+<li><a href="afficheurs_a_led_circuits_de_pilotage_page_1.php.html">G&eacute;n&eacute;ralit&eacute;s</a></li>
+<li><a class="choisi" href="afficheurs_a_led_circuits_de_pilotage_page_2.php.html">Utilisation de composants discrets</a></li>
+<li><a href="afficheurs_a_led_circuits_de_pilotage_page_3.php.html">Utilisation de circuits int&eacute;gr&eacute;s sp&eacute;cifiques</a></li>
+</ul></li>
+</ul>
+<ul class="menu_article_secondaire">
+<li><a href="afficheurs_a_led_circuits_de_pilotage_page_2.php%3Fselection=2.html#Endroit_1-0-0">1) Mettre en place un c&acirc;blage direct</a></li>
+<li>
+<ul>
+<li><a href="afficheurs_a_led_circuits_de_pilotage_page_2.php%3Fselection=2.html#Endroit_1-1-0">1-1) Avec un CD4511</a></li>
+<li><a href="afficheurs_a_led_circuits_de_pilotage_page_2.php%3Fselection=2.html#Endroit_1-2-0">1-2) Avec un CD4543</a></li>
+<li><a href="afficheurs_a_led_circuits_de_pilotage_page_2.php%3Fselection=2.html#Endroit_1-3-0">1-3) Avec un CD4033</a></li>
+</ul>
+</li>
+<li><a href="afficheurs_a_led_circuits_de_pilotage_page_2.php%3Fselection=2.html#Endroit_2-0-0">2) Mettre en place un multiplexage</a></li>
+<li><a href="afficheurs_a_led_circuits_de_pilotage_page_2.php%3Fselection=2.html#Endroit_3-0-0">3) Mettre en place un charlieplexage</a></li>
+</ul>
+</div>
+</div>
+<div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="afficheurs_a_led_circuits_de_pilotage_page_2.php%3Fselection=2.html#Haut_de_page">Je veux remonter !</a>&nbsp;|&nbsp;<a href="afficheurs_a_led_circuits_de_pilotage_page_2.php%3Fselection=2.html#Liste_de_depart">Liste</a>
+</div>
+<a id="Endroit_1-0-0"></a>
+<h2>1) Mettre en place un c&acirc;blage direct</h2>
+<p>Pour ne piloter qu'un seul afficheur &agrave; cathode commune, &agrave; l'aide d'un
+composant num&eacute;rique, il est possible de relier de
+fa&ccedil;on permanente son point commun &agrave; la masse<br />
+Les anodes de ses LED, en s&eacute;ries avec des
+r&eacute;sistances de limitation du courant, sont alors reli&eacute;es &agrave; des
+broches de sorties.</p>
+<p></p>
+<a id="Endroit_1-1-0"></a>
+<h3>1-1) Avec un CD4511</h3>
+<p>La &laquo;&nbsp;S&eacute;rie 4000&nbsp;&raquo;, qui est une vieille
+connaissance parmi les r&eacute;f&eacute;rences de circuits
+int&eacute;gr&eacute;s logiques, comporte plusieurs composants
+qui sont destin&eacute;s au pilotage d'afficheurs 7 segments
+&agrave; LED.</p>
+<p>Le CD4511 permet le d&eacute;codage vers un afficheur 7 segments
+&agrave; LED, ainsi que la m&eacute;morisation des
+donn&eacute;es &agrave; d&eacute;coder, l'extinction de
+l'afficheur, et l' test de l'afficheur.<br />
+Le test de l'afficheur consiste &agrave; l'allumage de tous ses
+segments, afin de rep&eacute;rer d'&eacute;ventuels segments
+d&eacute;fectueux, qui ne s'allumeraient pas, ou moins bien.</p>
+<p>La <i>datasheet</i> du d&eacute;codeur BCD vers 7 segments CD4511, adapt&eacute; aux afficheurs &agrave; LED&nbsp;:</p>
+<p><img alt="LIEN_EXTERNE" src="../../../images/LIEN_EXTERNE.png" />&nbsp;<a href="http://www.ti.com/lit/ds/symlink/cd4511b.pdf" title="Ouvrir le lien &laquo;&nbsp;http://www.ti.com/lit/ds/symlink/cd4511b.pdf&nbsp;&raquo; dans une nouvelle fen&ecirc;tre, ou dans un nouvel onglet" target="_blank">http://www.ti.com/lit/ds/symlink/cd4511b.pdf</a></p>
+<figure>
+<a href="../../../images/SCHEMA_EXEMPLE_DECODAGE_AFFICHEUR_1_CHIFFRE.png">
+<img alt="SCHEMA_EXEMPLE_DECODAGE_AFFICHEUR_1_CHIFFRE" src="../../../images/SCHEMA_EXEMPLE_DECODAGE_AFFICHEUR_1_CHIFFRE_Petite.png">
+</a>
+<figcaption>Sch&eacute;ma &eacute;lectronique d'un d&eacute;codage d'affichage 7 segments &agrave; cathodes communes, effectu&eacute; &agrave; l'aide d'un circuit int&eacute;gr&eacute; CD4511</figcaption>
+</figure>
+<div class="valorisations">
+<div class="programmes">
+<div class="programmes_gauche">
+<img style="width: 32px; height: 32px;" alt="fleche-bas-telecharger-icone-9594-32" src="../../../images/fleche-bas-telecharger-icone-9594-32.png">
+</div>
+<div class="programmes_droite">
+<p>D&eacute;codage possible d'un afficheur 7 segments &agrave; cathodes communes&nbsp;: Sch&eacute;ma &eacute;lectronique<br />
+Logiciel de dession de sch&eacute;mas &eacute;lectroniques&nbsp;: EAGLE 6.4.0<br />
+<a href="../../../elements/allures/valorisations/programmes.php%3Fprogramme=afficheurs_a_led_circuits_de_pilotage_page_2+1+1">T&eacute;l&eacute;charger le fichier<span>Effectuez un clic droit, puis s&eacute;lectionnez l'option &laquo;&nbsp;Enregistrer la cible du lien sous...&nbsp;&raquo;, pour t&eacute;l&eacute;charger le fichier</span></a> (130.56 Ko)</p></div>
+</div>
+</div>
+<a id="Endroit_1-2-0"></a>
+<h3>1-2) Avec un CD4543</h3>
+<p>A titre d'information, un composant similaire permet de piloter des
+afficheurs 7 segments &agrave; cristaux liquides - LCD.<br />
+Il est pr&eacute;vu pour pouvoir g&eacute;rer les
+caract&eacute;ristiques de ces afficheurs, qui sont, entre autres,
+la n&eacute;c&eacute;ssit&eacute; d'inverser en permanence
+la tension qui est appliqu&eacute;e aux bornes des segments,
+accompagn&eacute; de l'envoi et de l'absorbtion de courants
+&eacute;lectriques mod&eacute;r&eacute;s.<br />
+Ils ne peut pas &ecirc;tre utilis&eacute; de fa&ccedil;on
+directe pour le pilotage d'afficheurs &agrave; LED, qui ne
+n&eacute;c&eacute;ssitent pas d'inversion de la tension, et qui
+consomment plus de courant &eacute;lectrique.</p>
+<p>La <i>datasheet</i> du d&eacute;codeur BCD vers 7 segments CD4543, adapt&eacute; aux afficheurs LCD&nbsp;:</p>
+<p><img alt="LIEN_EXTERNE" src="../../../images/LIEN_EXTERNE.png" />&nbsp;<a href="http://www.ti.com/lit/ds/symlink/cd4543b.pdf" title="Ouvrir le lien &laquo;&nbsp;http://www.ti.com/lit/ds/symlink/cd4543b.pdf&nbsp;&raquo; dans une nouvelle fen&ecirc;tre, ou dans un nouvel onglet" target="_blank">http://www.ti.com/lit/ds/symlink/cd4543b.pdf</a></p>
+<a id="Endroit_1-3-0"></a>
+<h3>1-3) Avec un CD4033</h3>
+<p>Le CD4033 est un circuit int&eacute;gr&eacute; qui int&egrave;gre un compteur de type BCD et un d&eacute;codeur BCD vers 7 segments.</p>
+<p>La <i>datasheet</i> du compteur BCD et d&eacute;codeur BCD vers 7 segments CD4033, adapt&eacute; aux afficheurs &agrave; LED&nbsp;:</p>
+<p><img alt="LIEN_EXTERNE" src="../../../images/LIEN_EXTERNE.png" />&nbsp;<a href="http://www.ti.com/lit/ds/symlink/cd4033b.pdf" title="Ouvrir le lien &laquo;&nbsp;http://www.ti.com/lit/ds/symlink/cd4033b.pdf&nbsp;&raquo; dans une nouvelle fen&ecirc;tre, ou dans un nouvel onglet" target="_blank">http://www.ti.com/lit/ds/symlink/cd4033b.pdf</a></p>
+<div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="afficheurs_a_led_circuits_de_pilotage_page_2.php%3Fselection=2.html#Haut_de_page">Je veux remonter !</a>&nbsp;|&nbsp;<a href="afficheurs_a_led_circuits_de_pilotage_page_2.php%3Fselection=2.html#Liste_de_depart">Liste</a>
+</div>
+<a id="Endroit_2-0-0"></a>
+<h2>2) Mettre en place un multiplexage</h2>
+<p>Pour piloter plusieurs afficheurs &agrave; cathode commune, il est pr&eacute;f&eacute;rable de mettre en place un multiplexage.<br />
+Cela n&eacute;c&eacute;ssite de pouvoir relier &agrave; tour de r&ocirc;le, pour chaque afficheur, son point commun &agrave; la masse.<br />
+Cette op&eacute;ration peut s'effectuer &agrave; l'aide de transistors, command&eacute;s par une broche du composant qui contr&ocirc;le l'ensemble.</p>
+<p>Les connexions des cathodes et des anodes sont &agrave; inverser si ce sont des afficheurs &agrave; anodes communes qui sont utilis&eacute;s.</p>
+<figure>
+<a href="../../../images/SCHEMA_EXEMPLE_MULTIPLEXAGE_AFFICHEURS_4_CHIFFRES.png">
+<img alt="SCHEMA_EXEMPLE_MULTIPLEXAGE_AFFICHEURS_4_CHIFFRES" src="../../../images/SCHEMA_EXEMPLE_MULTIPLEXAGE_AFFICHEURS_4_CHIFFRES_Petite.png">
+</a>
+<figcaption>Sch&eacute;ma &eacute;lectronique d'un multiplexage possible, sans d&eacute;codeur, de 4 afficheurs 7 segments &agrave; cathodes communes</figcaption>
+</figure>
+<p>Affichage multiplex&eacute;, sans d&eacute;codeur BCD vers 7 segments</p>
+<p>1) Pr&eacute;senter la donn&eacute;e qui correspond au symbole &agrave; afficher sur l'afficheur s&eacute;lectionn&eacute;.<br />
+Les donn&eacute;es sont envoy&eacute;es sur les connexions &laquo;&nbsp;A_a&nbsp;&raquo; &agrave; &laquo;&nbsp;A_g&nbsp;&raquo;, pour les symboles, et &laquo;&nbsp;A_P&nbsp;&raquo; pour le point d&eacute;cimal.<br />
+Ces connexions sont reli&eacute;es aux anodes des afficheurs 7 segments.<br />
+2) Activer l'afficheur s&eacute;lectionn&eacute;. Cela consiste &agrave; relier sa cathode &agrave; la masse.<br />
+Pour ce faire, il faut envoyer un &laquo; 1 &raquo; logique sur la broche de s&eacute;lection de la cathode correspondante,
+nomm&eacute;es &laquo;&nbsp;C_1&nbsp;&raquo; &agrave; &laquo;&nbsp;C_4&nbsp;&raquo;.<br />
+Un seul afficheur doit &ecirc;tre s&eacute;lectionn&eacute;, au maximum, &agrave; chaque instant.<br />
+3) Laisser l'afficheur activ&eacute; pendant un d&eacute;lai suffisament long pour que son allumage soit per&ccedil;u par les yeux.<br />
+4) D&eacute;sactiver l'afficheur s&eacute;lectionn&eacute;.<br />
+5) Revenir au point 1), pour l'afficheur suivant.<br />
+6) Une fois que tous les afficheurs ont &eacute;t&eacute; s&eacute;lectionn&eacute;s, revenir au point 1), pour le premier chiffre.</p>
+<div class="valorisations">
+<div class="programmes">
+<div class="programmes_gauche">
+<img style="width: 32px; height: 32px;" alt="fleche-bas-telecharger-icone-9594-32" src="../../../images/fleche-bas-telecharger-icone-9594-32.png">
+</div>
+<div class="programmes_droite">
+<p>Multiplexage possible, sans d&eacute;codeur, de 4 afficheurs 7 segments &agrave; cathodes communes&nbsp;: Sch&eacute;ma &eacute;lectronique<br />
+Logiciel de dession de sch&eacute;mas &eacute;lectroniques&nbsp;: EAGLE 6.4.0<br />
+<a href="../../../elements/allures/valorisations/programmes.php%3Fprogramme=afficheurs_a_led_circuits_de_pilotage_page_2+2+1">T&eacute;l&eacute;charger le fichier<span>Effectuez un clic droit, puis s&eacute;lectionnez l'option &laquo;&nbsp;Enregistrer la cible du lien sous...&nbsp;&raquo;, pour t&eacute;l&eacute;charger le fichier</span></a> (101.39 Ko)</p></div>
+</div>
+</div>
+<p>Affichage multiplex&eacute;, avec d&eacute;codeur BCD vers 7 segments</p>
+<p>1) Pr&eacute;senter la donn&eacute;e BCD et la donn&eacute;e du point d&eacute;cimal qui correspondent au symbole &agrave; afficher sur l'afficheur s&eacute;lectionn&eacute;.<br />
+La donn&eacute;e BCD est envoy&eacute;e sur les connexions &laquo; A &raquo; &agrave; &laquo; D &raquo;, pour les symboles BCD, et sur &laquo;&nbsp;P&nbsp;&raquo; pour le point d&eacute;cimal.<br />
+Le bit de poids fort se trouve sur la broche &laquo; A &raquo;.<br />
+Le circuit int&eacute;gr&eacute; CD40511 se charge d'envoyer des donn&eacute;es coh&eacute;rentes aux anodes des afficheurs 7 segments destin&eacute;es &agrave; former des symboles.<br />
+Seule la connexion d&eacute;di&eacute;e au point d&eacute;cimal est reli&eacute;e aux anodes correspondantes des afficheurs 7 segments.<br />
+2) M&eacute;moriser la donn&eacute;e BCD en agissant sur l'entr&eacute;e &laquo;&nbsp;LE &raquo;.<br />
+3) Activer ou non le point d&eacute;cimal.<br />
+4) Activer l'afficheur s&eacute;lectionn&eacute;.<br />
+Cela consiste &agrave; relier sa cathode &agrave; la masse.<br />
+Pour ce faire, il faut envoyer un &laquo; 1 &raquo; logique sur la broche de s&eacute;lection de la cathode correspondante, nomm&eacute;es &laquo;&nbsp;C_1&nbsp;&raquo; &agrave; &laquo;&nbsp;C_4&nbsp;&raquo;.<br />
+Un seul afficheur doit &ecirc;tre s&eacute;lectionn&eacute;, au maximum, &agrave; chaque instant.<br />
+5) Laisser l'afficheur activ&eacute; pendant un d&eacute;lai suffisament long pour que son allumage soit per&ccedil;u par les yeux.<br />
+6) D&eacute;sactiver l'afficheur s&eacute;lectionn&eacute;.<br />
+7) Revenir au point 1), pour l'afficheur suivant.<br />
+8) Une fois que tous les afficheurs ont &eacute;t&eacute; s&eacute;lectionn&eacute;s, revenir au point 1), pour le premier chiffre.</p>
+<p>L'entr&eacute;e &laquo;&nbsp;LE&nbsp;&raquo; est aussi appel&eacute;e &laquo;&nbsp;~STROBE&nbsp;&raquo;.</p>
+<p>L'entr&eacute;e &laquo;&nbsp;~BL&nbsp;&raquo; - &laquo;&nbsp;Blanking&nbsp;&raquo; , qui est active &agrave; l'&eacute;tat bas, sert &agrave; &eacute;teindre tous les segments pilot&eacute;s par le circuit int&eacute;gr&eacute; CD4511.</p>
+<p>L'entr&eacute;e &laquo;&nbsp;~LT&nbsp;&raquo; - &laquo;&nbsp;Lamp Test&nbsp;&raquo;, qui est &eacute;galement active &agrave; l'&eacute;tat bas, et qui est prioritaire sur l'entr&eacute;e &laquo;&nbsp;~BL&nbsp;&raquo; , sert &agrave; tester tous les segments pilot&eacute;s par le circuit int&eacute;gr&eacute; CD4511 en les allumant.<br />
+Cela peut &ecirc;tre utile pour r&eacute;aliser un clignotement de symboles ou une modulation de l'intensit&eacute; lumineuse per&ccedil;ue de ceux-ci.</p>
+<figure>
+<a href="../../../images/SCHEMA_EXEMPLE_DECODAGE_MULTIPLEXAGE_AFFICHEUR_4_CHIFFRES.png">
+<img alt="SCHEMA_EXEMPLE_DECODAGE_MULTIPLEXAGE_AFFICHEUR_4_CHIFFRES" src="../../../images/SCHEMA_EXEMPLE_DECODAGE_MULTIPLEXAGE_AFFICHEUR_4_CHIFFRES_Petite.png">
+</a>
+<figcaption>Sch&eacute;ma &eacute;lectronique d'un multiplexage, avec d&eacute;codeur, d'affichage 7 segments &agrave; cathodes communes, effectu&eacute; &agrave; l'aide d'un circuit int&eacute;gr&eacute; CD4511</figcaption>
+</figure>
+<div class="valorisations">
+<div class="programmes">
+<div class="programmes_gauche">
+<img style="width: 32px; height: 32px;" alt="fleche-bas-telecharger-icone-9594-32" src="../../../images/fleche-bas-telecharger-icone-9594-32.png">
+</div>
+<div class="programmes_droite">
+<p>Multiplexage possible, avec d&eacute;codeur, d'un afficheur 7 segments &agrave; cathodes communes&nbsp;: Sch&eacute;ma &eacute;lectronique<br />
+Logiciel de dession de sch&eacute;mas &eacute;lectroniques&nbsp;: EAGLE 6.4.0<br />
+<a href="../../../elements/allures/valorisations/programmes.php%3Fprogramme=afficheurs_a_led_circuits_de_pilotage_page_2+3+1">T&eacute;l&eacute;charger le fichier<span>Effectuez un clic droit, puis s&eacute;lectionnez l'option &laquo;&nbsp;Enregistrer la cible du lien sous...&nbsp;&raquo;, pour t&eacute;l&eacute;charger le fichier</span></a> (174.2 Ko)</p></div>
+</div>
+</div>
+<p>Il est recommand&eacute; de ne pas d&eacute;passer le nombre limite de 8 afficheurs multiplex&eacute;s.<br />
+Cela risquerait de produire un effet de scintillement des afficheurs, qui s'ajouterait &agrave; une baisse de luminosit&eacute; trop importante de ces derniers.</p>
+<div class="valorisations">
+<div class="informations">
+<div class="informations-gauche">
+<img style="width: 32px; height: 32px;" alt="documentaires-des-proprietes-icone-5224-32" src="../../../images/documentaires-des-proprietes-icone-5224-32.png">
+</div>
+<div class="informations-droite">
+<p>Il existe des microcontr&ocirc;leurs qui int&egrave;grent un, ou m&ecirc;me plusieurs p&eacute;riph&eacute;riques de pilotages d'afficheurs LCD ou &agrave; LED.<br />
+Cela permet d'&eacute;viter de devoir g&eacute;rer le multiplexage dans la programmation, car celui-ci est alors pris en charge par le p&eacute;riph&eacute;rique.</p></div>
+</div>
+</div>
+<p></p>
+<div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="afficheurs_a_led_circuits_de_pilotage_page_2.php%3Fselection=2.html#Haut_de_page">Je veux remonter !</a>&nbsp;|&nbsp;<a href="afficheurs_a_led_circuits_de_pilotage_page_2.php%3Fselection=2.html#Liste_de_depart">Liste</a>
+</div>
+<a id="Endroit_3-0-0"></a>
+<h2>3) Mettre en place un charlieplexage</h2>
+<p>Le charlieplexage n&eacute;cessite, pour qu'il soit efficace en terme de restriction du nombre de broches utilis&eacute;es, la possibilit&eacute; de placer celles-ci dans l'&eacute;tat de haute imp&eacute;dance.</p>
+<div>
+<div class="menu_article">
+<ul class="menu_article_principal">
+<li><a href="afficheurs_a_led_circuits_de_pilotage_page_1.php.html">Afficheurs &agrave; LED&nbsp;: Circuits de pilotage</a></li>
+<li><ul>
+<li><a href="afficheurs_a_led_circuits_de_pilotage_page_1.php.html">G&eacute;n&eacute;ralit&eacute;s</a></li>
+<li><a class="choisi" href="afficheurs_a_led_circuits_de_pilotage_page_2.php.html">Utilisation de composants discrets</a></li>
+<li><a href="afficheurs_a_led_circuits_de_pilotage_page_3.php.html">Utilisation de circuits int&eacute;gr&eacute;s sp&eacute;cifiques</a></li>
+</ul></li>
+</ul>
+<ul class="menu_article_secondaire">
+<li><a href="afficheurs_a_led_circuits_de_pilotage_page_2.php%3Fselection=2.html#Endroit_1-0-0">1) Mettre en place un c&acirc;blage direct</a></li>
+<li>
+<ul>
+<li><a href="afficheurs_a_led_circuits_de_pilotage_page_2.php%3Fselection=2.html#Endroit_1-1-0">1-1) Avec un CD4511</a></li>
+<li><a href="afficheurs_a_led_circuits_de_pilotage_page_2.php%3Fselection=2.html#Endroit_1-2-0">1-2) Avec un CD4543</a></li>
+<li><a href="afficheurs_a_led_circuits_de_pilotage_page_2.php%3Fselection=2.html#Endroit_1-3-0">1-3) Avec un CD4033</a></li>
+</ul>
+</li>
+<li><a href="afficheurs_a_led_circuits_de_pilotage_page_2.php%3Fselection=2.html#Endroit_2-0-0">2) Mettre en place un multiplexage</a></li>
+<li><a href="afficheurs_a_led_circuits_de_pilotage_page_2.php%3Fselection=2.html#Endroit_3-0-0">3) Mettre en place un charlieplexage</a></li>
+</ul>
+</div>
+</div>
+<div class="commentaires"><a id="Endroits_des_commentaires"></a><p class="sous-titre_commentaires">Commentaires (0)</p><p class="sous-titre_ajouts">Ajouter un commentaire</p>
+<form id="contact" method="post" action="http://atrylec.com/elements/allures/commentaires/verification.php">
+<fieldset>
+<legend>
+Votre pseudo&nbsp;: 
+</legend>
+<p>
+<label for="pseudo">
+Pseudo&nbsp;: 
+</label>
+<input type="text" id="pseudo" name="pseudo" tabindex="1" required="required">
+</p>
+</fieldset>
+<fieldset>
+<legend>
+Votre commentaire&nbsp;: 
+</legend>
+<p>
+<label for="commentaire">
+Commentaire&nbsp;: 
+</label>
+<textarea id="commentaire" name="commentaire" tabindex="2" cols="50" rows="2" required="required">
+</textarea>
+</p>
+</fieldset>
+<div class="bouton_validation_commentaire">
+<input type="submit" name="Poster" value="Poster" />
+</div>
+</form>
+</div><div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="afficheurs_a_led_circuits_de_pilotage_page_2.php%3Fselection=2.html#Haut_de_page">Je veux remonter !</a>
+</div>
+</section>
+<footer>
+<div class="liens">
+<ul>
+<li><a href="../../contact.php.html">ContaCT</a></li>
+</ul>
+</div>
+<div id="choix_style">
+<div class="presentation">Ravaler la fa&ccedil;ade&nbsp;:</div>
+<a href="afficheurs_a_led_circuits_de_pilotage_page_2.php%3Fselection=1.html" title="Style 1"><div class="choix choix_bleu">&nbsp;</div></a><div class="choix choix_rouge_choisi">&nbsp;</div><a href="afficheurs_a_led_circuits_de_pilotage_page_2.php%3Fselection=3.html" title="Style 3"><div class="choix choix_orange">&nbsp;</div></a></div>
+<div class="remarques">
+<p>Il ne faut pas dire&nbsp;: &laquo;&nbsp;L'interruption, c'est &agrave; prendre ou &agrave; laisser
+&nbsp;&raquo;, mais&nbsp;: &laquo;&nbsp;L'interruption, on l'aime ou on l'acquitte
+&nbsp;&raquo;.</p>
+</div>
+<div class="visites">
+<img style="width: 15px; height: 15px;" alt="6_30" src="../../../images/6_30.png">   <img style="width: 15px; height: 15px;" alt="5_30" src="../../../images/5_30.png">   <img style="width: 15px; height: 15px;" alt="0_30" src="../../../images/0_30.png">   <img style="width: 15px; height: 15px;" alt="9_30" src="../../../images/9_30.png">   <img style="width: 15px; height: 15px;" alt="9_30" src="../../../images/9_30.png">   </div>
+</footer>
+</div>
+</body>
+</html>

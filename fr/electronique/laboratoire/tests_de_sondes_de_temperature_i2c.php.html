@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>Tests de sondes de temp&eacute;rature I2C</title>
+<meta name="description" content="Tests de sondes de temp&eacute;rature I2C." />
+<meta name="keywords" content="atrylec electronique capteur capteurs sonde sondes temperature temperatures TMP100 TCN75A bus I2C montage montages realisation realisations microcontroleur entrees sorties programmation code source langage c fonction fonctions pic18f4550 pic microcontroleur exemple exemples test tests" />
+<link rel="stylesheet" media="screen" type="text/css" title="Style 3" href="../../../elements/allures/style_3.css">
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-42331281-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+<body>
+<div id="page">
+<div id="haut">
+<header id="Haut_de_page">
+<div id="principale">
+<p class="titre_principal_haut">
+<a href="../../../index.php.html"><img style="width: 150px;" alt="Affichage_Atrylec_com" src="../../../images/Affichage_Atrylec_com.png" /><span class="invisible">Atrylec</span></a></p>
+<p class="sous-titre_haut">Vous n'&ecirc;tes pas seuls dans l'Univers !</p>
+</div>
+<div id="additionnelle">
+</div>
+</header>
+<nav>
+<ul id="navigation">
+<li><a href="../../../index.php.html" title="Accueil">Accueil</a></li>
+<li><a class="choisi" href="../index.php.html" title="Electronique">Electronique</a></li>
+<li><a href="../../radio/index.php%3Fnumero=0.html" title="Radio">Radio</a></li>
+<li><a href="../../origami/index.php.html" title="Origami">Origami</a></li>
+<li><a href="../../photographies/index.php%3Fnumero=0.html" title="Photographies">Photographies</a></li>
+<li><a href="../../le_grenier/index.php.html" title="Le grenier">Le grenier</a></li>
+<li><a href="../../contact.php.html" title="ContaCT">ContaCT</a></li>
+</ul>
+</nav>
+</div>
+<section>
+<div id="titre">
+<div id="titre_gauche">
+</div>
+<div id="titre_image">
+<img style="width: 100px; height: 100px;" alt="Transistor_100" src="../../../images/Transistor_100.png">
+</div>
+<div id="titre_texte">
+<p>/&nbsp;</p><h1>Tests de sondes de temp&eacute;rature I2C</h1>
+</div>
+<div id="titre_droite">
+</div>
+</div>
+<div>
+<p id="introduction">Tests de sondes de temp&eacute;rature I2C.</p>
+</div>
+<p>
+<a id="Liste_de_depart"></a>
+</p>
+<div>
+<div class="menu_article">
+<ul class="menu_article_principal">
+<li><a href="tests_de_sondes_de_temperature_i2c.php.html">Tests de sondes de temp&eacute;rature I2C</a></li>
+</ul>
+<ul class="menu_article_secondaire">
+<li><a href="tests_de_sondes_de_temperature_i2c.php.html#Endroit_1-0-0">1) Pr&eacute;sentation</a></li>
+<li><a href="tests_de_sondes_de_temperature_i2c.php.html#Endroit_2-0-0">2) Essais de sondes</a></li>
+<li>
+<ul>
+<li><a href="tests_de_sondes_de_temperature_i2c.php.html#Endroit_2-1-0">2-1) TMP100</a></li>
+<li><a href="tests_de_sondes_de_temperature_i2c.php.html#Endroit_2-2-0">2-2) TCN75A</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="tests_de_sondes_de_temperature_i2c.php.html#Haut_de_page">Je veux remonter !</a>&nbsp;|&nbsp;<a href="tests_de_sondes_de_temperature_i2c.php.html#Liste_de_depart">Liste</a>
+</div>
+<a id="Endroit_1-0-0"></a>
+<h2>1) Pr&eacute;sentation</h2>
+<p>Les capteurs de temp&eacute;rature test&eacute;s ici sont de r&eacute;f&eacute;rences &laquo;&nbsp;TMP100&nbsp;&raquo; et &laquo;&nbsp;TCN75A&nbsp;&raquo;.<br />
+Ils sont &agrave; sortie num&eacute;rique, interrogeable par un bus I2C&nbsp;: cela signifie qu'ils disposent d'une &eacute;lectronique de commande qui effectue la conversion analogique - num&eacute;rique de la temp&eacute;rature mesur&eacute;e, et qui met le r&eacute;sultat de cette conversion dans un registre.<br />
+Ces sondes peuvent &ecirc;tre utilis&eacute;es pour simplifier <a href="../realisations/le_thermometre_numerique.php.html" title="Ouvrir le lien &laquo;&nbsp;http://www.atrylec.com/fr/electronique/realisations/le_thermometre_numerique.php&nbsp;&raquo;" >certains montages pour lesquels la mesure de la temp&eacute;rature est requise</a>.</p>
+<div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="tests_de_sondes_de_temperature_i2c.php.html#Haut_de_page">Je veux remonter !</a>&nbsp;|&nbsp;<a href="tests_de_sondes_de_temperature_i2c.php.html#Liste_de_depart">Liste</a>
+</div>
+<a id="Endroit_2-0-0"></a>
+<h2>2) Essais de sondes</h2>
+<p>Les exemples donn&eacute;s ci-apr&egrave;s mettent en &oelig;uvre deux sondes de temp&eacute;rature diff&eacute;rentes&nbsp;:</p>
+<ul>
+<li>Le composant TMP100, fabriqu&eacute; par Texas Instruments,</li>
+<li>Le composant TCN75A, fabriqu&eacute; par Microchip.</li>
+</ul>
+<ul>
+<li><img alt="LIEN_EXTERNE" src="../../../images/LIEN_EXTERNE.png" />&nbsp;<a href="http://www.ti.com/lit/ds/symlink/tmp100.pdf" title="Ouvrir le lien &laquo;&nbsp;http://www.ti.com/lit/ds/symlink/tmp100.pdf&nbsp;&raquo; dans une nouvelle fen&ecirc;tre, ou dans un nouvel onglet" target="_blank">La <i>datasheet</i> de la sonde de temp&eacute;rature TMP100 et TMP101</a>,</li>
+<li><a href="http://ww1.microchip.com/downloads/en/devicedoc/21935a.pdf" title="Ouvrir le lien &laquo;&nbsp;http://www.atrylec.comhttp://ww1.microchip.com/downloads/en/devicedoc/21935a.pdf&nbsp;&raquo;" >La <i>datasheet</i> de la sonde de temp&eacute;rature TCN75A</a>.</li>
+</ul>
+<a id="Endroit_2-1-0"></a>
+<h3>2-1) TMP100</h3>
+<p>TMP100.</p>
+<figure>
+<a href="../../../images/Tests_de_sondes_de_temperature_I2C_Capteur_TMP100_Affichage_des_valeurs.jpg">
+<img alt="Tests_de_sondes_de_temperature_I2C_Capteur_TMP100_Affichage_des_valeurs" src="../../../images/Tests_de_sondes_de_temperature_I2C_Capteur_TMP100_Affichage_des_valeurs_Petite.jpg">
+</a>
+<figcaption>
+Affichage de la donn&eacute;e hexad&eacute;cimale lue par le capteur TMP100, et de la temp&eacute;rature correspondante, en degr&eacute;s Celsius</figcaption>
+</figure>
+<p></p>
+<figure>
+<a href="../../../images/Tests_de_sondes_de_temperature_I2C_Capteur_TMP100_Montage_Vue_d_ensemble.jpg">
+<img alt="Tests_de_sondes_de_temperature_I2C_Capteur_TMP100_Montage_Vue_d_ensemble" src="../../../images/Tests_de_sondes_de_temperature_I2C_Capteur_TMP100_Montage_Vue_d_ensemble_Petite.jpg">
+</a>
+<figcaption>Vue d'ensemble du montage</figcaption>
+</figure>
+<p></p>
+<figure>
+<a href="../../../images/Tests_de_sondes_de_temperature_I2C_Capteur_TMP100_et_microcontroleur_PIC18F4550.jpg">
+<img alt="Tests_de_sondes_de_temperature_I2C_Capteur_TMP100_et_microcontroleur_PIC18F4550" src="../../../images/Tests_de_sondes_de_temperature_I2C_Capteur_TMP100_et_microcontroleur_PIC18F4550_Petite.jpg">
+</a>
+<figcaption>Le microcontr&ocirc;leur PIC18F4550, et la sonde de temp&eacute;rature TMP100</figcaption>
+</figure>
+<p></p>
+<figure>
+<a href="../../../images/SCHEMA_TESTS_DE_SONDES_DE_TEMPERATURE_I2C_TMP100_ET_PIC18F4550.png">
+<img alt="SCHEMA_TESTS_DE_SONDES_DE_TEMPERATURE_I2C_TMP100_ET_PIC18F4550" src="../../../images/SCHEMA_TESTS_DE_SONDES_DE_TEMPERATURE_I2C_TMP100_ET_PIC18F4550_Petite.png">
+</a>
+<figcaption>Sch&eacute;ma &eacute;lectronique du montage utilisant la sonde de temp&eacute;rature TMP100</figcaption>
+</figure>
+<p></p>
+<figure>
+<a href="../../../images/Tests_de_sondes_de_temperature_I2C_Capteur_TMP100_et_carte_de_developpement_STM32VLDISCOVERY_Vue_d_ensemble.jpg">
+<img alt="Tests_de_sondes_de_temperature_I2C_Capteur_TMP100_et_carte_de_developpement_STM32VLDISCOVERY_Vue_d_ensemble" src="../../../images/Tests_de_sondes_de_temperature_I2C_Capteur_TMP100_et_carte_de_developpement_STM32VLDISCOVERY_Vue_d_ensemble_Petite.jpg">
+</a>
+<figcaption>Test avec une sonde TMP100 et une carte de d&eacute;veloppement STM32VLDISCOVERY</figcaption>
+</figure>
+<p></p>
+<figure>
+<a href="../../../images/Tests_de_sondes_de_temperature_I2C_Capteur_TMP100_et_carte_de_developpement_STM32VLDISCOVERY_Vue_detaillee.jpg">
+<img alt="Tests_de_sondes_de_temperature_I2C_Capteur_TMP100_et_carte_de_developpement_STM32VLDISCOVERY_Vue_detaillee" src="../../../images/Tests_de_sondes_de_temperature_I2C_Capteur_TMP100_et_carte_de_developpement_STM32VLDISCOVERY_Vue_detaillee_Petite.jpg">
+</a>
+<figcaption>Affichage</figcaption>
+</figure>
+<p></p>
+<figure>
+<a href="../../../images/Tests_de_sondes_de_temperature_I2C_Capteur_TMP100_Detail_des_soudures_effectuees_en_l_air.jpg">
+<img alt="Tests_de_sondes_de_temperature_I2C_Capteur_TMP100_Detail_des_soudures_effectuees_en_l_air" src="../../../images/Tests_de_sondes_de_temperature_I2C_Capteur_TMP100_Detail_des_soudures_effectuees_en_l_air_Petite.jpg">
+</a>
+<figcaption>Sonde de temp&eacute;rature super bien soud&eacute;e</figcaption>
+</figure>
+<div class="valorisations">
+<div class="programmes">
+<div class="programmes_gauche">
+<img style="width: 32px; height: 32px;" alt="fleche-bas-telecharger-icone-9594-32" src="../../../images/fleche-bas-telecharger-icone-9594-32.png">
+</div>
+<div class="programmes_droite">
+<p>Application avec le capteur de temp&eacute;rature TMP100&nbsp;: Fichier C<br />
+Cible&nbsp;: STM32F100RB<br />Compilateur&nbsp;: Keil &micro;Vision4<br />
+<a href="../../../elements/allures/valorisations/programmes.php%3Fprogramme=tests_de_sondes_de_temperature_i2c+1+1">T&eacute;l&eacute;charger le fichier<span>Effectuez un clic droit, puis s&eacute;lectionnez l'option &laquo;&nbsp;Enregistrer la cible du lien sous...&nbsp;&raquo;, pour t&eacute;l&eacute;charger le fichier</span></a> (5.03 Ko)</p></div>
+</div>
+</div>
+<a id="Endroit_2-2-0"></a>
+<h3>2-2) TCN75A</h3>
+<p>TCN75A.</p>
+<figure>
+<a href="../../../images/Tests_de_sondes_de_temperature_I2C_Capteur_TCN75A_Affichage_des_valeurs.jpg">
+<img alt="Tests_de_sondes_de_temperature_I2C_Capteur_TCN75A_Affichage_des_valeurs" src="../../../images/Tests_de_sondes_de_temperature_I2C_Capteur_TCN75A_Affichage_des_valeurs_Petite.jpg">
+</a>
+<figcaption>Affichage de la donn&eacute;e hexad&eacute;cimale lue par le capteur TCN75A, et de la temp&eacute;rature correspondante, en degr&eacute;s Celsius</figcaption>
+</figure>
+<p></p>
+<figure>
+<a href="../../../images/Tests_de_sondes_de_temperature_I2C_Capteur_TCN75A_Detail_des_soudures_effectuees_en_l_air.jpg">
+<img  alt="Tests_de_sondes_de_temperature_I2C_Capteur_TCN75A_Detail_des_soudures_effectuees_en_l_air" src="../../../images/Tests_de_sondes_de_temperature_I2C_Capteur_TCN75A_Detail_des_soudures_effectuees_en_l_air_Petite.jpg">
+</a>
+<figcaption>Soudures Top Kalit&eacute;</figcaption>
+</figure>
+<p></p>
+<figure>
+<a href="../../../images/SCHEMA_TESTS_DE_SONDES_DE_TEMPERATURE_I2C_TCN75A_ET_PIC18F4550.png">
+<img alt="SCHEMA_TESTS_DE_SONDES_DE_TEMPERATURE_I2C_TCN75A_ET_PIC18F4550" src="../../../images/SCHEMA_TESTS_DE_SONDES_DE_TEMPERATURE_I2C_TCN75A_ET_PIC18F4550_Petite.png">
+</a>
+<figcaption>Sch&eacute;ma &eacute;lectronique du montage utilisant la sonde de temp&eacute;rature TCN75A</figcaption>
+</figure>
+<div>
+<div class="menu_article">
+<ul class="menu_article_principal">
+<li><a href="tests_de_sondes_de_temperature_i2c.php.html">Tests de sondes de temp&eacute;rature I2C</a></li>
+</ul>
+<ul class="menu_article_secondaire">
+<li><a href="tests_de_sondes_de_temperature_i2c.php.html#Endroit_1-0-0">1) Pr&eacute;sentation</a></li>
+<li><a href="tests_de_sondes_de_temperature_i2c.php.html#Endroit_2-0-0">2) Essais de sondes</a></li>
+<li>
+<ul>
+<li><a href="tests_de_sondes_de_temperature_i2c.php.html#Endroit_2-1-0">2-1) TMP100</a></li>
+<li><a href="tests_de_sondes_de_temperature_i2c.php.html#Endroit_2-2-0">2-2) TCN75A</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="commentaires"><a id="Endroits_des_commentaires"></a><p class="sous-titre_commentaires">Commentaires (0)</p><p class="sous-titre_ajouts">Ajouter un commentaire</p>
+<form id="contact" method="post" action="http://atrylec.com/elements/allures/commentaires/verification.php">
+<fieldset>
+<legend>
+Votre pseudo&nbsp;: 
+</legend>
+<p>
+<label for="pseudo">
+Pseudo&nbsp;: 
+</label>
+<input type="text" id="pseudo" name="pseudo" tabindex="1" required="required">
+</p>
+</fieldset>
+<fieldset>
+<legend>
+Votre commentaire&nbsp;: 
+</legend>
+<p>
+<label for="commentaire">
+Commentaire&nbsp;: 
+</label>
+<textarea id="commentaire" name="commentaire" tabindex="2" cols="50" rows="2" required="required">
+</textarea>
+</p>
+</fieldset>
+<div class="bouton_validation_commentaire">
+<input type="submit" name="Poster" value="Poster" />
+</div>
+</form>
+</div><div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="tests_de_sondes_de_temperature_i2c.php.html#Haut_de_page">Je veux remonter !</a>
+</div>
+</section>
+<footer>
+<div class="liens">
+<ul>
+<li><a href="../../contact.php.html">ContaCT</a></li>
+</ul>
+</div>
+<div id="choix_style">
+<div class="presentation">Ravaler la fa&ccedil;ade&nbsp;:</div>
+<a href="tests_de_sondes_de_temperature_i2c.php%3Fselection=1.html" title="Style 1"><div class="choix choix_bleu">&nbsp;</div></a><a href="tests_de_sondes_de_temperature_i2c.php%3Fselection=2.html" title="Style 2"><div class="choix choix_rouge">&nbsp;</div></a><div class="choix choix_orange_choisi">&nbsp;</div></div>
+<div class="remarques">
+<p>Il ne faut pas dire&nbsp;: &laquo;&nbsp;Un oscilloscope pour bricoleurs occasionnels
+&nbsp;&raquo;, mais&nbsp;: &laquo;&nbsp;Un <i>LeCroy - Merlin</i>
+&nbsp;&raquo;.</p>
+</div>
+<div class="visites">
+<img style="width: 15px; height: 15px;" alt="6_30" src="../../../images/6_30.png">   <img style="width: 15px; height: 15px;" alt="5_30" src="../../../images/5_30.png">   <img style="width: 15px; height: 15px;" alt="0_30" src="../../../images/0_30.png">   <img style="width: 15px; height: 15px;" alt="9_30" src="../../../images/9_30.png">   <img style="width: 15px; height: 15px;" alt="8_30" src="../../../images/8_30.png">   </div>
+</footer>
+</div>
+</body>
+</html>

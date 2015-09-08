@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>Tests de m&eacute;moires EEPROM I2C</title>
+<meta name="description" content="Tests de m&eacute;moires EEPROM I2C." />
+<meta name="keywords" content="atrylec electronique memoire memoires EEPROM bus I2C utiliser lire ecrire montage montages realisation realisations microcontroleur entrees sorties programmation code source langage c fonction fonctions pic18f4550 pic microcontroleur exemple exemples test tests" />
+<link rel="stylesheet" media="screen" type="text/css" title="Style 1" href="../../../elements/allures/style_1.css">
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-42331281-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+<body>
+<div id="page">
+<div id="haut">
+<header id="Haut_de_page">
+<div id="principale">
+<p class="titre_principal_haut">
+<a href="../../../index.php.html"><img style="width: 150px;" alt="Affichage_Atrylec_com" src="../../../images/Affichage_Atrylec_com.png" /><span class="invisible">Atrylec</span></a></p>
+<p class="sous-titre_haut">Vous n'&ecirc;tes pas seuls dans l'Univers !</p>
+</div>
+<div id="additionnelle">
+</div>
+</header>
+<nav>
+<ul id="navigation">
+<li><a href="../../../index.php.html" title="Accueil">Accueil</a></li>
+<li><a class="choisi" href="../index.php.html" title="Electronique">Electronique</a></li>
+<li><a href="../../radio/index.php%3Fnumero=0.html" title="Radio">Radio</a></li>
+<li><a href="../../origami/index.php.html" title="Origami">Origami</a></li>
+<li><a href="../../photographies/index.php%3Fnumero=0.html" title="Photographies">Photographies</a></li>
+<li><a href="../../le_grenier/index.php.html" title="Le grenier">Le grenier</a></li>
+<li><a href="../../contact.php.html" title="ContaCT">ContaCT</a></li>
+</ul>
+</nav>
+</div>
+<section>
+<div id="titre">
+<div id="titre_gauche">
+</div>
+<div id="titre_image">
+<img style="width: 100px; height: 100px;" alt="Transistor_100" src="../../../images/Transistor_100.png">
+</div>
+<div id="titre_texte">
+<p>[</p><h1>Tests de m&eacute;moires EEPROM I2C</h1><p>]</p>
+</div>
+<div id="titre_droite">
+</div>
+</div>
+<div>
+<p id="introduction">Tests de m&eacute;moires EEPROM I2C.</p>
+</div>
+<p>Les m&eacute;moire de type &laquo;&nbsp;EEPROM&nbsp;&raquo; sont utilis&eacute;es dans des syst&egrave;mes o&ugrave; il est n&eacute;cessaire de stocker une information, m&ecirc;me en l'abscence de la tension d'alimentation.<br />
+&laquo;&nbsp;EEPROM&nbsp;&raquo; signifie &laquo;&nbsp;<i>Electrically Erasable Programmable Read-Only Memory</i>&nbsp;&raquo;.<br />
+L'acc&egrave;s aux m&eacute;moires utilis&eacute;es ici, de la famille 24(L)CXX(B), se fait par un bus I2C.</p>
+<p>
+<a id="Liste_de_depart"></a>
+</p>
+<div>
+<div class="menu_article">
+<ul class="menu_article_principal">
+<li><a href="tests_de_memoires_eeprom_i2c.php.html">Tests de m&eacute;moires EEPROM I2C</a></li>
+</ul>
+<ul class="menu_article_secondaire">
+<li><a href="tests_de_memoires_eeprom_i2c.php%3Fselection=1.html#Endroit_1-0-0">1) Pr&eacute;sentation</a></li>
+<li><a href="tests_de_memoires_eeprom_i2c.php%3Fselection=1.html#Endroit_2-0-0">2) Essais avec un PIC18F4550</a></li>
+<li><a href="tests_de_memoires_eeprom_i2c.php%3Fselection=1.html#Endroit_3-0-0">3) Essais avec une carte de d&eacute;veloppement &laquo;&nbsp;STM32DISCOVERY&nbsp;&raquo;</a></li>
+</ul>
+</div>
+</div>
+<div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="tests_de_memoires_eeprom_i2c.php%3Fselection=1.html#Haut_de_page">Je veux remonter !</a>&nbsp;|&nbsp;<a href="tests_de_memoires_eeprom_i2c.php%3Fselection=1.html#Liste_de_depart">Liste</a>
+</div>
+<a id="Endroit_1-0-0"></a>
+<h2>1) Pr&eacute;sentation</h2>
+<ul>
+<li><img alt="LIEN_EXTERNE" src="../../../images/LIEN_EXTERNE.png" />&nbsp;<a href="http://ww1.microchip.com/downloads/en/DeviceDoc/21708K.pdf" title="Ouvrir le lien &laquo;&nbsp;http://ww1.microchip.com/downloads/en/DeviceDoc/21708K.pdf&nbsp;&raquo; dans une nouvelle fen&ecirc;tre, ou dans un nouvel onglet" target="_blank">La <i>datasheet</i> des m&eacute;moires 24AA04 et 24LC04B</a></li>
+<li><img alt="LIEN_EXTERNE" src="../../../images/LIEN_EXTERNE.png" />&nbsp;<a href="http://ww1.microchip.com/downloads/en/DeviceDoc/21710K.pdf" title="Ouvrir le lien &laquo;&nbsp;http://ww1.microchip.com/downloads/en/DeviceDoc/21710K.pdf&nbsp;&raquo; dans une nouvelle fen&ecirc;tre, ou dans un nouvel onglet" target="_blank">La <i>datasheet</i> des m&eacute;moires 24AA08 et 24LC08B</a></li>
+</ul>
+<figure>
+<a href="../../../images/Circuits_integres_memoires_EEPROM_I2C.jpg">
+<img alt="Circuits_integres_memoires_EEPROM_I2C" src="../../../images/Circuits_integres_memoires_EEPROM_I2C_Petite.jpg">
+</a>
+<figcaption>Une colonie de diverses m&eacute;moires EEPROM fonctionnant par I2C</figcaption>
+</figure>
+<div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="tests_de_memoires_eeprom_i2c.php%3Fselection=1.html#Haut_de_page">Je veux remonter !</a>&nbsp;|&nbsp;<a href="tests_de_memoires_eeprom_i2c.php%3Fselection=1.html#Liste_de_depart">Liste</a>
+</div>
+<a id="Endroit_2-0-0"></a>
+<h2>2) Essais avec un PIC18F4550</h2>
+<figure>
+<a href="../../../images/ESSAIS_MEMOIRES_EEPROM_I2C_ET_PIC18F4550_GENERALE.jpg">
+<img alt="ESSAIS_MEMOIRES_EEPROM_I2C_ET_PIC18F4550_GENERALE" src="../../../images/ESSAIS_MEMOIRES_EEPROM_I2C_ET_PIC18F4550_GENERALE_Petite.jpg">
+</a>
+<a href="../../../images/ESSAIS_MEMEOIRES_EEPROM_I2C_ET_PIC18F4550_DETAIL_CIRCUIT_INTEGRE.jpg.html">
+<img alt="ESSAIS_MEMOIRES_EEPROM_I2C_ET_PIC18F4550_DETAIL_CIRCUIT_INTEGRE" src="../../../images/ESSAIS_MEMOIRES_EEPROM_I2C_ET_PIC18F4550_DETAIL_CIRCUIT_INTEGRE_Petite.jpg">
+</a>
+<figcaption>Vue d'ensemble et d&eacute;tail du montage avec un PIC18F4550</figcaption>
+</figure>
+<p></p>
+<figure>
+<a href="../../../images/ESSAIS_MEMOIRES_EEPROM_I2C_1_DETAIL_ADRESSE_ET_DONNEE.jpg.html">
+<img alt="ESSAIS_MEMOIRES_EEPROM_I2C_ET_PIC18F4550_DETAIL_ADRESSE_ET_DONNEE" src="../../../images/ESSAIS_MEMOIRES_EEPROM_I2C_ET_PIC18F4550_DETAIL_ADRESSE_ET_DONNEE_Petite.jpg">
+</a>
+<figcaption>A l'adresse &laquo;&nbsp;0x7C&nbsp;&raquo;, on trouve la donn&eacute;e &laquo;&nbsp;0xE2&nbsp;&raquo;</figcaption>
+</figure>
+<p></p>
+<figure>
+<a href="../../../images/SCHEMA_ESSAIS_MEMOIRES_EEPROM_I2C_ET_PIC18F4550.png">
+<img alt="SCHEMA_ESSAIS_MEMOIRES_EEPROM_I2C_ET_PIC18F4550" src="../../../images/SCHEMA_ESSAIS_MEMOIRES_EEPROM_I2C_ET_PIC18F4550_Petite.png">
+</a>
+<figcaption>Sch&eacute;ma &eacute;lectrique du montage</figcaption>
+</figure>
+<div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="tests_de_memoires_eeprom_i2c.php%3Fselection=1.html#Haut_de_page">Je veux remonter !</a>&nbsp;|&nbsp;<a href="tests_de_memoires_eeprom_i2c.php%3Fselection=1.html#Liste_de_depart">Liste</a>
+</div>
+<a id="Endroit_3-0-0"></a>
+<h2>3) Essais avec une carte de d&eacute;veloppement &laquo;&nbsp;STM32DISCOVERY&nbsp;&raquo;</h2>
+<p>L'essai &agrave; l'aide d'un microcontr&ocirc;leur &laquo;&nbsp;STM32F100RB&nbsp;&raquo; utilise une carte de d&eacute;veloppement de type &laquo;&nbsp;STM32VLDISCOVERY&nbsp;&raquo;, qui en est &eacute;quip&eacute;e.<br />
+Les connexions entre le circuit et la carte de d&eacute;veloppement sont indiqu&eacute;es dans le tableau ci-apr&egrave;s.<br />
+Les broches &laquo;&nbsp;PB6&nbsp;&raquo; et &laquo;&nbsp;PB7&nbsp;&raquo; sont reli&eacute;es au + 5 Volt par des r&eacute;sistances de tirage de 1 kilo Ohm.</p>
+<figure>
+<a href="../../../images/ESSAIS_MEMOIRES_EEPROM_I2C_ET_STM32F100RB_GENERALE.jpg">
+<img alt="ESSAIS_MEMOIRES_EEPROM_I2C_ET_STM32F100RB_GENERALE" src="../../../images/ESSAIS_MEMOIRES_EEPROM_I2C_ET_STM32F100RB_GENERALE_Petite.jpg">
+</a>
+<a href="../../../images/ESSAIS_MEMOIRES_EEPROM_I2C_ET_STM32F100RB_DETAIL".jpg">
+<img alt="ESSAIS_MEMOIRES_EEPROM_I2C_ET_STM32F100RB_DETAIL" src="../../../images/ESSAIS_MEMOIRES_EEPROM_I2C_ET_STM32F100RB_DETAIL_Petite.jpg">
+</a>
+<figcaption>Vue d'ensemble et d&eacute;tail du montage avec une carte de d&eacute;veloppement de type &laquo;&nbsp;STM32VLDISCOVERY&nbsp;&raquo;</figcaption>
+</figure>
+<div class="valorisations">
+<div class="informations">
+<div class="informations-gauche">
+<img style="width: 32px; height: 32px;" alt="documentaires-des-proprietes-icone-5224-32" src="../../../images/documentaires-des-proprietes-icone-5224-32.png">
+</div>
+<div class="informations-droite">
+<p>Remarque&nbsp;: Le microcontr&ocirc;leur STM32F100RB, bien qu'aliment&eacute; sous une tension de + 3,3 Volt, accepte de recevoir des niveaux de tensions&nbsp; + 5 Volt sur ses broches configur&eacute;es en tant qu' &laquo;&nbsp;Entr&eacute;es logiques et sorties &agrave; collecteurs ouverts&nbsp;&raquo;, comme c'est le cas pour utiliser le bus &laquo; I2C &raquo;.</p>
+<p>Ces niveaux de + 5 Volt ne sont pas destructeurs pour le microcontr&ocirc;leur, car ils sont appliqu&eacute;s par l'interm&eacute;diaire de r&eacute;sistances de tirages.</p></div>
+</div>
+</div>
+<p></p>
+<table border="1" cellpadding="2" cellspacing="2">
+<tbody>
+<tr>
+<th>Carte de d&eacute;veloppement &laquo;&nbsp;STM32VLDISCOVERY&nbsp;&raquo;</th>
+<td>+5V</td>
+<td>0V</td>
+<td>PB6</td>
+<td>PB7</td>
+</tr>
+<tr>
+<th>Circuit int&eacute;gr&eacute; 24LC08B</th>
+<td>+5V</td>
+<td>0V</td>
+<td>SCL</td>
+<td>SDA</td>
+</tr>
+</tbody>
+</table>
+<p></p>
+<div class="valorisations">
+<div class="programmes">
+<div class="programmes_gauche">
+<img style="width: 32px; height: 32px;" alt="fleche-bas-telecharger-icone-9594-32" src="../../../images/fleche-bas-telecharger-icone-9594-32.png">
+</div>
+<div class="programmes_droite">
+<p>Ecritures et lectures dans une m&eacute;moire &laquo;&nbsp;24LC08B&nbsp;&raquo;&nbsp;: Fichier C<br />
+Cible&nbsp;: STM32F100RB<br />Compilateur&nbsp;: Keil &micro;Vision4<br />
+<a href="../../../elements/allures/valorisations/programmes.php%3Fprogramme=tests_de_memoires_eeprom_i2c+1+1">T&eacute;l&eacute;charger le fichier<span>Effectuez un clic droit, puis s&eacute;lectionnez l'option &laquo;&nbsp;Enregistrer la cible du lien sous...&nbsp;&raquo;, pour t&eacute;l&eacute;charger le fichier</span></a> (25.04 Ko)</p></div>
+</div>
+</div>
+<div class="commentaires"><a id="Endroits_des_commentaires"></a><p class="sous-titre_commentaires">Commentaires (0)</p><p class="sous-titre_ajouts">Ajouter un commentaire</p>
+<form id="contact" method="post" action="http://atrylec.com/elements/allures/commentaires/verification.php">
+<fieldset>
+<legend>
+Votre pseudo&nbsp;: 
+</legend>
+<p>
+<label for="pseudo">
+Pseudo&nbsp;: 
+</label>
+<input type="text" id="pseudo" name="pseudo" tabindex="1" required="required">
+</p>
+</fieldset>
+<fieldset>
+<legend>
+Votre commentaire&nbsp;: 
+</legend>
+<p>
+<label for="commentaire">
+Commentaire&nbsp;: 
+</label>
+<textarea id="commentaire" name="commentaire" tabindex="2" cols="50" rows="2" required="required">
+</textarea>
+</p>
+</fieldset>
+<div class="bouton_validation_commentaire">
+<input type="submit" name="Poster" value="Poster" />
+</div>
+</form>
+</div><div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="tests_de_memoires_eeprom_i2c.php%3Fselection=1.html#Haut_de_page">Je veux remonter !</a>
+</div>
+</section>
+<footer>
+<div class="liens">
+<ul>
+<li><a href="../../contact.php.html">ContaCT</a></li>
+</ul>
+</div>
+<div id="choix_style">
+<div class="presentation">Ravaler la fa&ccedil;ade&nbsp;:</div>
+<div class="choix choix_bleu_choisi">&nbsp;</div><a href="tests_de_memoires_eeprom_i2c.php%3Fselection=2.html" title="Style 2"><div class="choix choix_rouge">&nbsp;</div></a><a href="tests_de_memoires_eeprom_i2c.php%3Fselection=3.html" title="Style 3"><div class="choix choix_orange">&nbsp;</div></a></div>
+<div class="remarques">
+<p>Il ne faut pas dire&nbsp;: &laquo;&nbsp;Un portail qui ne coule pas
+&nbsp;&raquo;, mais&nbsp;: &laquo;&nbsp;Une grille flottante
+&nbsp;&raquo;.</p>
+</div>
+<div class="visites">
+<img style="width: 15px; height: 15px;" alt="6_30" src="../../../images/6_30.png">   <img style="width: 15px; height: 15px;" alt="5_30" src="../../../images/5_30.png">   <img style="width: 15px; height: 15px;" alt="0_30" src="../../../images/0_30.png">   <img style="width: 15px; height: 15px;" alt="9_30" src="../../../images/9_30.png">   <img style="width: 15px; height: 15px;" alt="9_30" src="../../../images/9_30.png">   </div>
+</footer>
+</div>
+</body>
+</html>

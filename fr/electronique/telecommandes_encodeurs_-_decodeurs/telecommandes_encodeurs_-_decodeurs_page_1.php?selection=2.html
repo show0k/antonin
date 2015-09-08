@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>T&eacute;l&eacute;commandes&nbsp;: Encodeurs - D&eacute;codeurs</title>
+<meta name="description" content="T&eacute;l&eacute;commandes&nbsp;: Encodeurs - D&eacute;codeurs." />
+<meta name="keywords" content="audiovore electronique telecommande encodeur decodeur circuit integre exemple schema montage realisation microcontroleur entree sortie sans fil radio programmation code source langage c " />
+<link rel="stylesheet" media="screen" type="text/css" title="Style 2" href="../../../elements/allures/style_2.css">
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-42331281-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+<body>
+<div id="page">
+<div id="haut">
+<header id="Haut_de_page">
+<div id="principale">
+<p class="titre_principal_haut">
+<a href="../../../index.php.html"><img style="width: 150px;" alt="Affichage_Atrylec_com" src="../../../images/Affichage_Atrylec_com.png" /><span class="invisible">Atrylec</span></a></p>
+<p class="sous-titre_haut">Vous n'&ecirc;tes pas seuls dans l'Univers !</p>
+</div>
+<div id="additionnelle">
+</div>
+</header>
+<nav>
+<ul id="navigation">
+<li><a href="../../../index.php.html" title="Accueil">Accueil</a></li>
+<li><a class="choisi" href="../index.php.html" title="Electronique">Electronique</a></li>
+<li><a href="../../radio/index.php%3Fnumero=0.html" title="Radio">Radio</a></li>
+<li><a href="../../origami/index.php.html" title="Origami">Origami</a></li>
+<li><a href="../../photographies/index.php%3Fnumero=0.html" title="Photographies">Photographies</a></li>
+<li><a href="../../le_grenier/index.php.html" title="Le grenier">Le grenier</a></li>
+<li><a href="../../contact.php.html" title="ContaCT">ContaCT</a></li>
+</ul>
+</nav>
+</div>
+<section>
+<div id="titre">
+<div id="titre_gauche">
+</div>
+<div id="titre_image">
+<img style="width: 100px; height: 100px;" alt="Transistor_100" src="../../../images/Transistor_100.png">
+</div>
+<div id="titre_texte">
+<p>/&nbsp;</p><h1>T&eacute;l&eacute;commandes&nbsp;: Encodeurs - D&eacute;codeurs</h1>
+</div>
+<div id="titre_droite">
+</div>
+</div>
+<div>
+<p id="introduction">T&eacute;l&eacute;commandes&nbsp;: Encodeurs - D&eacute;codeurs.<br />
+Pour r&eacute;aliser un syst&egrave;me de t&eacute;l&eacute;commande, il est n&eacute;cessaire de r&eacute;aliser un codage du c&ocirc;t&eacute; de l'ensemble &eacute;metteur, et un d&eacute;codage du c&ocirc;t&eacute; de l'ensemble r&eacute;cepteur.<br />
+Le recours &agrave; un tel dispositif permet de limiter le risque de voir l'ensemble r&eacute;cepteur r&eacute;agir de fa&ccedil;on non conforme &agrave; ce qui est attendu.<br />
+Les transmissions t&eacute;l&eacute;command&eacute;es s'effectuent g&eacute;n&eacute;ralement de fa&ccedil;on filaire, ultrasonique, infra-rouge ou hertzienne.<br />
+Or, chacun de ces modes de transmissions est une source de nombreux parasites, et ils transportent le plus souvent de nombreux signaux destin&eacute;s &agrave; d'autres r&eacute;cepteurs, qu'il convient de filtrer.<br />
+Cet article pr&eacute;sente deux mani&egrave;res de r&eacute;aliser l'encodage, et le d&eacute;codage, de signaux de t&eacute;l&eacute;commande.<br />
+<br />
+Premi&egrave;rement, il existe des circuits int&eacute;gr&eacute;s qui sont sp&eacute;cialis&eacute;s dans cette fonction de codage ou de d&eacute;codage de signaux.<br />
+<br />
+Ensuite, il est &eacute;galement possible d'utiliser des composants programmables pour effectuer ces fonctions.<br />
+Ces composants peuvent &ecirc;tre des microcontr&ocirc;leurs, des CPLD, ou des FPGA.</p>
+</div>
+<p>
+<a id="Liste_de_depart"></a>
+</p>
+<div>
+<div class="menu_article">
+<ul class="menu_article_principal">
+<li><a href="telecommandes_encodeurs_-_decodeurs_page_1.php.html">T&eacute;l&eacute;commandes&nbsp;: Encodeurs - D&eacute;codeurs</a></li>
+</ul>
+<ul class="menu_article_secondaire">
+<li><a href="telecommandes_encodeurs_-_decodeurs_page_1.php%3Fselection=2.html#Endroit_1-0-0">1) Circuits int&eacute;gr&eacute;s sp&eacute;cifiques</a></li>
+<li>
+<ul>
+<li><a href="telecommandes_encodeurs_-_decodeurs_page_1.php%3Fselection=2.html#Endroit_1-1-0">1-1) Le TEA5500</a></li>
+<li><a href="telecommandes_encodeurs_-_decodeurs_page_1.php%3Fselection=2.html#Endroit_1-2-0">1-2) Le UM3750</a></li>
+<li><a href="telecommandes_encodeurs_-_decodeurs_page_1.php%3Fselection=2.html#Endroit_1-3-0">1-3) Le UM3758-120A</a></li>
+</ul>
+</li>
+<li><a href="telecommandes_encodeurs_-_decodeurs_page_1.php%3Fselection=2.html#Endroit_2-0-0">2) Composants programmables</a></li>
+<li>
+<ul>
+<li><a href="telecommandes_encodeurs_-_decodeurs_page_1.php%3Fselection=2.html#Endroit_2-1-0">2-1) Utilisation de deux PIC16F84</a></li>
+<li>
+<ul>
+<li><a href="telecommandes_encodeurs_-_decodeurs_page_1.php%3Fselection=2.html#Endroit_2-1-1">2-1-1) Sch&eacute;ma &eacute;lectronique</a></li>
+<li><a href="telecommandes_encodeurs_-_decodeurs_page_1.php%3Fselection=2.html#Endroit_2-1-2">2-1-2) Typons</a></li>
+<li><a href="telecommandes_encodeurs_-_decodeurs_page_1.php%3Fselection=2.html#Endroit_2-1-3">2-1-3) Codes sources</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="telecommandes_encodeurs_-_decodeurs_page_1.php%3Fselection=2.html#Haut_de_page">Je veux remonter !</a>&nbsp;|&nbsp;<a href="telecommandes_encodeurs_-_decodeurs_page_1.php%3Fselection=2.html#Liste_de_depart">Liste</a>
+</div>
+<a id="Endroit_1-0-0"></a>
+<h2>1) Circuits int&eacute;gr&eacute;s sp&eacute;cifiques</h2>
+<a id="Endroit_1-1-0"></a>
+<h3>1-1) Le TEA5500</h3>
+<p>Ce circuit int&eacute;gr&eacute; a &eacute;t&eacute; con&ccedil;u surtout pour faire fonctionner les t&eacute;l&eacute;commandes infra-rouge qui servaient &agrave; commander le verrouillage - d&eacute;verrouillage centralis&eacute; des automobiles.</p>
+<p>D&eacute;sormais, cette fonction est assur&eacute;e par des transmissions par la voie hertzienne, avec l'emploi d'un code &eacute;volutif.</p>
+<p>En effet, le code qui est g&eacute;n&eacute;r&eacute; par ce circuit int&eacute;gr&eacute; est fixe, ce qui signifie qu'il peut &ecirc;tre re&ccedil;u et enregistr&eacute; par un r&eacute;cepteur adapt&eacute;, plac&eacute; &agrave; proximit&eacute; de la t&eacute;l&eacute;commande, lorsque quelqu'un l'actionne.</p>
+<p>Le circuit int&eacute;gr&eacute; peut &ecirc;tre utilis&eacute; pour r&eacute;aliser la fonction de codage, ou la fonction de d&eacute;codage.</p>
+<p>La <i>datasheet</i> du circuit int&eacute;gr&eacute; codeur - d&eacute;codeur &laquo; TEA5500 &raquo;&nbsp;:</p>
+<img alt="LIEN_EXTERNE" src="../../../images/LIEN_EXTERNE.png" />&nbsp;<a href="http://www.datasheetcatalog.org/datasheet/philips/TEA5500T.pdf" title="Ouvrir le lien &laquo;&nbsp;http://www.datasheetcatalog.org/datasheet/philips/TEA5500T.pdf&nbsp;&raquo; dans une nouvelle fen&ecirc;tre, ou dans un nouvel onglet" target="_blank">http://www.datasheetcatalog.org/datasheet/philips/TEA5500T.pdf</a>.
+<p>Ce circuit int&eacute;gr&eacute; disopse de deux sorties en collecteur ouvert, qui sont actives &agrave; tour de r&ocirc;le, &agrave; chaque fois qu'un code valide est reconnu.<br>
+Cette caract&eacute;ristique permettait de mettre facilement en place un TEA5500 pour piloter successivement le relais de verrouillage, puis celui de d&eacute;verrouillage, dans une voiture &eacute;quip&eacute; de la fermeture centralis&eacute;e.</p>
+<p></p>
+<p>Le nombre de codes diff&eacute;rents qu'il est possible de programmer,
+&agrave; l'aide des dix entr&eacute;es du circuit int&eacute;gr&eacute;
+r&eacute;serv&eacute;es &agrave; ces effet, est de&nbsp;3^10 - 2, soit
+de 59047 codes possibles, car chacune des dix entr&eacute;es peut
+&ecirc;tre soumise &agrave; trois &eacute;tats diff&eacute;rents, et
+que deux combinaisons d'&eacute;tats ne sont pas autoris&eacute;es.</p>
+<p>Les photographies qui suivent pr&eacute;sentent un
+r&eacute;cepteur de t&eacute;l&eacute;commande infra-rouge
+qui &eacute;tait utilis&eacute; pour la gestion du verrouillage
+centralis&eacute; d'une automobile.<br>
+Le r&eacute;cepteur &eacute;tait plac&eacute; dans le
+plafonier, afin de permettre une bonne r&eacute;ception des signaux
+infra-rouge, en provenance de la ou des
+t&eacute;l&eacute;commandes du v&eacute;hicule.</p>
+<p>Le circuit imprim&eacute; comporte&nbsp;:</p>
+<ul>
+<li>Un dispositif de filtrage et de stabilisation de l'alimentation &eacute;lectrique disponible,</li>
+<li>Trois photodiodes infra-rouge, dispos&eacute;es de fa&ccedil;on &agrave; couvrir une zone de r&eacute;ception la plus large possible,</li>
+<li>Un pr&eacute;amplificateur et un filtre, contruit &agrave; partir de transistors,</li>
+<li>Le circuit int&eacute;gr&eacute; TEA5500 proprement dit,</li>
+<li>Deux transistors, ayant pour role de piloter deux relais, l'un pour le verrouillage du v&eacute;hicule, l'autre pour le d&eacute;verrouillage du v&eacute;hicule,</li>
+<li>De quoi g&eacute;rer l'action de la cl&eacute; sur les serrures des porti&egrave;res,</li>
+<li>De quoi g&eacute;rer l'action d'une commande de verrouillage et de d&eacute;verrouillage, pr&eacute;sente dans le v&eacute;hicule, soit &agrave; partir des porti&egrave;res, soit &agrave; partir de la planche de bord.</li>
+</ul>
+<p></p>
+<figure>
+<a href="../../../images/RECEPTEUR_INFRA-ROUGE_A_TEA5500_VU_FACE_COMPOSANTS.jpg">
+<img alt="RRECEPTEUR_INFRA-ROUGE_A_TEA5500_VU_FACE_COMPOSANTS" src="../../../images/RECEPTEUR_INFRA-ROUGE_A_TEA5500_VU_FACE_COMPOSANTS.jpg">
+</a>
+<figcaption>R&eacute;cepteur de t&eacute;l&eacute;commande infra-rouge &agrave; TEA5500</figcaption>
+</figure>
+<p>Ce r&eacute;cepteur n'utilise que des composants &eacute;lectroniques de type traversants.</p>
+<figure>
+<a href="../../../images/RECEPTEUR_INFRA-ROUGE_A_TEA5500_VU_FACE_CUIVRE.jpg">
+<img alt="RECEPTEUR_INFRA-ROUGE_A_TEA5500_VU_FACE_CUIVRE" src="../../../images/RECEPTEUR_INFRA-ROUGE_A_TEA5500_VU_FACE_CUIVRE.jpg">
+</a>
+<figcaption>R&eacute;cepteur de t&eacute;l&eacute;commande infra-rouge &agrave; TEA5500, vu face cuivre</figcaption>
+</figure>
+<p>Le code est configur&eacute; en usine, par des per&ccedil;ages,
+qui coupent des pistes.<br>
+La connaissance de l'emplacement de ces per&ccedil;ages permet de
+remonter, &agrave; condition de disposer des informations
+techniques qui concernent le circuit int&eacute;gr&eacute;
+TEA5500, au code qui sert &agrave; verrouiller ou &agrave;
+d&eacute;verrouiler la voiture.</p>
+<div class="valorisations">
+<div class="attention">
+<div class="attention-gauche">
+<img style="width: 32px; height: 32px;" alt="avertissement-icone-9768-32" src="../../../images/avertissement-icone-9768-32.png">
+</div>
+<div class="attention-droite">
+<p>Attention ! N'essayez pas de r&eacute;&eacute;mettre le code qui permettait d'ouvrir la voiture d'o&ugrave; a &eacute;t&eacute; r&eacute;cup&eacute;r&eacute; ce r&eacute;cepteur&nbsp;: elle ne roule de toute fa&ccedil;on plus !</p></div>
+</div>
+</div>
+<p></p>
+<figure>
+<a href="../../../images/CONFIGURATION_DU_CODE_DU_TEA5500.jpg">
+<img alt="CONFIGURATION_DU_CODE_DU_TEA5500" src="../../../images/CONFIGURATION_DU_CODE_DU_TEA5500.jpg">
+</a>
+<figcaption>Configuration du code du TEA5500</figcaption>
+</figure>
+<p></p>
+<a id="Endroit_1-2-0"></a>
+<h3>1-2) Le UM3750</h3>
+<p>Ce circuit int&eacute;gr&eacute; est utilis&eacute; dans des sonnettes t&eacute;l&eacute;command&eacute;es, dans certains syst&egrave;mes de commande de l'&eacute;clairage publique par transmissions radio, et dans d'autres syst&egrave;mes qui permettent de transmettre un ordre &agrave; distance.</p>
+<p>La <i>datasheet</i> du circuit int&eacute;gr&eacute; codeur - d&eacute;codeur &laquo; UM3750 &raquo;&nbsp;:</p>
+<p><img alt="LIEN_EXTERNE" src="../../../images/LIEN_EXTERNE.png" />&nbsp;<a href="http://www.datasheetcatalog.org/datasheets/150/367002_DS.pdf" title="Ouvrir le lien &laquo;&nbsp;http://www.datasheetcatalog.org/datasheets/150/367002_DS.pdf&nbsp;&raquo; dans une nouvelle fen&ecirc;tre, ou dans un nouvel onglet" target="_blank">http://www.datasheetcatalog.org/datasheets/150/367002_DS.pdf</a>.</p>
+<p>Il a m&ecirc;me &eacute;t&eacute; utilis&eacute; dans le r&eacute;cepteur radio d'un portail automatique, et dans chacune des t&eacute;l&eacute;commandes qui lui &eacute;taient associ&eacute;es, jusqu'au d&eacute;but du mois de mars de l'ann&eacute;e 2010.</p>
+<p>Le probl&egrave;me est qu'<a href="../realisations/la_telecommande_pirate.php.html" title="Ouvrir le lien &laquo;&nbsp;http://www.atrylec.com/fr/electronique/realisations/la_telecommande_pirate.php&nbsp;&raquo;" >une t&eacute;l&eacute;commande suppl&eacute;mentaire</a> est venue quelque peu bouleverser tout cela, car le code qui est g&eacute;n&eacute;r&eacute; par ce circuit int&eacute;gr&eacute; est fixe.</p>
+<p>Le circuit int&eacute;gr&eacute; peut &ecirc;tre utilis&eacute; pour r&eacute;aliser la fonction de codage, ou la fonction de d&eacute;codage.</p>
+<p>Le nombre de codes diff&eacute;rents qu'il est possible de programmer, &agrave; l'aide des douze entr&eacute;es du circuit int&eacute;gr&eacute; r&eacute;serv&eacute;es &agrave; ces effet, est de 2^12, soit de 4096 codes possibles, car chacune des douze entr&eacute;es peut &ecirc;tre soumise &agrave; deux &eacute;tats diff&eacute;rents.</p>
+<a id="Endroit_1-3-0"></a>
+<h3>1-3) Le UM3758-120A</h3>
+<p>Ce circuit int&eacute;gr&eacute; est utilisable comme le cicuit int&eacute;gr&eacute; pr&eacute;c&eacute;dent.<br>
+Il est utilisable dans des syst&egrave;mes qui permettent de transmettre un ordre &agrave; distance.<br>
+Le code qui est g&eacute;n&eacute;r&eacute; par ce circuit int&eacute;gr&eacute; est fixe.</p>
+<p>La <i>datasheet</i> du circuit int&eacute;gr&eacute;codeur - d&eacute;codeur &laquo; UM3758 &raquo;&nbsp;:</p>
+<p><img alt="LIEN_EXTERNE" src="../../../images/LIEN_EXTERNE.png" />&nbsp;<a href="http://www.datasheetcatalog.org/datasheets/700/366997_DS.pdf" title="Ouvrir le lien &laquo;&nbsp;http://www.datasheetcatalog.org/datasheets/700/366997_DS.pdf&nbsp;&raquo; dans une nouvelle fen&ecirc;tre, ou dans un nouvel onglet" target="_blank">http://www.datasheetcatalog.org/datasheets/700/366997_DS.pdf</a>.</p>
+<p>Le circuit int&eacute;gr&eacute; peut &ecirc;tre utilis&eacute; pour r&eacute;aliser la fonction de codage, ou la fonction de d&eacute;codage.</p>
+<p>Le nombre de codes diff&eacute;rents qu'il est possible de programmer, &agrave; l'aide des douze entr&eacute;es du circuit int&eacute;gr&eacute; r&eacute;serv&eacute;es &agrave; ces effet, est de 3 ^ 12, soit de 531441 codes possibles, car chacune des douze entr&eacute;es peut &ecirc;tre soumise &agrave; trois &eacute;tats diff&eacute;rents.
+<div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="telecommandes_encodeurs_-_decodeurs_page_1.php%3Fselection=2.html#Haut_de_page">Je veux remonter !</a>&nbsp;|&nbsp;<a href="telecommandes_encodeurs_-_decodeurs_page_1.php%3Fselection=2.html#Liste_de_depart">Liste</a>
+</div>
+<a id="Endroit_2-0-0"></a>
+<h2>2) Composants programmables</h2>
+<p>Les circuits int&eacute;gr&eacute;s mentionn&eacute;s pr&eacute;c&eacute;demment peuvent s'av&eacute;rer &ecirc;tre difficiles &agrave; se procurer.<br>
+Les composants programmables, bien qu'ils n&eacute;c&eacute;ssitent du mat&eacute;riel suppl&eacute;mentaire pour pouvoir les programmer, sont, quant &agrave; eux, plus faciles d'acc&egrave;s.<br>
+C'est le cas des microcontr&ocirc;leurs et des FPGA, qui offrent tous deux plus de souplesse.</p>
+<a id="Endroit_2-1-0"></a>
+<h3>2-1) Utilisation de deux PIC16F84</h3>
+<a id="Endroit_2-1-1"></a>
+<h4>2-1-1) Sch&eacute;ma &eacute;lectronique</h4>
+<p>L'ensemble propos&eacute; ici comporte&nbsp;:</p>
+<ul>
+<li>Une t&eacute;l&eacute;commande radio,</li>
+<li>Un r&eacute;cepteur radio,</li>
+<li>Une carte supportant 4 relais, avec chacun un contact &laquo; Commun &raquo; , &laquo; Repos &raquo; , et &laquo; Travail &raquo; , libres de potentiels &eacute;lectriques.</li>
+</ul>
+<p>Cet ensemble utilise&nbsp;:</p>
+<ul>
+<li>Un microcontr&ocirc;leur PIC16F84, fabriqu&eacute; par MICROCHIP, pour la t&eacute;l&eacute;commande, et un microcontr&ocirc;leur PIC16F84 pour le d&eacute;codeur,</li>
+<li>Un &eacute;metteur TX-SAW 433, fabriqu&eacute; par AUREL, pour l'&eacute;metteur radio, &agrave; 433 MHz, en modulation d'amplitude,</li>
+<li>Un r&eacute;cepteur AC-RX2, fabriqu&eacute; par AUREL, pour le r&eacute;cepteur radio, &agrave; 433 MHz, en modulation d'amplitude.</li>
+</ul>
+<p>La <i>datasheet</i> du microcontr&ocirc;leur &laquo; PIC16F84 &raquo;&nbsp;:</p>
+<p><img alt="LIEN_EXTERNE" src="../../../images/LIEN_EXTERNE.png" />&nbsp;<a href="http://ww1.microchip.com/downloads/en/devicedoc/35007b.pdf" title="Ouvrir le lien &laquo;&nbsp;http://ww1.microchip.com/downloads/en/devicedoc/35007b.pdf&nbsp;&raquo; dans une nouvelle fen&ecirc;tre, ou dans un nouvel onglet" target="_blank">http://ww1.microchip.com/downloads/en/devicedoc/35007b.pdf</a>.</p>
+<p>La <i>datasheet</i> de l'&eacute;metteur radio &laquo; TX-SAW 433 &raquo;&nbsp;:</p>
+<p><img alt="LIEN_EXTERNE" src="../../../images/LIEN_EXTERNE.png" />&nbsp;<a href="http://www.aurelwireless.com/wp-content/uploads/user-manual/650200689G_um.pdf" title="Ouvrir le lien &laquo;&nbsp;http://www.aurelwireless.com/wp-content/uploads/user-manual/650200689G_um.pdf&nbsp;&raquo; dans une nouvelle fen&ecirc;tre, ou dans un nouvel onglet" target="_blank">http://www.aurelwireless.com/wp-content/uploads/user-manual/650200689G_um.pdf</a>.</p>
+<p>La <i>datasheet</i> du r&eacute;cepteur radio &laquo; AC-RX2 &raquo;&nbsp;:</p>
+<p><img alt="LIEN_EXTERNE" src="../../../images/LIEN_EXTERNE.png" />&nbsp;<a href="http://www.aurelwireless.com/wp-content/uploads/manuale-uso/650201133G_mu.pdf" title="Ouvrir le lien &laquo;&nbsp;http://www.aurelwireless.com/wp-content/uploads/manuale-uso/650201133G_mu.pdf&nbsp;&raquo; dans une nouvelle fen&ecirc;tre, ou dans un nouvel onglet" target="_blank">http://www.aurelwireless.com/wp-content/uploads/manuale-uso/650201133G_mu.pdf</a>.</p>
+<p>La t&eacute;l&eacute;commande radio est pr&eacute;vue pour comporter 16 touches, matric&eacute;es, auxquelles peuvent s'ajouter d'autres touches auxiliaires.<br>
+Elle peut &ecirc;tre aliment&eacute;e par une pile carr&eacute;e de 9 V.</p>
+<p>Le r&eacute;cepteur radio peut &eacute;galement &ecirc;tre aliment&eacute;e par une pile carr&eacute;e de 9 V, toutefois, afin de ne pas d&eacute;charger les piles, une alimentation &agrave; partir d'une batterie, ou&nbsp;&agrave; partir d'un bloc secteur, est plus recommand&eacute;e.<br>
+Les relais consomment en effet beaucoup de courant lorsqu'ils sont activ&eacute;s.</p>
+<p>La valeur de ce courant consomm&eacute; d&eacute;pent du type de relais utilis&eacute;.</p>
+<p>Le codage des informations consiste &agrave; envoyer une tramme de 16 impulsions.</p>
+<p>La longueur des impulsions code une donn&eacute;e binaire.</p>
+<p>Ce codage est indiqu&eacute; ci-apr&egrave;s&nbsp;:</p>
+<ul>
+<li>Impulsion longue, &laquo; 0 &raquo;,</li>
+<li>Impulsion courte, &laquo; 1 &raquo;.</li>
+</ul>
+<p>Les 8 premi&egrave;res impulsions ont un code fixe.<br>
+Les 4 suivantes renseignent sur la touche qui a &eacute;t&eacute; appuy&eacute;e.<br>
+Les 4 derni&egrave;res ont un code fixe.</p>
+<p>Les impulsions qui ont un code fixe ont pour but d'identifier la t&eacute;l&eacute;commande qui a &eacute;mis.</p>
+<p>La r&eacute;ception d'un front montant, par le microcontr&ocirc;leur PIC16F84 de l'ensemble r&eacute;cepteur, d&eacute;clenche une interruption.<br>
+La sous-routine d'interruption attend un temps qui est sup&eacute;rieur &agrave; la dur&eacute;e d'une impulsion courte, et qui est inf&eacute;rieur &agrave; la dur&eacute;e d'une impulsion longue.<br>
+Elle interroge alors quel est l'&eacute;tat de la broche de r&eacute;ception des donn&eacute;es&nbsp;:</p>
+<ul>
+<li>Si elle est &agrave; &laquo; 0 &raquo; , c'est qu'une impulsion courte avait &eacute;t&eacute; re&ccedil;ue, qui codait un &laquo; 1 &raquo; ,</li>
+<li>Si elle est &agrave; &laquo; 1 &raquo; , c'est qu'une impulsion longue est en cours de r&eacute;ception, qui code un &laquo; 0 &raquo;.</li>
+</ul>
+<p>Un temporisateur, utilisant le TIMER 0, permet de r&eacute;initialiser le processus de r&eacute;ception au bout d'un temps sup&eacute;rieur &agrave; la dur&eacute;e qui s&eacute;pare deux impulsions, si des signaux provenant d'autres appareils, ou si des parasites sont re&ccedil;us.</p>
+<p>Le code source du r&eacute;cepteur ne d&eacute;finit pas l'action &agrave; effectuer, en fonction de la touche de la t&eacute;l&eacute;commande qui a &eacute;t&eacute; appuy&eacute;e.<br>
+Vous pouvez l'adapter &agrave; vos besoins.</p>
+<figure>
+<a href="../../../images/SCHEMA_TELECOMMANDE_4_RELAIS_1_EMETTEUR.png.html">
+<img alt="SCHEMA_TELECOMMANDE_4_RELAIS_1_EMETTEUR" src="../../../images/SCHEMA_TELECOMMANDE_4_RELAIS_1_EMETTEUR_Petite.png">
+</a>
+<figcaption>Sch&eacute;ma &eacute;lectronique de la t&eacute;l&eacute;commande</figcaption>
+</figure>
+<p></p>
+<figure>
+<a href="../../../images/SCHEMA_TELECOMMANDE_4_RELAIS_1_RECEPTEUR.png.html">
+<img alt="SCHEMA_TELECOMMANDE_4_RELAIS_1_RECEPTEUR" src="../../../images/SCHEMA_TELECOMMANDE_4_RELAIS_1_RECEPTEUR_Petite.png">
+</a>
+<figcaption>Sch&eacute;ma &eacute;lectronique du r&eacute;cepteur</figcaption>
+</figure>
+<p></p>
+<figure>
+<a href="../../../images/SCHEMA_TELECOMMANDE_4_RELAIS_1_COMMANDES.png.html">
+<img alt="SCHEMA_TELECOMMANDE_4_RELAIS_1_COMMANDES" src="../../../images/SCHEMA_TELECOMMANDE_4_RELAIS_1_COMMANDES_Petite.png">
+</a>
+<figcaption>Sch&eacute;ma &eacute;lectronique de la carte des 4 relais</figcaption>
+</figure>
+<p></p>
+<a id="Endroit_2-1-2"></a>
+<h4>2-1-2) Typons</h4>
+<p></p>
+<figure>
+<a href="../../../images/TYPON_TELECOMMANDE_4_RELAIS_1_EMETTEUR.png.html">
+<img alt="TYPON_TELECOMMANDE_4_RELAIS_1_EMETTEUR" src="../../../images/TYPON_TELECOMMANDE_4_RELAIS_1_EMETTEUR_Petite.png">
+</a>
+<figcaption>Typon de la t&eacute;l&eacute;commande</figcaption>
+</figure>
+<p></p>
+<figure>
+<a href="../../../images/TYPON_TELECOMMANDE_4_RELAIS_1_RECEPTEUR.png.html">
+<img alt="TYPON_TELECOMMANDE_4_RELAIS_1_RECEPTEUR" src="../../../images/TYPON_TELECOMMANDE_4_RELAIS_1_RECEPTEUR_Petite.png">
+</a>
+<figcaption>Typon du r&eacute;cepteur</figcaption>
+</figure>
+<p></p>
+<figure>
+<a href="../../../images/TYPON_TELECOMMANDE_4_RELAIS_1_COMMANDES.png.html">
+<img alt="TYPON_TELECOMMANDE_4_RELAIS_1_COMMANDES" src="../../../images/TYPON_TELECOMMANDE_4_RELAIS_1_COMMANDES_Petite.png">
+</a>
+<figcaption>Typon de la carte des 4 relais</figcaption>
+</figure>
+<p></p>
+<a id="Endroit_2-1-3"></a>
+<h4>2-1-3) Codes sources</h4>
+<div class="valorisations">
+<div class="programmes">
+<div class="programmes_gauche">
+<img style="width: 32px; height: 32px;" alt="fleche-bas-telecharger-icone-9594-32" src="../../../images/fleche-bas-telecharger-icone-9594-32.png">
+</div>
+<div class="programmes_droite">
+<p>Sch&eacute;mas &eacute;lectroniques et typons de l'ensemble d'&eacute;mission - r&eacute;ception &agrave; 4 relais, version 1<br />
+Logiciel de dessin&nbsp;: EAGLE 6.4.0<br />
+<a href="../../../elements/allures/valorisations/programmes.php%3Fprogramme=telecommandes_encodeurs_-_decodeurs_page_1+1+1">T&eacute;l&eacute;charger le fichier<span>Effectuez un clic droit, puis s&eacute;lectionnez l'option &laquo;&nbsp;Enregistrer la cible du lien sous...&nbsp;&raquo;, pour t&eacute;l&eacute;charger le fichier</span></a> (1.16 Mo)</p></div>
+</div>
+</div>
+<div class="valorisations">
+<div class="programmes">
+<div class="programmes_gauche">
+<img style="width: 32px; height: 32px;" alt="fleche-bas-telecharger-icone-9594-32" src="../../../images/fleche-bas-telecharger-icone-9594-32.png">
+</div>
+<div class="programmes_droite">
+<p>Ensemble d'&eacute;mission - r&eacute;ception &agrave; 4 relais, version 1&nbsp;: Fichiers C<br />
+Cible&nbsp;: PIC16F84<br>Compilateur&nbsp;: Hi-Tech C<br />
+<a href="../../../elements/allures/valorisations/programmes.php%3Fprogramme=telecommandes_encodeurs_-_decodeurs_page_1+1+2">T&eacute;l&eacute;charger le fichier<span>Effectuez un clic droit, puis s&eacute;lectionnez l'option &laquo;&nbsp;Enregistrer la cible du lien sous...&nbsp;&raquo;, pour t&eacute;l&eacute;charger le fichier</span></a> (11.45 Ko)</p></div>
+</div>
+</div>
+<div>
+<div class="menu_article">
+<ul class="menu_article_principal">
+<li><a href="telecommandes_encodeurs_-_decodeurs_page_1.php.html">T&eacute;l&eacute;commandes&nbsp;: Encodeurs - D&eacute;codeurs</a></li>
+</ul>
+<ul class="menu_article_secondaire">
+<li><a href="telecommandes_encodeurs_-_decodeurs_page_1.php%3Fselection=2.html#Endroit_1-0-0">1) Circuits int&eacute;gr&eacute;s sp&eacute;cifiques</a></li>
+<li>
+<ul>
+<li><a href="telecommandes_encodeurs_-_decodeurs_page_1.php%3Fselection=2.html#Endroit_1-1-0">1-1) Le TEA5500</a></li>
+<li><a href="telecommandes_encodeurs_-_decodeurs_page_1.php%3Fselection=2.html#Endroit_1-2-0">1-2) Le UM3750</a></li>
+<li><a href="telecommandes_encodeurs_-_decodeurs_page_1.php%3Fselection=2.html#Endroit_1-3-0">1-3) Le UM3758-120A</a></li>
+</ul>
+</li>
+<li><a href="telecommandes_encodeurs_-_decodeurs_page_1.php%3Fselection=2.html#Endroit_2-0-0">2) Composants programmables</a></li>
+<li>
+<ul>
+<li><a href="telecommandes_encodeurs_-_decodeurs_page_1.php%3Fselection=2.html#Endroit_2-1-0">2-1) Utilisation de deux PIC16F84</a></li>
+<li>
+<ul>
+<li><a href="telecommandes_encodeurs_-_decodeurs_page_1.php%3Fselection=2.html#Endroit_2-1-1">2-1-1) Sch&eacute;ma &eacute;lectronique</a></li>
+<li><a href="telecommandes_encodeurs_-_decodeurs_page_1.php%3Fselection=2.html#Endroit_2-1-2">2-1-2) Typons</a></li>
+<li><a href="telecommandes_encodeurs_-_decodeurs_page_1.php%3Fselection=2.html#Endroit_2-1-3">2-1-3) Codes sources</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="commentaires"><a id="Endroits_des_commentaires"></a><p class="sous-titre_commentaires">Commentaires (1)</p><div class="commentaire">
+<div class="commentaire-haut">
+<div class="commentaire-haut-gauche">
+<p>lol</p></div>
+<div class="commentaire-haut-droite">
+<p>Le mercredi 25 mai 2011 &agrave; 13:23</p></div>
+</div>
+<div class="commentaire-bas">
+<p>mdr</p></div>
+</div>
+<p class="sous-titre_ajouts">Ajouter un commentaire</p>
+<form id="contact" method="post" action="http://atrylec.com/elements/allures/commentaires/verification.php">
+<fieldset>
+<legend>
+Votre pseudo&nbsp;: 
+</legend>
+<p>
+<label for="pseudo">
+Pseudo&nbsp;: 
+</label>
+<input type="text" id="pseudo" name="pseudo" tabindex="1" required="required">
+</p>
+</fieldset>
+<fieldset>
+<legend>
+Votre commentaire&nbsp;: 
+</legend>
+<p>
+<label for="commentaire">
+Commentaire&nbsp;: 
+</label>
+<textarea id="commentaire" name="commentaire" tabindex="2" cols="50" rows="2" required="required">
+</textarea>
+</p>
+</fieldset>
+<div class="bouton_validation_commentaire">
+<input type="submit" name="Poster" value="Poster" />
+</div>
+</form>
+</div><div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="telecommandes_encodeurs_-_decodeurs_page_1.php%3Fselection=2.html#Haut_de_page">Je veux remonter !</a>
+</div>
+</section>
+<footer>
+<div class="liens">
+<ul>
+<li><a href="../../contact.php.html">ContaCT</a></li>
+</ul>
+</div>
+<div id="choix_style">
+<div class="presentation">Ravaler la fa&ccedil;ade&nbsp;:</div>
+<a href="telecommandes_encodeurs_-_decodeurs_page_1.php%3Fselection=1.html" title="Style 1"><div class="choix choix_bleu">&nbsp;</div></a><div class="choix choix_rouge_choisi">&nbsp;</div><a href="telecommandes_encodeurs_-_decodeurs_page_1.php%3Fselection=3.html" title="Style 3"><div class="choix choix_orange">&nbsp;</div></a></div>
+<div class="remarques">
+<p>Il ne faut pas dire&nbsp;: &laquo;&nbsp;Le hangar des transistors &agrave; effets de champs
+&nbsp;&raquo;, mais&nbsp;: &laquo;&nbsp;La salle des FET
+&nbsp;&raquo;.</p>
+</div>
+<div class="visites">
+<img style="width: 15px; height: 15px;" alt="6_30" src="../../../images/6_30.png">   <img style="width: 15px; height: 15px;" alt="5_30" src="../../../images/5_30.png">   <img style="width: 15px; height: 15px;" alt="0_30" src="../../../images/0_30.png">   <img style="width: 15px; height: 15px;" alt="9_30" src="../../../images/9_30.png">   <img style="width: 15px; height: 15px;" alt="9_30" src="../../../images/9_30.png">   </div>
+</footer>
+</div>
+</body>
+</html>

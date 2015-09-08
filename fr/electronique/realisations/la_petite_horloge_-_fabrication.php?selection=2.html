@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>La Petite Horloge - Fabrication</title>
+<meta name="description" content="Horloge &agrave; LED de bureau &agrave; base de microcontr&ocirc;leur : sch&eacute;mas, typons et codes sources" />
+<meta name="keywords" content="atrylec electronique horloge led capteur capteurs temperature affichage 7 segment pic pic18f14k22 ds3231 tmp100" />
+<link rel="stylesheet" media="screen" type="text/css" title="Style 2" href="../../../elements/allures/style_2.css">
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-42331281-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+<body>
+<div id="page">
+<div id="haut">
+<header id="Haut_de_page">
+<div id="principale">
+<p class="titre_principal_haut">
+<a href="../../../index.php.html"><img style="width: 150px;" alt="Affichage_Atrylec_com" src="../../../images/Affichage_Atrylec_com.png" /><span class="invisible">Atrylec</span></a></p>
+<p class="sous-titre_haut">Vous n'&ecirc;tes pas seuls dans l'Univers !</p>
+</div>
+<div id="additionnelle">
+</div>
+</header>
+<nav>
+<ul id="navigation">
+<li><a href="../../../index.php.html" title="Accueil">Accueil</a></li>
+<li><a class="choisi" href="../index.php.html" title="Electronique">Electronique</a></li>
+<li><a href="../../radio/index.php%3Fnumero=0.html" title="Radio">Radio</a></li>
+<li><a href="../../origami/index.php.html" title="Origami">Origami</a></li>
+<li><a href="../../photographies/index.php%3Fnumero=0.html" title="Photographies">Photographies</a></li>
+<li><a href="../../le_grenier/index.php.html" title="Le grenier">Le grenier</a></li>
+<li><a href="../../contact.php.html" title="ContaCT">ContaCT</a></li>
+</ul>
+</nav>
+</div>
+<section>
+<div id="titre">
+<div id="titre_gauche">
+</div>
+<div id="titre_image">
+<img style="width: 100px; height: 100px;" alt="Transistor_100" src="../../../images/Transistor_100.png">
+</div>
+<div id="titre_texte">
+<p>/&nbsp;</p><h1>La Petite Horloge - Fabrication</h1>
+</div>
+<div id="titre_droite">
+</div>
+</div>
+<div>
+<p id="introduction">Fabrication de la Petite Horloge.</p>
+</div>
+<p>
+<a id="Liste_de_depart"></a>
+</p>
+<div>
+<div class="menu_article">
+<ul class="menu_article_principal">
+<li><a href="la_petite_horloge.php.html">La Petite Horloge</a></li>
+<li><ul>
+<li><a href="la_petite_horloge.php.html">Pr&eacute;sentation g&eacute;n&eacute;rale</a></li>
+<li><a href="la_petite_horloge_-_conception_electronique.php.html">Conception &eacute;lectronique</a></li>
+<li><a class="choisi" href="la_petite_horloge_-_fabrication.php.html">Fabrication</a></li>
+</ul></li>
+</ul>
+<ul class="menu_article_secondaire">
+<li><a href="la_petite_horloge_-_fabrication.php%3Fselection=2.html#Endroit_1-0-0">1) Fabrication</a></li>
+<li>
+<ul>
+<li><a href="la_petite_horloge_-_fabrication.php%3Fselection=2.html#Endroit_1-1-0">1-1) Version 1 - 2014</a></li>
+<li>
+<ul>
+<li><a href="la_petite_horloge_-_fabrication.php%3Fselection=2.html#Endroit_1-1-1">1-1-1) Gravure du circuit</a></li>
+<li><a href="la_petite_horloge_-_fabrication.php%3Fselection=2.html#Endroit_1-1-2">1-1-2) Soudage des composants</a></li>
+<li><a href="la_petite_horloge_-_fabrication.php%3Fselection=2.html#Endroit_1-1-3">1-1-3) Programmation du microcontr&ocirc;leur</a></li>
+<li><a href="la_petite_horloge_-_fabrication.php%3Fselection=2.html#Endroit_1-1-4">1-1-4) Int&eacute;gration sur le support</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="la_petite_horloge_-_fabrication.php%3Fselection=2.html#Haut_de_page">Je veux remonter !</a>&nbsp;|&nbsp;<a href="la_petite_horloge_-_fabrication.php%3Fselection=2.html#Liste_de_depart">Liste</a>
+</div>
+<a id="Endroit_1-0-0"></a>
+<h2>1) Fabrication</h2>
+<p>Voici les &eacute;tapes qui sont effectu&eacute;es apr&egrave;s la validation des sch&eacute;mas &eacute;lectroniques et des typons, afin d'obtenir l'objet termin&eacute;.</p>
+<a id="Endroit_1-1-0"></a>
+<h3>1-1) Version 1 - 2014</h3>
+<table border="0" cellpadding="2" cellspacing="1">
+<tbody>
+<tr>
+<td>
+<a href="../../../images/Menu_restauration_rapide_adapte.jpg">
+<img alt="Menu_restauration_rapide_adapte" src="../../../images/Menu_restauration_rapide_adapte_Petite.jpg">
+</a>
+</td>
+<td>
+<p>Au menu pour la fabrication de la version 1&nbsp;:</p>
+<ul>
+<li>Un circuit imprim&eacute; double face&nbsp;;</li>
+<li>Des composants CMS en grande majorit&eacute;&nbsp;;</li>
+<li>Des pistes avec une &eacute;paisseur descendant jusqu'&agrave; 0,4064 mm&nbsp;;</li>
+<li>Des per&ccedil;ages avec un diam&egrave;tre descendant jusqu'&agrave; 0,6 mm.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<a id="Endroit_1-1-1"></a>
+<h4>1-1-1) Gravure du circuit</h4>
+<p>La gravure se fait avec les moyens du bord.</p>
+<div class="valorisations">
+<div class="attention">
+<div class="attention-gauche">
+<img style="width: 32px; height: 32px;" alt="avertissement-icone-9768-32" src="../../../images/avertissement-icone-9768-32.png">
+</div>
+<div class="attention-droite">
+<p>Attention&nbsp;! Si vous r&eacute;alisez vos circuits imprim&eacute;s vous-m&ecirc;me par la m&eacute;thode chimique, respectez scrupuleusement les pr&eacute;cautions de s&eacute;curit&eacute; qui concernent les produits chimiques utilis&eacute;s&nbsp;!</p></div>
+</div>
+</div>
+<p>L'insolation se fait en 2 minutes et 40 secondes avec les cartes pr&eacute;sensibilis&eacute;es BUNGARD et le mat&eacute;riel utilis&eacute;.<br />
+Pour d&eacute;terminer le meilleur temps d'insolation, il convient de faire des essais sur de petits circuits imprim&eacute;s r&eacute;alis&eacute;s avec les m&ecirc;mes cartes pr&eacute;sensibilis&eacute;es.</p>
+<table border="0" cellpadding="2" cellspacing="1">
+<tbody>
+<tr>
+<td>
+<figure>
+<a href="../../../images/La_Petite_Horloge_1_Typons.jpg">
+<img alt="La_Petite_Horloge_1_Typons" src="../../../images/La_Petite_Horloge_1_Typons_Petite.jpg">
+</a>
+<a href="../../../images/La_Petite_Horloge_1_Carte_presensibilisee_.jpg.html">
+<img alt="La_Petite_Horloge_1_Carte_presensibilisee_" src="../../../images/La_Petite_Horloge_1_Carte_presensibilisee_Petite.jpg">
+</a>
+<br>
+<a href="../../../images/La_Petite_Horloge_1_Typon_et_carte_presensibilisee_face_haut.jpg">
+<img alt="La_Petite_Horloge_1_Typon_et_carte_presensibilisee_face_haut" src="../../../images/La_Petite_Horloge_1_Typon_et_carte_presensibilisee_face_haut_Petite.jpg">
+</a>
+<a href="../../../images/La_Petite_Horloge_1_Carte_presensibilisee_et_insoleuse_face_haut.jpg">
+<img alt="La_Petite_Horloge_1_Carte_presensibilisee_et_insoleuse_face_haut" src="../../../images/La_Petite_Horloge_1_Carte_presensibilisee_et_insoleuse_face_haut_Petite.jpg">
+</a>
+<br>
+<a href="../../../images/La_Petite_Horloge_1_Typon_et_carte_presensibilisee_face_bas.jpg">
+<img alt="La_Petite_Horloge_1_Typon_et_carte_presensibilisee_face_bas" src="../../../images/La_Petite_Horloge_1_Typon_et_carte_presensibilisee_face_bas_Petite.jpg">
+</a>
+<a href="../../../images/La_Petite_Horloge_1_Carte_presensibilisee_et_insoleuse_face_bas.jpg">
+<img alt="La_Petite_Horloge_1_Carte_presensibilisee_et_insoleuse_face_bas" src="../../../images/La_Petite_Horloge_1_Carte_presensibilisee_et_insoleuse_face_bas_Petite.jpg">
+</a>
+<figcaption>L'insolation, ou les noces du typon et de la carte pr&eacute;sensibilis&eacute;e</figcaption>
+</figure>
+</td>
+<td>
+<figure>
+<a href="../../../images/La_Petite_Horloge_1_Alignement_des_typons_sur_l_insoleuse.jpg">
+<img alt="La_Petite_Horloge_1_Alignement_des_typons_sur_l_insoleuse" src="../../../images/La_Petite_Horloge_1_Alignement_des_typons_sur_l_insoleuse_Petite.jpg">
+</a>
+<figcaption>Alignement des typons sur l'insoleuse</figcaption>
+</figure>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Une fois l'&eacute;tape de l'insolation effectu&eacute;e, il faut passer &agrave; la r&eacute;v&eacute;lation.<br />
+C'est ici que les parties de la r&eacute;sine photosensible de la carte pr&eacute;sensibilis&eacute;e expos&eacute;es aux rayonnements ultra-violets seront rong&eacute;es, permettant ensuite l'&eacute;limintation du cuivre au moment de la gravure.</p>
+<p>La r&eacute;v&eacute;lation se fait &agrave; l'aide&nbsp;:</p>
+<ul>
+<li>D'&eacute;quipements de protection adapt&eacute;s&nbsp;</li>
+<li>D'une solution de soude&nbsp;</li>
+<li>D'une moiti&eacute; de brique de jus de fruit coup&eacute;e dans le sens vertical&nbsp;</li>
+<li>D'un lavabo ou d'un bac.</li>
+</ul>
+<div class="valorisations">
+<div class="informations">
+<div class="informations-gauche">
+<img style="width: 32px; height: 32px;" alt="documentaires-des-proprietes-icone-5224-32" src="../../../images/documentaires-des-proprietes-icone-5224-32.png">
+</div>
+<div class="informations-droite">
+<p>Les meilleurs r&eacute;sultats sont obtenus &agrave; l'aide de briques de jus d'orange avec pulpe de 1 L 75 disponibles dans des supermarch&eacute;s&nbsp;!</p></div>
+</div>
+</div>
+<figure>
+<a href="../../../images/La_Petite_Horloge_1_Debut_de_la_revelation_Vue_d_en_haut.jpg">
+<img alt="La_Petite_Horloge_1_Debut_de_la_revelation_Vue_d_en_haut" src="../../../images/La_Petite_Horloge_1_Debut_de_la_revelation_Vue_d_en_haut_Petite.jpg">
+</a>
+<a href="../../../images/La_Petite_Horloge_1_Fin_de_la_revelation_Vue_d_en_haut.jpg">
+<img alt="La_Petite_Horloge_1_Fin_de_la_revelation_Vue_d_en_haut" src="../../../images/La_Petite_Horloge_1_Fin_de_la_revelation_Vue_d_en_haut_Petite.jpg">
+</a>
+<br>
+<a href="../../../images/La_Petite_Horloge_1_Debut_de_la_revelation_Vue_d_en_bas.jpg">
+<img alt="La_Petite_Horloge_1_Debut_de_la_revelation_Vue_d_en_bas" src="../../../images/La_Petite_Horloge_1_Debut_de_la_revelation_Vue_d_en_bas_Petite.jpg">
+</a>
+<figcaption>La r&eacute;v&eacute;lation</figcaption>
+</figure>
+<p></p>
+<table border="0" cellpadding="2" cellspacing="1">
+<tbody>
+<tr>
+<td>
+<figure>
+<a href="../../../images/La_Petite_Horloge_1_Gravure_du_haut.jpg">
+<img alt="La_Petite_Horloge_1_Gravure_du_haut" src="../../../images/La_Petite_Horloge_1_Gravure_du_haut_Petite.jpg">
+</a>
+<br />
+<a href="../../../images/La_Petite_Horloge_1_Gravure_du_bas.jpg">
+<img alt="La_Petite_Horloge_1_Gravure_du_bas" src="../../../images/La_Petite_Horloge_1_Gravure_du_bas_Petite.jpg">
+</a>
+<figcaption>La gravure</figcaption>
+</figure>
+</td>
+<td>
+<figure>
+<a href="../../../images/La_Petite_Horloge_1_Nettoyage_apres_la_gravure.jpg">
+<img alt="La_Petite_Horloge_1_Nettoyage_apres_la_gravure" src="../../../images/La_Petite_Horloge_1_Nettoyage_apres_la_gravure_Petite.jpg">
+</a>
+<figcaption>Le nettoyage apr&egrave;s la gravure</figcaption>
+</figure>
+</td>
+</tr>
+</tbody>
+</table>
+<p></p>
+<figure>
+<a href="../../../images/La_Petite_Horloge_1_Percage_Vue_d_ensemble.jpg">
+<img alt="La_Petite_Horloge_1_Percage_Vue_d_ensemble" src="../../../images/La_Petite_Horloge_1_Percage_Vue_d_ensemble.jpg">
+</a>
+<br />
+<a href="../../../images/La_Petite_Horloge_1_Fin_du_percage_Vue_d_ensemble_d_en_haut.jpg">
+<img alt="La_Petite_Horloge_1_Fin_du_percage_Vue_d_ensemble_d_en_haut" src="../../../images/La_Petite_Horloge_1_Fin_du_percage_Vue_d_ensemble_d_en_haut_Petite.jpg">
+</a>
+<a href="../../../images/La_Petite_Horloge_1_Fin_du_percage_Vue_detaillee_d_en_haut.jpg">
+<img alt="La_Petite_Horloge_1_Fin_du_percage_Vue_detaillee_d_en_haut" src="../../../images/La_Petite_Horloge_1_Fin_du_percage_Vue_detaillee_d_en_haut_Petite.jpg">
+</a>
+<br />
+<a href="../../../images/La_Petite_Horloge_1_Fin_du_percage_Vue_d_ensemble_d_en_bas.jpg">
+<img alt="La_Petite_Horloge_1_Fin_du_percage_Vue_d_ensemble_d_en_bas" src="../../../images/La_Petite_Horloge_1_Fin_du_percage_Vue_d_ensemble_d_en_bas_Petite.jpg">
+</a>
+<a href="../../../images/La_Petite_Horloge_1_Fin_du_percage_Vue_detaillee_d_en_bas.jpg">
+<img alt="La_Petite_Horloge_1_Fin_du_percage_Vue_detaillee_d_en_bas" src="../../../images/La_Petite_Horloge_1_Fin_du_percage_Vue_detaillee_d_en_bas_Petite.jpg">
+</a>
+<figcaption>Le per&ccedil;age</figcaption>
+</figure>
+<p>Une fois le per&ccedil;age effectu&eacute;, il est temps pour la gratounette d'entrer en sc&egrave;ne &nbsp;!</p>
+<figure>
+<a href="../../../images/La_Petite_Horloge_1_Nettoyage_apres_le_percage_Vue_d_ensemble.jpg">
+<img alt="La_Petite_Horloge_1_Nettoyage_apres_le_percage_Vue_d_ensemble" src="../../../images/La_Petite_Horloge_1_Nettoyage_apres_le_percage_Vue_d_ensemble_Petite.jpg">
+</a>
+<a href="../../../images/La_Petite_Horloge_1_Nettoyage_apres_le_percage_Vue_detaillee.jpg.html">
+<img alt="La_Petite_Horloge_1_Nettoyage_apres_le_percage_Vue_detaillee" src="../../../images/La_Petite_Horloge_1_Nettoyage_apres_le_percage_Vue_detaillee_Petite.jpg">
+</a>
+<br />
+<a href="../../../images/La_Petite_Horloge_1_Fin_du_nettoyage_apres_le_percage_Vue_d_ensemble_d_en_haut.jpg">
+<img alt="La_Petite_Horloge_1_Fin_du_nettoyage_apres_le_percage_Vue_d_ensemble_d_en_haut" src="../../../images/La_Petite_Horloge_1_Fin_du_nettoyage_apres_le_percage_Vue_d_ensemble_d_en_haut_Petite.jpg">
+</a>
+<a href="../../../images/La_Petite_Horloge_1_Fin_du_nettoyage_apres_le_percage_Vue_detaillee_d_en_haut.jpg">
+<img alt="La_Petite_Horloge_1_Fin_du_nettoyage_apres_le_percage_Vue_detaillee_d_enhaut" src="../../../images/La_Petite_Horloge_1_Fin_du_nettoyage_apres_le_percage_Vue_detaillee_d_en_haut_Petite.jpg">
+</a>
+<br />
+<a href="../../../images/La_Petite_Horloge_1_Fin_du_nettoyage_apres_le_percage_Vue_d_ensemble_d_en_bas.jpg">
+<img alt="La_Petite_Horloge_1_Fin_du_nettoyage_apres_le_percage_Vue_d_ensemble_d_en_bas" src="../../../images/La_Petite_Horloge_1_Fin_du_nettoyage_apres_le_percage_Vue_d_ensemble_d_en_bas_Petite.jpg">
+</a>
+<a href="../../../images/La_Petite_Horloge_1_Fin_du_nettoyage_apres_le_percage_Vue_detaillee_d_en_bas.jpg">
+<img alt="La_Petite_Horloge_1_Fin_du_nettoyage_apres_le_percage_Vue_detaillee_d_en_bas" src="../../../images/La_Petite_Horloge_1_Fin_du_nettoyage_apres_le_percage_Vue_detaillee_d_en_bas_Petite.jpg">
+</a>
+<figcaption>Le nettoyage apr&egrave;s le per&ccedil;age</figcaption>
+</figure>
+<p></p>
+<div class="valorisations">
+<div class="attention">
+<div class="attention-gauche">
+<img style="width: 32px; height: 32px;" alt="avertissement-icone-9768-32" src="../../../images/avertissement-icone-9768-32.png">
+</div>
+<div class="attention-droite">
+<p>Attention ! Une fois le nettoyage apr&egrave;s le per&ccedil;age effectu&eacute;, il faut passer rapidement au soudage des composants &nbsp;!<br />
+Dans le cas contraire, les surfaces cuivr&eacute;es des cartes &eacutelectroniques vont trop s'oxyder, ce qui rend le brasage plus difficile.</p></div>
+</div>
+</div>
+<a id="Endroit_1-1-2"></a>
+<h4>1-1-2) Soudage des composants</h4>
+<p>En l'abscence de proc&eacute;d&eacute de m&eacute;tallisation de disponible, les vias sont ici des morceaux de fil de fer pass&eacute;s &agrave; la main&nbsp;!</p>
+<figure>
+<a href="../../../images/La_Petite_Horloge_1_Soudage_partiel_des_vias_Vue_d_ensemble_d_en_haut.jpg.html">
+<img alt="La_Petite_Horloge_1_Soudage_partiel_des_vias_Vue_ensemble_d_en_haut" src="../../../images/La_Petite_Horloge_1_Soudage_partiel_des_vias_Vue_d_ensemble_d_en_haut_Petite.jpg">
+</a>
+<a href="../../../images/La_Petite_Horloge_1_Soudage_partiel_des_vias_Vue_d_ensemble_d_en_bas.jpg">
+<img alt="La_Petite_Horloge_1_Soudage_partiel_des_vias_Vue_d_ensemble_d_en_bas" src="../../../images/La_Petite_Horloge_1_Soudage_partiel_des_vias_Vue_d_ensemble_d_en_bas_Petite.jpg">
+</a>
+<br />
+<a href="../../../images/La_Petite_Horloge_1_Soudage_partiel_des_vias_Vue_detaillee_d_en_haut.jpg">
+<img alt="La_Petite_Horloge_1_Soudage_partiel_des_vias_Vue_detaillee_d_en_haut" src="../../../images/La_Petite_Horloge_1_Soudage_partiel_des_vias_Vue_detaillee_d_en_haut_Petite.jpg">
+</a>
+<a href="../../../images/La_Petite_Horloge_1_Soudage_partiel_des_vias_Vue_detaillee_d_en_bas.jpg">
+<img alt="La_Petite_Horloge_1_Soudage_partiel_des_vias_Vue_detaillee_d_en_bas" src="../../../images/La_Petite_Horloge_1_Soudage_partiel_des_vias_Vue_detaillee_d_en_bas_Petite.jpg">
+</a>
+<br />
+<a href="../../../images/La_Petite_Horloge_1_Soudage_partiel_des_vias_Vue_de_profil_d_en_haut.jpg">
+<img alt="La_Petite_Horloge_1_Soudage_partiel_des_vias_Vue_de_profil_d_en_haut" src="../../../images/La_Petite_Horloge_1_Soudage_partiel_des_vias_Vue_de_profil_d_en_haut_Petite.jpg">
+</a>
+<a href="../../../images/La_Petite_Horloge_1_Soudage_partiel_des_vias_Vue_profil_d_en_bas.jpg.html">
+<img alt="La_Petite_Horloge_1_Soudage_partiel_des_vias_Vue_de_profil_d_en_bas" src="../../../images/La_Petite_Horloge_1_Soudage_partiel_des_vias_Vue_de_profil_d_en_bas_Petite.jpg">
+</a>
+<figcaption>Soudage partiel des vias&nbsp;: Ils ne sont d'abord soud&eacute;s que sur la partie haute de la carte &eacute;lectronique</figcaption>
+</figure>
+<p></p>
+<figure>
+<a href="../../../images/La_Petite_Horloge_1_Soudage_complet_des_vias_Vue_detaillee_d_en_haut.jpg">
+<img alt="La_Petite_Horloge_1_Soudage_complet_des_vias_Vue_detaillee_d_en_haut" src="../../../images/La_Petite_Horloge_1_Soudage_complet_des_vias_Vue_detaillee_d_en_haut_Petite.jpg">
+</a>
+<a href="../../../images/La_Petite_Horloge_1_Soudage_complet_des_vias_Vue_detaillee_d_en_bas.jpg">
+<img alt="La_Petite_Horloge_1_Soudage_complet_des_vias_Vue_detaillee_d_en_bas" src="../../../images/La_Petite_Horloge_1_Soudage_complet_des_vias_Vue_detaillee_d_en_bas_Petite.jpg">
+</a>
+<figcaption>Soudage complet des vias</figcaption>
+</figure>
+<p></p>
+<figure>
+<a href="../../../images/La_Petite_Horloge_1_Soudage_1.jpg">
+<img alt="La_Petite_Horloge_1_Soudage_1" src="../../../images/La_Petite_Horloge_1_Soudage_1_Petite.jpg">
+</a>
+<a href="../../../images/La_Petite_Horloge_1_Soudage_2.jpg">
+<img alt="La_Petite_Horloge_1_Soudage_2" src="../../../images/La_Petite_Horloge_1_Soudage_2_Petite.jpg">
+</a>
+<a href="../../../images/La_Petite_Horloge_1_Soudage_3.jpg">
+<img alt="La_Petite_Horloge_1_Soudage_3" src="../../../images/La_Petite_Horloge_1_Soudage_3_Petite.jpg">
+</a>
+<br />
+<a href="../../../images/La_Petite_Horloge_1_Soudage_4.jpg">
+<img alt="La_Petite_Horloge_1_Soudage_4" src="../../../images/La_Petite_Horloge_1_Soudage_4_Petite.jpg">
+</a>
+<a href="../../../images/La_Petite_Horloge_1_Soudage_5.jpg">
+<img alt="La_Petite_Horloge_1_Soudage_5" src="../../../images/La_Petite_Horloge_1_Soudage_5_Petite.jpg">
+</a>
+<a href="../../../images/La_Petite_Horloge_1_Soudage_6.jpg">
+<img alt="La_Petite_Horloge_1_Soudage_6" src="../../../images/La_Petite_Horloge_1_Soudage_6_Petite.jpg">
+</a>
+<figcaption>Soudage des autres composants, avant de passer aux LED</figcaption>
+</figure>
+<p></p>
+<div class="valorisations">
+<div class="informations">
+<div class="informations-gauche">
+<img style="width: 32px; height: 32px;" alt="documentaires-des-proprietes-icone-5224-32" src="../../../images/documentaires-des-proprietes-icone-5224-32.png">
+</div>
+<div class="informations-droite">
+<p>La programmation du microcontr&ocirc;leur PIC18F14K22 est effectu&eacute;e une fois que le connecteur associ&eacute; est soud&eacute;, et avant que le circuit int&eacute;gr&eacute; de l'horloge temps r&eacute;el ne soit mis en place.<br />
+En effet, deux broches utilis&eacute;es pour la programmation sont partag&eacute;es avec l'horloge temps r&eacute;el, ce qui emp&ecirc;cherait le bon d&eacute;roulement du processus de programmation si elle &eacute;tait d&eacute;j&agrave; en place.</p></div>
+</div>
+</div>
+<figure>
+<a href="../../../images/La_Petite_Horloge_1_Soudage_7.jpg">
+<img alt="La_Petite_Horloge_1_Soudage_7" src="../../../images/La_Petite_Horloge_1_Soudage_7_Petite.jpg">
+</a>
+<a href="../../../images/La_Petite_Horloge_1_Soudage_8.jpg">
+<img alt="La_Petite_Horloge_1_Soudage_8" src="../../../images/La_Petite_Horloge_1_Soudage_8_Petite.jpg">
+</a>
+<a href="../../../images/La_Petite_Horloge_1_Soudage_9.jpg">
+<img alt="La_Petite_Horloge_1_Soudage_9" src="../../../images/La_Petite_Horloge_1_Soudage_9_Petite.jpg">
+</a>
+<br />
+<a href="../../../images/La_Petite_Horloge_1_Soudage_10.jpg">
+<img alt="La_Petite_Horloge_1_Soudage_10" src="../../../images/La_Petite_Horloge_1_Soudage_10_Petite.jpg">
+</a>
+<a href="../../../images/La_Petite_Horloge_1_Soudage_11.jpg">
+<img alt="La_Petite_Horloge_1_Soudage_11" src="../../../images/La_Petite_Horloge_1_Soudage_11_Petite.jpg">
+</a>
+<a href="../../../images/La_Petite_Horloge_1_Soudage_12.jpg">
+<img alt="La_Petite_Horloge_1_Soudage_12" src="../../../images/La_Petite_Horloge_1_Soudage_12_Petite.jpg">
+</a>
+<br />
+<a href="../../../images/La_Petite_Horloge_1_Soudage_13.jpg">
+<img alt="La_Petite_Horloge_1_Soudage_13" src="../../../images/La_Petite_Horloge_1_Soudage_13_Petite.jpg">
+</a>
+<a href="../../../images/La_Petite_Horloge_1_Soudage_14.jpg">
+<img alt="La_Petite_Horloge_1_Soudage_14" src="../../../images/La_Petite_Horloge_1_Soudage_14_Petite.jpg">
+</a>
+<figcaption>Soudage des LED et essais au fur et &agrave; mesure</figcaption>
+</figure>
+<p></p>
+<figure>
+<a href="../../../images/La_Petite_Horloge_1_Soudage_15.jpg">
+<img alt="La_Petite_Horloge_1_Soudage_15" src="../../../images/La_Petite_Horloge_1_Soudage_15_Petite.jpg">
+</a>
+<a href="../../../images/La_Petite_Horloge_1_Soudage_16.jpg">
+<img alt="La_Petite_Horloge_1_Soudage_16" src="../../../images/La_Petite_Horloge_1_Soudage_16_Petite.jpg">
+</a>
+<br />
+<a href="../../../images/La_Petite_Horloge_1_Soudage_17.jpg">
+<img alt="La_Petite_Horloge_1_Soudage_17" src="../../../images/La_Petite_Horloge_1_Soudage_17_Petite.jpg">
+</a>
+<a href="../../../images/La_Petite_Horloge_1_Soudage_18.jpg">
+<img alt="La_Petite_Horloge_1_Soudage_18" src="../../../images/La_Petite_Horloge_1_Soudage_18_Petite.jpg">
+</a>
+<figcaption>Mise en place du calque, soudage du support de pile bouton et du capteur de temp&eacute;rature</figcaption>
+</figure>
+<p></p>
+<figure>
+<a href="../../../images/La_Petite_Horloge_1_Fin_du_soudage_Affichage_de_l_heure.jpg">
+<img alt="La_Petite_Horloge_1_Fin_du_soudage_Affichage_de_l_heure" src="../../../images/La_Petite_Horloge_1_Fin_du_soudage_Affichage_de_l_heure_Petite.jpg">
+</a>
+<a href="../../../images/La_Petite_Horloge_1_Fin_du_soudage_Affichage_de_la_date.jpg">
+<img alt="La_Petite_Horloge_1_Fin_du_soudage_Affichage_de_la_date" src="../../../images/La_Petite_Horloge_1_Fin_du_soudage_Affichage_de_la_date_Petite.jpg">
+</a>
+<a href="../../../images/La_Petite_Horloge_1_Fin_du_soudage_Affichage_de_la_temperature.jpg">
+<img alt="La_Petite_Horloge_1_Fin_du_soudage_Affichage_de_la_temperature" src="../../../images/La_Petite_Horloge_1_Fin_du_soudage_Affichage_de_la_temperature_Petite.jpg">
+</a>
+<figcaption>Contr&ocirc;le qualit&eacute; avant le collage sur le support en plastique</figcaption>
+</figure>
+<p></p>
+<a id="Endroit_1-1-3"></a>
+<h4>1-1-3) Programmation du microcontr&ocirc;leur</h4>
+<p>Un PICkit 2 est utilis&eacute; pour programmer le microcontr&ocirc;leur PIC18F14K22.</p>
+<figure>
+<a href="../../../images/La_Petite_Horloge_1_Programmation_PICkit_2_Vue_d_en_haut.jpg">
+<img alt="La_Petite_Horloge_1_Programmation_PICkit_2_Vue_d_en_haut" src="../../../images/La_Petite_Horloge_1_Programmation_PICkit_2_Vue_d_en_haut_Petite.jpg">
+</a>
+<a href="../../../images/La_Petite_Horloge_1_Programmation_PICkit_2_Vue_d_en_bas.jpg">
+<img alt="La_Petite_Horloge_1_Programmation_PICkit_2_Vue_d_en_bas" src="../../../images/La_Petite_Horloge_1_Programmation_PICkit_2_Vue_d_en_bas_Petite.jpg">
+</a>
+<figcaption>Le PICkit 2 &agrave; l'&oelig;uvre</figcaption>
+</figure>
+<a id="Endroit_1-1-4"></a>
+<h4>1-1-4) Int&eacute;gration sur le support</h4>
+<p>Apr&eacute;s la gratounette, c'est au tour du pisto-colle de venir se joindre aux protagonistes n&eacute;cessaires &agrave; la fabrication &eacute;lectronique de la Petite Horloge&nbsp;!</p>
+<figure>
+<a href="../../../images/La_Petite_Horloge_1_Support_Vue_de_l_avant.jpg">
+<img alt="La_Petite_Horloge_1_Support_Vue_de_l_avant" src="../../../images/La_Petite_Horloge_1_Support_Vue_de_l_avant_Petite.jpg">
+</a>
+<a href="../../../images/La_Petite_Horloge_1_Support_Vue_de_l_arriere.jpg">
+<img alt="La_Petite_Horloge_1_Support_Vue_de_l_arriere" src="../../../images/La_Petite_Horloge_1_Support_Vue_de_l_arriere_Petite.jpg">
+</a>
+<a href="../../../images/La_Petite_Horloge_1_Support_Mise_en_situation.jpg">
+<img alt="La_Petite_Horloge_1_Support_Mise_en_situation" src="../../../images/La_Petite_Horloge_1_Support_Mise_en_situation_Petite.jpg">
+</a>
+<figcaption>Support en plastique</figcaption>
+</figure>
+<div>
+<div class="menu_article">
+<ul class="menu_article_principal">
+<li><a href="la_petite_horloge.php.html">La Petite Horloge</a></li>
+<li><ul>
+<li><a href="la_petite_horloge.php.html">Pr&eacute;sentation g&eacute;n&eacute;rale</a></li>
+<li><a href="la_petite_horloge_-_conception_electronique.php.html">Conception &eacute;lectronique</a></li>
+<li><a class="choisi" href="la_petite_horloge_-_fabrication.php.html">Fabrication</a></li>
+</ul></li>
+</ul>
+<ul class="menu_article_secondaire">
+<li><a href="la_petite_horloge_-_fabrication.php%3Fselection=2.html#Endroit_1-0-0">1) Fabrication</a></li>
+<li>
+<ul>
+<li><a href="la_petite_horloge_-_fabrication.php%3Fselection=2.html#Endroit_1-1-0">1-1) Version 1 - 2014</a></li>
+<li>
+<ul>
+<li><a href="la_petite_horloge_-_fabrication.php%3Fselection=2.html#Endroit_1-1-1">1-1-1) Gravure du circuit</a></li>
+<li><a href="la_petite_horloge_-_fabrication.php%3Fselection=2.html#Endroit_1-1-2">1-1-2) Soudage des composants</a></li>
+<li><a href="la_petite_horloge_-_fabrication.php%3Fselection=2.html#Endroit_1-1-3">1-1-3) Programmation du microcontr&ocirc;leur</a></li>
+<li><a href="la_petite_horloge_-_fabrication.php%3Fselection=2.html#Endroit_1-1-4">1-1-4) Int&eacute;gration sur le support</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="commentaires"><a id="Endroits_des_commentaires"></a><p class="sous-titre_commentaires">Commentaires (0)</p><p class="sous-titre_ajouts">Ajouter un commentaire</p>
+<form id="contact" method="post" action="http://atrylec.com/elements/allures/commentaires/verification.php">
+<fieldset>
+<legend>
+Votre pseudo&nbsp;: 
+</legend>
+<p>
+<label for="pseudo">
+Pseudo&nbsp;: 
+</label>
+<input type="text" id="pseudo" name="pseudo" tabindex="1" required="required">
+</p>
+</fieldset>
+<fieldset>
+<legend>
+Votre commentaire&nbsp;: 
+</legend>
+<p>
+<label for="commentaire">
+Commentaire&nbsp;: 
+</label>
+<textarea id="commentaire" name="commentaire" tabindex="2" cols="50" rows="2" required="required">
+</textarea>
+</p>
+</fieldset>
+<div class="bouton_validation_commentaire">
+<input type="submit" name="Poster" value="Poster" />
+</div>
+</form>
+</div><div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="la_petite_horloge_-_fabrication.php%3Fselection=2.html#Haut_de_page">Je veux remonter !</a>
+</div>
+</section>
+<footer>
+<div class="liens">
+<ul>
+<li><a href="../../contact.php.html">ContaCT</a></li>
+</ul>
+</div>
+<div id="choix_style">
+<div class="presentation">Ravaler la fa&ccedil;ade&nbsp;:</div>
+<a href="la_petite_horloge_-_fabrication.php%3Fselection=1.html" title="Style 1"><div class="choix choix_bleu">&nbsp;</div></a><div class="choix choix_rouge_choisi">&nbsp;</div><a href="la_petite_horloge_-_fabrication.php%3Fselection=3.html" title="Style 3"><div class="choix choix_orange">&nbsp;</div></a></div>
+<div class="remarques">
+<p>Il ne faut pas dire&nbsp;: &laquo;&nbsp;Un pot de fleurs
+&nbsp;&raquo;, mais&nbsp;: &laquo;&nbsp;Un support tulipes
+&nbsp;&raquo;.</p>
+</div>
+<div class="visites">
+<img style="width: 15px; height: 15px;" alt="6_30" src="../../../images/6_30.png">   <img style="width: 15px; height: 15px;" alt="5_30" src="../../../images/5_30.png">   <img style="width: 15px; height: 15px;" alt="0_30" src="../../../images/0_30.png">   <img style="width: 15px; height: 15px;" alt="9_30" src="../../../images/9_30.png">   <img style="width: 15px; height: 15px;" alt="9_30" src="../../../images/9_30.png">   </div>
+</footer>
+</div>
+</body>
+</html>

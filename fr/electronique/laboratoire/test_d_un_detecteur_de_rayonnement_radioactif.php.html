@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>Test d'un d&eacute;tecteur de rayonnement radioactif</title>
+<meta name="description" content="Test d'un d&eacute;tecteur de rayonnement radioactif, bas&eacute; sur les propri&eacute;t&eacute;s d'une photodiode." />
+<meta name="keywords" content="atrylec electronique montage realisation projet detecteur rayonnement radioactivite radioactif essai" />
+<link rel="stylesheet" media="screen" type="text/css" title="Style 3" href="../../../elements/allures/style_3.css">
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-42331281-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+<body>
+<div id="page">
+<div id="haut">
+<header id="Haut_de_page">
+<div id="principale">
+<p class="titre_principal_haut">
+<a href="../../../index.php.html"><img style="width: 150px;" alt="Affichage_Atrylec_com" src="../../../images/Affichage_Atrylec_com.png" /><span class="invisible">Atrylec</span></a></p>
+<p class="sous-titre_haut">Vous n'&ecirc;tes pas seuls dans l'Univers !</p>
+</div>
+<div id="additionnelle">
+</div>
+</header>
+<nav>
+<ul id="navigation">
+<li><a href="../../../index.php.html" title="Accueil">Accueil</a></li>
+<li><a class="choisi" href="../index.php.html" title="Electronique">Electronique</a></li>
+<li><a href="../../radio/index.php%3Fnumero=0.html" title="Radio">Radio</a></li>
+<li><a href="../../origami/index.php.html" title="Origami">Origami</a></li>
+<li><a href="../../photographies/index.php%3Fnumero=0.html" title="Photographies">Photographies</a></li>
+<li><a href="../../le_grenier/index.php.html" title="Le grenier">Le grenier</a></li>
+<li><a href="../../contact.php.html" title="ContaCT">ContaCT</a></li>
+</ul>
+</nav>
+</div>
+<section>
+<div id="titre">
+<div id="titre_gauche">
+</div>
+<div id="titre_image">
+<img style="width: 100px; height: 100px;" alt="Transistor_100" src="../../../images/Transistor_100.png">
+</div>
+<div id="titre_texte">
+<p>/&nbsp;</p><h1>Test d'un d&eacute;tecteur de rayonnement radioactif</h1>
+</div>
+<div id="titre_droite">
+</div>
+</div>
+<div>
+<p id="introduction">En juin 2011, la revue d'&eacute;lectronique ELEKTOR avait propos&eacute; une m&eacute;thode permettant de mesurer le rayonnement radioactif ambiant &agrave; l'aide d'un certain type de photodiodes.<br />
+En novembre de la m&ecirc;me ann&eacute;e, un montage complet a &eacute;t&eacute; publi&eacute;, associant une platine de d&eacute;tection avec un ensemble d'affichage, pilot&eacute; par un microcontr&ocirc;leur.<br />
+La platine de d&eacute;tection est pr&eacute;sent&eacute;e et reprise ici, avec un typon l&eacute;g&egrave;rement diff&eacute;rent, qui remplace les composants passifs traversants par des CMS, c'est-&agrave;-dire des composants mont&eacute;s en surface, afin de permettre une r&eacute;duction de la taille de l'ensemble.</p>
+</div>
+<p>
+<a id="Liste_de_depart"></a>
+</p>
+<div>
+<div class="menu_article">
+<ul class="menu_article_principal">
+<li><a href="test_d_un_detecteur_de_rayonnement_radioactif.php.html">Test d'un d&eacute;tecteur de rayonnement radioactif</a></li>
+</ul>
+<ul class="menu_article_secondaire">
+<li><a href="test_d_un_detecteur_de_rayonnement_radioactif.php.html#Endroit_1-0-0">1) Pr&eacute;sentation de la carte de d&eacute;tection de rayonnement</a></li>
+<li><a href="test_d_un_detecteur_de_rayonnement_radioactif.php.html#Endroit_2-0-0">2) Protocole exp&eacute;rimental</a></li>
+<li><a href="test_d_un_detecteur_de_rayonnement_radioactif.php.html#Endroit_3-0-0">3) Mesures</a></li>
+<li>
+<ul>
+<li><a href="test_d_un_detecteur_de_rayonnement_radioactif.php.html#Endroit_3-1-0">3-1) Dans une cave au sol b&eacute;tonn&eacute;</a></li>
+<li><a href="test_d_un_detecteur_de_rayonnement_radioactif.php.html#Endroit_3-2-0">3-2) Dans une cave en terre battue, au sol granitique</a></li>
+<li><a href="test_d_un_detecteur_de_rayonnement_radioactif.php.html#Endroit_3-3-0">3-3) Dans une cave en terre battue, au sol non granitique</a></li>
+</ul>
+</li>
+<li><a href="test_d_un_detecteur_de_rayonnement_radioactif.php.html#Endroit_4-0-0">4) Sujets associ&eacute;s</a></li>
+</ul>
+</div>
+</div>
+<div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="test_d_un_detecteur_de_rayonnement_radioactif.php.html#Haut_de_page">Je veux remonter !</a>&nbsp;|&nbsp;<a href="test_d_un_detecteur_de_rayonnement_radioactif.php.html#Liste_de_depart">Liste</a>
+</div>
+<a id="Endroit_1-0-0"></a>
+<h2>1) Pr&eacute;sentation de la carte de d&eacute;tection de rayonnement</h2>
+<p>La carte est constitu&eacute;e d'une photodiode PIN, et d'un amplificateur construit sp&eacute;cialement pour ce type de capteur.<br />
+La photodiode PIN est de type BPW24.<br />
+L'amplificateur a pour r&ocirc;le de pr&eacute;senter une imp&eacute;dance d'entr&eacute;e &eacute;lev&eacute;e et une amplification aux environs de 30 000.</p>
+<p>Les siganux qui sont d&eacute;livr&eacute;s &agrave; la sortie de la platine peuvent avoir une amplitude de 200 millivolt et une dur&eacute;e de 0,5 milliseconde.<br />
+Cette caract&eacute;ristique permet d'attaquer directement un ou plusieurs dispositifs de visualisation, parmis lesquels des hauts-parleurs, des compteurs ou encore des oscilloscopes.</p>
+<p>La <i>datasheet</i> de la photodiode BPW24R&nbsp;:</p>
+<p><img alt="LIEN_EXTERNE" src="../../../images/LIEN_EXTERNE.png" />&nbsp;<a href="http://www.vishay.com/doc?81520" title="Ouvrir le lien &laquo;&nbsp;http://www.vishay.com/doc?81520&nbsp;&raquo; dans une nouvelle fen&ecirc;tre, ou dans un nouvel onglet" target="_blank">http://www.vishay.com/doc?81520</a></p>
+<figure>
+<table border="0" cellpadding="2" cellspacing="1">
+<tbody>
+<tr>
+<td>
+<a href="../../../images/Detecteur_Rayonnement_Endroit.jpg">
+<img alt="Detecteur_Rayonnement_Endroit" src="../../../images/Detecteur_Rayonnement_Endroit.jpg">
+</a>
+</td>
+<td>
+<a href="../../../images/Detecteur_Rayonnement_Envers.jpg">
+<img alt="Detecteur_Rayonnement_Envers" src="../../../images/Detecteur_Rayonnement_Envers.jpg">
+</a>
+</td>
+<td>
+<a href="../../../images/Detecteur_Rayonnement_Protection.jpg">
+<img alt="Detecteur_Rayonnement_Protection" src="../../../images/Detecteur_Rayonnement_Protection.jpg">
+</a>
+</td>
+</tr>
+</tbody>
+</table>
+<figcaption>Le d&eacute;tecteur de rayonnement c&ocirc;t&eacute; composants, c&ocirc;t&eacute; pistes et un gros plan sur la protection de la photodiode captatrice par du papier d'aluminium</figcaption>
+</figure>
+<div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="test_d_un_detecteur_de_rayonnement_radioactif.php.html#Haut_de_page">Je veux remonter !</a>&nbsp;|&nbsp;<a href="test_d_un_detecteur_de_rayonnement_radioactif.php.html#Liste_de_depart">Liste</a>
+</div>
+<a id="Endroit_2-0-0"></a>
+<h2>2) Protocole exp&eacute;rimental</h2>
+<p>Pour les mesures, il a &eacute;t&eacute; jug&eacute; pertinent d'enregistrer le signal en sortie du d&eacute;tecteur de rayonnement au cours du temps, sur une p&eacute;riode de temps de 30 minutes environs.<br />
+Un ordinateur, &eacute;quip&eacute; d'une carte son disposant d'une entr&eacute;e ligne et sur lequel a &eacute;t&eacute; install&eacute; un logiciel d'enregistrement audio, a &eacute;t&eacute; utilis&eacute;.<br>
+Le logiciel d'enregistrement audio dont les captures d'&eacute;crans suivantes ont &eacute;t&eacute; tir&eacute;es est &laquo;&nbsp;AUDACITY&nbsp;&raquo;.</p>
+<p>Pour avoir plus d'informations sur ce logiciel et pour le t&eacute;l&eacute;charger, ouvrez ce lien Internet&nbsp;:</p>
+<p><img alt="LIEN_EXTERNE" src="../../../images/LIEN_EXTERNE.png" />&nbsp;<a href="http://www.audacity.sourceforge.net/?lang=fr" title="Ouvrir le lien &laquo;&nbsp;http://www.audacity.sourceforge.net/?lang=fr&nbsp;&raquo; dans une nouvelle fen&ecirc;tre, ou dans un nouvel onglet" target="_blank">http://www.audacity.sourceforge.net/?lang=fr</a></p>
+<div class="valorisations">
+<div class="informations">
+<div class="informations-gauche">
+<img style="width: 32px; height: 32px;" alt="documentaires-des-proprietes-icone-5224-32" src="../../../images/documentaires-des-proprietes-icone-5224-32.png">
+</div>
+<div class="informations-droite">
+<p>Remarque&nbsp;: Si vous disposez d'un ordinateur, mais que celui-ci n'est pas &eacute;quip&eacute; d'une entr&eacute;e ligne, vous pouvez utiliser son entr&eacute;e microphone, qui est couramment r&eacute;pandue.<br />
+Veillez cependant &agrave; r&eacute;gler le niveau d'enregistrement &agrave; un niveau faible, car ce type d'entr&eacute;e est adapt&eacute;e &agrave; des niveaux de signaux &eacute;lectriques moindres que ceux que l'on retrouve pour une entr&eacute;e ligne !</p></div>
+</div>
+</div>
+<p>Il est &eacute;galement possible d'utiliser un oscilloscope &agrave; m&eacute;moire, en r&eacute;glant la base de temps sur une valeur de fr&eacute;quence faible, mais la plupart des mod&egrave;les d'oscilloscopes ne permet pas d'effectuer des enregistrements de dur&eacute;e de 30 minutes ou plus.</p>
+<p>Pour v&eacute;rifier le bon fonctionnement du d&eacute;tecteur de rayonnement, toujours &agrave; l'aide d'un oscilloscope &agrave; m&eacute;moire, une m&eacute;thode possible consiste &agrave; effetuer une acquisition en mode &laquo;&nbsp;<i>Single</i>&nbsp;&raquo;, et &agrave; r&eacute;gler le d&eacute;clenchement sur front montant, de fa&ccedil;on &agrave; visualiser la forme des implusions g&eacute;n&eacute;r&eacute;es en sortie du montage.</p>
+<p>Comme le montage utilise une photodiode, qui est un composant qui r&eacute;agit &agrave; la lumi&egrave;re, il faut pr&eacute;voir un cache afin de limiter le plus possible la quantit&eacute; de lumi&egrave;re qui atteint la face sensible.<br>
+En effet, l'utilisation de la photodiode en tant que d&eacute;tecteur de rayonnement radioactif n'est possible que si celle-ci ne r&eacute;agit pas avec la lumi&egrave;re.<br>
+Cela diff&egrave;re de l'usage habituel&nbsp;de ce type de composants.</p>
+<p>La solution qui a &eacute;t&eacute; appliqu&eacute;e ici est le recours &agrave; une bo&icirc;te en carton antistatique, pour rendre le montage le plus insensible possible &agrave; la lumi&egrave;re.<br>
+Ces bo&icirc;tes sont celles qui servent &agrave;&nbsp;prot&eacute;ger les composants &eacute;lectroniques qui ne sont pas utilis&eacute;es dans des montages.</p>
+<p>Afin d'assurer un blindage &eacute;lectromagn&eacute;tique en plus d'une limitation des effets de la lumi&egrave;re, il est &eacute;galement possible d'utiliser une bo&icirc;te en m&eacute;tal.<br>
+Dans ce cas, la connexion de la masse du montage devra &ecirc;tre reli&eacute;e &eacute;lectriquement &agrave; la partie m&eacute;tallique de la bo&icirc;te.<br>
+Il faudra pr&eacute;voir le passage des c&acirc;ble d'alimentation et du signal de sortie de la platine.</p>
+<p>L'alimentation, qui doit &ecirc;tre la plus exempte de parasites possible, est assur&eacute;e dans le cas pr&eacute;sent par une pile rechargable de 9V.<br>
+Ceci permet de limiter la perturbation du montage, ce qui influencerait sur le signal de sortie, et donc sur les r&eacute;sultats des mesures.</p>
+<figure>
+<a href="../../../images/Vue_1.jpg">
+<img alt="Vue_1" src="../../../images/Vue_1_Petite.jpg">
+</a>
+<a href="../../../images/Vue_2.jpg">
+<img alt="Vue_2" src="../../../images/Vue_2_Petite.jpg">
+</a>
+<a href="../../../images/Vue_3.jpg">
+<img alt="Vue_3" src="../../../images/Vue_3_Petite.jpg">
+</a>
+<figcaption>Mat&eacute;riel utilis&eacute; pour la manipulation &agrave; l'aide d'un oscilloscope</figcaption>
+</figure>
+<p></p>
+<figure>
+<a href="../../../images/Mesure_de_l_influence_de_la_lumiere_artificielle_ambiante_montage.jpg">
+<img alt="Mesure_de_l_influence_de_la_lumiere_artificielle_ambiante_montage" src="../../../images/Mesure_de_l_influence_de_la_lumiere_artificielle_ambiante_montage_Petite.jpg">
+</a>
+<a href="../../../images/Mesure_de_l_influence_de_la_lumiere_artificielle_ambiante_amplitude.jpg">
+<img alt="Mesure_de_l_influence_de_la_lumiere_artificielle_ambiante_amplitude" src="../../../images/Mesure_de_l_influence_de_la_lumiere_artificielle_ambiante_amplitude_Petite.jpg">
+</a>
+<a href="../../../images/Mesure_de_l_influence_de_la_lumiere_artificielle_ambiante_frequence.jpg">
+<img alt="Mesure_de_l_influence_de_la_lumiere_artificielle_ambiante_frequence" src="../../../images/Mesure_de_l_influence_de_la_lumiere_artificielle_ambiante_frequence_Petite.jpg">
+</a>
+<figcaption>Mesure de l'influence de la lumi&egrave;re artificielle ambiante&nbsp;: Apparition d'un signal de valeur cr&ecirc;te de 6,16 Volt et de fr&eacute;quence de 100 Hz, soit le double de celle du secteur</figcaption>
+</figure>
+<p>Le signal de sortie au repos est d'environ 2,5 Volt.</p>
+<figure>
+<a href="../../../images/Mesure_du_signal_au_repos_montage.jpg">
+<img alt="Mesure_du_signal_au_repos_montage" src="../../../images/Mesure_du_signal_au_repos_montage_Petite.jpg">
+</a>
+<a href="../../../images/Mesure_du_signal_au_repos_oscillogramme.jpg">
+<img alt="Mesure_du_signal_au_repos_oscillogramme" src="../../../images/Mesure_du_signal_au_repos_oscillogramme_Petite.jpg">
+</a>
+<figcaption>Mesure du signal au repos&nbsp;: 2,4 Volt</figcaption>
+</figure>
+<p></p>
+<figure>
+<a href="../../../images/Mesure_du_bruit_de_fond_montage.jpg">
+<img alt="Mesure_du_bruit_de_fond_montage" src="../../../images/Mesure_du_bruit_de_fond_montage_Petite.jpg">
+</a>
+<a href="../../../images/Mesure_du_bruit_de_fond_oscillogramme.jpg">
+<img alt="Mesure_du_bruit_de_fond_oscillogramme" src="../../../images/Mesure_du_bruit_de_fond_oscillogramme_Petite.jpg">
+</a>
+<figcaption>Mesure du niveau de bruit&nbsp;: Signal d'amplitude de 59,2 millivolt</figcaption>
+</figure>
+<p>Les particules naturellement radioactives qui sont pr&eacute;sentes dans l'environnement permettent de v&eacute;rifier le bon fonctionnement du montage.<br>
+Lors des manipulations, il a suffi d'attendre moins d'une demi-heure pour qu'une particule soit d&eacute;tect&eacute;e.</p>
+<p>Les particules de type &laquo; alpha&nbsp;&raquo; ne sont que tr&egrave;s peu d&eacute;tect&eacute;es, car la protection en plastique de la photodiode en arr&ecirc;te une grande partie.<br>
+Ce sont les particules de type &laquo; b&ecirc;ta &raquo; et &laquo; gamma &raquo;, plus &eacute;nerg&eacute;tiques, qui r&eacute;agissent avec la partie sensible de la photodiode.</p>
+<figure>
+<a href="../../../images/Impulsion_isolee_typique_amplitude.jpg">
+<img alt="Impulsion_isolee_typique_amplitude" src="../../../images/Impulsion_isolee_typique_amplitude_Petite.jpg">
+</a>
+<a href="../../../images/Impulsion_isolee_typique_duree.jpg">
+<img alt="Impulsion_isolee_typique_duree" src="../../../images/Impulsion_isolee_typique_duree_Petite.jpg">
+</a>
+<figcaption>Impulsion isol&eacute;e typique&nbsp;: Signal de valeur cr&ecirc;te de 620 millivolt et de dur&eacute;e de 560 microsecondes</figcaption>
+</figure>
+<p>Les formes des impulsions observ&eacute;es &agrave; l'aide d'un oscilloscope sont &eacute;videmment les m&ecirc;mes sur les enregistrements effectu&eacute;s avec une carte son, un ordinateur et un logiciel adapt&eacute;.</p>
+<figure>
+<a href="../../../images/PETITE_IMPULSION.png">
+<img alt="PETITE_IMPULSION" src="../../../images/PETITE_IMPULSION.png">
+</a>
+<a href="../../../images/MOYENNE_IMPULSION.png">
+<img alt="MOYENNE_IMPULSION" src="../../../images/MOYENNE_IMPULSION.png">
+</a>
+<a href="../../../images/GRANDE_IMPULSION.png">
+<img alt="GRANDE_IMPULSION" src="../../../images/GRANDE_IMPULSION.png">
+</a>
+<figcaption>Profils obtenus pour une petite impulsion, pour une moyenne impulsion et pour une grosse impulsion, au cours d'un m&ecirc;me relev&eacute;, sans changement des r&eacute;glages</figcaption>
+</figure>
+<div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="test_d_un_detecteur_de_rayonnement_radioactif.php.html#Haut_de_page">Je veux remonter !</a>&nbsp;|&nbsp;<a href="test_d_un_detecteur_de_rayonnement_radioactif.php.html#Liste_de_depart">Liste</a>
+</div>
+<a id="Endroit_3-0-0"></a>
+<h2>3) Mesures</h2>
+<p>Pourquoi ne pas coupler la sortie du d&eacute;tecteur de rayonnement radioactif &agrave; la carte de commandes du <a href="../realisations/le_cube_a_led.php.html" title="Ouvrir le lien &laquo;&nbsp;http://www.atrylec.com/fr/electronique/realisations/le_cube_a_led.php&nbsp;&raquo;" >cube &agrave; LED</a> ?</p>
+<a id="Endroit_3-1-0"></a>
+<h3>3-1) Dans une cave au sol b&eacute;tonn&eacute;</h3>
+<figure>
+<a href="../../../images/MESURES_1.png.html">
+<img alt="MESURES_1" src="../../../images/MESURES_1_Petite.png">
+</a>
+<figcaption>Enregistrement des mesures effectu&eacute;es dans une cave au sol b&eacute;tonn&eacute</figcaption>
+</figure>
+<div class="valorisations">
+<div class="informations">
+<div class="informations-gauche">
+<img style="width: 32px; height: 32px;" alt="documentaires-des-proprietes-icone-5224-32" src="../../../images/documentaires-des-proprietes-icone-5224-32.png">
+</div>
+<div class="informations-droite">
+<p>Remarque&nbsp;: Les r&eacute;glages de la carte son de l'ordinateur qui a servi &agrave; effectuer ces relev&eacute;s n'ont pas &eacute;t&eacute; chang&eacute;s.<br />
+Le fait qu'il y ait plus de bruit sur le premier relev&eacute; que sur le deuxi&egrave;me et sur le troisi&egrave;me peut s'expliquer par un couplage parasite plus important avec le r&eacute;seau de distribution &eacute;lectrique.</p></div>
+</div>
+</div>
+<a id="Endroit_3-2-0"></a>
+<h3>3-2) Dans une cave en terre battue, au sol granitique</h3>
+<p>Le granite est une roche qui est pr&eacute;sente dans certains sols.<br>
+Cette roche a la particularit&eacute; de d&eacute;gager un gaz, nomm&eacute; &laquo;&nbsp;Radon&nbsp;&raquo;.<br />
+Ce dernier est naturellement radioactif.</p>
+<figure>
+<a href="../../../images/MESURES_2.png.html">
+<img alt="MESURES_2" src="../../../images/MESURES_2_Petite.png">
+</a>
+<figcaption>Enregistrement des mesures effectu&eacute;es dans une cave en terre battue, au sol granitique</figcaption>
+</figure>
+<a id="Endroit_3-3-0"></a>
+<h3>3-3) Dans une cave en terre battue, au sol non granitique</h3>
+<figure>
+<a href="../../../images/MESURES_3.png.html">
+<img alt="MESURES_3" src="../../../images/MESURES_3_Petite.png">
+</a>
+<figcaption>Enregistrement des mesures effectu&eacute;es dans une cave en terre battue, au sol non granitique</figcaption>
+</figure>
+<div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="test_d_un_detecteur_de_rayonnement_radioactif.php.html#Haut_de_page">Je veux remonter !</a>&nbsp;|&nbsp;<a href="test_d_un_detecteur_de_rayonnement_radioactif.php.html#Liste_de_depart">Liste</a>
+</div>
+<a id="Endroit_4-0-0"></a>
+<h2>4) Sujets associ&eacute;s</h2>
+<p>Au cours de cet article, le cube &agrave; LED a &eacute;t&eacute; &eacute;voqu&eacute;, celui-ci fait appel &agrave un microcontr&ocirc;leur de type PIC18F2610.</p>
+<ul>
+<li><a href="../la_programmation_des_pic18f/la_programmation_des_pic18f_page_1.php.html" title="Ouvrir le lien &laquo;&nbsp;http://www.atrylec.com/fr/electronique/la_programmation_des_pic18f/la_programmation_des_pic18f_page_1.php&nbsp;&raquo;" >La programmation des PIC 18F</a></li>
+<li><a href="../realisations/le_cube_a_led.php.html" title="Ouvrir le lien &laquo;&nbsp;http://www.atrylec.com/fr/electronique/realisations/le_cube_a_led.php&nbsp;&raquo;" >Le cube &agrave; LED</a></li>
+</ul>
+<div>
+<div class="menu_article">
+<ul class="menu_article_principal">
+<li><a href="test_d_un_detecteur_de_rayonnement_radioactif.php.html">Test d'un d&eacute;tecteur de rayonnement radioactif</a></li>
+</ul>
+<ul class="menu_article_secondaire">
+<li><a href="test_d_un_detecteur_de_rayonnement_radioactif.php.html#Endroit_1-0-0">1) Pr&eacute;sentation de la carte de d&eacute;tection de rayonnement</a></li>
+<li><a href="test_d_un_detecteur_de_rayonnement_radioactif.php.html#Endroit_2-0-0">2) Protocole exp&eacute;rimental</a></li>
+<li><a href="test_d_un_detecteur_de_rayonnement_radioactif.php.html#Endroit_3-0-0">3) Mesures</a></li>
+<li>
+<ul>
+<li><a href="test_d_un_detecteur_de_rayonnement_radioactif.php.html#Endroit_3-1-0">3-1) Dans une cave au sol b&eacute;tonn&eacute;</a></li>
+<li><a href="test_d_un_detecteur_de_rayonnement_radioactif.php.html#Endroit_3-2-0">3-2) Dans une cave en terre battue, au sol granitique</a></li>
+<li><a href="test_d_un_detecteur_de_rayonnement_radioactif.php.html#Endroit_3-3-0">3-3) Dans une cave en terre battue, au sol non granitique</a></li>
+</ul>
+</li>
+<li><a href="test_d_un_detecteur_de_rayonnement_radioactif.php.html#Endroit_4-0-0">4) Sujets associ&eacute;s</a></li>
+</ul>
+</div>
+</div>
+<div class="commentaires"><a id="Endroits_des_commentaires"></a><p class="sous-titre_commentaires">Commentaires (0)</p><p class="sous-titre_ajouts">Ajouter un commentaire</p>
+<form id="contact" method="post" action="http://atrylec.com/elements/allures/commentaires/verification.php">
+<fieldset>
+<legend>
+Votre pseudo&nbsp;: 
+</legend>
+<p>
+<label for="pseudo">
+Pseudo&nbsp;: 
+</label>
+<input type="text" id="pseudo" name="pseudo" tabindex="1" required="required">
+</p>
+</fieldset>
+<fieldset>
+<legend>
+Votre commentaire&nbsp;: 
+</legend>
+<p>
+<label for="commentaire">
+Commentaire&nbsp;: 
+</label>
+<textarea id="commentaire" name="commentaire" tabindex="2" cols="50" rows="2" required="required">
+</textarea>
+</p>
+</fieldset>
+<div class="bouton_validation_commentaire">
+<input type="submit" name="Poster" value="Poster" />
+</div>
+</form>
+</div><div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="test_d_un_detecteur_de_rayonnement_radioactif.php.html#Haut_de_page">Je veux remonter !</a>
+</div>
+</section>
+<footer>
+<div class="liens">
+<ul>
+<li><a href="../../contact.php.html">ContaCT</a></li>
+</ul>
+</div>
+<div id="choix_style">
+<div class="presentation">Ravaler la fa&ccedil;ade&nbsp;:</div>
+<a href="test_d_un_detecteur_de_rayonnement_radioactif.php%3Fselection=1.html" title="Style 1"><div class="choix choix_bleu">&nbsp;</div></a><a href="test_d_un_detecteur_de_rayonnement_radioactif.php%3Fselection=2.html" title="Style 2"><div class="choix choix_rouge">&nbsp;</div></a><div class="choix choix_orange_choisi">&nbsp;</div></div>
+<div class="remarques">
+<p>Il ne faut pas dire&nbsp;: &laquo;&nbsp;L'interruption, c'est &agrave; prendre ou &agrave; laisser
+&nbsp;&raquo;, mais&nbsp;: &laquo;&nbsp;L'interruption, on l'aime ou on l'acquitte
+&nbsp;&raquo;.</p>
+</div>
+<div class="visites">
+<img style="width: 15px; height: 15px;" alt="6_30" src="../../../images/6_30.png">   <img style="width: 15px; height: 15px;" alt="5_30" src="../../../images/5_30.png">   <img style="width: 15px; height: 15px;" alt="0_30" src="../../../images/0_30.png">   <img style="width: 15px; height: 15px;" alt="9_30" src="../../../images/9_30.png">   <img style="width: 15px; height: 15px;" alt="8_30" src="../../../images/8_30.png">   </div>
+</footer>
+</div>
+</body>
+</html>

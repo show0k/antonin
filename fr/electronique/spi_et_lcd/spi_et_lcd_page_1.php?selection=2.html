@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>SPI et LCD&nbsp;: Pilotage d'un afficheur graphique</title>
+<meta name="description" content="Pilotage d'un afficheur LCD graphique par une liaison SPI&nbsp;: sch&eacute;mas, typons et codes sources." />
+<meta name="keywords" content="atrylec electronique afficheur lcd graphique pilotage liaison spi schema typon code source expanseur mcp23s17 microchip langage c stm32 st stm32discovery pic" />
+<link rel="stylesheet" media="screen" type="text/css" title="Style 2" href="../../../elements/allures/style_2.css">
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-42331281-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+<body>
+<div id="page">
+<div id="haut">
+<header id="Haut_de_page">
+<div id="principale">
+<p class="titre_principal_haut">
+<a href="../../../index.php.html"><img style="width: 150px;" alt="Affichage_Atrylec_com" src="../../../images/Affichage_Atrylec_com.png" /><span class="invisible">Atrylec</span></a></p>
+<p class="sous-titre_haut">Vous n'&ecirc;tes pas seuls dans l'Univers !</p>
+</div>
+<div id="additionnelle">
+</div>
+</header>
+<nav>
+<ul id="navigation">
+<li><a href="../../../index.php.html" title="Accueil">Accueil</a></li>
+<li><a class="choisi" href="../index.php.html" title="Electronique">Electronique</a></li>
+<li><a href="../../radio/index.php%3Fnumero=0.html" title="Radio">Radio</a></li>
+<li><a href="../../origami/index.php.html" title="Origami">Origami</a></li>
+<li><a href="../../photographies/index.php%3Fnumero=0.html" title="Photographies">Photographies</a></li>
+<li><a href="../../le_grenier/index.php.html" title="Le grenier">Le grenier</a></li>
+<li><a href="../../contact.php.html" title="ContaCT">ContaCT</a></li>
+</ul>
+</nav>
+</div>
+<section>
+<div id="titre">
+<div id="titre_gauche">
+</div>
+<div id="titre_image">
+<img style="width: 100px; height: 100px;" alt="Transistor_100" src="../../../images/Transistor_100.png">
+</div>
+<div id="titre_texte">
+<p>/&nbsp;</p><h1>SPI et LCD&nbsp;: Pilotage d'un afficheur graphique</h1>
+</div>
+<div id="titre_droite">
+</div>
+</div>
+<div>
+<p id="introduction">Pilotage d'un afficheur LCD de type graphique par une liaison SPI.<br />
+Cette page indique comment r&eacute;aliser une carte, qui permet l'interfa&ccedil;age avec un afficheur LCD graphique et une liaison SPI.<br>
+Un microcontr&ocirc;leur de type &laquo;&nbsp;STM32F100RBT6&nbsp;&raquo; et un PIC18F4550 sont utilis&eacute;s pour piloter ce module d'affichage graphique.</p>
+</div>
+<p></p>
+<div class="video">
+<div class="video-gauche">
+<p></p>
+<p></p>
+</div>
+<div class="video-droite">
+<figure>
+<object width="480" height="270">
+<param name="movie" value="http://www.dailymotion.com/swf/video/xtgwnm"></param>
+<param name="allowFullScreen" value="true"></param>
+<param name="allowScriptAccess" value="always"></param>
+<param name="wmode" value="transparent"></param>
+<embed type="application/x-shockwave-flash" src="http://www.dailymotion.com/swf/video/xtgwnm" width="480" height="270" wmode="transparent" allowfullscreen="true" allowscriptaccess="always">
+</embed>
+</object>
+<p><img alt="LIEN_EXTERNE" src="../../../images/LIEN_EXTERNE.png" />&nbsp;<a href="http://www.dailymotion.com/video/xtgwnm_demo-afficheur-lcd-graphique-et-liaison-spi_tech" title="Ouvrir le lien &laquo;&nbsp;http://www.dailymotion.com/video/xtgwnm_demo-afficheur-lcd-graphique-et-liaison-spi_tech&nbsp;&raquo; dans une nouvelle fen&ecirc;tre, ou dans un nouvel onglet" target="_blank">D&eacute;mo Afficheur LCD Graphique et Liaison SPI</a></p>
+<figcaption>La vid&eacute;o de d&eacute;monstration du projet</figure>
+</div>
+</div>
+<p></p>
+<p>
+<a id="Liste_de_depart"></a>
+</p>
+<div>
+<div class="menu_article">
+<ul class="menu_article_principal">
+<li><a href="spi_et_lcd_page_1.php.html">SPI et LCD&nbsp;: Pilotage d'un afficheur graphique</a></li>
+</ul>
+<ul class="menu_article_secondaire">
+<li><a href="spi_et_lcd_page_1.php%3Fselection=2.html#Endroit_1-0-0">1) Pr&eacute;sentation</a></li>
+<li><a href="spi_et_lcd_page_1.php%3Fselection=2.html#Endroit_2-0-0">2) Montage 1</a></li>
+<li>
+<ul>
+<li><a href="spi_et_lcd_page_1.php%3Fselection=2.html#Endroit_2-1-0">2-1) Sch&eacute;ma &eacute;lectronique</a></li>
+<li><a href="spi_et_lcd_page_1.php%3Fselection=2.html#Endroit_2-2-0">2-2) Typon</a></li>
+<li><a href="spi_et_lcd_page_1.php%3Fselection=2.html#Endroit_2-3-0">2-3) Code source</a></li>
+</ul>
+</li>
+<li><a href="spi_et_lcd_page_1.php%3Fselection=2.html#Endroit_3-0-0">3) Montage 2</a></li>
+<li>
+<ul>
+<li><a href="spi_et_lcd_page_1.php%3Fselection=2.html#Endroit_3-1-0">3-1) Sch&eacute;ma &eacute;lectronique</a></li>
+<li><a href="spi_et_lcd_page_1.php%3Fselection=2.html#Endroit_3-2-0">3-2) Typon</a></li>
+<li><a href="spi_et_lcd_page_1.php%3Fselection=2.html#Endroit_3-3-0">3-3) Code source</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="spi_et_lcd_page_1.php%3Fselection=2.html#Haut_de_page">Je veux remonter !</a>&nbsp;|&nbsp;<a href="spi_et_lcd_page_1.php%3Fselection=2.html#Liste_de_depart">Liste</a>
+</div>
+<a id="Endroit_1-0-0"></a>
+<h2>1) Pr&eacute;sentation</h2>
+<p></p>
+<figure>
+<a href="../../../images/SPI_LCD_1_connexions.jpg">
+<img alt="SPI_LCD_1_connexions" src="../../../images/SPI_LCD_1_connexions_Petite.jpg">
+</a>
+<figcaption>L'afficheur LCD se connecte &agrave; la carte d'interfa&ccedil;age avec la liaison SPI</figcaption>
+</figure>
+<p></p>
+<figure>
+<a href="../../../images/SPI_LCD_1_montage.jpg">
+<img alt="SPI_LCD_1_montage" src="../../../images/SPI_LCD_1_montage_Petite.jpg">
+</a>
+<figcaption>Le montage utilis&eacute; pour la d&eacute;monstration</figcaption>
+</figure>
+<p></p>
+<p>Cet article pr&eacute;sente deux cartes&nbsp;:</p>
+<p></p>
+<p>- La premi&egrave;re est optimis&eacute;e pour le routage, elle pr&eacute;sente un nombre r&eacute;duit de vias et de croisements de pistes, ce qui implique&nbsp;des permutations de broches, comme indiqu&eacute; dans le tableau suivant&nbsp;:</p>
+<p></p>
+<table border="1" cellpadding="2" cellspacing="2">
+<tbody>
+<tr>
+<th>Carte &laquo;&nbsp;SPI et LCD&nbsp;&raquo;, premi&egrave;re version</th>
+<td>GPB0</td>
+<td>GPB1</td>
+<td>GPB2</td>
+<td>GPB3</td>
+<td>GPB4</td>
+<td>GPB5</td>
+<td>GPB6</td>
+<td>GPB7</td>
+</tr>
+<tr>
+<th>Afficheur LCD graphique</th>
+<td>DB7</td>
+<td>DB6</td>
+<td>DB5</td>
+<td>DB4</td>
+<td>DB3</td>
+<td>DB2</td>
+<td>DB1</td>
+<td>DB0</td>
+</tr>
+</tbody>
+</table>
+<p></p>
+<p>Le logiciel devra donc traiter cette permutation de broches, ce qui peut &ecirc;tre p&eacute;nalisant en cas d'utilisation d'un composant programmable peu rapide.</p>
+<p></p>
+<p>- La deuxi&egrave;me est optimis&eacute;e pour l'&eacute;criture du code, elle ne pr&eacute;sente pas de permutations de broches, mais un plus grand nombre de vias et de croisements de pistes.</p>
+<p>Si vous &ecirc;tes int&eacute;ress&eacute; par la r&eacute;alisation de l'une de ces deux cartes, choisissez la carte &agrave; fabriquer en fonction des composants programmables que vous souhaitez mettre en &oelig;uvre, et en fonction des moyens dont vous disposez pour la gravure et la soudure de cartes &eacute;lectroniques !</p>
+<p>Les programmes qui mettent en &oelig;vre ces modules ont &eacute;t&eacute; &eacute;crit pour fonctionner &agrave; l'aide d'une carte de type &laquo;&nbsp;STM32DISCOVERY&nbsp;&raquo;.</p>
+<p>Pour obtenir plus d'informations &agrave; propos de ces cartes, ouvrez <a href="../stm32discovery/stm32discovery_page_1.php.html" title="Ouvrir le lien &laquo;&nbsp;http://www.atrylec.com/fr/electronique/stm32discovery/stm32discovery_page_1.php&nbsp;&raquo;" >ce lien</a>.</p>
+<p></p>
+<p>Le composant utilis&eacute pour effetuer les transferts entre la liaison SPI et l'afficheur LCD est un expanseur de port, qui est fabriqu&eacute; par MICROCHIP, et qui a la r&eacute;f&eacute;rence &laquo;&nbsp;MCP23S17&nbsp;&raquo;.</p>
+<p></p>
+<ul>
+<li><img alt="LIEN_EXTERNE" src="../../../images/LIEN_EXTERNE.png" />&nbsp;<a href="http://www.st.com/internet/com/TECHNICAL_RESOURCES/TECHNICAL_LITERATURE/REFERENCE_MANUAL/CD00246267.pdf" title="Ouvrir le lien &laquo;&nbsp;http://www.st.com/internet/com/TECHNICAL_RESOURCES/TECHNICAL_LITERATURE/REFERENCE_MANUAL/CD00246267.pdf&nbsp;&raquo; dans une nouvelle fen&ecirc;tre, ou dans un nouvel onglet" target="_blank">La <i>datasheet</i> du microcontr&ocirc;leur &laquo;&nbsp;STM32F100RB&nbsp;&raquo;</a>.</li>
+</ul>
+<p></p>
+<ul>
+<li><img alt="LIEN_EXTERNE" src="../../../images/LIEN_EXTERNE.png" />&nbsp;<a href="http://www.st.com/internet/com/TECHNICAL_RESOURCES/TECHNICAL_LITERATURE/USER_MANUAL/CD00267113.pdf" title="Ouvrir le lien &laquo;&nbsp;http://www.st.com/internet/com/TECHNICAL_RESOURCES/TECHNICAL_LITERATURE/USER_MANUAL/CD00267113.pdf&nbsp;&raquo; dans une nouvelle fen&ecirc;tre, ou dans un nouvel onglet" target="_blank">La notice de la carte &laquo;&nbsp;STM32VLDISCOVERY&nbsp;&raquo;</a>.</li>
+</ul>
+<p></p>
+<ul>
+<li><img alt="LIEN_EXTERNE" src="../../../images/LIEN_EXTERNE.png" />&nbsp;<a href="http://ww1.microchip.com/downloads/en/DeviceDoc/21952b.pdf" title="Ouvrir le lien &laquo;&nbsp;http://ww1.microchip.com/downloads/en/DeviceDoc/21952b.pdf&nbsp;&raquo; dans une nouvelle fen&ecirc;tre, ou dans un nouvel onglet" target="_blank">La <i>datasheet</i> du MCP23017 et du MCP23S17</a>.</li>
+</ul>
+<p></p>
+<div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="spi_et_lcd_page_1.php%3Fselection=2.html#Haut_de_page">Je veux remonter !</a>&nbsp;|&nbsp;<a href="spi_et_lcd_page_1.php%3Fselection=2.html#Liste_de_depart">Liste</a>
+</div>
+<a id="Endroit_2-0-0"></a>
+<h2>2) Montage 1</h2>
+<figure>
+<table border="0" cellpadding="2" cellspacing="1">
+<tbody>
+<tr>
+<td>
+<a href="../../../images/Afficheur_LCD_face_avant.jpg">
+<img alt="Afficheur_LCD_face_avant" src="../../../images/Afficheur_LCD_face_avant_Petite.jpg">
+</a>
+</td>
+<td>
+<a href="../../../images/Afficheur_LCD_face_arriere.jpg">
+<img alt="Afficheur_LCD_face_arriere" src="../../../images/Afficheur_LCD_face_arriere_Petite.jpg">
+</a>
+</td>
+<td>
+<a href="../../../images/Afficheur_LCD_detail_connecteur.jpg">
+<img alt="Afficheur_LCD_detail_connecteur" src="../../../images/Afficheur_LCD_detail_connecteur_Petite.jpg">
+</a>
+</td>
+</tr>
+</tbody>
+</table>
+<p></p>
+<table border="0" cellpadding="2" cellspacing="1">
+<tbody>
+<tr>
+<td>
+<a href="../../../images/SPI_LCD_1_face_avant.jpg">
+<img alt="SPI_LCD_1_face_avant" src="../../../images/SPI_LCD_1_face_avant_Petite.jpg">
+</a>
+</td>
+<td>
+<a href="../../../images/SPI_LCD_1_face_arriere.jpg">
+<img alt="SPI_LCD_1_face_arriere" src="../../../images/SPI_LCD_1_face_arriere_Petite.jpg">
+</a>
+</td>
+<td>
+<a href="../../../images/SPI_LCD_1_detail_circuit_integre.jpg">
+<img alt="SPI_LCD_1_detail_circuit_integre" src="../../../images/SPI_LCD_1_detail_circuit_integre_Petite.jpg">
+</a>
+</td>
+</tr>
+</tbody>
+</table>
+<p></p>
+<figcaption>Photographie de la premi&egrave;re version de la carte d'adaptation de l'afficheur LCD de type graphique &agrave; l'interface SPI</figcaption>
+</figure>
+<p></p>
+<a id="Endroit_2-1-0"></a>
+<h3>2-1) Sch&eacute;ma &eacute;lectronique</h3>
+<figure>
+<a href="../../../images/SCHEMA_SPI_ET_LCD_1.png">
+<img alt="SCHEMA_SPI_ET_LCD_1" src="../../../images/SCHEMA_SPI_ET_LCD_1_Petite.png">
+</a>
+<figcaption>Sch&eacute;ma &eacute;lectronique de la premi&egrave;re version de la carte d'adaptation de l'afficheur LCD de type graphique &agrave; l'interface SPI</figcaption>
+</figure>
+<a id="Endroit_2-2-0"></a>
+<h3>2-2) Typon</h3>
+<figure>
+<a href="../../../images/TYPON_SPI_ET_LCD_1.png">
+<img alt="TYPON_SPI_ET_LCD_1" src="../../../images/TYPON_SPI_ET_LCD_1_Petite.png">
+</a>
+<figcaption>Typon de la premi&egrave;re version de la carte d'adaptation de l'afficheur LCD de type graphique &agrave; l'interface SPI</figcaption>
+</figure>
+<div class="valorisations">
+<div class="programmes">
+<div class="programmes_gauche">
+<img style="width: 32px; height: 32px;" alt="fleche-bas-telecharger-icone-9594-32" src="../../../images/fleche-bas-telecharger-icone-9594-32.png">
+</div>
+<div class="programmes_droite">
+<p>Sch&eacute;ma &eacute;lectronique et typon de la premi&egrave;re version de la carte d'adaptation SPI vers LCD<br />
+Logiciel de dessin&nbsp;: EAGLE 6.4.0<br />
+<a href="../../../elements/allures/valorisations/programmes.php%3Fprogramme=spi_et_lcd_page_1+1+1">T&eacute;l&eacute;charger le fichier<span>Effectuez un clic droit, puis s&eacute;lectionnez l'option &laquo;&nbsp;Enregistrer la cible du lien sous...&nbsp;&raquo;, pour t&eacute;l&eacute;charger le fichier</span></a> (357.64 Ko)</p></div>
+</div>
+</div>
+<a id="Endroit_2-3-0"></a>
+<h3>2-3) Code source</h3>
+<p>Correspondances entre les broches de la carte &laquo;&nbsp;STM32DISCOVERY&nbsp;&raquo; et de la carte &laquo;&nbsp;SPI et LCD&nbsp;&raquo;, premi&egrave;re version&nbsp;:</p>
+<p></p>
+<table border="1" cellpadding="2" cellspacing="2">
+<tbody>
+<tr>
+<th>Carte &laquo;&nbsp;STM32DISCOVERY&nbsp;&raquo;</th>
+<td>+5V</td>
+<td>GND</td>
+<td>PA1</td>
+<td>PA5</td>
+<td>PA6</td>
+<td>PA7</td>
+</tr>
+<tr>
+<th>Carte &laquo;&nbsp;SPI et LCD&nbsp;&raquo;, premi&egrave;re version</th>
+<td>+5V</td>
+<td>GND</td>
+<td>~CS_MCP23S17</td>
+<td>SCLK_MCP23S17</td>
+<td>MISO_MCP23S17</td>
+<td>MOSI_MCP23S17</td>
+</tr>
+</tbody>
+</table>
+<p></p>
+<div class="valorisations">
+<div class="programmes">
+<div class="programmes_gauche">
+<img style="width: 32px; height: 32px;" alt="fleche-bas-telecharger-icone-9594-32" src="../../../images/fleche-bas-telecharger-icone-9594-32.png">
+</div>
+<div class="programmes_droite">
+<p>Piloter un afficheur graphique avec un MCP23S17, premi&egrave;re version&nbsp;: Fichiers C<br />
+Cible&nbsp;: STM32F100RB<br />Compilateur&nbsp;: Keil &micro;Vision4<br />
+<a href="../../../elements/allures/valorisations/programmes.php%3Fprogramme=spi_et_lcd_page_1+1+2">T&eacute;l&eacute;charger le fichier<span>Effectuez un clic droit, puis s&eacute;lectionnez l'option &laquo;&nbsp;Enregistrer la cible du lien sous...&nbsp;&raquo;, pour t&eacute;l&eacute;charger le fichier</span></a> (20.93 Ko)</p></div>
+</div>
+</div>
+<div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="spi_et_lcd_page_1.php%3Fselection=2.html#Haut_de_page">Je veux remonter !</a>&nbsp;|&nbsp;<a href="spi_et_lcd_page_1.php%3Fselection=2.html#Liste_de_depart">Liste</a>
+</div>
+<a id="Endroit_3-0-0"></a>
+<h2>3) Montage 2</h2>
+<figure>
+<p></p>
+<table border="0" cellpadding="2" cellspacing="1">
+<tbody>
+<tr>
+<td>
+<a href="../../../images/SPI_ET_LCD_2_face_avant_connecteur.jpg">
+<img alt="SPI_ET_LCD_2_face_avant_connecteur" src="../../../images/SPI_ET_LCD_2_face_avant_connecteur_Petite.jpg">
+</a>
+</td>
+<td>
+<a href="../../../images/SPI_ET_LCD_2_face_avant_a_plat.jpg">
+<img alt="SPI_ET_LCD_2_face_avant_a_plat" src="../../../images/SPI_ET_LCD_2_face_avant_a_plat_Petite.jpg">
+</a>
+</td>
+<td>
+<a href="../../../images/SPI_ET_LCD_2_face_arriere_a_plat.jpg">
+<img alt="SPI_ET_LCD_2_face_arriere_a_plat" src="../../../images/SPI_ET_LCD_2_face_arriere_a_plat_Petite.jpg">
+</a>
+</td>
+</tr>
+</tbody>
+</table>
+<p></p>
+<figcaption>Photographie de la deuxi&egrave;me version de la carte d'adaptation de l'afficheur LCD de type graphique &agrave; l'interface SPI</figcaption>
+</figure>
+<p></p>
+<figure>
+<a href="../../../images/SPI_ET_LCD_2_connexions.jpg">
+<img alt="SPI_ET_LCD_2_connexions" src="../../../images/SPI_ET_LCD_2_connexions_Petite.jpg">
+</a>
+<figcaption>Il rentre bien !</figcaption>
+</figure>
+<a id="Endroit_3-1-0"></a>
+<h3>3-1) Sch&eacute;ma &eacute;lectronique</h3>
+<br>
+<br>
+<a href="../../../images/SCHEMA_SPI_ET_LCD_2.png">
+<img alt="SCHEMA_SPI_ET_LCD_2" src="../../../images/SCHEMA_SPI_ET_LCD_2_Petite.png">
+</a>
+<figcaption>Sch&eacute;ma &eacute;lectronique de la deuxi&egrave;me version de la carte d'adaptation de l'afficheur LCD de type graphique &agrave; l'interface SPI</figcaption>
+</figure>
+<a id="Endroit_3-2-0"></a>
+<h3>3-2) Typon</h3>
+<figure>
+<a href="../../../images/TYPON_SPI_ET_LCD_2.png">
+<img alt="TYPON_SPI_ET_LCD_2" src="../../../images/TYPON_SPI_ET_LCD_2_Petite.png">
+</a>
+<figcaption>Typon de la deuxi&egrave;me version de la carte d'adaptation de l'afficheur LCD de type graphique &agrave; l'interface SPI</figcaption>
+</figure>
+<div class="valorisations">
+<div class="programmes">
+<div class="programmes_gauche">
+<img style="width: 32px; height: 32px;" alt="fleche-bas-telecharger-icone-9594-32" src="../../../images/fleche-bas-telecharger-icone-9594-32.png">
+</div>
+<div class="programmes_droite">
+<p>Sch&eacute;ma &eacute;lectronique et typon de la deuxi&egrave;me version de la carte d'adaptation SPI vers LCD<br />
+Logiciel de dessin&nbsp;: EAGLE 6.4.0<br />
+<a href="../../../elements/allures/valorisations/programmes.php%3Fprogramme=spi_et_lcd_page_1+2+1">T&eacute;l&eacute;charger le fichier<span>Effectuez un clic droit, puis s&eacute;lectionnez l'option &laquo;&nbsp;Enregistrer la cible du lien sous...&nbsp;&raquo;, pour t&eacute;l&eacute;charger le fichier</span></a> (376.24 Ko)</p></div>
+</div>
+</div>
+<a id="Endroit_3-3-0"></a>
+<h3>3-3) Code source</h3>
+<p></p>
+<p>Correspondances entre les broches de la carte &laquo;&nbsp;STM32DISCOVERY&nbsp;&raquo; et de la carte &laquo;&nbsp;SPI et LCD&nbsp;&raquo;, deuxi&egrave;me version&nbsp;:</p>
+<p></p>
+<table border="1" cellpadding="2" cellspacing="2">
+<tbody>
+<tr>
+<th>Carte &laquo;&nbsp;STM32DISCOVERY&nbsp;&raquo;</th>
+<td>+5V</td>
+<td>GND</td>
+<td>PA1</td>
+<td>PA5</td>
+<td>PA6</td>
+<td>PA7</td>
+</tr>
+<tr>
+<th>Carte &laquo;&nbsp;SPI et LCD&nbsp;&raquo;, deuxi&egrave;me version</th>
+<td>+5V</td>
+<td>GND</td>
+<td>~CS_MCP23S17</td>
+<td>SCLK_MCP23S17</td>
+<td>MISO_MCP23S17</td>
+<td>MOSI_MCP23S17</td>
+</tr>
+</tbody>
+</table>
+<div class="valorisations">
+<div class="programmes">
+<div class="programmes_gauche">
+<img style="width: 32px; height: 32px;" alt="fleche-bas-telecharger-icone-9594-32" src="../../../images/fleche-bas-telecharger-icone-9594-32.png">
+</div>
+<div class="programmes_droite">
+<p>Piloter un afficheur graphique avec un MCP23S17, deuxi&egrave;me version&nbsp;: Fichiers C<br />
+Cible&nbsp;: STM32F100RB<br />Compilateur&nbsp;: Keil &micro;Vision4<br />
+<a href="../../../elements/allures/valorisations/programmes.php%3Fprogramme=spi_et_lcd_page_1+2+2">T&eacute;l&eacute;charger le fichier<span>Effectuez un clic droit, puis s&eacute;lectionnez l'option &laquo;&nbsp;Enregistrer la cible du lien sous...&nbsp;&raquo;, pour t&eacute;l&eacute;charger le fichier</span></a> (20.8 Ko)</p></div>
+</div>
+</div>
+<p>Correspondances entre les broches du microcontr&ocirc;leur PIC18F4550 et de la carte &laquo;&nbsp;SPI et LCD&nbsp;&raquo;, deuxi&egrave;me version&nbsp;:</p>
+<p></p>
+<table border="1" cellpadding="2" cellspacing="2">
+<tbody>
+<tr>
+<th>Microcontr&ocirc;leur PIC18F4550</th>
+<td>VDD</td>
+<td>VSS</td>
+<td>RA5</td>
+<td>RB0</td>
+<td>RB1</td>
+<td>RC7</td>
+</tr>
+<tr>
+<th>Carte &laquo;&nbsp;SPI et LCD&nbsp;&raquo;, premi&egrave;re version</th>
+<td>+5V</td>
+<td>GND</td>
+<td>~CS_MCP23S17</td>
+<td>MISO_MCP23S17</td>
+<td>SCLK_MCP23S17</td>
+<td>MOSI_MCP23S17</td>
+</tr>
+</tbody>
+</table>
+<p></p>
+<div class="valorisations">
+<div class="programmes">
+<div class="programmes_gauche">
+<img style="width: 32px; height: 32px;" alt="fleche-bas-telecharger-icone-9594-32" src="../../../images/fleche-bas-telecharger-icone-9594-32.png">
+</div>
+<div class="programmes_droite">
+<p>Piloter un afficheur graphique avec un MCP23S17, deuxi&egrave;me version&nbsp;: Fichiers C<br />
+Cible&nbsp;: PIC18F4550<br />Compilateur&nbsp;: MCC18<br />
+<a href="../../../elements/allures/valorisations/programmes.php%3Fprogramme=spi_et_lcd_page_1+2+3">T&eacute;l&eacute;charger le fichier<span>Effectuez un clic droit, puis s&eacute;lectionnez l'option &laquo;&nbsp;Enregistrer la cible du lien sous...&nbsp;&raquo;, pour t&eacute;l&eacute;charger le fichier</span></a> (90.84 Ko)</p></div>
+</div>
+</div>
+<div>
+<div class="menu_article">
+<ul class="menu_article_principal">
+<li><a href="spi_et_lcd_page_1.php.html">SPI et LCD&nbsp;: Pilotage d'un afficheur graphique</a></li>
+</ul>
+<ul class="menu_article_secondaire">
+<li><a href="spi_et_lcd_page_1.php%3Fselection=2.html#Endroit_1-0-0">1) Pr&eacute;sentation</a></li>
+<li><a href="spi_et_lcd_page_1.php%3Fselection=2.html#Endroit_2-0-0">2) Montage 1</a></li>
+<li>
+<ul>
+<li><a href="spi_et_lcd_page_1.php%3Fselection=2.html#Endroit_2-1-0">2-1) Sch&eacute;ma &eacute;lectronique</a></li>
+<li><a href="spi_et_lcd_page_1.php%3Fselection=2.html#Endroit_2-2-0">2-2) Typon</a></li>
+<li><a href="spi_et_lcd_page_1.php%3Fselection=2.html#Endroit_2-3-0">2-3) Code source</a></li>
+</ul>
+</li>
+<li><a href="spi_et_lcd_page_1.php%3Fselection=2.html#Endroit_3-0-0">3) Montage 2</a></li>
+<li>
+<ul>
+<li><a href="spi_et_lcd_page_1.php%3Fselection=2.html#Endroit_3-1-0">3-1) Sch&eacute;ma &eacute;lectronique</a></li>
+<li><a href="spi_et_lcd_page_1.php%3Fselection=2.html#Endroit_3-2-0">3-2) Typon</a></li>
+<li><a href="spi_et_lcd_page_1.php%3Fselection=2.html#Endroit_3-3-0">3-3) Code source</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="commentaires"><a id="Endroits_des_commentaires"></a><p class="sous-titre_commentaires">Commentaires (0)</p><p class="sous-titre_ajouts">Ajouter un commentaire</p>
+<form id="contact" method="post" action="http://atrylec.com/elements/allures/commentaires/verification.php">
+<fieldset>
+<legend>
+Votre pseudo&nbsp;: 
+</legend>
+<p>
+<label for="pseudo">
+Pseudo&nbsp;: 
+</label>
+<input type="text" id="pseudo" name="pseudo" tabindex="1" required="required">
+</p>
+</fieldset>
+<fieldset>
+<legend>
+Votre commentaire&nbsp;: 
+</legend>
+<p>
+<label for="commentaire">
+Commentaire&nbsp;: 
+</label>
+<textarea id="commentaire" name="commentaire" tabindex="2" cols="50" rows="2" required="required">
+</textarea>
+</p>
+</fieldset>
+<div class="bouton_validation_commentaire">
+<input type="submit" name="Poster" value="Poster" />
+</div>
+</form>
+</div><div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="spi_et_lcd_page_1.php%3Fselection=2.html#Haut_de_page">Je veux remonter !</a>
+</div>
+</section>
+<footer>
+<div class="liens">
+<ul>
+<li><a href="../../contact.php.html">ContaCT</a></li>
+</ul>
+</div>
+<div id="choix_style">
+<div class="presentation">Ravaler la fa&ccedil;ade&nbsp;:</div>
+<a href="spi_et_lcd_page_1.php%3Fselection=1.html" title="Style 1"><div class="choix choix_bleu">&nbsp;</div></a><div class="choix choix_rouge_choisi">&nbsp;</div><a href="spi_et_lcd_page_1.php%3Fselection=3.html" title="Style 3"><div class="choix choix_orange">&nbsp;</div></a></div>
+<div class="remarques">
+<p>Il ne faut pas dire&nbsp;: &laquo;&nbsp;Un bus non-croyant
+&nbsp;&raquo;, mais&nbsp;: &laquo;&nbsp;Un karat&eacute;
+&nbsp;&raquo;.</p>
+</div>
+<div class="visites">
+<img style="width: 15px; height: 15px;" alt="6_30" src="../../../images/6_30.png">   <img style="width: 15px; height: 15px;" alt="5_30" src="../../../images/5_30.png">   <img style="width: 15px; height: 15px;" alt="0_30" src="../../../images/0_30.png">   <img style="width: 15px; height: 15px;" alt="9_30" src="../../../images/9_30.png">   <img style="width: 15px; height: 15px;" alt="9_30" src="../../../images/9_30.png">   </div>
+</footer>
+</div>
+</body>
+</html>

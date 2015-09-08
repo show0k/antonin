@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>Afficheurs &agrave; LED&nbsp;: Circuits de pilotage - G&eacute;n&eacute;ralit&eacute;s</title>
+<meta name="description" content="G&eacute;n&eacute;ralit&eacute;s sur les afficheurs &agrave; LED et les m&eacute;thodes permettant leur pilotage." />
+<meta name="keywords" content="atrylec electronique afficheur led 7 segments sept matrice 8 cablage huit multiplexage charlieplexage multiplexing charlieplexing pilote driver max7219 max7221 tlc5940 essai test schema schemas montage montages realisation realisations microcontroleur programmation code source langage c stm32discovery stm 32 discovery stm32vldiscovery stm 32 vl discovery stm32f100rb exemple projet configurer" />
+<link rel="stylesheet" media="screen" type="text/css" title="Style 1" href="../../../elements/allures/style_1.css">
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-42331281-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+<body>
+<div id="page">
+<div id="haut">
+<header id="Haut_de_page">
+<div id="principale">
+<p class="titre_principal_haut">
+<a href="../../../index.php.html"><img style="width: 150px;" alt="Affichage_Atrylec_com" src="../../../images/Affichage_Atrylec_com.png" /><span class="invisible">Atrylec</span></a></p>
+<p class="sous-titre_haut">Vous n'&ecirc;tes pas seuls dans l'Univers !</p>
+</div>
+<div id="additionnelle">
+</div>
+</header>
+<nav>
+<ul id="navigation">
+<li><a href="../../../index.php.html" title="Accueil">Accueil</a></li>
+<li><a class="choisi" href="../index.php.html" title="Electronique">Electronique</a></li>
+<li><a href="../../radio/index.php%3Fnumero=0.html" title="Radio">Radio</a></li>
+<li><a href="../../origami/index.php.html" title="Origami">Origami</a></li>
+<li><a href="../../photographies/index.php%3Fnumero=0.html" title="Photographies">Photographies</a></li>
+<li><a href="../../le_grenier/index.php.html" title="Le grenier">Le grenier</a></li>
+<li><a href="../../contact.php.html" title="ContaCT">ContaCT</a></li>
+</ul>
+</nav>
+</div>
+<section>
+<div id="titre">
+<div id="titre_gauche">
+</div>
+<div id="titre_image">
+<img style="width: 100px; height: 100px;" alt="Transistor_100" src="../../../images/Transistor_100.png">
+</div>
+<div id="titre_texte">
+<p>[</p><h1>Afficheurs &agrave; LED&nbsp;: Circuits de pilotage - Page 1</h1><p>]</p>
+</div>
+<div id="titre_droite">
+</div>
+</div>
+<div>
+<p id="introduction">G&eacute;n&eacute;ralit&eacute;s.<br />
+Cet partie pr&eacute;sente des montages qui permettent de piloter des afficheurs &agrave; LED, qu'il s'agisse d'afficheurs 7 segments ou de matrices.</p>
+</div>
+<p>
+<a id="Liste_de_depart"></a>
+</p>
+<div>
+<div class="menu_article">
+<ul class="menu_article_principal">
+<li><a href="afficheurs_a_led_circuits_de_pilotage_page_1.php.html">Afficheurs &agrave; LED&nbsp;: Circuits de pilotage</a></li>
+<li><ul>
+<li><a class="choisi" href="afficheurs_a_led_circuits_de_pilotage_page_1.php.html">G&eacute;n&eacute;ralit&eacute;s</a></li>
+<li><a href="afficheurs_a_led_circuits_de_pilotage_page_2.php.html">Utilisation de composants discrets</a></li>
+<li><a href="afficheurs_a_led_circuits_de_pilotage_page_3.php.html">Utilisation de circuits int&eacute;gr&eacute;s sp&eacute;cifiques</a></li>
+</ul></li>
+</ul>
+<ul class="menu_article_secondaire">
+<li><a href="afficheurs_a_led_circuits_de_pilotage_page_1.php%3Fselection=1.html#Endroit_1-0-0">1) Afficheurs &agrave; LED</a></li>
+<li>
+<ul>
+<li><a href="afficheurs_a_led_circuits_de_pilotage_page_1.php%3Fselection=1.html#Endroit_1-1-0">1-1) Afficheurs 7 segments</a></li>
+<li><a href="afficheurs_a_led_circuits_de_pilotage_page_1.php%3Fselection=1.html#Endroit_1-2-0">1-2) Afficheurs &agrave; matrices de LED</a></li>
+<li><a href="afficheurs_a_led_circuits_de_pilotage_page_1.php%3Fselection=1.html#Endroit_1-3-0">1-3) Ecrans OLED</a></li>
+</ul>
+</li>
+<li><a href="afficheurs_a_led_circuits_de_pilotage_page_1.php%3Fselection=1.html#Endroit_2-0-0">2) C&acirc;blage interne</a></li>
+<li><a href="afficheurs_a_led_circuits_de_pilotage_page_1.php%3Fselection=1.html#Endroit_3-0-0">3) C&acirc;blage dans un syst&egrave;me d'affichage</a></li>
+<li>
+<ul>
+<li><a href="afficheurs_a_led_circuits_de_pilotage_page_1.php%3Fselection=1.html#Endroit_3-1-0">3-1) C&acirc;blage direct</a></li>
+<li><a href="afficheurs_a_led_circuits_de_pilotage_page_1.php%3Fselection=1.html#Endroit_3-2-0">3-2) Multiplexage</a></li>
+<li><a href="afficheurs_a_led_circuits_de_pilotage_page_1.php%3Fselection=1.html#Endroit_3-3-0">3-3) Charlieplexage</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<p></p>
+<div class="video">
+<div class="video-gauche">
+<p>Un essai, &agrave; l'aide d'un circuit int&eacute;gr&eacute; sp&eacute;cialis&eacute;, de r&eacutef&eacute;rence MAX7219, avec deux afficheurs 7 segments, a permis de mettre en exergue les fonctionnalit&eacutes suivantes&nbsp;:</p>
+<ul>
+<li>Affichage de symboles d&eacute;cod&eacute;s par le circuit int&eacute;gr&eacute;,</li>
+<li>Affichage de symboles d&eacute;finis par l'utilisateur,</li>
+<li>Variations de l'intensit&eacute; lumineuse de l'affichage.</li>
+</ul>
+<p></p>
+</div>
+<div class="video-droite">
+<figure>
+<object height="270" width="480">
+<param name="movie" value="http://www.dailymotion.com/swf/video/x104wz4">
+<param name="allowFullScreen" value="true">
+<param name="allowScriptAccess" value="always">
+<param name="wmode" value="transparent">
+<embed type="application/x-shockwave-flash" src="http://www.dailymotion.com/swf/video/x104wz4" wmode="transparent" allowfullscreen="true" allowscriptaccess="always" height="270" width="480"></embed>
+</object>
+<p><img alt="LIEN_EXTERNE" src="../../../images/LIEN_EXTERNE.png" />&nbsp;<a href="http://www.dailymotion.com/video/x104wz4_demo-afficheur-7-segments-et-max7219_tech" title="Ouvrir le lien &laquo;&nbsp;http://www.dailymotion.com/video/x104wz4_demo-afficheur-7-segments-et-max7219_tech&nbsp;&raquo; dans une nouvelle fen&ecirc;tre, ou dans un nouvel onglet" target="_blank">D&eacute;mo Afficheur 7 Segments et MAX7219</a></p>
+<figcaption>La vid&eacute;o de d&eacute;monstration du projet - Afficheur 7 Segments</figcaption>
+</figure>
+</div>
+</div>
+<p></p>
+<div class="video">
+<div class="video-gauche">
+<p>Le m&ecirc;me type d'essais, mais avec une matrice de 8 x 8 LED, a ensuite permis de valoriser les fonctionnalit&eacutes suivantes&nbsp;:</p>
+<ul>
+<li>Affichage de symboles d&eacute;finis par l'utilisateur,</li>
+<li>Affichage d'animations lumineuses,</li>
+<li>Variations de l'intensit&eacute; lumineuse de l'affichage.</li>
+</ul>
+<p></p>
+</div>
+<div class="video-droite">
+<figure>
+<object width="480" height="270">
+<param name="movie" value="http://www.dailymotion.com/swf/video/x104x4y"></param>
+<param name="allowFullScreen" value="true"></param>
+<param name="allowScriptAccess" value="always"></param>
+<param name="wmode" value="transparent"></param>
+<embed type="application/x-shockwave-flash" src="http://www.dailymotion.com/swf/video/x104x4y" width="480" height="270" wmode="transparent" allowfullscreen="true" allowscriptaccess="always"></embed>
+</object>
+<p><img alt="LIEN_EXTERNE" src="../../../images/LIEN_EXTERNE.png" />&nbsp;<a href="http://www.dailymotion.com/video/x104x4y_demo-matrice-de-8-x-8-led-et-max7219_tech" title="Ouvrir le lien &laquo;&nbsp;http://www.dailymotion.com/video/x104x4y_demo-matrice-de-8-x-8-led-et-max7219_tech&nbsp;&raquo; dans une nouvelle fen&ecirc;tre, ou dans un nouvel onglet" target="_blank">D&eacute;mo Matrice de 8 x 8 LED et MAX7219</a></p>
+<figcaption>La vid&eacute;o de d&eacute;monstration du projet - Matrice de 8 x 8 LED</figcaption>
+</figure>
+</div>
+</div>
+<p></p>
+<div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="afficheurs_a_led_circuits_de_pilotage_page_1.php%3Fselection=1.html#Haut_de_page">Je veux remonter !</a>&nbsp;|&nbsp;<a href="afficheurs_a_led_circuits_de_pilotage_page_1.php%3Fselection=1.html#Liste_de_depart">Liste</a>
+</div>
+<a id="Endroit_1-0-0"></a>
+<h2>1) Afficheurs &agrave; LED</h2>
+<p>Les afficheurs &agrave; LED sont des composants destin&eacute;s &agrave; repr&eacute;senter des indications lumineuses.<br />
+Ils sont constitu&eacute;s de plusieurs LED, dispos&eacute;es de mani&egrave;re &agrave; former des symboles.</p>
+<a id="Endroit_1-1-0"></a>
+<h3>1-1) Afficheurs 7 segments</h3>
+<p>Les plus connus sont les afficheurs 7 segments, utilis&eacute;s pour repr&eacute;senter les chiffres de &laquo;&nbsp;0&nbsp;&raquo; &agrave; &laquo;&nbsp;9&nbsp;&raquo;, des caract&egrave;res sp&eacute;ciaux qui se pr&ecirc;tent &agrave; ce type de dispositif, et &eacute;ventuellement un point d&eacute;cimal.</p>
+<a id="Endroit_1-2-0"></a>
+<h3>1-2) Afficheurs &agrave; matrices de LED</h3>
+<p>Il existe &eacute;galement des afficheurs qui sont constitu&eacute;s de points lumineux, qui ont ainsi l'aspect de matrices.<br />
+G&eacute;n&eacute;ralement sous forme de groupements de 6 x 5, 7 x 5 ou 8 x 8 LED, ils permettent de repr&eacute;senter plus de caract&egrave;res, de fa&ccedil;on graphique.<br />
+Cela implique un nombre de LED par afficheur plus important, par rapport &agrave; des afficheurs 7 segments, d'o&ugrave; une augmentation de la complexit&eacute; de pilotage.</p>
+<p>Il existe des afficheurs &agrave; matrice de LED qui sont bicolores, ou multicolores.</p>
+<a id="Endroit_1-3-0"></a>
+<h3>1-3) Ecrans OLED</h3>
+<p>Les &eacute;crans de type &laquo;&nbsp;OLED&nbsp;&raquo; qui sont fabriqu&eacute;s reprennent ce principe, mais avec assez de LED pour pouvoir afficher du texte et des images.</p>
+<div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="afficheurs_a_led_circuits_de_pilotage_page_1.php%3Fselection=1.html#Haut_de_page">Je veux remonter !</a>&nbsp;|&nbsp;<a href="afficheurs_a_led_circuits_de_pilotage_page_1.php%3Fselection=1.html#Liste_de_depart">Liste</a>
+</div>
+<a id="Endroit_2-0-0"></a>
+<h2>2) C&acirc;blage interne</h2>
+<p>Le c&acirc;blage interne de ces afficheurs est effectu&eacute; de mani&egrave;re &agrave; limiter le nombre de connexions avec l'ext&eacute;rieur.<br />
+Pour un afficheur 7 segments, il y a 7 LED &agrave; relier, ou 8, s'il y a un point d&eacute;cimal en plus.<br />
+S'il s'agit d'un afficheur &agrave; cathode commune, cela signifie que, en interne, toutes les cathodes des LED sont reli&eacute;es &agrave; une, ou plusieurs broches, et les anodes sont rendues accessibles sur autant de broches qu'il y a d'anodes.</p>
+<div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="afficheurs_a_led_circuits_de_pilotage_page_1.php%3Fselection=1.html#Haut_de_page">Je veux remonter !</a>&nbsp;|&nbsp;<a href="afficheurs_a_led_circuits_de_pilotage_page_1.php%3Fselection=1.html#Liste_de_depart">Liste</a>
+</div>
+<a id="Endroit_3-0-0"></a>
+<h2>3) C&acirc;blage dans un syst&egrave;me d'affichage</h2>
+<p>Selon le choix de c&acirc;blage des afficheurs, le nombre de connexions sera plus ou moins important.</p>
+<a id="Endroit_3-1-0"></a>
+<h3>3-1) C&acirc;blage direct</h3>
+<p>Le c&acirc;blage direct consiste &agrave; connecter chaque LED &agrave; une broche de sortie du cicruit de commande des afficheurs, le plus souvent par l'interm&eacute;diaire d'une r&eacute;sistance de limitation de l'intensit&eacute; du courant.</p>
+<a id="Endroit_3-2-0"></a>
+<h3>3-2) Multiplexage</h3>
+<p>Pour avoir un affichage sur plusieurs symboles, il convient d'&eacute;viter d'avoir &agrave; c&acirc;bler autant de fils qu'il y aura de points lumineux.</p>
+<p>Une technique courante qui r&eacute;duit la quantit&eacute; de c&acirc;blage est le multiplexage.<br />
+Elle consiste, pour des afficheurs 7 segments &agrave; cathode commune, &agrave; relier toutes les anodes ensemble, et &agrave; n'allumer qu'un seul afficheur &agrave; la fois.<br />
+L'allumage d'un afficheur s'effectue en reliant les cathodes de ses LED, aussi appel&eacute; le &laquo;&nbsp;Point commun&nbsp;&raquo;.<br />
+Les afficheurs sont allum&eacute;s &agrave; tour de r&ocirc;le, de fa&ccedil;on suffisament rapide pour que, gr&acirc;ce &agrave; la persistance r&eacute;tinienne, l'impression soit donn&eacute;e que tous les afficheurs sont allum&eacute;s en m&ecirc;me temps.<br />
+Cette technique a un impact sur l'intensit&eacute; lumineuse de l'afficahge.<br />
+En effet, pour 8 afficheurs multiplex&eacute;s, un afficheur sera allum&eacute; pendant un maximum d' 1 / 8 du temps.<br />
+Il faut donc pr&eacute;voir d'alimenter les LED de chaque afficheur sous une intensit&eacute; sup&eacute;rieure &agrave; celle qui serait utilis&eacute;e s'ils &eacute;taient aliment&eacute;s en permanence.</p>
+<p>Il faut respecter un temps d'extinction des afficheurs, entre deux phases de multiplexage.<br />
+Ceci permet d'&eacute;viter d'avoir le symbole pr&eacute;c&eacute;dent qui se retrouve l&eacute;g&egrave;rement visible sur le symbole suivant.<br />
+Lorsqu'il se manifeste, ce ph&eacute;nom&egrave;ne est d&ucirc; au fait que le pilotage des anodes des LED n'est pas suffisament synchrone avec le pilotage des cathodes des LED.</p>
+<p>Le fonctionnement est identique pour les afficheurs 7 segments &agrave; anode commune, en &eacute;changeant les r&ocirc;les des cathodes et des anodes.<br />
+Il en est de m&ecirc;me pour les matrices de LED.</p>
+<p>Deux exemples de multiplexages sont donn&eacute;s par les r&eacute;alisations suivantes, dont vous pouvez obtenir plus d'informations en ouvrant les liens qui y sont associ&eacute;s&nbsp;:</p>
+<ul>
+<li><a href="../realisations/le_thermometre_numerique.php.html" title="Ouvrir le lien &laquo;&nbsp;http://www.atrylec.com/fr/electronique/realisations/le_thermometre_numerique.php&nbsp;&raquo;" >Le thermom&egrave;tre num&eacute;rique</a>, qui multiplexe 8 afficheurs 7 segments &agrave; cathode commune,</li>
+<li><a href="../realisations/la_grosse_horloge.php.html" title="Ouvrir le lien &laquo;&nbsp;http://www.atrylec.com/fr/electronique/realisations/la_grosse_horloge.php&nbsp;&raquo;" >La Grosse Horloge</a>, qui multiplexe 4 afficheurs 7 segments &agrave; cathode commune, fabriqu&eacute;s avec des LED, ainsi que 4 groupes de 15 LED.</li>
+</ul>
+<p></p>
+<figure>
+<p></p>
+<table border="0" cellpadding="2" cellspacing="1">
+<tbody>
+<tr>
+<td>
+<a href="../../../images/THERMOMETRE_MULTIPLEXAGE_1.jpg">
+<img alt="THERMOMETRE_MULTIPLEXAGE_1" src="../../../images/THERMOMETRE_MULTIPLEXAGE_1_Petite.jpg">
+</a>
+</td>
+<td>
+<a href="../../../images/THERMOMETRE_MULTIPLEXAGE_2.jpg">
+<img alt="THERMOMETRE_MULTIPLEXAGE_2" src="../../../images/THERMOMETRE_MULTIPLEXAGE_2_Petite.jpg">
+</a>
+</td>
+<td>
+<a href="../../../images/THERMOMETRE_MULTIPLEXAGE_3.jpg">
+<img alt="THERMOMETRE_MULTIPLEXAGE_3" src="../../../images/THERMOMETRE_MULTIPLEXAGE_3_Petite.jpg">
+</a>
+</td>
+<td>
+<a href="../../../images/THERMOMETRE_MULTIPLEXAGE_4.jpg">
+<img alt="THERMOMETRE_MULTIPLEXAGE_4" src="../../../images/THERMOMETRE_MULTIPLEXAGE_4_Petite.jpg">
+</a>
+</td>
+</tr>
+<tr>
+<td>Phase 1</td>
+<td>Phase 2</td>
+<td>Phase 3</td>
+<td>Phase 4</td>
+</tr>
+<tr>
+<td>
+<a href="../../../images/THERMOMETRE_MULTIPLEXAGE_5.jpg">
+<img alt="THERMOMETRE_MULTIPLEXAGE_5" src="../../../images/THERMOMETRE_MULTIPLEXAGE_5_Petite.jpg">
+</a>
+</td>
+<td>
+<a href="../../../images/THERMOMETRE_MULTIPLEXAGE_6.jpg">
+<img alt="THERMOMETRE_MULTIPLEXAGE_6" src="../../../images/THERMOMETRE_MULTIPLEXAGE_6_Petite.jpg">
+</a>
+</td>
+<td>
+<a href="../../../images/THERMOMETRE_MULTIPLEXAGE_7.jpg">
+<img alt="THERMOMETRE_MULTIPLEXAGE_7" src="../../../images/THERMOMETRE_MULTIPLEXAGE_7_Petite.jpg">
+</a>
+</td>
+<td>
+<a href="../../../images/THERMOMETRE_MULTIPLEXAGE_8.jpg">
+<img alt="THERMOMETRE_MULTIPLEXAGE_8" src="../../../images/THERMOMETRE_MULTIPLEXAGE_8_Petite.jpg">
+</a>
+</td>
+</tr>
+<tr>
+<td>Phase 5</td>
+<td>Phase 6</td>
+<td>Phase 7</td>
+<td>Phase 8</td>
+</tr>
+</tbody>
+</table>
+<figcaption>Phases du multiplexage du thermom&egrave;tre num&eacute;rique, version 1</figcaption>
+</figure>
+<p></p>
+<figure>
+<a href="../../../images/THERMOMETRE_MULTIPLEXAGE_RENDU.jpg">
+<img alt="THERMOMETRE_MULTIPLEXAGE_RENDU" src="../../../images/THERMOMETRE_MULTIPLEXAGE_RENDU_Petite.jpg">
+</a>
+<figcaption>Rendu du multiplexage sur le thermom&egrave;tre num&eacute;rique</figcaption>
+</figure>
+<p></p>
+<figure>
+<p></p>
+<table border="0" cellpadding="2" cellspacing="1">
+<tbody>
+<tr>
+<td>
+<a href="../../../images/HORLOGE_MULTIPLEXAGE_1.jpg">
+<img alt="HORLOGE_MULTIPLEXAGE_1" src="../../../images/HORLOGE_MULTIPLEXAGE_1_Petite.jpg">
+</a>
+</td>
+<td>
+<a href="../../../images/HORLOGE_MULTIPLEXAGE_2.jpg">
+<img alt="HORLOGE_MULTIPLEXAGE_2" src="../../../images/HORLOGE_MULTIPLEXAGE_2_Petite.jpg">
+</a>
+</td>
+<td>
+<a href="../../../images/HORLOGE_MULTIPLEXAGE_3.jpg">
+<img alt="HORLOGE_MULTIPLEXAGE_3" src="../../../images/HORLOGE_MULTIPLEXAGE_3_Petite.jpg">
+</a>
+</td>
+<td>
+<a href="../../../images/HORLOGE_MULTIPLEXAGE_4.jpg">
+<img alt="HORLOGE_MULTIPLEXAGE_4" src="../../../images/HORLOGE_MULTIPLEXAGE_4_Petite.jpg">
+</a>
+</td>
+</tr>
+<tr>
+<td>Phase 1</td>
+<td>Phase 2</td>
+<td>Phase 3</td>
+<td>Phase 4</td>
+</tr>
+</tbody>
+</table>
+<figcaption>Phases du multiplexage de la Grosse Horloge, version 1</figcaption>
+</figure>
+<p></p>
+<figure>
+<a href="../../../images/HORLOGE_MULTIPLEXAGE_RENDU.jpg">
+<img alt="HORLOGE_MULTIPLEXAGE_RENDU" src="../../../images/HORLOGE_MULTIPLEXAGE_RENDU_Petite.jpg">
+</a>
+<figcaption>Rendu du multiplexage sur la Grosse Horloge</figcaption>
+</figure>
+<p></p>
+<p>L'affichage apparait moins lumineux que pour chaque phase, car les LED des &eacute;l&eacute;ments d'affichages sont sollicit&eacute;es pendant 1 / 8 du temps pour le thermom&egrave;tre num&eacute;rique, et pendant 1 / 4 du temps pour la Grosse Horloge.</p>
+<p></p>
+<div class="valorisations">
+<div class="informations">
+<div class="informations-gauche">
+<img style="width: 32px; height: 32px;" alt="documentaires-des-proprietes-icone-5224-32" src="../../../images/documentaires-des-proprietes-icone-5224-32.png">
+</div>
+<div class="informations-droite">
+<p>Le symbole &laquo;&nbsp;:&nbsp;&raquo; de la Grosse Horloge n'est pas multiplex&eacute;.<br />
+Celui-ci est allum&eacute; en permanence, mais les LED qui le composent ont une r&eacute;sistance de limitation qui est plus grande que celles des autres, pour &eacute;viter qu'il n'apparaisse plus lumineux.<br /></p></div>
+</div>
+</div>
+<a id="Endroit_3-3-0"></a>
+<h3>3-3) Charlieplexage</h3>
+<p>Le charlieplexage, que l'on retrouve plus fr&eacute;quemment sous le terme anglais &laquo;&nbsp;<i>Charlieplexing</i>&nbsp;&raquo; , du nom de Charlie ALLEN, qui l'a poropos&eacute; en 1995 &agrave; la soci&eacute;t&eacute; MAXIM INTEGRATED, est une m&eacute;thode qui vise &agrave; r&eacute;duire le nombre de broches de sorties requises pour le pilotage d'un groupement de LED, par rapport au multiplexage.</p>
+<p>Cette m&eacute;thode utilise le fait que les LED ne peuvent s'allumer que si le courant &eacute;lectrique qui les traverse est dans le sens direct.<br />
+Elle se base &eacute;galement sur les fonctions de sorties &agrave; non pas deux, mais &agrave; trois &eacute;tats des circuits nim&eacute;riques.<br />
+Ces trois &eacute;tats sont les classiques &eacute;tats bas - <i>Z&eacute;ro</i> logique - et &eacute;tats haut - <i>Un</i> logique - , auquel s'ajoute l'&eacute;tat &agrave; haute imp&eacute;dance, qui peut &ecirc;tre assimil&eacute; &agrave; celui d'un interrupteur ouvert.</p>
+<div>
+<div class="menu_article">
+<ul class="menu_article_principal">
+<li><a href="afficheurs_a_led_circuits_de_pilotage_page_1.php.html">Afficheurs &agrave; LED&nbsp;: Circuits de pilotage</a></li>
+<li><ul>
+<li><a class="choisi" href="afficheurs_a_led_circuits_de_pilotage_page_1.php.html">G&eacute;n&eacute;ralit&eacute;s</a></li>
+<li><a href="afficheurs_a_led_circuits_de_pilotage_page_2.php.html">Utilisation de composants discrets</a></li>
+<li><a href="afficheurs_a_led_circuits_de_pilotage_page_3.php.html">Utilisation de circuits int&eacute;gr&eacute;s sp&eacute;cifiques</a></li>
+</ul></li>
+</ul>
+<ul class="menu_article_secondaire">
+<li><a href="afficheurs_a_led_circuits_de_pilotage_page_1.php%3Fselection=1.html#Endroit_1-0-0">1) Afficheurs &agrave; LED</a></li>
+<li>
+<ul>
+<li><a href="afficheurs_a_led_circuits_de_pilotage_page_1.php%3Fselection=1.html#Endroit_1-1-0">1-1) Afficheurs 7 segments</a></li>
+<li><a href="afficheurs_a_led_circuits_de_pilotage_page_1.php%3Fselection=1.html#Endroit_1-2-0">1-2) Afficheurs &agrave; matrices de LED</a></li>
+<li><a href="afficheurs_a_led_circuits_de_pilotage_page_1.php%3Fselection=1.html#Endroit_1-3-0">1-3) Ecrans OLED</a></li>
+</ul>
+</li>
+<li><a href="afficheurs_a_led_circuits_de_pilotage_page_1.php%3Fselection=1.html#Endroit_2-0-0">2) C&acirc;blage interne</a></li>
+<li><a href="afficheurs_a_led_circuits_de_pilotage_page_1.php%3Fselection=1.html#Endroit_3-0-0">3) C&acirc;blage dans un syst&egrave;me d'affichage</a></li>
+<li>
+<ul>
+<li><a href="afficheurs_a_led_circuits_de_pilotage_page_1.php%3Fselection=1.html#Endroit_3-1-0">3-1) C&acirc;blage direct</a></li>
+<li><a href="afficheurs_a_led_circuits_de_pilotage_page_1.php%3Fselection=1.html#Endroit_3-2-0">3-2) Multiplexage</a></li>
+<li><a href="afficheurs_a_led_circuits_de_pilotage_page_1.php%3Fselection=1.html#Endroit_3-3-0">3-3) Charlieplexage</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="commentaires"><a id="Endroits_des_commentaires"></a><p class="sous-titre_commentaires">Commentaires (0)</p><p class="sous-titre_ajouts">Ajouter un commentaire</p>
+<form id="contact" method="post" action="http://atrylec.com/elements/allures/commentaires/verification.php">
+<fieldset>
+<legend>
+Votre pseudo&nbsp;: 
+</legend>
+<p>
+<label for="pseudo">
+Pseudo&nbsp;: 
+</label>
+<input type="text" id="pseudo" name="pseudo" tabindex="1" required="required">
+</p>
+</fieldset>
+<fieldset>
+<legend>
+Votre commentaire&nbsp;: 
+</legend>
+<p>
+<label for="commentaire">
+Commentaire&nbsp;: 
+</label>
+<textarea id="commentaire" name="commentaire" tabindex="2" cols="50" rows="2" required="required">
+</textarea>
+</p>
+</fieldset>
+<div class="bouton_validation_commentaire">
+<input type="submit" name="Poster" value="Poster" />
+</div>
+</form>
+</div><div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="afficheurs_a_led_circuits_de_pilotage_page_1.php%3Fselection=1.html#Haut_de_page">Je veux remonter !</a>
+</div>
+</section>
+<footer>
+<div class="liens">
+<ul>
+<li><a href="../../contact.php.html">ContaCT</a></li>
+</ul>
+</div>
+<div id="choix_style">
+<div class="presentation">Ravaler la fa&ccedil;ade&nbsp;:</div>
+<div class="choix choix_bleu_choisi">&nbsp;</div><a href="afficheurs_a_led_circuits_de_pilotage_page_1.php%3Fselection=2.html" title="Style 2"><div class="choix choix_rouge">&nbsp;</div></a><a href="afficheurs_a_led_circuits_de_pilotage_page_1.php%3Fselection=3.html" title="Style 3"><div class="choix choix_orange">&nbsp;</div></a></div>
+<div class="remarques">
+<p>Il ne faut pas dire&nbsp;: &laquo;&nbsp;Une carte du monde g&eacute;opolitique
+&nbsp;&raquo;, mais&nbsp;: &laquo;&nbsp;Un diagramme d'&eacute;tats
+&nbsp;&raquo;.</p>
+</div>
+<div class="visites">
+<img style="width: 15px; height: 15px;" alt="6_30" src="../../../images/6_30.png">   <img style="width: 15px; height: 15px;" alt="5_30" src="../../../images/5_30.png">   <img style="width: 15px; height: 15px;" alt="0_30" src="../../../images/0_30.png">   <img style="width: 15px; height: 15px;" alt="9_30" src="../../../images/9_30.png">   <img style="width: 15px; height: 15px;" alt="8_30" src="../../../images/8_30.png">   </div>
+</footer>
+</div>
+</body>
+</html>

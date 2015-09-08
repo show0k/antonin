@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>La programmation des PIC18F - Configurer l'horloge sur le PIC18F4550</title>
+<meta name="description" content="La programmation des PIC18F - Configurer l'horloge sur le PIC18F4550." />
+<meta name="keywords" content="atrylec electronique schema montage realisation microcontroleur entree sortie programmation code source langage c pic18f4550 pic 18f4550 mplab tutoriel exemple cours creer projet configurer horloge" />
+<link rel="stylesheet" media="screen" type="text/css" title="Style 2" href="../../../elements/allures/style_2.css">
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-42331281-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+<body>
+<div id="page">
+<div id="haut">
+<header id="Haut_de_page">
+<div id="principale">
+<p class="titre_principal_haut">
+<a href="../../../index.php.html"><img style="width: 150px;" alt="Affichage_Atrylec_com" src="../../../images/Affichage_Atrylec_com.png" /><span class="invisible">Atrylec</span></a></p>
+<p class="sous-titre_haut">Vous n'&ecirc;tes pas seuls dans l'Univers !</p>
+</div>
+<div id="additionnelle">
+</div>
+</header>
+<nav>
+<ul id="navigation">
+<li><a href="../../../index.php.html" title="Accueil">Accueil</a></li>
+<li><a class="choisi" href="../index.php.html" title="Electronique">Electronique</a></li>
+<li><a href="../../radio/index.php%3Fnumero=0.html" title="Radio">Radio</a></li>
+<li><a href="../../origami/index.php.html" title="Origami">Origami</a></li>
+<li><a href="../../photographies/index.php%3Fnumero=0.html" title="Photographies">Photographies</a></li>
+<li><a href="../../le_grenier/index.php.html" title="Le grenier">Le grenier</a></li>
+<li><a href="../../contact.php.html" title="ContaCT">ContaCT</a></li>
+</ul>
+</nav>
+</div>
+<section>
+<div id="titre">
+<div id="titre_gauche">
+</div>
+<div id="titre_image">
+<img style="width: 100px; height: 100px;" alt="Transistor_100" src="../../../images/Transistor_100.png">
+</div>
+<div id="titre_texte">
+<p>/&nbsp;</p><h1>La programmation des PIC18F - Page 2</h1>
+</div>
+<div id="titre_droite">
+</div>
+</div>
+<div style="position: relative; top: 72px; left: 502px;">
+<i>Sp&eacute;cial ZanX' &agrave; &laquo;&nbsp;NonoxX&nbsp;&raquo; !</i><br />
+</div>
+<div>
+<p id="introduction">La programmation des PIC18F - Configurer l'horloge sur le PIC18F4550.</p>
+</div>
+<p>
+<a id="Liste_de_depart"></a>
+</p>
+<div>
+<div class="menu_article">
+<ul class="menu_article_principal">
+<li><a href="la_programmation_des_pic18f_page_1.php.html">Mises en places</a></li>
+<li><ul>
+<li><a href="la_programmation_des_pic18f_page_1.php.html">Cr&eacute;er un projet sous MPLAB</a></li>
+<li><a class="choisi" href="la_programmation_des_pic18f_page_2.php.html">Configurer l'horloge sur le PIC18F4550</a></li>
+<li><a href="la_programmation_des_pic18f_page_3.php.html">Les ports d'entr&eacute;es-sorties du PIC18F4550</a></li>
+</ul></li>
+</ul>
+<ul class="menu_article_secondaire">
+<li><a href="la_programmation_des_pic18f_page_2.php%3Fselection=2.html#Endroit_1-0-0">1) Pr&eacute;sentation</a></li>
+<li><a href="la_programmation_des_pic18f_page_2.php%3Fselection=2.html#Endroit_2-0-0">2) Les horloges syst&egrave;me du PIC18F4550</a></li>
+<li><a href="la_programmation_des_pic18f_page_2.php%3Fselection=2.html#Endroit_3-0-0">3) Oscillateur externe</a></li>
+<li><a href="la_programmation_des_pic18f_page_2.php%3Fselection=2.html#Endroit_4-0-0">4) Oscillateur interne</a></li>
+<li><a href="la_programmation_des_pic18f_page_2.php%3Fselection=2.html#Endroit_5-0-0">5) Oscillateur externe et USB</a></li>
+<li><a href="la_programmation_des_pic18f_page_2.php%3Fselection=2.html#Endroit_6-0-0">6) L'oscillateur secondaire</a></li>
+</ul>
+</div>
+</div>
+<div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="la_programmation_des_pic18f_page_2.php%3Fselection=2.html#Haut_de_page">Je veux remonter !</a>&nbsp;|&nbsp;<a href="la_programmation_des_pic18f_page_2.php%3Fselection=2.html#Liste_de_depart">Liste</a>
+</div>
+<a id="Endroit_1-0-0"></a>
+<h2>1) Pr&eacute;sentation</h2>
+<p>Comme la grande majorit&eacute; des syst&egrave;mes
+num&eacute;riques &agrave; l&rsquo;heure actuelle, les
+microcontr&ocirc;leurs sont des composants synchrones,
+c&rsquo;est-&agrave;-dire que toutes les op&eacute;rations
+y sont synchronis&eacute;es par une horloge commune. Dans le cas
+d&rsquo;un microcontr&ocirc;leur, le nombre
+d&rsquo;instructions par seconde ex&eacute;cut&eacute;es
+par le processeur est directement proportionnel &agrave; la
+fr&eacute;quence de l&rsquo;horloge. Ainsi il est logique de
+penser que l&rsquo;id&eacute;al est d&rsquo;utiliser
+l&rsquo;horloge la plus &eacute;lev&eacute;e possible, car
+les performances seront ainsi maximis&eacute;es. Ce raisonnement
+est juste, mais maladroit, car une autre chose qui est directement
+proportionnelle &agrave; la fr&eacute;quence
+d&rsquo;horloge est la consommation &eacute;lectrique du
+composant.<br />
+Dans le PIC18F4550, en plus d&rsquo;une horloge syst&egrave;me,
+qui cadencera le coeur du microcontr&ocirc;leur, on peut aussi
+avoir &agrave; fournir une horloge &agrave; certains
+p&eacute;riph&eacute;riques tels que le contr&ocirc;leur
+USB ou les Timers. Dans ce cours il ne sera question en
+d&eacute;tail que de l&rsquo;horloge principale.</p>
+<div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="la_programmation_des_pic18f_page_2.php%3Fselection=2.html#Haut_de_page">Je veux remonter !</a>&nbsp;|&nbsp;<a href="la_programmation_des_pic18f_page_2.php%3Fselection=2.html#Liste_de_depart">Liste</a>
+</div>
+<a id="Endroit_2-0-0"></a>
+<h2>2) Les horloges syst&egrave;me du PIC18F4550</h2>
+<p>Le PIC18F4550 peut utiliser 4 types d&rsquo;horloge comme horloge
+syst&egrave;me:</p>
+<ul>
+<li>XT&nbsp;: Oscillateur &agrave; r&eacute;sonateur
+c&eacute;ramique ou &agrave; cristal (quartz) externe,
+jusqu&rsquo;&agrave; 4 MHz. Il est n&eacute;cessaire dans
+ce mode d&rsquo;ajouter entre les pattes OSC1 et OSC2 du composant
+un quartz, ainsi que deux condensateurs adapt&eacute;s entre
+chacune de ces deux broches et la masse. Pour connaitre les valeurs des
+condensateurs, reportez-vous au datasheet du PIC18F4550.</li>
+<li>HS&nbsp;: M&ecirc;me fonctionnement que le
+pr&eacute;c&eacute;dent, mais pour des fr&eacute;quences
+sup&eacute;rieures &agrave; 4MHz.</li>
+<li>EC&nbsp;: Dans ce mode, il faut directement apporter &agrave; la
+broche OSC1 un signal d&rsquo;horloge (carr&eacute;)
+g&eacute;n&eacute;r&eacute; par un oscillateur totalement
+externe.</li>
+<li>INT&nbsp;: Le PIC18F4550 poss&egrave;de un oscillateur interne de
+fr&eacute;quence r&eacute;glable entre 31kHz et 8MHz.</li>
+</ul>
+<p>Le choix de l&rsquo;oscillateur se fait par des registres
+particuliers, les registres de configuration. Ces registres ont la
+particularit&eacute; de ne pouvoir &ecirc;tre &eacute;crits
+que lors de la programmation. Pour les r&eacute;gler on peut soit
+utiliser la directive &laquo;&nbsp;#pragma config&nbsp;&raquo;, soit un
+menu bien pratique de MPLAB.<br />
+Justement ce menu, pour y acc&eacute;der, il suffit
+d&rsquo;aller dans &laquo;&nbsp;Configuration&nbsp;&raquo; puis
+&laquo;&nbsp;Configuration Bits&hellip;&nbsp;&raquo;. Commencez par
+d&eacute;cocher &laquo;&nbsp;Configuration Bits Set In Code
+&raquo;, afin d&rsquo;avoir acc&egrave;s aux configurations
+par ce menu.</p>
+<a href="../../../images/Capture_MPLAB_5.jpg">
+<img alt="Capture_MPLAB_5" src="../../../images/Capture_MPLAB_5_Petite.jpg">
+</a>
+<p>Vous vous retrouvez alors face &agrave; une assez vaste liste de
+r&eacute;glages&hellip; Mais comment savoir quoi mettre ? La
+r&eacute;ponse est simple&nbsp;: comme toujours, TOUT se trouve dans le
+datasheet ! Cherchez-y le diagramme des horloges (&laquo;&nbsp;Clock
+Diagram&nbsp;&raquo;, figure 2-1, page 24).<br />
+Nous allons voir comment nous y retrouver gr&acirc;ce &agrave;
+quelques exemples concrets.</p>
+<div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="la_programmation_des_pic18f_page_2.php%3Fselection=2.html#Haut_de_page">Je veux remonter !</a>&nbsp;|&nbsp;<a href="la_programmation_des_pic18f_page_2.php%3Fselection=2.html#Liste_de_depart">Liste</a>
+</div>
+<a id="Endroit_3-0-0"></a>
+<h2>3) Oscillateur externe</h2>
+<p>Nous allons commencer par un cas tr&egrave;s simple, et
+tr&egrave;s utilis&eacute;. Nous allons cadencer notre
+microcontr&ocirc;leur &agrave; une fr&eacute;quence de 4MHz
+avec un quartz de 4MHz.<br />
+Pour un quartz de 4 MHz, nous l&rsquo;avons vu, nous avons le
+choix, le mode XT ou le mode HS conviennent. J&rsquo;ai
+l&rsquo;habitude d&rsquo;utiliser le mode XT avec un quartz de
+4 MHz, mais cela ne fonctionnera ni mieux, ni moins bien
+qu&rsquo;en HS.<br />
+Dans MPLAB, ouvrez la fen&ecirc;tre &laquo;&nbsp;Configuration Bits
+&hellip;&raquo;, mettez en surbrillance la ligne FOSC
+(&laquo;&nbsp;Oscillator Selection Bits&nbsp;&raquo;) et, dans la liste
+d&eacute;roulante &agrave; droite, choisissez XT.</p>
+<a href="../../../images/Capture_MPLAB_6.jpg">
+<img alt="Capture_MPLAB_6" src="../../../images/Capture_MPLAB_6.jpg">
+</a>
+<p>Sur le diagramme des horloges on peut lire que dans les modes XT, HS,
+EC et ECIO, le signal d&rsquo;horloge passe par un diviseur
+configurable par les bits de configuration nomm&eacute;s CPUDIV.
+Dans la liste des bits de configuration dans MPLAB, il y a une ligne
+CPUDIV, choisissez y donc le mode &laquo;&nbsp;Primary Oscillator Src&nbsp;:
+/1&nbsp;&raquo;, puisque nous ne voulons pas diviser notre horloge.<br />
+C&rsquo;est aussi simple que cela, vous avez termin&eacute; la
+configuration de votre oscillateur.</p>
+<div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="la_programmation_des_pic18f_page_2.php%3Fselection=2.html#Haut_de_page">Je veux remonter !</a>&nbsp;|&nbsp;<a href="la_programmation_des_pic18f_page_2.php%3Fselection=2.html#Liste_de_depart">Liste</a>
+</div>
+<a id="Endroit_4-0-0"></a>
+<h2>4) Oscillateur interne</h2>
+<p>Nous cherchons pour notre application &agrave; minimiser les
+co&ucirc;ts, de plus c&rsquo;est une application dans laquelle
+la pr&eacute;cision des mesures de temps n&rsquo;est pas
+critique. L&rsquo;horloge interne semble alors tout &agrave;
+fait indiqu&eacute;e. De plus, une &eacute;tude
+pr&eacute;alable a montr&eacute; qu&rsquo;une
+fr&eacute;quence de 1MHz convenait parfaitement pour les
+performances que nous cherchons, tout en limitant la consommation
+d&rsquo;&eacute;nergie.<br />
+Nous allons tout d&rsquo;abord s&eacute;lectionner comme
+horloge syst&egrave;me l&rsquo;oscillateur interne. Malheur !
+Dans la liste d&eacute;roulante de la fen&ecirc;tre de
+configuration il y a 4 choix possibles, tous commen&ccedil;ant par
+&laquo;&nbsp;Internal Oscillator&nbsp;&raquo;. La raison est simple&nbsp;:
+dans le PIC18F4550, il y a un module USB qui doit pouvoir fonctionner
+avec une horloge de 48 MHz. La fr&eacute;quence de
+l&rsquo;oscillateur interne est au maximum de 8 MHz, et il
+n&rsquo;y a pas de multiplicateur de fr&eacute;quence qui y
+soit connect&eacute;. Il faut donc une autre horloge pour
+l&rsquo;USB, n&eacute;cessairement XT, HS ou EC.
+C&rsquo;est pour cela qu&rsquo;il y a plusieurs
+possibilit&eacute;s. Nous n&rsquo;utilisons pas l&rsquo;USB
+dans notre application, on peut donc mettre n&rsquo;importe
+laquelle de ces options.<br />
+Maintenant, il faut choisir la fr&eacute;quence de fonctionnement,
+nous avons choisis 1 MHz. INTOSC a en r&eacute;alit&eacute; une
+fr&eacute;quence fixe de 8 MHz, mais poss&egrave;de un diviseur
+&agrave; sa sortie. Il nous faut donc diviser cette
+fr&eacute;quence par 8. Le diagramme des horloges nous indique que
+cette division est param&eacute;trable par les bits 4 &agrave;
+6 du registre OSCCON. Le registre OSCCON n&rsquo;est pas un
+registre de configuration, c&rsquo;est le seul de ce chapitre
+d&rsquo;ailleurs. Ainsi, il faut le modifier dans votre programme,
+et non dans la fen&ecirc;tre &laquo;&nbsp;Configuration
+Bits&hellip;&nbsp;&raquo;. C&rsquo;est d&rsquo;ailleurs
+impossible.</p>
+<a href="../../../images/Capture_PIC18F4550_1.png">
+<img alt="Capture_PIC18F4550_1" src="../../../images/Capture_PIC18F4550_1.png">
+</a>
+<p>On va donc placer OSCCON&lt;6&nbsp;:4&gt; &agrave; la valeur
+binaire 100, en tout d&eacute;but de notre fonction &laquo;
+main&nbsp;&raquo;. Il semble en effet logique de configurer
+l&rsquo;horloge en premier. Il est toutefois possible de changer
+d&rsquo;horloge principale en cours de programme, mais dans des cas
+un peu particuliers, notamment lorsqu&rsquo;il est
+n&eacute;cessaire d&rsquo;optimiser au maximum la consommation
+d&rsquo;&eacute;nergie.<br />
+Et c&rsquo;est tout ! Votre PIC fonctionne maintenant sur son
+oscillateur interne, &agrave; une fr&eacute;quence de 1 MHz.</p>
+<div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="la_programmation_des_pic18f_page_2.php%3Fselection=2.html#Haut_de_page">Je veux remonter !</a>&nbsp;|&nbsp;<a href="la_programmation_des_pic18f_page_2.php%3Fselection=2.html#Liste_de_depart">Liste</a>
+</div>
+<a id="Endroit_5-0-0"></a>
+<h2>5) Oscillateur externe et USB</h2>
+<p>Maintenant nous allons sortir la grosse artillerie ! Surtout ne vous
+effrayez pas, ce n&rsquo;est pas parce que c&rsquo;est une
+utilisation un peu plus pouss&eacute;e des oscillateurs du
+PIC18F4550, que c&rsquo;est beaucoup plus compliqu&eacute;.<br />
+Nous avons besoin, pour une application, d&rsquo;une assez grande
+puissance de calcul. Une fr&eacute;quence de 32 MHz est
+adapt&eacute;e. Notre application utilisera le bus USB, et ce
+composant a besoin d&rsquo;une horloge &agrave; 48 MHz pour
+fonctionner correctement. En plus de tout cela, notre fabricant de
+quartz favori s&rsquo;est engag&eacute; &agrave; nous faire
+une remise tr&egrave;s int&eacute;ressante, mais uniquement sur
+un mod&egrave;le de quartz fonctionnant &agrave; 8 MHz.</p>
+<a href="../../../images/Capture_PIC18F4550_2.png">
+<img alt="Capture_PIC18F4550_2" src="../../../images/Capture_PIC18F4550_2.png">
+</a>
+<p>Nous disposons un quartz de 8 MHz, c&rsquo;est donc l&rsquo;un
+des modes HS qu&rsquo;il faudra utiliser. En plus de cela, nous
+devrons multiplier cette fr&eacute;quence avec la PLL pour obtenir
+les fr&eacute;quences que nous d&eacute;sirons pour le
+syst&egrave;me et pour l&rsquo;USB. Nous configurons donc FOSC
+sur HSPLL dans MPLAB. FOSC commande les deux multiplexeurs
+not&eacute;s en vert ci-dessus.<br />
+Sur notre diagramme des horloges, on voit qu&rsquo;avant
+d&rsquo;entrer dans la PLL, notre signal d&rsquo;horloge passe
+par un diviseur (orange). En effet, il est n&eacute;cessaire
+d&rsquo;attaquer la PLL avec un signal de 4 MHz. Notre quartz
+fonctionnant &agrave; 8 MHz, il va falloir diviser cette
+fr&eacute;quence par 2. Le diagramme toujours nous indique que
+cette division est param&eacute;tr&eacute;e par les bits de
+configuration PLLDIV. Dans MPLAB nous pla&ccedil;ons alors le
+PLLDIV sur &laquo;&nbsp;Divide By 2&nbsp;&raquo;.<br />
+Nous allons d&rsquo;abord terminer de configurer
+l&rsquo;horloge de l&rsquo;USB. On voit que notre signal passe
+par un premier multiplexeur (jaune). En effet, si nous avions eu
+&agrave; disposition un quartz de 48 MHz, nous aurions pu cadencer
+le p&eacute;riph&eacute;rique USB directement avec (fichu
+fabriquant !).<br />
+Notre horloge passe ensuite par un second multiplexeur (bleu) qui
+permet de choisir comme horloge de l&rsquo;USB, soit ce que nous
+avons param&eacute;tr&eacute; jusqu&rsquo;&agrave;
+pr&eacute;sent &agrave; 48 MHz, pour l&rsquo;USB pleine
+vitesse (&laquo;&nbsp;Full Speed&nbsp;&raquo;), soit &agrave; 6 MHz
+pour l&rsquo;USB basse vitesse (&laquo;&nbsp;Low Speed&nbsp;&raquo;).
+Dans MPLAB nous pla&ccedil;ons donc FSEN sur &laquo;&nbsp;USB clock
+source comes from the 96 MHz PLL divided by 2&nbsp;&raquo;.<br />
+Notre horloge pour l&rsquo;USB est configur&eacute;e. Passons
+&agrave; l&rsquo;horloge syst&egrave;me. En
+r&eacute;alit&eacute;, nous l&rsquo;avons
+d&eacute;j&agrave; presque enti&egrave;rement
+configur&eacute; en s&eacute;lectionnant HSPLL pour FOSC. En
+sortie de la PLL le signal a une fr&eacute;quence de 96 MHz. Nous
+d&eacute;sirons une horloge CPU de 32 MHz, il va falloir diviser la
+fr&eacute;quence du signal de sortie de la PLL par 3
+gr&acirc;ce au diviseur violet. On place alors CPUDIV dans MPLAB
+sur &laquo;&nbsp;96 MHz PLL Src&nbsp;: /3&nbsp;&raquo;. Vous l&rsquo;avez
+peut-&ecirc;tre remarqu&eacute;, lorsque nous avons
+configur&eacute; l&rsquo;horloge externe dans sa configuration
+simple dans un paragraphe pr&eacute;c&eacute;dent, nous avons
+d&eacute;j&agrave; utilis&eacute; CPUDIV pour commander un
+autre diviseur. Il est en fait impossible que les deux soient
+utilis&eacute;s simultan&eacute;ment, parce que les sorties de
+ces deux diviseurs sont connect&eacute;es aux entr&eacute;es du
+petit multiplexeur command&eacute; par FOSC, cela ne pose donc pas
+de probl&egrave;me.<br />
+Ca y est enfin ! Vous pouvez lever les bras au ciel ou aller boire un
+coup avec des amis pour f&ecirc;ter &ccedil;a (bien
+qu&rsquo;ils risquent de ne pas trouver cela formidable). Vous avez
+r&eacute;ussi &agrave; configurer l&rsquo;horloge du
+PIC18F4550 dans l&rsquo;un de ses modes les plus tordus.</p>
+<div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="la_programmation_des_pic18f_page_2.php%3Fselection=2.html#Haut_de_page">Je veux remonter !</a>&nbsp;|&nbsp;<a href="la_programmation_des_pic18f_page_2.php%3Fselection=2.html#Liste_de_depart">Liste</a>
+</div>
+<a id="Endroit_6-0-0"></a>
+<h2>6) L'oscillateur secondaire</h2>
+<p>Le PIC18F4550 permet d&rsquo;utiliser un deuxi&egrave;me
+oscillateur externe, dit secondaire. Vous pouvez &eacute;galement
+l&rsquo;utiliser comme horloge syst&egrave;me (CPU) via le
+registre OSCCON (je vous invite &agrave; lire le datasheet pour
+plus d&rsquo;informations). Cependant l&rsquo;oscillateur
+secondaire ne peut &ecirc;tre utilis&eacute; qu&rsquo;avec
+un quartz d&rsquo;horloger, d&rsquo;une fr&eacute;quence de
+32768 Hz. En g&eacute;n&eacute;ral il est plut&ocirc;t
+utilis&eacute; pour mesurer pr&eacute;cis&eacute;ment des
+temps &agrave; l&rsquo;aide d&rsquo;un
+p&eacute;riph&eacute;rique particulier, un compteur, le timer1
+dans le cas du PIC18F4550. En effet, si on divise par 215 cette
+horloge, on obtient un signal de fr&eacute;quence la seconde, et
+c&rsquo;est tr&egrave;s pratique et tr&egrave;s
+utilis&eacute;.</p>
+<div>
+<div class="menu_article">
+<ul class="menu_article_principal">
+<li><a href="la_programmation_des_pic18f_page_1.php.html">Mises en places</a></li>
+<li><ul>
+<li><a href="la_programmation_des_pic18f_page_1.php.html">Cr&eacute;er un projet sous MPLAB</a></li>
+<li><a class="choisi" href="la_programmation_des_pic18f_page_2.php.html">Configurer l'horloge sur le PIC18F4550</a></li>
+<li><a href="la_programmation_des_pic18f_page_3.php.html">Les ports d'entr&eacute;es-sorties du PIC18F4550</a></li>
+</ul></li>
+</ul>
+<ul class="menu_article_secondaire">
+<li><a href="la_programmation_des_pic18f_page_2.php%3Fselection=2.html#Endroit_1-0-0">1) Pr&eacute;sentation</a></li>
+<li><a href="la_programmation_des_pic18f_page_2.php%3Fselection=2.html#Endroit_2-0-0">2) Les horloges syst&egrave;me du PIC18F4550</a></li>
+<li><a href="la_programmation_des_pic18f_page_2.php%3Fselection=2.html#Endroit_3-0-0">3) Oscillateur externe</a></li>
+<li><a href="la_programmation_des_pic18f_page_2.php%3Fselection=2.html#Endroit_4-0-0">4) Oscillateur interne</a></li>
+<li><a href="la_programmation_des_pic18f_page_2.php%3Fselection=2.html#Endroit_5-0-0">5) Oscillateur externe et USB</a></li>
+<li><a href="la_programmation_des_pic18f_page_2.php%3Fselection=2.html#Endroit_6-0-0">6) L'oscillateur secondaire</a></li>
+</ul>
+</div>
+</div>
+<div class="commentaires"><a id="Endroits_des_commentaires"></a><p class="sous-titre_commentaires">Commentaires (0)</p><p class="sous-titre_ajouts">Ajouter un commentaire</p>
+<form id="contact" method="post" action="http://atrylec.com/elements/allures/commentaires/verification.php">
+<fieldset>
+<legend>
+Votre pseudo&nbsp;: 
+</legend>
+<p>
+<label for="pseudo">
+Pseudo&nbsp;: 
+</label>
+<input type="text" id="pseudo" name="pseudo" tabindex="1" required="required">
+</p>
+</fieldset>
+<fieldset>
+<legend>
+Votre commentaire&nbsp;: 
+</legend>
+<p>
+<label for="commentaire">
+Commentaire&nbsp;: 
+</label>
+<textarea id="commentaire" name="commentaire" tabindex="2" cols="50" rows="2" required="required">
+</textarea>
+</p>
+</fieldset>
+<div class="bouton_validation_commentaire">
+<input type="submit" name="Poster" value="Poster" />
+</div>
+</form>
+</div><div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="la_programmation_des_pic18f_page_2.php%3Fselection=2.html#Haut_de_page">Je veux remonter !</a>
+</div>
+</section>
+<footer>
+<div class="liens">
+<ul>
+<li><a href="../../contact.php.html">ContaCT</a></li>
+</ul>
+</div>
+<div id="choix_style">
+<div class="presentation">Ravaler la fa&ccedil;ade&nbsp;:</div>
+<a href="la_programmation_des_pic18f_page_2.php%3Fselection=1.html" title="Style 1"><div class="choix choix_bleu">&nbsp;</div></a><div class="choix choix_rouge_choisi">&nbsp;</div><a href="la_programmation_des_pic18f_page_2.php%3Fselection=3.html" title="Style 3"><div class="choix choix_orange">&nbsp;</div></a></div>
+<div class="remarques">
+<p>Il ne faut pas dire&nbsp;: &laquo;&nbsp;Un outil d'aff&ucirc;tage
+&nbsp;&raquo;, mais&nbsp;: &laquo;&nbsp;Un g&eacute;n&eacute;rateur de dents de scies
+&nbsp;&raquo;.</p>
+</div>
+<div class="visites">
+<img style="width: 15px; height: 15px;" alt="6_30" src="../../../images/6_30.png">   <img style="width: 15px; height: 15px;" alt="5_30" src="../../../images/5_30.png">   <img style="width: 15px; height: 15px;" alt="0_30" src="../../../images/0_30.png">   <img style="width: 15px; height: 15px;" alt="9_30" src="../../../images/9_30.png">   <img style="width: 15px; height: 15px;" alt="9_30" src="../../../images/9_30.png">   </div>
+</footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>Les m&eacute;moires vocales</title>
+<meta name="description" content="Cartes de d&eacute;veloppement &laquo; STM32 DISCOVERY &raquo; : Tutoriel - Page 2 - Pr&eacute;parations logicielles" />
+<meta name="keywords" content="atrylec electronique schema schemas montage montages realisation realisations microcontroleur entrees sorties programmation code source langage c stm32discovery stm 32 discovery stm32vldiscovery stm 32 vl discovery stm32l discovery stm32 l discovery stm32f100rb stm32l152rbt6 keil micro vision tutoriel tutoriels exemple exemples cours creer projet projets configurer horloge horloges" />
+<link rel="stylesheet" media="screen" type="text/css" title="Style 1" href="../../../elements/allures/style_1.css">
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-42331281-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+<body>
+<div id="page">
+<div id="haut">
+<header id="Haut_de_page">
+<div id="principale">
+<p class="titre_principal_haut">
+<a href="../../../index.php.html"><img style="width: 150px;" alt="Affichage_Atrylec_com" src="../../../images/Affichage_Atrylec_com.png" /><span class="invisible">Atrylec</span></a></p>
+<p class="sous-titre_haut">Vous n'&ecirc;tes pas seuls dans l'Univers !</p>
+</div>
+<div id="additionnelle">
+</div>
+</header>
+<nav>
+<ul id="navigation">
+<li><a href="../../../index.php.html" title="Accueil">Accueil</a></li>
+<li><a class="choisi" href="../index.php.html" title="Electronique">Electronique</a></li>
+<li><a href="../../radio/index.php%3Fnumero=0.html" title="Radio">Radio</a></li>
+<li><a href="../../origami/index.php.html" title="Origami">Origami</a></li>
+<li><a href="../../photographies/index.php%3Fnumero=0.html" title="Photographies">Photographies</a></li>
+<li><a href="../../le_grenier/index.php.html" title="Le grenier">Le grenier</a></li>
+<li><a href="../../contact.php.html" title="ContaCT">ContaCT</a></li>
+</ul>
+</nav>
+</div>
+<section>
+<div id="titre">
+<div id="titre_gauche">
+</div>
+<div id="titre_image">
+<img style="width: 100px; height: 100px;" alt="Transistor_100" src="../../../images/Transistor_100.png">
+</div>
+<div id="titre_texte">
+<p>[</p><h1>Les m&eacute;moires vocales</h1><p>]</p>
+</div>
+<div id="titre_droite">
+</div>
+</div>
+<div>
+<p id="introduction">Les fonctions d'enregistrements et de reproductions sonores, pouvant se r&eacute;aliser &agrave; l'aide de magn&eacute;tophones, sont d&eacute;sormais accessibles &agrave; des circuits int&eacute;gr&eacute;s, qui ne n&eacute;cessitent plus aucune pi&egrave;ce m&eacute;canique.<br>
+Les &eacute;l&eacute;ments n&eacute;cessaires &agrave; l'&eacute;chantillonnage d'un signal analogique, &agrave; la m&eacute;morisation non volatile des &eacute;chantillons, et &agrave;
+la reproduction d'un signal analogique, aussi fid&egrave;le que possible que l'original, ont &eacute;t&eacute; mis en place dans des circuits int&eacute;gr&eacute;s sp&eacute;cifiques, que plusieurs fabricants commercialisent.<br>
+Ces composants, simples d'utilisation, sont pourvus de nombreuses fonctionnalit&eacute;s,<br>
+ce qui permet de simplifier des <a href="../realisations/la_boite_a_meuh_personnalisable.php.html" title="Ouvrir le lien &laquo;&nbsp;http://www.atrylec.com/fr/electronique/realisations/la_boite_a_meuh_personnalisable.php&nbsp;&raquo;">projets &eacute;lectroniques plus ou moins utiles</a>, o&ugrave; l'enregistrement et la reproduction de musiques, de voix ou de bruitages, est requise.</p>
+</div>
+<p>La s&eacute;rie ISD</p>
+<p>Les circuits int&eacute;gr&eacute;s de la s&eacute;rie ISD
+sont fabriqu&eacute;s par la soci&eacute;t&eacute; NUVOTON.<br>
+Ils permettent de concevoir des syst&egrave;mes d'enregistrement et
+de lecture audio, avec un minimum de composants externes.<br>
+Ces composants sont capables de faire fonctionner un petit haut-parleur
+directement, sans avoir recours &agrave; un &eacute;tage
+&eacute;lectronique d'adaptation des signaux.<br>
+Ils sont &eacute;galement adressables, ce qui signifie qu'il est
+possible d'enregistrer plusieurs enregistrements, &agrave; des
+endroits
+diff&eacute;rents de la m&eacute;moire, et d'&eacute;couter
+l'enregistrement d&eacute;sir&eacute;.<br>
+De plus, ils disposent d'un pr&eacute;amplificateur audio
+int&eacute;gr&eacute;, qui permet d'utiliser un microphone pour
+effectuer des enregistrements sonores.<br>
+Les alimentations des parties analogiques de ces circuits sont
+s&eacute;par&eacute;es des alimentations des parties
+num&eacute;riques.<br>
+Plusieurs cat&eacute;gories de ces circuits
+int&eacute;gr&eacute;s
+existent, quelques-unes de leurs caract&eacute;ristiques sont
+&eacute;voqu&eacute;es ci-apr&egrave;s.</p>
+<p>- ISD1400</p>
+<table style="text-align: left; width: 445px; height: 105px;" border="1" cellpadding="2" cellspacing="2">
+<tbody>
+<tr>
+<th>R&eacute;f&eacute;rence</th>
+<th>Dur&eacute;e</th>
+<th>Fr&eacute;quence d'&eacute;chantillonnage</th>
+</tr>
+<tr>
+<td>ISD1416</td>
+<td>16 secondes</td>
+<td>8,0 kHz</td>
+</tr>
+<tr>
+<td>ISD1420</td>
+<td>20 secondes</td>
+<td>6,4 kHz</td>
+</tr>
+</tbody>
+</table>
+<br>
+<p>Les op&eacute;rations de lecture et d'enregistrements sont commandables, sur ces composants, gr&acirc;ce &agrave; trois broches affect&eacute;es pour cela.<br>
+L'adressage du composant se fait sur six broches, et des combinaisons particuli&egrave;res d'adressages permettent d'obtenir des modes de fonctionnement sp&eacute;ciaux.<br>
+Une broche sp&eacute;cifique transmet un &eacute;tat logique bas lors de l'enregistrement d'un signal audio, et un &eacute;tat logique haut dans le cas contraire.</p>
+<p>- ISD2500</p>
+<table style="width: 582px; height: 121px;" border="1" cellpadding="2" cellspacing="2">
+<tbody>
+<tr>
+<th>R&eacute;f&eacute;rence</th>
+<th>Dur&eacute;e</th>
+<th>Fr&eacute;quence d'&eacute;chantillonnage</th>
+</tr>
+<tr>
+<td>ISD2560</td>
+<td>60 secondes</td>
+<td>8,0 kHz</td>
+</tr>
+<tr>
+<td>ISD2575</td>
+<td>75 secondes</td>
+<td>6,4 kHz</td>
+</tr>
+<tr>
+<td>ISD2590</td>
+<td>90 secondes</td>
+<td>5,3 kHz</td>
+</tr>
+<tr>
+<td>ISD25120</td>
+<td>120 secondes</td>
+<td>4,0 kHz</td>
+</tr>
+</tbody>
+</table>
+<br>
+<p>Le choix de l'op&eacute;ration que doit effectuer le composant, qui peut &ecirc;tre l'attente, l'enregistrement d'un signal ou la lecture d'un signal, est param&eacute;trable gr&acirc;ce &agrave; deux broches.<br>
+L'adressage du composant se fait sur dix broches, et des combinaisons particuli&egrave;res d'adressages permettent d'obtenir des modes de fonctionnement sp&eacute;ciaux.<br>
+Une broche sp&eacute;cifique transmet un bref &eacute;tat logique bas lorsque la reproduction d'un signal audio est termin&eacute;e.</p>
+<p>- ISD5100</p>
+<br>
+<table style="width: 710px; height: 109px;" border="1" cellpadding="2" cellspacing="2">
+<tbody>
+<tr>
+<th>R&eacute;f&eacute;rence</th>
+<th>Dur&eacute;e</th>
+<th>Fr&eacute;quence d'&eacute;chantillonnage</th>
+</tr>
+<tr>
+<td>ISD5104<br>
+</td>
+<td>
+De 2 minutes et 11 secondes<br>
+&agrave; 4 minutes et 22 secondes<br>
+</td>
+<td>
+De 4,0 kHz<br>
+&agrave; 8,0 kHz</td>
+</tr>
+<tr>
+<td>ISD5108</td>
+<td>
+De 4 minutes et 22 secondes<br>
+&agrave; 8 minutes et 44 secondes</td>
+<td>
+De 4,0 kHz<br>
+&agrave; 8,0 kHz</td>
+</tr>
+<tr>
+<td>ISD5116</td>
+<td>
+De 8 minutes et 44 secondes<br>
+&agrave; 17 minutes et 28 secondes</td>
+<td>
+De 4,0 kHz<br>
+&agrave; 8,0 kHz</td>
+</tr>
+</tbody>
+</table>
+<p>Les ordres qui commandent ces circuits sont transmis par un bus I2C.<br>
+Ces derniers se pr&ecirc;tent donc bien &agrave; l'interfa&ccedil;age avec des microcontr&ocirc;leurs.<br>
+Ils peuvent &eacute;galement enregistrer, en plus des donn&eacute;es analogiques qui correspondent aux signaux audio re&ccedil;us, des donn&eacute;es num&eacute;riques.</p>
+<p>Le circuit int&eacute;gr&eacute; &laquo; APR9600 &raquo;</p>
+<p>- APR9600</p>
+<p>Les circuits int&eacute;gr&eacute;s &laquo; HK927 &raquo; et &laquo; HK928 &raquo;</p>
+<p>- HK827</p>
+<p>- HK828</p>
+<div class="commentaires"><a id="Endroits_des_commentaires"></a><p class="sous-titre_commentaires">Commentaires (0)</p><p class="sous-titre_ajouts">Ajouter un commentaire</p>
+<form id="contact" method="post" action="http://atrylec.com/elements/allures/commentaires/verification.php">
+<fieldset>
+<legend>
+Votre pseudo&nbsp;: 
+</legend>
+<p>
+<label for="pseudo">
+Pseudo&nbsp;: 
+</label>
+<input type="text" id="pseudo" name="pseudo" tabindex="1" required="required">
+</p>
+</fieldset>
+<fieldset>
+<legend>
+Votre commentaire&nbsp;: 
+</legend>
+<p>
+<label for="commentaire">
+Commentaire&nbsp;: 
+</label>
+<textarea id="commentaire" name="commentaire" tabindex="2" cols="50" rows="2" required="required">
+</textarea>
+</p>
+</fieldset>
+<div class="bouton_validation_commentaire">
+<input type="submit" name="Poster" value="Poster" />
+</div>
+</form>
+</div><div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="les_memoires_vocales_page_1.php%3Fselection=1.html#Haut_de_page">Je veux remonter !</a>
+</div>
+</section>
+<footer>
+<div class="liens">
+<ul>
+<li><a href="../../contact.php.html">ContaCT</a></li>
+</ul>
+</div>
+<div id="choix_style">
+<div class="presentation">Ravaler la fa&ccedil;ade&nbsp;:</div>
+<div class="choix choix_bleu_choisi">&nbsp;</div><a href="les_memoires_vocales_page_1.php%3Fselection=2.html" title="Style 2"><div class="choix choix_rouge">&nbsp;</div></a><a href="les_memoires_vocales_page_1.php%3Fselection=3.html" title="Style 3"><div class="choix choix_orange">&nbsp;</div></a></div>
+<div class="remarques">
+<p>Il ne faut pas dire&nbsp;: &laquo;&nbsp;Le hangar des transistors &agrave; effets de champs
+&nbsp;&raquo;, mais&nbsp;: &laquo;&nbsp;La salle des FET
+&nbsp;&raquo;.</p>
+</div>
+<div class="visites">
+<img style="width: 15px; height: 15px;" alt="6_30" src="../../../images/6_30.png">   <img style="width: 15px; height: 15px;" alt="5_30" src="../../../images/5_30.png">   <img style="width: 15px; height: 15px;" alt="0_30" src="../../../images/0_30.png">   <img style="width: 15px; height: 15px;" alt="9_30" src="../../../images/9_30.png">   <img style="width: 15px; height: 15px;" alt="9_30" src="../../../images/9_30.png">   </div>
+</footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>La Petite Horloge - Pr&eacute;sentation g&eacute;n&eacute;rale</title>
+<meta name="description" content="Horloge &agrave; LED de bureau &agrave; base de microcontr&ocirc;leur : sch&eacute;mas, typons et codes sources" />
+<meta name="keywords" content="atrylec electronique horloge led capteur capteurs temperature affichage 7 segment pic pic18f14k22 ds3231 tmp100" />
+<link rel="stylesheet" media="screen" type="text/css" title="Style 3" href="../../../elements/allures/style_3.css">
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-42331281-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+<body>
+<div id="page">
+<div id="haut">
+<header id="Haut_de_page">
+<div id="principale">
+<p class="titre_principal_haut">
+<a href="../../../index.php.html"><img style="width: 150px;" alt="Affichage_Atrylec_com" src="../../../images/Affichage_Atrylec_com.png" /><span class="invisible">Atrylec</span></a></p>
+<p class="sous-titre_haut">Vous n'&ecirc;tes pas seuls dans l'Univers !</p>
+</div>
+<div id="additionnelle">
+</div>
+</header>
+<nav>
+<ul id="navigation">
+<li><a href="../../../index.php.html" title="Accueil">Accueil</a></li>
+<li><a class="choisi" href="../index.php.html" title="Electronique">Electronique</a></li>
+<li><a href="../../radio/index.php%3Fnumero=0.html" title="Radio">Radio</a></li>
+<li><a href="../../origami/index.php.html" title="Origami">Origami</a></li>
+<li><a href="../../photographies/index.php%3Fnumero=0.html" title="Photographies">Photographies</a></li>
+<li><a href="../../le_grenier/index.php.html" title="Le grenier">Le grenier</a></li>
+<li><a href="../../contact.php.html" title="ContaCT">ContaCT</a></li>
+</ul>
+</nav>
+</div>
+<section>
+<div id="titre">
+<div id="titre_gauche">
+</div>
+<div id="titre_image">
+<img style="width: 100px; height: 100px;" alt="Transistor_100" src="../../../images/Transistor_100.png">
+</div>
+<div id="titre_texte">
+<p>/&nbsp;</p><h1>La Petite Horloge - Pr&eacute;sentation g&eacute;n&eacute;rale</h1>
+</div>
+<div id="titre_droite">
+</div>
+</div>
+<div>
+<p id="introduction">La Petite Horloge est une &eacute;volution compacte de <a href="la_grosse_horloge.php.html" title="Ouvrir le lien &laquo;&nbsp;http://www.atrylec.com/fr/electronique/realisations/la_grosse_horloge.php&nbsp;&raquo;">la Grosse Horloge</a>, dot&eacute;e de plus de fonctionnalit&eacute;s.</p>
+</div>
+<div class="video">
+<div class="video-gauche">
+<p>L'objet donne l'heure, la date, la temp&eacute;rature et permet diff&eacute;rents r&eacute;glages concernant l'affichage de ces informations.</p>
+<p>Contrairement &agrave; la Grosse Horloge, destin&eacute;e &agrave; &ecirc;tre accroch&eacute;e &agrave; un mur, la Petite Horloge est con&ccedil;ue pour &ecirc;tre pos&eacute;e sur une surface telle qu'une table, un bureau ou une commode.</p>
+</div>
+<div class="video-droite">
+<figure>
+<object height="384" width="480">
+<param name="movie" value="http://www.dailymotion.com/swf/video/x1m1z01?theme=none">
+<param name="allowFullScreen" value="true">
+<param name="allowScriptAccess" value="always">
+<param name="wmode" value="transparent">
+<embed type="application/x-shockwave-flash" src="http://www.dailymotion.com/swf/video/x1m1z01?theme=none" wmode="transparent" allowfullscreen="true" allowscriptaccess="always" height="384" width="480">
+</object>
+<p><img alt="LIEN_EXTERNE" src="../../../images/LIEN_EXTERNE.png" />&nbsp;<a href="http://www.dailymotion.com/video/x1m1z01_horloge-a-led-cms-tempora-par-florian-brunner_tech" title="Ouvrir le lien &laquo;&nbsp;http://www.dailymotion.com/video/x1m1z01_horloge-a-led-cms-tempora-par-florian-brunner_tech&nbsp;&raquo; dans une nouvelle fen&ecirc;tre, ou dans un nouvel onglet" target="_blank">Horloge &agrave; LED CMS - Tempora par Florian Brunner</a></p>
+<figcaption>La vid&eacute;o de d&eacute;monstration du projet</figcaption>
+</figure>
+</div>
+</div>
+<p>
+<a id="Liste_de_depart"></a>
+</p>
+<div>
+<div class="menu_article">
+<ul class="menu_article_principal">
+<li><a href="la_petite_horloge.php.html">La Petite Horloge</a></li>
+<li><ul>
+<li><a class="choisi" href="la_petite_horloge.php.html">Pr&eacute;sentation g&eacute;n&eacute;rale</a></li>
+<li><a href="la_petite_horloge_-_conception_electronique.php.html">Conception &eacute;lectronique</a></li>
+<li><a href="la_petite_horloge_-_fabrication.php.html">Fabrication</a></li>
+</ul></li>
+</ul>
+<ul class="menu_article_secondaire">
+<li><a href="la_petite_horloge.php%3Fselection=3.html#Endroit_1-0-0">1) Introduction</a></li>
+<li><a href="la_petite_horloge.php%3Fselection=3.html#Endroit_2-0-0">2) Fonctions</a></li>
+<li><a href="la_petite_horloge.php%3Fselection=3.html#Endroit_3-0-0">3) D&eacute;tails techniques</a></li>
+</ul>
+</div>
+</div>
+<div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="la_petite_horloge.php%3Fselection=3.html#Haut_de_page">Je veux remonter !</a>&nbsp;|&nbsp;<a href="la_petite_horloge.php%3Fselection=3.html#Liste_de_depart">Liste</a>
+</div>
+<a id="Endroit_1-0-0"></a>
+<h2>1) Introduction</h2>
+<p>La Petite Horloge affiche l'heure, la date et la temp&eacute;rature de fa&ccedil;on num&eacute;rique.<br />
+La mat&eacute;rialisation des secondes est effectu&eacute;e gr&acirc;ce &agrave; 60 LED dispos&eacute;es en cercle, avec 12 LED suppl&eacute;mentaires ayant pour r&ocirc;le de servir de rep&egrave;re de graduations, toutes les 5 secondes.</p>
+<p>Quatre boutons-poussoirs dispos&eacute;s sur la face avant
+permettent&nbsp;:</p>
+<ul>
+<li>Le r&eacute;glage de la date et de l'heure&nbsp;;</li>
+<li>Le choix des informations affich&eacute;es&nbsp;;</li>
+<li>Le r&eacute;glage de la luminosit&eacute;&nbsp;;</li>
+<li>Le choix&nbsp;du style d'affichage.</li>
+</ul>
+<figure>
+<a href="../../../images/La_Petite_Horloge_1_Vue_d_ensemble.jpg">
+<img alt="La_Petite_Horloge_1_Vue_d_ensemble" src="../../../images/La_Petite_Horloge_1_Vue_d_ensemble_Petite.jpg">
+</a>
+<figcaption>La Petite Horloge, version 1, &agrave; la bonne heure</figcaption>
+</figure>
+<div class="valorisations">
+<div class="attention">
+<div class="attention-gauche">
+<img style="width: 32px; height: 32px;" alt="avertissement-icone-9768-32" src="../../../images/avertissement-icone-9768-32.png">
+</div>
+<div class="attention-droite">
+<p>Attention ! Les LED utilis&eacute;es sont caract&eacute;ris&eacute;es par une tr&egrave;s grande intensit&eacute; lumineuse.<br />
+Il ne faut donc mettre un cache sur cette premi&egrave;re version de la Petite Horloge pour ne pas &ecirc;tre &eacute;bloui, pour faire diffuser la lumi&egrave;re, et, surtout, pour ne pas se br&ucirc;ler les r&eacute;tines en regardant l'objet !</p></div>
+</div>
+</div>
+<div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="la_petite_horloge.php%3Fselection=3.html#Haut_de_page">Je veux remonter !</a>&nbsp;|&nbsp;<a href="la_petite_horloge.php%3Fselection=3.html#Liste_de_depart">Liste</a>
+</div>
+<a id="Endroit_2-0-0"></a>
+<h2>2) Fonctions</h2>
+<p></p>
+<figure>
+<a href="../../../images/La_Petite_Horloge_1_Groupe_Affichage_de_l_heure.jpg">
+<img src="../../../images/La_Petite_Horloge_1_Groupe_Affichage_de_l_heure_Petite.jpg" alt="La_Petite_Horloge_1_Groupe_Affichage_de_l_heure"></a><br>
+<figcaption>Affichage de l'heure</figcaption>
+</figure>
+<p></p>
+<figure>
+<a href="../../../images/La_Petite_Horloge_1_Groupe_Affichage_de_la_date.jpg">
+<img src="../../../images/La_Petite_Horloge_1_Groupe_Affichage_de_la_date_Petite.jpg" alt="La_Petite_Horloge_1_Groupe_Affichage_de_la_date"></a><br>
+<figcaption>Affichage de la date</figcaption>
+</figure>
+<p></p>
+<figure>
+<a href="../../../images/La_Petite_Horloge_1_Groupe_Affichage_de_la_temperature.jpg">
+<img src="../../../images/La_Petite_Horloge_1_Groupe_Affichage_de_la_temperature_Petite.jpg" alt="La_Petite_Horloge_1_Groupe_Affichage_de_la_temperature">
+</a>
+<figcaption>Affichage de la temp&eacute;rature</figcaption>
+</figure>
+<p></p>
+<figure>
+<a href="../../../images/La_Petite_Horloge_1_Groupe_Affichage_variable.jpg">
+<img src="../../../images/La_Petite_Horloge_1_Groupe_Affichage_variable_Petite.jpg" alt="La_Petite_Horloge_1_Groupe_Affichage_variable">
+</a>
+<figcaption>Affichage variable</figcaption>
+</figure>
+<p>Cadencement de l'affichage variable&nbsp;:</p>
+<ul>
+<li>Heure la plupart du temps&nbsp;;</li>
+<li>Date &agrave; 15&nbsp;et&nbsp;45 secondes, pendant 1 seconde&nbsp;;</li>
+<li>Temp&eacute;rature &agrave; 10, 20, 40 et 50 secondes, pendant 3 secondes.</li>
+</ul>
+<p></p>
+<figure>
+<a href="../../../images/La_Petite_Horloge_1_Groupe_Affichage_de_la_temperature_mesuree.jpg">
+<img src="../../../images/La_Petite_Horloge_1_Groupe_Affichage_de_la_temperature_mesuree_Petite.jpg" alt="La_Petite_Horloge_1_Groupe_Affichage_de_la_temperature_mesuree">
+</a>
+<figcaption>Affichage de la temp&eacute;rature mesur&eacute;e</figcaption>
+</figure>
+<p></p>
+<figure>
+<a href="../../../images/La_Petite_Horloge_1_Groupe_Affichage_de_la_temperature_maximale.jpg">
+<img src="../../../images/La_Petite_Horloge_1_Groupe_Affichage_de_la_temperature_maximale_Petite.jpg" alt="La_Petite_Horloge_1_Groupe_Affichage_de_la_temperature_maximale">
+</a>
+<figcaption>Affichage de la temp&eacute;rature maximale</figcaption>
+</figure>
+<p></p>
+<figure>
+<a href="../../../images/La_Petite_Horloge_1_Groupe_Affichage_de_la_temperature_minimale.jpg">
+<img src="../../../images/La_Petite_Horloge_1_Groupe_Affichage_de_la_temperature_minimale_Petite.jpg" alt="La_Petite_Horloge_1_Groupe_Affichage_de_la_temperature_minimale">
+</a>
+<figcaption>Affichage de la temp&eacute;rature minimale</figcaption>
+</figure>
+<p></p>
+<p>La version 1 de la Petite Horloge offre diff&eacute;rents styles d'affichage des secondes.</p>
+<table border="0" cellpadding="2" cellspacing="1">
+<tbody>
+<tr>
+<th>Style choisi</td>
+<th>Rendu</td>
+<th>Style choisi</td>
+<th>Rendu</td>
+</tr>
+<tr>
+<td>
+<p>Point, n&eacute;gatif</p>
+</td>
+<td>
+<a href="../../../images/La_Petite_Horloge_1_Groupe_Affichage_des_secondes_Style_Point_negatif.jpg">
+<img src="../../../images/La_Petite_Horloge_1_Groupe_Affichage_des_secondes_Style_Point_negatif_Petite.jpg" alt="La_Petite_Horloge_1_Groupe_Affichage_des_secondes_Style_Point_negatif.jpg">
+</a>
+</td>
+<td>
+<p>Point, positif</p>
+</td>
+<td>
+<a href="../../../images/La_Petite_Horloge_1_Groupe_Affichage_des_secondes_Style_Point_positif.jpg">
+<img src="../../../images/La_Petite_Horloge_1_Groupe_Affichage_des_secondes_Style_Point_positif_Petite.jpg" alt="La_Petite_Horloge_1_Groupe_Affichage_des_secondes_Style_Point_positif.jpg">
+</a>
+</td>
+</tr>
+<tr>
+<td>
+<p>Ruban, n&eacute;gatif</p>
+</td>
+<td>
+<a href="../../../images/La_Petite_Horloge_1_Groupe_Affichage_des_secondes_Style_Ruban_negatif.jpg">
+<img src="../../../images/La_Petite_Horloge_1_Groupe_Affichage_des_secondes_Style_Ruban_negatif_Petite.jpg" alt="La_Petite_Horloge_1_Groupe_Affichage_des_secondes_Style_Ruban_negatif.jpg">
+</a>
+</td>
+<td>
+<p>Ruban, positif</p>
+</td>
+<td>
+<a href="../../../images/La_Petite_Horloge_1_Groupe_Affichage_des_secondes_Style_Ruban_positif.jpg">
+<img src="../../../images/La_Petite_Horloge_1_Groupe_Affichage_des_secondes_Style_Ruban_positif_Petite.jpg" alt="La_Petite_Horloge_1_Groupe_Affichage_des_secondes_Style_Ruban_positif.jpg">
+</a>
+</td>
+</tr>
+<tr>
+<td>
+<p>Ruban pseudo-al&eacute;atoire, n&eacute;gatif</p></td>
+<td>
+<a href="../../../images/La_Petite_Horloge_1_Groupe_Affichage_des_secondes_Style_Pseudo-aleatoire_negatif.jpg">
+<img src="../../../images/La_Petite_Horloge_1_Groupe_Affichage_des_secondes_Style_Pseudo-aleatoire_negatif_Petite.jpg" alt="La_Petite_Horloge_1_Groupe_Affichage_des_secondes_Style_Pseudo-aleatoire_negatif.jpg">
+</a>
+</td>
+<td>
+<p>Ruban pseudo-al&eacute;atoire, positif</p>
+</td>
+<td>
+<a href="../../../images/La_Petite_Horloge_1_Groupe_Affichage_des_secondes_Style_Pseudo-aleatoire_positif.jpg">
+<img src="../../../images/La_Petite_Horloge_1_Groupe_Affichage_des_secondes_Style_Pseudo-aleatoire_positif_Petite.jpg" alt="La_Petite_Horloge_1_Groupe_Affichage_des_secondes_Style_Pseudo-aleatoire_positif.jpg">
+</a>
+</td>
+</tr>
+<tr>
+<td>
+<p>R&eacute;duit, clignotant</p>
+</td>
+<td>
+<a href="../../../images/La_Petite_Horloge_1_Groupe_Affichage_des_secondes_Style_Reduit_clignotant.jpg">
+<img src="../../../images/La_Petite_Horloge_1_Groupe_Affichage_des_secondes_Style_Reduit_clignotant_Petite.jpg" alt="La_Petite_Horloge_1_Groupe_Affichage_des_secondes_Style_Reduit_clignotant.jpg">
+</a>
+</td>
+<td>
+<p>R&eacute;duit, fixe</p>
+</td>
+<td>
+<a href="../../../images/La_Petite_Horloge_1_Groupe_Affichage_des_secondes_Style_Reduit_fixe.jpg">
+<img src="../../../images/La_Petite_Horloge_1_Groupe_Affichage_des_secondes_Style_Reduit_fixe_Petite.jpg" alt="La_Petite_Horloge_1_Groupe_Affichage_des_secondes_Style_Reduit_fixe.jpg">
+</a>
+</td>
+</tr>
+</tbody>
+</table>
+<div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="la_petite_horloge.php%3Fselection=3.html#Haut_de_page">Je veux remonter !</a>&nbsp;|&nbsp;<a href="la_petite_horloge.php%3Fselection=3.html#Liste_de_depart">Liste</a>
+</div>
+<a id="Endroit_3-0-0"></a>
+<h2>3) D&eacute;tails techniques</h2>
+<p>Le lien ci-dessous conduit vers une page qui vous donnera plus de pr&eacute;cisions sur l'&eacute;lectronique du projet&nbsp;:</p>
+<p><a href="la_petite_horloge_-_conception_electronique.php.html" title="Ouvrir le lien &laquo;&nbsp;http://www.atrylec.com/fr/electronique/realisations/la_petite_horloge_-_conception_electronique.php&nbsp;&raquo;" >La Petite Horloge - Conception &eacute;lectronique</a></p>
+<div>
+<div class="menu_article">
+<ul class="menu_article_principal">
+<li><a href="la_petite_horloge.php.html">La Petite Horloge</a></li>
+<li><ul>
+<li><a class="choisi" href="la_petite_horloge.php.html">Pr&eacute;sentation g&eacute;n&eacute;rale</a></li>
+<li><a href="la_petite_horloge_-_conception_electronique.php.html">Conception &eacute;lectronique</a></li>
+<li><a href="la_petite_horloge_-_fabrication.php.html">Fabrication</a></li>
+</ul></li>
+</ul>
+<ul class="menu_article_secondaire">
+<li><a href="la_petite_horloge.php%3Fselection=3.html#Endroit_1-0-0">1) Introduction</a></li>
+<li><a href="la_petite_horloge.php%3Fselection=3.html#Endroit_2-0-0">2) Fonctions</a></li>
+<li><a href="la_petite_horloge.php%3Fselection=3.html#Endroit_3-0-0">3) D&eacute;tails techniques</a></li>
+</ul>
+</div>
+</div>
+<div class="commentaires"><a id="Endroits_des_commentaires"></a><p class="sous-titre_commentaires">Commentaires (0)</p><p class="sous-titre_ajouts">Ajouter un commentaire</p>
+<form id="contact" method="post" action="http://atrylec.com/elements/allures/commentaires/verification.php">
+<fieldset>
+<legend>
+Votre pseudo&nbsp;: 
+</legend>
+<p>
+<label for="pseudo">
+Pseudo&nbsp;: 
+</label>
+<input type="text" id="pseudo" name="pseudo" tabindex="1" required="required">
+</p>
+</fieldset>
+<fieldset>
+<legend>
+Votre commentaire&nbsp;: 
+</legend>
+<p>
+<label for="commentaire">
+Commentaire&nbsp;: 
+</label>
+<textarea id="commentaire" name="commentaire" tabindex="2" cols="50" rows="2" required="required">
+</textarea>
+</p>
+</fieldset>
+<div class="bouton_validation_commentaire">
+<input type="submit" name="Poster" value="Poster" />
+</div>
+</form>
+</div><div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="la_petite_horloge.php%3Fselection=3.html#Haut_de_page">Je veux remonter !</a>
+</div>
+</section>
+<footer>
+<div class="liens">
+<ul>
+<li><a href="../../contact.php.html">ContaCT</a></li>
+</ul>
+</div>
+<div id="choix_style">
+<div class="presentation">Ravaler la fa&ccedil;ade&nbsp;:</div>
+<a href="la_petite_horloge.php%3Fselection=1.html" title="Style 1"><div class="choix choix_bleu">&nbsp;</div></a><a href="la_petite_horloge.php%3Fselection=2.html" title="Style 2"><div class="choix choix_rouge">&nbsp;</div></a><div class="choix choix_orange_choisi">&nbsp;</div></div>
+<div class="remarques">
+<p>Il ne faut pas dire&nbsp;: &laquo;&nbsp;Un fant&ocirc;me qui fait demi-tour
+&nbsp;&raquo;, mais&nbsp;: &laquo;&nbsp;Un retournement spectral
+&nbsp;&raquo;.</p>
+</div>
+<div class="visites">
+<img style="width: 15px; height: 15px;" alt="6_30" src="../../../images/6_30.png">   <img style="width: 15px; height: 15px;" alt="5_30" src="../../../images/5_30.png">   <img style="width: 15px; height: 15px;" alt="0_30" src="../../../images/0_30.png">   <img style="width: 15px; height: 15px;" alt="9_30" src="../../../images/9_30.png">   <img style="width: 15px; height: 15px;" alt="8_30" src="../../../images/8_30.png">   </div>
+</footer>
+</div>
+</body>
+</html>

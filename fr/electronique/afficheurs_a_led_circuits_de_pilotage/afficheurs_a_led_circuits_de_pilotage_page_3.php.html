@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>Afficheurs &agrave; LED&nbsp;: Circuits de pilotage - Utilisation de circuits int&eacute;gr&eacute;s sp&eacute;cifiques</title>
+<meta name="description" content="M&eacute;thodes permettant le pilotage d'afficheurs &agrave; LED &agrave; l'aide de circuits int&eacute;gr&eacute;s sp&eacute;cifiques." />
+<meta name="keywords" content="atrylec electronique afficheur led 7 segments sept matrice 8 cablage huit multiplexage max7219 max7221 tlc5940 essai test  schema schemas montage montages realisation realisations microcontroleur programmation code source langage c stm32discovery stm 32 discovery stm32vldiscovery stm 32 vl discovery stm32f100rb exemple projet configurer" />
+<link rel="stylesheet" media="screen" type="text/css" title="Style 3" href="../../../elements/allures/style_3.css">
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-42331281-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+<body>
+<div id="page">
+<div id="haut">
+<header id="Haut_de_page">
+<div id="principale">
+<p class="titre_principal_haut">
+<a href="../../../index.php.html"><img style="width: 150px;" alt="Affichage_Atrylec_com" src="../../../images/Affichage_Atrylec_com.png" /><span class="invisible">Atrylec</span></a></p>
+<p class="sous-titre_haut">Vous n'&ecirc;tes pas seuls dans l'Univers !</p>
+</div>
+<div id="additionnelle">
+</div>
+</header>
+<nav>
+<ul id="navigation">
+<li><a href="../../../index.php.html" title="Accueil">Accueil</a></li>
+<li><a class="choisi" href="../index.php.html" title="Electronique">Electronique</a></li>
+<li><a href="../../radio/index.php%3Fnumero=0.html" title="Radio">Radio</a></li>
+<li><a href="../../origami/index.php.html" title="Origami">Origami</a></li>
+<li><a href="../../photographies/index.php%3Fnumero=0.html" title="Photographies">Photographies</a></li>
+<li><a href="../../le_grenier/index.php.html" title="Le grenier">Le grenier</a></li>
+<li><a href="../../contact.php.html" title="ContaCT">ContaCT</a></li>
+</ul>
+</nav>
+</div>
+<section>
+<div id="titre">
+<div id="titre_gauche">
+</div>
+<div id="titre_image">
+<img style="width: 100px; height: 100px;" alt="Transistor_100" src="../../../images/Transistor_100.png">
+</div>
+<div id="titre_texte">
+<p>/&nbsp;</p><h1>Afficheurs &agrave; LED&nbsp;: Circuits de pilotage - Page 3</h1>
+</div>
+<div id="titre_droite">
+</div>
+</div>
+<div>
+<p id="introduction">Utilisation de circuits int&eacute;gr&eacute;s sp&eacute;cifiques.<br />
+Il existe des circuits int&eacute;gr&eacute;s sp&eacute;cifiques, qui sont d&eacute;di&eacute;s au pilotage d'afficheurs &agrave; LED.<br />
+La plupart de ces circuits int&eacute;gr&eacute;s contient un dispositif de limitation du courant qui traverse les LED, ce qui permet des connexions directes, sans avoir recours &agrave; des r&eacute;sistances.<br />
+Ces composants s'interfacent g&eacute;n&eacute;ralement de fa&ccedil;on s&eacute;rielle avec des composants num&eacute;riques programmables.</p>
+</div>
+<p>
+<a id="Liste_de_depart"></a>
+</p>
+<div>
+<div class="menu_article">
+<ul class="menu_article_principal">
+<li><a href="afficheurs_a_led_circuits_de_pilotage_page_1.php.html">Afficheurs &agrave; LED&nbsp;: Circuits de pilotage</a></li>
+<li><ul>
+<li><a href="afficheurs_a_led_circuits_de_pilotage_page_1.php.html">G&eacute;n&eacute;ralit&eacute;s</a></li>
+<li><a href="afficheurs_a_led_circuits_de_pilotage_page_2.php.html">Utilisation de composants discrets</a></li>
+<li><a class="choisi" href="afficheurs_a_led_circuits_de_pilotage_page_3.php.html">Utilisation de circuits int&eacute;gr&eacute;s sp&eacute;cifiques</a></li>
+</ul></li>
+</ul>
+<ul class="menu_article_secondaire">
+<li><a href="afficheurs_a_led_circuits_de_pilotage_page_3.php.html#Endroit_1-0-0">1) Le MAX7219 et le MAX7221</a></li>
+<li>
+<ul>
+<li><a href="afficheurs_a_led_circuits_de_pilotage_page_3.php.html#Endroit_1-1-0">1-1) Pr&eacute;sentation</a></li>
+<li><a href="afficheurs_a_led_circuits_de_pilotage_page_3.php.html#Endroit_1-2-0">1-2) Essais avec deux afficheurs 7 segments</a></li>
+<li><a href="afficheurs_a_led_circuits_de_pilotage_page_3.php.html#Endroit_1-3-0">1-3) Essais avec une matrice de 64 LED</a></li>
+</ul>
+</li>
+<li><a href="afficheurs_a_led_circuits_de_pilotage_page_3.php.html#Endroit_2-0-0">2) Le TLC5940</a></li>
+<li>
+<ul>
+<li><a href="afficheurs_a_led_circuits_de_pilotage_page_3.php.html#Endroit_2-1-0">2-1) Pr&eacute;sentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="afficheurs_a_led_circuits_de_pilotage_page_3.php.html#Haut_de_page">Je veux remonter !</a>&nbsp;|&nbsp;<a href="afficheurs_a_led_circuits_de_pilotage_page_3.php.html#Liste_de_depart">Liste</a>
+</div>
+<a id="Endroit_1-0-0"></a>
+<h2>1) Le MAX7219 et le MAX7221</h2>
+<p>Les circuits int&eacute;gr&eacute; MAX7219 et MAX7221 sont fabriqu&eacute;s par la soci&eacute;t&eacute; MAXIM IC.</p>
+<p>Ces deux circuits int&eacute;gr&eacute;s communiquent de mani&egrave;re s&eacute;rielle avec le composant qui les contr&ocirc;le.</p>
+<a id="Endroit_1-1-0"></a>
+<h3>1-1) Pr&eacute;sentation</h3>
+<p>Cette partie montre les possibilit&eacute;s du circuit int&eacute;gr&eacute; MAX7219.</p>
+<p>Le circuit int&eacute;gr&eacute; MAX7221 a un fonctionnement similaire, mais il diff&egrave;re par son interfa&ccedil;age et par son optimisation quant &agrave; la r&eacute;duction des perturbations &eacute;lectromagn&eacute;tiques qu'il g&eacute;n&egrave;re.</p>
+<p>La <i>datasheet</i> des pilotes de LED &laquo;&nbsp;MAX7219&nbsp;&raquo; et &laquo;&nbsp;MAX7221&nbsp;&raquo;&nbsp;:</p>
+<p><img alt="LIEN_EXTERNE" src="../../../images/LIEN_EXTERNE.png" />&nbsp;<a href="http://datasheets.maximintegrated.com/en/ds/MAX7219-MAX7221.pdf" title="Ouvrir le lien &laquo;&nbsp;http://datasheets.maximintegrated.com/en/ds/MAX7219-MAX7221.pdf&nbsp;&raquo; dans une nouvelle fen&ecirc;tre, ou dans un nouvel onglet" target="_blank">http://datasheets.maximintegrated.com/en/ds/MAX7219-MAX7221.pdf</a></p>
+<p></p>
+<a id="Endroit_1-2-0"></a>
+<h3>1-2) Essais avec deux afficheurs 7 segments</h3>
+<p>Les circuits int&eacute;gr&eacute;s MAX7219 et MAX7221 sont capables de d&eacute;codes des donn&eacutes; hexad&eacute;cimales qui leurs sont envoy&eacute;es, en vue de les faire appara&icirc;tre sur des afficheurs 7 segments.</p>
+<p>Ce d&eacute;codage suit le &laquo;&nbsp;Code B&nbsp;&raquo; , qui consiste &agrave; d&eacute;coder les chiffres de &laquo;&nbsp;0&nbsp;&raquo; &agrave; &laquo;&nbsp;9&nbsp;&raquo; , ainsi que des symboles sp&eacute;ciaux qui sont le tiret &laquo;&nbsp;-&nbsp;&raquo; , les lettres &laquo;&nbsp;E&nbsp;&raquo; , &laquo;&nbsp;H&nbsp;&raquo; , &laquo;&nbsp;L&nbsp;&raquo; et &laquo;&nbsp;P&nbsp;&raquo; , et l'espace.</p>
+<p>Le lien entre les symboles et leurs codes associ&eacute;s est explicit&eacute; ci-dessous.</p>
+<p></p>
+<div class="valorisations">
+<div class="attention">
+<div class="attention-gauche">
+<img style="width: 32px; height: 32px;" alt="avertissement-icone-9768-32" src="../../../images/avertissement-icone-9768-32.png">
+</div>
+<div class="attention-droite">
+<p>Attention ! Pour &ecirc;tre utilis&eacute;s avec un, ou plusieurs afficheurs 7 segments, les circuits int&eacute;gr&eacute;s MAX7219 et MAX7221 n&eacute;cessitent l'emploi d'afficheurs &agrave; cathode commune.<br /></p></div>
+</div>
+</div>
+<p></p>
+<p>Les programmes qui utilisent le pilote de LED MAX7219 utilisent une carte de type &laquo;&nbsp;STM32DISCOVERY&nbsp;&raquo;.<br />
+<br />
+Pour plus d'informations &agrave; propos de ces cartes, ouvrez <a href="../stm32discovery/stm32discovery_page_1.php.html" title="Ouvrir le lien &laquo;&nbsp;http://www.atrylec.com/fr/electronique/stm32discovery/stm32discovery_page_1.php&nbsp;&raquo;" >ce lien</a>.</p>
+<p></p>
+<div class="valorisations">
+<div class="informations">
+<div class="informations-gauche">
+<img style="width: 32px; height: 32px;" alt="documentaires-des-proprietes-icone-5224-32" src="../../../images/documentaires-des-proprietes-icone-5224-32.png">
+</div>
+<div class="informations-droite">
+<p>Remarque&nbsp;: Le microcontr&ocirc;leur utilis&eacute; est aliment&eacute; par une tension de + 3,3 V, qui est g&eacute;n&eacute;r&eacute;e sur la carte de d&eacute;veloppement &laquo;&nbsp;STM32DISCOVERY&nbsp;&raquo;.<br />
+Le circuit int&eacute;gr&eacute; MAX7219 est aliment&eacute; par une tension de + 5 V.<br />
+Bien qu'il re&ccedil;oive, de la part du microcontr&ocirc;leur, des signaux de commande qui varient entre 0 V et + 3,3 V, il fonctionne correctement, car il est pr&eacute;vu pour s'interfacer avec des composants aliment&eacute;s sous une tension de + 3,3 V.<br /></p></div>
+</div>
+</div>
+<p></p>
+<figure>
+<a href="../../../images/ESSAIS_MAX7219_GLOBALE.jpg.html">
+<img alt="ESSAIS_MAX7219_GLOBALE" src="../../../images/ESSAIS_MAX7219_GLOBALE_Petite.jpg">
+</a>
+<figcaption>Un test r&eacute;ussi d'affichage ultime</figcaption>
+</figure>
+<p></p>
+<figure>
+<p></p>
+<table border="0" cellpadding="2" cellspacing="1">
+<tbody>
+<tr>
+<td>
+<a href="../../../images/ESSAIS_MAX7219_CODE_0x00.jpg">
+<img alt="ESSAIS_MAX7219_CODE_0x00" src="../../../images/ESSAIS_MAX7219_CODE_0x00_Petite.jpg">
+</a>
+</td>
+<td>
+<a href="../../../images/ESSAIS_MAX7219_CODE_0x01.jpg">
+<img alt="ESSAIS_MAX7219_CODE_0x01" src="../../../images/ESSAIS_MAX7219_CODE_0x01_Petite.jpg">
+</a>
+</td>
+<td>
+<a href="../../../images/ESSAIS_MAX7219_CODE_0x02.jpg">
+<img alt="ESSAIS_MAX7219_CODE_0x02" src="../../../images/ESSAIS_MAX7219_CODE_0x02_Petite.jpg">
+</a>
+</td>
+<td>
+<a href="../../../images/ESSAIS_MAX7219_CODE_0x03.jpg">
+<img alt="ESSAIS_MAX7219_CODE_0x03" src="../../../images/ESSAIS_MAX7219_CODE_0x03_Petite.jpg">
+</a>
+</td>
+</tr>
+<tr>
+<td>0x00</td>
+<td>0x01</td>
+<td>0x02</td>
+<td>0x03</td>
+</tr>
+<tr>
+<td>
+<a href="../../../images/ESSAIS_MAX7219_CODE_0x04.jpg">
+<img alt="ESSAIS_MAX7219_CODE_0x04" src="../../../images/ESSAIS_MAX7219_CODE_0x04_Petite.jpg">
+</a>
+</td>
+<td>
+<a href="../../../images/ESSAIS_MAX7219_CODE_0x05.jpg">
+<img alt="ESSAIS_MAX7219_CODE_0x05" src="../../../images/ESSAIS_MAX7219_CODE_0x05_Petite.jpg">
+</a>
+</td>
+<td>
+<a href="../../../images/ESSAIS_MAX7219_CODE_0x06.jpg">
+<img alt="ESSAIS_MAX7219_CODE_0x06" src="../../../images/ESSAIS_MAX7219_CODE_0x06_Petite.jpg">
+</a>
+</td>
+<td>
+<a href="../../../images/ESSAIS_MAX7219_CODE_0x07.jpg">
+<img alt="ESSAIS_MAX7219_CODE_0x07" src="../../../images/ESSAIS_MAX7219_CODE_0x07_Petite.jpg">
+</a>
+</td>
+</tr>
+<tr>
+<td>0x04</td>
+<td>0x05</td>
+<td>0x06</td>
+<td>0x07</td>
+</tr>
+<tr>
+<td>
+<a href="../../../images/ESSAIS_MAX7219_CODE_0x08.jpg">
+<img alt="ESSAIS_MAX7219_CODE_0x08" src="../../../images/ESSAIS_MAX7219_CODE_0x08_Petite.jpg">
+</a>
+</td>
+<td>
+<a href="../../../images/ESSAIS_MAX7219_CODE_0x09.jpg">
+<img alt="ESSAIS_MAX7219_CODE_0x09" src="../../../images/ESSAIS_MAX7219_CODE_0x09_Petite.jpg">
+</a>
+</td>
+<td>
+<a href="../../../images/ESSAIS_MAX7219_CODE_0x0A.jpg">
+<img alt="ESSAIS_MAX7219_CODE_0x0A" src="../../../images/ESSAIS_MAX7219_CODE_0x0A_Petite.jpg">
+</a>
+</td>
+<td>
+<a href="../../../images/ESSAIS_MAX7219_CODE_0x0B.jpg">
+<img alt="ESSAIS_MAX7219_CODE_0x0B" src="../../../images/ESSAIS_MAX7219_CODE_0x0B_Petite.jpg">
+</a>
+</td>
+</tr>
+<tr>
+<td>0x08</td>
+<td>0x09</td>
+<td>0x0A</td>
+<td>0x0B</td>
+</tr>
+<tr>
+<td>
+<a href="../../../images/ESSAIS_MAX7219_CODE_0x0C.jpg">
+<img alt="ESSAIS_MAX7219_CODE_0x0C" src="../../../images/ESSAIS_MAX7219_CODE_0x0C_Petite.jpg">
+</a>
+</td>
+<td>
+<a href="../../../images/ESSAIS_MAX7219_CODE_0x0D.jpg">
+<img alt="ESSAIS_MAX7219_CODE_0x0D" src="../../../images/ESSAIS_MAX7219_CODE_0x0D_Petite.jpg">
+</a>
+</td>
+<td>
+<a href="../../../images/ESSAIS_MAX7219_CODE_0x0E.jpg">
+<img alt="ESSAIS_MAX7219_CODE_0x0E" src="../../../images/ESSAIS_MAX7219_CODE_0x0E_Petite.jpg">
+</a>
+</td>
+<td>
+<a href="../../../images/ESSAIS_MAX7219_CODE_0x0F.jpg">
+<img alt="ESSAIS_MAX7219_CODE_0x0F" src="../../../images/ESSAIS_MAX7219_CODE_0x0F_Petite.jpg">
+</a>
+</td>
+</tr>
+<tr>
+<td>0x0C</td>
+<td>0x0D</td>
+<td>0x0E</td>
+<td>0x0F</td>
+</tr>
+</tbody>
+</table>
+<p></p>
+<figcaption>Affichage des symboles du &laquo;&nbsp;Code B&nbsp;&raquo;</figcaption>
+</figure>
+<p></p>
+<figure>
+<a href="../../../images/ESSAIS_MAX7219_AFFICHAGE_D_UN_SYMBOLE_SPECIAL_HA.jpg">
+<img alt="ESSAIS_MAX7219_AFFICHAGE_D_UN_SYMBOLE_SPECIAL_HA" src="../../../images/ESSAIS_MAX7219_AFFICHAGE_D_UN_SYMBOLE_SPECIAL_HA_Petite.jpg">
+</a>
+<figcaption>Affichage de symboles d&eacute;finis par l'utilisateur&nbsp;: &laquo;&nbsp;HA.&nbsp;&raquo;</figcaption>
+</figure>
+<p></p>
+<figure>
+<a href="../../../images/ESSAIS_MAX7219_TEST_DES_AFFICHEURS.jpg">
+<img alt="ESSAIS_MAX7219_TEST_DES_AFFICHEURS" src="../../../images/ESSAIS_MAX7219_TEST_DES_AFFICHEURS_Petite.jpg">
+</a>
+<figcaption>Test des afficheurs</figcaption>
+</figure>
+<p></p>
+<div class="valorisations">
+<div class="informations">
+<div class="informations-gauche">
+<img style="width: 32px; height: 32px;" alt="documentaires-des-proprietes-icone-5224-32" src="../../../images/documentaires-des-proprietes-icone-5224-32.png">
+</div>
+<div class="informations-droite">
+<p>Remarque&nbsp;: La fonction de test des afficheurs des circuits int&eacute;gr&eacute;s MAX7219 et MAX7221 active les huit afficheurs, m&ecirc;me si ces circuits int&eacute;gr&eacute;s ont &eacute;t&eacute; configur&eacute;s pour ne piloter que deux afficheurs, comme ici.<br />
+C'est pour cela que l'affichage appara&icirc;t comme moins lumineux.<br />
+Le circuit int&eacute;gr&eacute; active les sorties qui sont pr&eacute;vues pour les afficheurs num&eacute;ro 0 &agrave; 1, et qui sont effectivement connect&eacute;s, pendant les 2 / 8 du temps, et les sorties qui sont pr&eacute;vues pour les afficheurs num&eacute;ro 2 &agrave; 7, et qui ne sont pas connect&eacute;s, pendant les 6 / 8 du temps restant.<br /></p></div>
+</div>
+</div>
+<p></p>
+<table border="0" cellpadding="2" cellspacing="1">
+<tbody>
+<tr>
+<td>
+<a href="../../../images/ESSAIS_MAX7219_INTENSITE_0x00.jpg">
+<img alt="ESSAIS_MAX7219_INTENSITE_0x00" src="../../../images/ESSAIS_MAX7219_INTENSITE_0x00_Petite.jpg">
+</a>
+</td>
+<td>
+<a href="../../../images/ESSAIS_MAX7219_INTENSITE_0x0E.jpg">
+<img alt="ESSAIS_MAX7219_INTENSITE_0x0E" src="../../../images/ESSAIS_MAX7219_INTENSITE_0x0E_Petite.jpg">
+</a>
+</td>
+<td>
+<a href="../../../images/ESSAIS_MAX7219_INTENSITE_0x0F.jpg">
+<img alt="ESSAIS_MAX7219_INTENSITE_0x0F" src="../../../images/ESSAIS_MAX7219_INTENSITE_0x0F_Petite.jpg">
+</a></td>
+</tr>
+<tr>
+<td>0x00</td>
+<td>0x0E</td>
+<td>0x0F</td>
+</tr>
+</tbody>
+</table>
+<figcaption>Variations d'intensit&eacute;s lumineuses du symobole &laquo;&nbsp;0.&nbsp;&raquo;</figcaption>
+</figure>
+<p></p>
+<figure>
+<a href="../../../images/SCHEMA_MAX7219_ET_AFFICHEURS_7_SEGMENTS.png">
+<img alt="SCHEMA_MAX7219_ET_AFFICHEURS_7_SEGMENTS" src="../../../images/SCHEMA_MAX7219_ET_AFFICHEURS_7_SEGMENTS_Petite.png">
+</a>
+<figcaption>Sch&eacute;ma du montage avec le circuit int&eacute;gr&eacute; MAX7219 et les deux afficheurs 7 segments</figcaption>
+</figure>
+<p></p>
+<div class="valorisations">
+<div class="programmes">
+<div class="programmes_gauche">
+<img style="width: 32px; height: 32px;" alt="fleche-bas-telecharger-icone-9594-32" src="../../../images/fleche-bas-telecharger-icone-9594-32.png">
+</div>
+<div class="programmes_droite">
+<p>Circuit int&eacute;gr&eacute; MAX7219 et afficheurs 7 segments&nbsp;: Sch&eacute;ma &eacute;lectronique<br />
+Logiciel de dession de sch&eacute;mas &eacute;lectroniques&nbsp;: EAGLE 6.4.0<br />
+<a href="../../../elements/allures/valorisations/programmes.php%3Fprogramme=afficheurs_a_led_circuits_de_pilotage_page_3+1+1">T&eacute;l&eacute;charger le fichier<span>Effectuez un clic droit, puis s&eacute;lectionnez l'option &laquo;&nbsp;Enregistrer la cible du lien sous...&nbsp;&raquo;, pour t&eacute;l&eacute;charger le fichier</span></a> (145.62 Ko)</p></div>
+</div>
+</div>
+<p></p>
+<p>Correspondances entre les broches de la carte &laquo;&nbsp;STM32DISCOVERY&nbsp;&raquo; , et le montage de test du pilote de LED MAX7219&nbsp;:</p>
+<p></p>
+<table border="1" cellpadding="2" cellspacing="2">
+<tbody>
+<tr>
+<th>Carte &laquo;&nbsp;STM32DISCOVERY&nbsp;&raquo;</th>
+<td>+5V</td>
+<td>GND</td>
+<td>PA0</td>
+<td>PA5</td>
+<td>PA7</td>
+</tr>
+<tr>
+<th>Montage de test du pilote de LED MAX7219</th>
+<td>VCC</td>
+<td>GND</td>
+<td>LOAD_MAX7219</td>
+<td>CLK_MAX7219</td>
+<td>DIN_MAX7219</td>
+</tr>
+</tbody>
+</table>
+<p></p>
+<div class="valorisations">
+<div class="programmes">
+<div class="programmes_gauche">
+<img style="width: 32px; height: 32px;" alt="fleche-bas-telecharger-icone-9594-32" src="../../../images/fleche-bas-telecharger-icone-9594-32.png">
+</div>
+<div class="programmes_droite">
+<p>Circuit int&eacute;gr&eacute; MAX7219 et afficheurs 7 segments&nbsp;: Fichiers C<br />
+Cible&nbsp;: STM32F100RB<br />Compilateur&nbsp;: Keil &micro;Vision 4<br />
+<a href="../../../elements/allures/valorisations/programmes.php%3Fprogramme=afficheurs_a_led_circuits_de_pilotage_page_3+1+2">T&eacute;l&eacute;charger le fichier<span>Effectuez un clic droit, puis s&eacute;lectionnez l'option &laquo;&nbsp;Enregistrer la cible du lien sous...&nbsp;&raquo;, pour t&eacute;l&eacute;charger le fichier</span></a> (17.81 Ko)</p></div>
+</div>
+</div>
+<p></p>
+<a id="Endroit_1-3-0"></a>
+<h3>1-3) Essais avec une matrice de 64 LED</h3>
+<p></p>
+<figure>
+<a href="../../../images/ESSAIS_MAX7219_MATRICE_DE_8_X_8_LED_FAITE_SUR_MESURE.jpg">
+<img style="width: 600px; height: 450px;" alt="ESSAIS_MAX7219_MATRICE_DE_8_X_8_LED_FAITE_SUR_MESURE" src="../../../images/ESSAIS_MAX7219_MATRICE_DE_8_X_8_LED_FAITE_SUR_MESURE_Petite.jpg">
+</a>
+<figcaption>Matrice de 8 x 8 LED bleues, faite maison</figcaption>
+</figure>
+<p></p>
+<figure>
+<a href="../../../images/ESSAIS_MAX7219_DETAIL_DE_LA_MATRICE_DE_8_X_8_LED_FAITE_SUR_MESURE.jpg">
+<img style="width: 600px; height: 450px;" alt="ESSAIS_MAX7219_DETAIL_DE_LA_MATRICE_DE_8_X_8_LED_FAITE_SUR_MESURE" src="../../../images/ESSAIS_MAX7219_DETAIL_DE_LA_MATRICE_DE_8_X_8_LED_FAITE_SUR_MESURE_Petite.jpg">
+</a>
+<figcaption>D&eacute;tail de la matrice de 64 LED bleues</figcaption>
+</figure>
+<p></p>
+<table border="0" cellpadding="2" cellspacing="1">
+<tbody>
+<tr>
+<td>
+<a href="../../../images/ESSAIS_MAX7219_AFFICHAGES_1.jpg">
+<img alt="ESSAIS_MAX7219_AFFICHAGES_1" src="../../../images/ESSAIS_MAX7219_AFFICHAGES_1_Petite.jpg">
+</a>
+</td>
+<td>
+<a href="../../../images/ESSAIS_MAX7219_AFFICHAGES_2.jpg">
+<img alt="ESSAIS_MAX7219_AFFICHAGES_2" src="../../../images/ESSAIS_MAX7219_AFFICHAGES_2_Petite.jpg">
+</a>
+</td>
+<td>
+<a href="../../../images/ESSAIS_MAX7219_AFFICHAGES_3.jpg">
+<img alt="ESSAIS_MAX7219_AFFICHAGES_3" src="../../../images/ESSAIS_MAX7219_AFFICHAGES_3_Petite.jpg">
+</a>
+</td>
+</tr>
+<tr>
+<td>
+<a href="../../../images/ESSAIS_MAX7219_AFFICHAGES_4.jpg">
+<img alt="ESSAIS_MAX7219_AFFICHAGES_4" src="../../../images/ESSAIS_MAX7219_AFFICHAGES_4_Petite.jpg">
+</a>
+</td>
+<td>
+<a href="../../../images/ESSAIS_MAX7219_AFFICHAGES_5.jpg">
+<img alt="ESSAIS_MAX7219_AFFICHAGES_1" src="../../../images/ESSAIS_MAX7219_AFFICHAGES_5_Petite.jpg">
+</a>
+</td>
+<td>
+</td>
+</tr>
+</tbody>
+</table>
+<figcaption>Affichages possibles</figcaption>
+</figure>
+<p></p>
+<figure>
+<a href="../../../images/SCHEMA_MAX7219_ET_MATRICE_DE_LED.png">
+<img alt="SCHEMA_MAX7219_ET_MATRICE_DE_LED" src="../../../images/SCHEMA_MAX7219_ET_MATRICE_DE_LED_Petite.png">
+</a>
+<figcaption>Sch&eacute;ma du montage avec le circuit int&eacute;gr&eacute; MAX7219 et la matrice de 64 LED bleues</figcaption>
+</figure>
+<div class="valorisations">
+<div class="programmes">
+<div class="programmes_gauche">
+<img style="width: 32px; height: 32px;" alt="fleche-bas-telecharger-icone-9594-32" src="../../../images/fleche-bas-telecharger-icone-9594-32.png">
+</div>
+<div class="programmes_droite">
+<p>Circuit int&eacute;gr&eacute; MAX7219 et matrice de 64 LED&nbsp;: Sch&eacute;ma &eacute;lectronique<br />
+Logiciel de dession de sch&eacute;mas &eacute;lectroniques&nbsp;: EAGLE 6.4.0<br />
+<a href="../../../elements/allures/valorisations/programmes.php%3Fprogramme=afficheurs_a_led_circuits_de_pilotage_page_3+2+1">T&eacute;l&eacute;charger le fichier<span>Effectuez un clic droit, puis s&eacute;lectionnez l'option &laquo;&nbsp;Enregistrer la cible du lien sous...&nbsp;&raquo;, pour t&eacute;l&eacute;charger le fichier</span></a> (297.83 Ko)</p></div>
+</div>
+</div>
+<div class="valorisations">
+<div class="programmes">
+<div class="programmes_gauche">
+<img style="width: 32px; height: 32px;" alt="fleche-bas-telecharger-icone-9594-32" src="../../../images/fleche-bas-telecharger-icone-9594-32.png">
+</div>
+<div class="programmes_droite">
+<p>Circuit int&eacute;gr&eacute; MAX7219 et matrice de 64 LED&nbsp;: Fichiers C<br />
+Cible&nbsp;: STM32F100RB<br />Compilateur&nbsp;: Keil &micro;Vision 4<br />
+<a href="../../../elements/allures/valorisations/programmes.php%3Fprogramme=afficheurs_a_led_circuits_de_pilotage_page_3+2+2">T&eacute;l&eacute;charger le fichier<span>Effectuez un clic droit, puis s&eacute;lectionnez l'option &laquo;&nbsp;Enregistrer la cible du lien sous...&nbsp;&raquo;, pour t&eacute;l&eacute;charger le fichier</span></a> (19.26 Ko)</p></div>
+</div>
+</div>
+<div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="afficheurs_a_led_circuits_de_pilotage_page_3.php.html#Haut_de_page">Je veux remonter !</a>&nbsp;|&nbsp;<a href="afficheurs_a_led_circuits_de_pilotage_page_3.php.html#Liste_de_depart">Liste</a>
+</div>
+<a id="Endroit_2-0-0"></a>
+<h2>2) Le TLC5940</h2>
+<p>Le circuit int&eacute;gr&eacute; TLC5940 est fabriqu&eacute; par la soci&eacute;t&eacute; TEXAS INSTRUMENTS.</p>
+<a id="Endroit_2-1-0"></a>
+<h3>2-1) Pr&eacute;sentation</h3>
+<p>Ce circuit int&eacute;gr&eacute; communique par une liaison s&eacute;rielle avec le composant qui le g&egrave;re.</p>
+<p>Il permet le pilotage d'afficheurs &agrave; LED avec une variation de l'intensit&eacute; lumineuse sur 12 <i>bits</i>, soit sur 4096 niveaux.<br />
+Cela autorise l'utilisation d'afficheurs bicolores ou multicolores.</p>
+<p>La <i>datasheet</i> du pilote de LED &laquo;&nbsp;TLC5940&nbsp;&raquo;&nbsp;:</p>
+<p><img alt="LIEN_EXTERNE" src="../../../images/LIEN_EXTERNE.png" />&nbsp;<a href="http://www.ti.com/lit/ds/symlink/tlc5940.pdf" title="Ouvrir le lien &laquo;&nbsp;http://www.ti.com/lit/ds/symlink/tlc5940.pdf&nbsp;&raquo; dans une nouvelle fen&ecirc;tre, ou dans un nouvel onglet" target="_blank">http://www.ti.com/lit/ds/symlink/tlc5940.pdf</a></p>
+<div>
+<div class="menu_article">
+<ul class="menu_article_principal">
+<li><a href="afficheurs_a_led_circuits_de_pilotage_page_1.php.html">Afficheurs &agrave; LED&nbsp;: Circuits de pilotage</a></li>
+<li><ul>
+<li><a href="afficheurs_a_led_circuits_de_pilotage_page_1.php.html">G&eacute;n&eacute;ralit&eacute;s</a></li>
+<li><a href="afficheurs_a_led_circuits_de_pilotage_page_2.php.html">Utilisation de composants discrets</a></li>
+<li><a class="choisi" href="afficheurs_a_led_circuits_de_pilotage_page_3.php.html">Utilisation de circuits int&eacute;gr&eacute;s sp&eacute;cifiques</a></li>
+</ul></li>
+</ul>
+<ul class="menu_article_secondaire">
+<li><a href="afficheurs_a_led_circuits_de_pilotage_page_3.php.html#Endroit_1-0-0">1) Le MAX7219 et le MAX7221</a></li>
+<li>
+<ul>
+<li><a href="afficheurs_a_led_circuits_de_pilotage_page_3.php.html#Endroit_1-1-0">1-1) Pr&eacute;sentation</a></li>
+<li><a href="afficheurs_a_led_circuits_de_pilotage_page_3.php.html#Endroit_1-2-0">1-2) Essais avec deux afficheurs 7 segments</a></li>
+<li><a href="afficheurs_a_led_circuits_de_pilotage_page_3.php.html#Endroit_1-3-0">1-3) Essais avec une matrice de 64 LED</a></li>
+</ul>
+</li>
+<li><a href="afficheurs_a_led_circuits_de_pilotage_page_3.php.html#Endroit_2-0-0">2) Le TLC5940</a></li>
+<li>
+<ul>
+<li><a href="afficheurs_a_led_circuits_de_pilotage_page_3.php.html#Endroit_2-1-0">2-1) Pr&eacute;sentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="commentaires"><a id="Endroits_des_commentaires"></a><p class="sous-titre_commentaires">Commentaires (0)</p><p class="sous-titre_ajouts">Ajouter un commentaire</p>
+<form id="contact" method="post" action="http://atrylec.com/elements/allures/commentaires/verification.php">
+<fieldset>
+<legend>
+Votre pseudo&nbsp;: 
+</legend>
+<p>
+<label for="pseudo">
+Pseudo&nbsp;: 
+</label>
+<input type="text" id="pseudo" name="pseudo" tabindex="1" required="required">
+</p>
+</fieldset>
+<fieldset>
+<legend>
+Votre commentaire&nbsp;: 
+</legend>
+<p>
+<label for="commentaire">
+Commentaire&nbsp;: 
+</label>
+<textarea id="commentaire" name="commentaire" tabindex="2" cols="50" rows="2" required="required">
+</textarea>
+</p>
+</fieldset>
+<div class="bouton_validation_commentaire">
+<input type="submit" name="Poster" value="Poster" />
+</div>
+</form>
+</div><div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="afficheurs_a_led_circuits_de_pilotage_page_3.php.html#Haut_de_page">Je veux remonter !</a>
+</div>
+</section>
+<footer>
+<div class="liens">
+<ul>
+<li><a href="../../contact.php.html">ContaCT</a></li>
+</ul>
+</div>
+<div id="choix_style">
+<div class="presentation">Ravaler la fa&ccedil;ade&nbsp;:</div>
+<a href="afficheurs_a_led_circuits_de_pilotage_page_3.php%3Fselection=1.html" title="Style 1"><div class="choix choix_bleu">&nbsp;</div></a><a href="afficheurs_a_led_circuits_de_pilotage_page_3.php%3Fselection=2.html" title="Style 2"><div class="choix choix_rouge">&nbsp;</div></a><div class="choix choix_orange_choisi">&nbsp;</div></div>
+<div class="remarques">
+<p>Il ne faut pas dire&nbsp;: &laquo;&nbsp;Tondre la pelouse
+&nbsp;&raquo;, mais&nbsp;: &laquo;&nbsp;Abaisser le plancher de bruit
+&nbsp;&raquo;.</p>
+</div>
+<div class="visites">
+<img style="width: 15px; height: 15px;" alt="6_30" src="../../../images/6_30.png">   <img style="width: 15px; height: 15px;" alt="5_30" src="../../../images/5_30.png">   <img style="width: 15px; height: 15px;" alt="0_30" src="../../../images/0_30.png">   <img style="width: 15px; height: 15px;" alt="9_30" src="../../../images/9_30.png">   <img style="width: 15px; height: 15px;" alt="8_30" src="../../../images/8_30.png">   </div>
+</footer>
+</div>
+</body>
+</html>

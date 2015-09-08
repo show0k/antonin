@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>La programmation des PIC18F - Les ports d&rsquo;entr&eacute;es-sorties du PIC18F4550</title>
+<meta name="description" content="La programmation des PIC18F - Les ports d&rsquo;entr&eacute;es-sorties du PIC18F4550." />
+<meta name="keywords" content="atrylec electronique schema montage realisation microcontroleur entree sortie programmation code source langage c pic18f4550 pic 18f4550 mplab tutoriel exemple cours creer projet configurer horloge" />
+<link rel="stylesheet" media="screen" type="text/css" title="Style 2" href="../../../elements/allures/style_2.css">
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-42331281-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+<body>
+<div id="page">
+<div id="haut">
+<header id="Haut_de_page">
+<div id="principale">
+<p class="titre_principal_haut">
+<a href="../../../index.php.html"><img style="width: 150px;" alt="Affichage_Atrylec_com" src="../../../images/Affichage_Atrylec_com.png" /><span class="invisible">Atrylec</span></a></p>
+<p class="sous-titre_haut">Vous n'&ecirc;tes pas seuls dans l'Univers !</p>
+</div>
+<div id="additionnelle">
+</div>
+</header>
+<nav>
+<ul id="navigation">
+<li><a href="../../../index.php.html" title="Accueil">Accueil</a></li>
+<li><a class="choisi" href="../index.php.html" title="Electronique">Electronique</a></li>
+<li><a href="../../radio/index.php%3Fnumero=0.html" title="Radio">Radio</a></li>
+<li><a href="../../origami/index.php.html" title="Origami">Origami</a></li>
+<li><a href="../../photographies/index.php%3Fnumero=0.html" title="Photographies">Photographies</a></li>
+<li><a href="../../le_grenier/index.php.html" title="Le grenier">Le grenier</a></li>
+<li><a href="../../contact.php.html" title="ContaCT">ContaCT</a></li>
+</ul>
+</nav>
+</div>
+<section>
+<div id="titre">
+<div id="titre_gauche">
+</div>
+<div id="titre_image">
+<img style="width: 100px; height: 100px;" alt="Transistor_100" src="../../../images/Transistor_100.png">
+</div>
+<div id="titre_texte">
+<p>/&nbsp;</p><h1>La programmation des PIC18F - Page 3</h1>
+</div>
+<div id="titre_droite">
+</div>
+</div>
+<div style="position: relative; top: 72px; left: 502px;">
+<i>Sp&eacute;cial ZanX' &agrave; &laquo;&nbsp;NonoxX&nbsp;&raquo; !</i><br />
+</div>
+<div>
+<p id="introduction">La programmation des PIC18F - Les ports d&rsquo;entr&eacute;es-sorties du PIC18F4550.</p>
+</div>
+<p>
+<a id="Liste_de_depart"></a>
+</p>
+<div>
+<div class="menu_article">
+<ul class="menu_article_principal">
+<li><a href="la_programmation_des_pic18f_page_1.php.html">Mises en places</a></li>
+<li><ul>
+<li><a href="la_programmation_des_pic18f_page_1.php.html">Cr&eacute;er un projet sous MPLAB</a></li>
+<li><a href="la_programmation_des_pic18f_page_2.php.html">Configurer l'horloge sur le PIC18F4550</a></li>
+<li><a class="choisi" href="la_programmation_des_pic18f_page_3.php.html">Les ports d'entr&eacute;es-sorties du PIC18F4550</a></li>
+</ul></li>
+</ul>
+<ul class="menu_article_secondaire">
+<li><a href="la_programmation_des_pic18f_page_3.php%3Fselection=2.html#Endroit_1-0-0">1) G&eacute;n&eacute;ralit&eacute;s sur les ports</a></li>
+<li><a href="la_programmation_des_pic18f_page_3.php%3Fselection=2.html#Endroit_2-0-0">2) Les principaux registres li&eacute;s aux ports</a></li>
+<li><a href="la_programmation_des_pic18f_page_3.php%3Fselection=2.html#Endroit_3-0-0">3) Un chenillard</a></li>
+<li><a href="la_programmation_des_pic18f_page_3.php%3Fselection=2.html#Endroit_4-0-0">4) Un chenillard activ&eacute; par un bouton</a></li>
+</ul>
+</div>
+</div>
+<div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="la_programmation_des_pic18f_page_3.php%3Fselection=2.html#Haut_de_page">Je veux remonter !</a>&nbsp;|&nbsp;<a href="la_programmation_des_pic18f_page_3.php%3Fselection=2.html#Liste_de_depart">Liste</a>
+</div>
+<a id="Endroit_1-0-0"></a>
+<h2>1) G&eacute;n&eacute;ralit&eacute;s sur les ports</h2>
+<p>La plupart des broches du PIC18F4550 sont accessibles en entr&eacute;e et en sortie tout-ou-rien, c&rsquo;est-&agrave;-dire qu&rsquo;il peut en entrer ou en sortir un &eacute;tat haut logique (+VCC) ou un &eacute;tat bas logique (0V).<br />
+Les broches sont regroup&eacute;es par ports, chaque port pouvant contenir jusqu&rsquo;&agrave; 8 broches. Il est possible d&rsquo;utiliser chaque patte ind&eacute;pendamment en entr&eacute;e, en sortie ou pour d&rsquo;autres fonctions dont nous ne parlerons pas dans ce chapitre.</p>
+<a href="../../../images/Capture_PIC18F4550_3.png">
+<img alt="Capture_PIC18F4550_3" src="../../../images/Capture_PIC18F4550_3.png">
+</a>
+<p>Pour localiser les broches correspondant aux diff&eacute;rents
+ports, il faut se reporter au brochage du composant dans le datasheet
+(&laquo;&nbsp;Pin Diagrams&nbsp;&raquo;, page 2). Sur la plupart des
+broches, le premier &eacute;l&eacute;ment de la description est
+de la forme Rxy, avec x une lettre, correspondant au port auquel
+appartient la broche, et y le num&eacute;ro de la broche dans le
+port. Par exemple la broche 6 du composant correspond &agrave; RA4,
+c&rsquo;est-&agrave;-dire au bit 4 du port A.<br />
+Cependant sur les broches 1 et 14 la description sous forme de port
+n&rsquo;est pas en premier dans la liste, mais en dernier.
+C&rsquo;est parce que ces broches on des affectations
+sp&eacute;ciales prioritaires sur les ports. La broche 1 est par
+d&eacute;faut la broche de RESET (/MCLR), on peut
+l&rsquo;utiliser comme RE3 en inhibant le RESET externe
+gr&acirc;ce &agrave; un bit de configuration (comme pour
+configurer l&rsquo;horloge). La broche 14 peut &ecirc;tre
+utilis&eacute;e comme RA6 dans les modes d&rsquo;horloge qui
+n&rsquo;utilisent pas un r&eacute;sonateur externe. Je
+recommande d&rsquo;&eacute;viter d&rsquo;utiliser ces
+broches en entr&eacute;e-sorties sauf dans les cas o&ugrave; il
+est impossible de faire autrement, cela &eacute;vite des
+probl&egrave;mes.</p>
+<div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="la_programmation_des_pic18f_page_3.php%3Fselection=2.html#Haut_de_page">Je veux remonter !</a>&nbsp;|&nbsp;<a href="la_programmation_des_pic18f_page_3.php%3Fselection=2.html#Liste_de_depart">Liste</a>
+</div>
+<a id="Endroit_2-0-0"></a>
+<h2>2) Les principaux registres li&eacute;s aux ports</h2>
+<p>Il y a deux registres que l&rsquo;on utilise pour commander les ports&nbsp;: les registres TRISx et PORTx (avec x la lettre correspondant au port).<br />
+Les registres TRISx permettent de configurer la direction
+(entr&eacute;e ou sortie) de chaque broche du port. Un 1 sur le bit
+y de ce registre placera Rxy en entr&eacute;e, un 0 le placera en
+sortir. Pour le retenir c&rsquo;est simple&nbsp;: 1 ressemble
+&agrave; la lettre &laquo;&nbsp;I&nbsp;&raquo; comme &laquo;
+Input&nbsp;&raquo;, 0 ressemble &agrave; la lettre &laquo;&nbsp;O
+&raquo; comme &laquo;&nbsp;Output&nbsp;&raquo;.<br />
+Par exemple pour placer RB2 en sortie, on placera le bit 2 de TRISB
+&agrave; 0.<br />
+Les registres PORTx permettent de placer la valeur de sortie ou de lire
+la valeur en entr&eacute;e du port x. Lorsque la broche y du port x
+est plac&eacute; en sortie, placer &agrave; 1 le bit y de PORTx
+placera Rxy &agrave; 1, idem avec 0. Lorsque la broche y du port x
+est plac&eacute; en entr&eacute;e, le bit y de PORTx est
+l&rsquo;image de la broche Rxy.</p>
+<div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="la_programmation_des_pic18f_page_3.php%3Fselection=2.html#Haut_de_page">Je veux remonter !</a>&nbsp;|&nbsp;<a href="la_programmation_des_pic18f_page_3.php%3Fselection=2.html#Liste_de_depart">Liste</a>
+</div>
+<a id="Endroit_3-0-0"></a>
+<h2>3) Un chenillard</h2>
+<p></p>
+<a href="../../../images/Capture_application_1.png">
+<img alt="Capture_application_1" src="../../../images/Capture_application_1_Petite.png">
+</a>
+<p>Nous allons faire un chenillard, c&rsquo;est-&agrave;-dire
+faire s&rsquo;allumer l&rsquo;une apr&egrave;s
+l&rsquo;autre chacune des LEDs, connect&eacute;es au PORTD
+comme ci-dessus, l&rsquo;une apr&egrave;s l&rsquo;autre, un
+peu comme dans K2000. On remarque que les anodes des LEDs sont
+connect&eacute;es au VDD, et leurs cathodes aux broches du PIC via
+une r&eacute;sistance de limitation de courant. Cela signifie que
+pour allumer une LED, il faudra mettre la broche correspondant
+&agrave; l&rsquo;&eacute;tat logique 0. La raison pour
+laquelle les LEDs ont &eacute;t&eacute; branch&eacute;es
+dans ce sens plut&ocirc;t que dans l&rsquo;autre (plus
+intuitif), est que le composant supporte mieux d&rsquo;absorber du
+courant que d&rsquo;en fournir.<br />
+La premi&egrave;re chose &agrave; faire est de configurer
+correctement votre horloge. Ensuite, puisqu&rsquo;on utilisera le
+PORTD pour allumer des LEDs, nous devons configurer
+l&rsquo;ensemble de notre PORTD en sortie. Il faut donc mettre le
+registre TRISD &agrave; 0. Nous allons aussi initialiser les LEDs
+de sorte &agrave; ce qu&rsquo;au d&eacute;marrage elles
+soient toutes &eacute;teintes, en pla&ccedil;ant &agrave; 1
+tous les bits de PORTD.</p>
+<div class="codes-sources-c">
+<div class="codes-sources-c-haut">
+<p>Code source&nbsp;: Exemple 1 - Configurer toutes les 8 broches du PORT D en sorties et &eacute;teindre les LED</p>
+</div>
+<div class="codes-sources-c-bas">
+<pre>
+<span style="color: rgb(0, 0, 0);">
+TRISD = <span style="color:#FF0000;">0</span>;   <em><span style="color:#009900;">/* Utilisation de toutes les 8 broches du PORT D en tant que sorties */</span></em>
+PORTD = <span style="color:#FF0000;">0xFF</span>;   <em><span style="color:#009900;">/* Eteindre les LED */</span></em>
+
+</span>
+</pre>
+</div>
+</div>
+<p>Puis ensuite il vous suffit de cr&eacute;er une boucle infinie,
+dans laquelle chaque cycle correspondra &agrave; un aller complet
+de la LED allum&eacute;e. Pour faire cet aller complet une solution
+possible est d&rsquo;utiliser une boucle for, dans laquelle
+&agrave; chaque cycle le param&egrave;tre est
+d&eacute;cal&eacute; d&rsquo;un bit &agrave; gauche, et
+ce jusqu&rsquo;&agrave; ce que ce bit d&eacute;passe le bit
+7 (on a 8 LEDs, soit des bits de 0 &agrave; 7). Entre chaque
+&eacute;tape de cette boucle for un placera une temporisation pour
+limiter la vitesse de d&eacute;filement de notre chenillard.</p>
+<div class="codes-sources-c">
+<div class="codes-sources-c-haut">
+<p>Code source&nbsp;: Exemple 2 - Un chenillard</p>
+</div>
+<div class="codes-sources-c-bas">
+<pre>
+<span style="color: rgb(0, 0, 0);">
+<strong><span style="color:#0000FF;">while</span></strong>(<span style="color:#FF0000;">1</span>)
+{
+	<strong><span style="color:#0000FF;">for</span></strong>(j = <span style="color:#FF0000;">1</span>; j &lt; <span style="color:#FF0000;">129</span>; j &lt;&lt;= <span style="color:#FF0000;">1</span>)
+	{
+		PORTD = ~j;   <em><span style="color:#009900;">/* Mise &agrave; jour des LED */</span></em>
+		<strong><span style="color:#0000FF;">for</span></strong>(i = <span style="color:#FF0000;">0</span>; i &lt; <span style="color:#FF0000;">10000</span>; i++);   <em><span style="color:#009900;">/* Attente */</span></em>
+	}
+}
+
+</span>
+</pre>
+</p>
+</div>
+</div>
+<p></p>
+<div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="la_programmation_des_pic18f_page_3.php%3Fselection=2.html#Haut_de_page">Je veux remonter !</a>&nbsp;|&nbsp;<a href="la_programmation_des_pic18f_page_3.php%3Fselection=2.html#Liste_de_depart">Liste</a>
+</div>
+<a id="Endroit_4-0-0"></a>
+<h2>4) Un chenillard activ&eacute; par un bouton</h2>
+<p></p>
+<a href="../../../images/Capture_application_2.png">
+<img alt="Capture_application_2" src="../../../images/Capture_application_2.png">
+</a>
+<p></p>
+<p>Nous allons maintenant modifier notre code pour utiliser un bouton pour activer le chenillard. C&rsquo;est-&agrave;-dire que lorsqu&rsquo;on appuie sur le bouton, le chenillard d&eacute;marre, et s&rsquo;arr&ecirc;tera &agrave; la fin du cycle pendant lequel on rel&acirc;che le bouton.<br />
+Il va donc vous falloir mettre RB0 en entr&eacute;e via le registre
+TRISB, puis tester r&eacute;guli&egrave;rement l&rsquo;&eacute;tat du bit 0 de PORTB pour conna&icirc;tre l&rsquo;&eacute;tat du bouton.<br />
+Je ne pense pas qu&rsquo;il soit n&eacute;cessaire de d&eacute;tailler davantage. Voici un code qui fonctionne&nbsp;:</p>
+<p></p>
+<div class="codes-sources-c">
+<div class="codes-sources-c-haut">
+<p>Code source&nbsp;: Exemple 3 - Un chenillard activ&eacute; par un bouton</p>
+</div>
+<div class="codes-sources-c-bas">
+<pre>
+<span style="color: rgb(0, 0, 0);">
+<strong><span style="color:#FF9900;">#include </span></strong>&lt;p18f4553.h&gt;
+
+<strong><span style="color:#0000FF;">void</span></strong> main(<strong><span style="color:#0000FF;">void</span></strong>)
+{
+	<strong><span style="color:#0000FF;">int</span></strong> i, j;
+	OSCON |= ((<span style="color:#FF0000;">7</span> &lt;&lt; <span style="color:#FF0000;">4</span>) | (<span style="color:#FF0000;">1</span> &lt;&lt; <span style="color:#FF0000;">1</span>));   <em><span style="color:#009900;">/* Utilisation de l&#039;oscillateur interne du PIC18F4553 */</span></em>
+
+	TRISD = <span style="color:#FF0000;">0</span>;   <em><span style="color:#009900;">/* Utilisation de toutes les 8 broches du PORT D en tant que sortie */</span></em>
+	PORTD = <span style="color:#FF0000;">0xFF</span>;   <em><span style="color:#009900;">/* Eteindre toutes les LED */</span></em>
+
+	TRISB |= <span style="color:#FF0000;">1</span>;   <em><span style="color:#009900;">/* Utilisation de la broche &laquo;&nbsp;RB0&nbsp;&raquo; en tant qu&#039;entr&eacute;e */</span></em>
+
+	<strong><span style="color:#0000FF;">while</span></strong>(<span style="color:#FF0000;">1</span>)
+	{
+		<strong><span style="color:#0000FF;">if</span></strong>((PORTB &amp; <span style="color:#FF0000;">1</span>) == <span style="color:#FF0000;">0x00</span>)   <em><span style="color:#009900;">/* Test du bouton */</span></em>
+		{
+			<strong><span style="color:#0000FF;">for</span></strong>(j = <span style="color:#FF0000;">1</span>; j &lt; <span style="color:#FF0000;">129</span>; j &lt;&lt;= <span style="color:#FF0000;">1</span>)
+			{
+				PORTD = (~j);   <em><span style="color:#009900;">/* Mise &agrave; jour des LED */</span></em>
+				<strong><span style="color:#0000FF;">for</span></strong>(i = <span style="color:#FF0000;">0</span>; i &lt; <span style="color:#FF0000;">10000</span>; i++);   <em><span style="color:#009900;">/* Attente */</span></em>
+			}
+		}
+	}
+}
+
+</span>
+</pre>
+</div>
+</div>
+<p>Qui fonctionne ? Vraiment ? Si vous l&rsquo;avez essay&eacute;, vous vous &ecirc;tes peut-&ecirc;tre rendu compte que le bouton ne fonctionne pas. Pourtant, vous avez bien configur&eacute; ce bouton en entr&eacute;e, et l&rsquo;avez test&eacute; correctement. En fait, les 5 premi&egrave;res broches du PORTB peuvent aussi &ecirc;tre utilis&eacute;es comme entr&eacute;es analogiques. Jusque-l&agrave; pas de soucis, puisque par d&eacute;faut, les broches sont toutes des entr&eacute;es sorties num&eacute;riques&hellip; Sauf que pour ces broches, il existe un bit de configuration qui permet de les mettre en entr&eacute;e analogique d&egrave;s le d&eacute;marrage du composant. Il suffit de le configurer correctement et le programme fonctionne !</p>
+<p></p>
+<a href="../../../images/Capture_MPLAB_7.jpg">
+<img alt="Capture_MPLAB_7" src="../../../images/Capture_MPLAB_7_Petite.jpg">
+</a>
+<p></p>
+<p>Ce genre de subtilit&eacute;s fait partie des choses qu&rsquo;on ne peut pas deviner, et qui peuvent nous faire prendre la t&ecirc;te quelques heures. Pour s&rsquo;en sortir la seule solution est de fouiller dans le datasheet, jusqu&rsquo;&agrave; trouver ce que l&rsquo;on cherche.</p>
+<p></p>
+<div>
+<div class="menu_article">
+<ul class="menu_article_principal">
+<li><a href="la_programmation_des_pic18f_page_1.php.html">Mises en places</a></li>
+<li><ul>
+<li><a href="la_programmation_des_pic18f_page_1.php.html">Cr&eacute;er un projet sous MPLAB</a></li>
+<li><a href="la_programmation_des_pic18f_page_2.php.html">Configurer l'horloge sur le PIC18F4550</a></li>
+<li><a class="choisi" href="la_programmation_des_pic18f_page_3.php.html">Les ports d'entr&eacute;es-sorties du PIC18F4550</a></li>
+</ul></li>
+</ul>
+<ul class="menu_article_secondaire">
+<li><a href="la_programmation_des_pic18f_page_3.php%3Fselection=2.html#Endroit_1-0-0">1) G&eacute;n&eacute;ralit&eacute;s sur les ports</a></li>
+<li><a href="la_programmation_des_pic18f_page_3.php%3Fselection=2.html#Endroit_2-0-0">2) Les principaux registres li&eacute;s aux ports</a></li>
+<li><a href="la_programmation_des_pic18f_page_3.php%3Fselection=2.html#Endroit_3-0-0">3) Un chenillard</a></li>
+<li><a href="la_programmation_des_pic18f_page_3.php%3Fselection=2.html#Endroit_4-0-0">4) Un chenillard activ&eacute; par un bouton</a></li>
+</ul>
+</div>
+</div>
+<div class="commentaires"><a id="Endroits_des_commentaires"></a><p class="sous-titre_commentaires">Commentaires (0)</p><p class="sous-titre_ajouts">Ajouter un commentaire</p>
+<form id="contact" method="post" action="http://atrylec.com/elements/allures/commentaires/verification.php">
+<fieldset>
+<legend>
+Votre pseudo&nbsp;: 
+</legend>
+<p>
+<label for="pseudo">
+Pseudo&nbsp;: 
+</label>
+<input type="text" id="pseudo" name="pseudo" tabindex="1" required="required">
+</p>
+</fieldset>
+<fieldset>
+<legend>
+Votre commentaire&nbsp;: 
+</legend>
+<p>
+<label for="commentaire">
+Commentaire&nbsp;: 
+</label>
+<textarea id="commentaire" name="commentaire" tabindex="2" cols="50" rows="2" required="required">
+</textarea>
+</p>
+</fieldset>
+<div class="bouton_validation_commentaire">
+<input type="submit" name="Poster" value="Poster" />
+</div>
+</form>
+</div><div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="la_programmation_des_pic18f_page_3.php%3Fselection=2.html#Haut_de_page">Je veux remonter !</a>
+</div>
+</section>
+<footer>
+<div class="liens">
+<ul>
+<li><a href="../../contact.php.html">ContaCT</a></li>
+</ul>
+</div>
+<div id="choix_style">
+<div class="presentation">Ravaler la fa&ccedil;ade&nbsp;:</div>
+<a href="la_programmation_des_pic18f_page_3.php%3Fselection=1.html" title="Style 1"><div class="choix choix_bleu">&nbsp;</div></a><div class="choix choix_rouge_choisi">&nbsp;</div><a href="la_programmation_des_pic18f_page_3.php%3Fselection=3.html" title="Style 3"><div class="choix choix_orange">&nbsp;</div></a></div>
+<div class="remarques">
+<p>Il ne faut pas dire&nbsp;: &laquo;&nbsp;Le hangar des transistors &agrave; effets de champs
+&nbsp;&raquo;, mais&nbsp;: &laquo;&nbsp;La salle des FET
+&nbsp;&raquo;.</p>
+</div>
+<div class="visites">
+<img style="width: 15px; height: 15px;" alt="6_30" src="../../../images/6_30.png">   <img style="width: 15px; height: 15px;" alt="5_30" src="../../../images/5_30.png">   <img style="width: 15px; height: 15px;" alt="0_30" src="../../../images/0_30.png">   <img style="width: 15px; height: 15px;" alt="9_30" src="../../../images/9_30.png">   <img style="width: 15px; height: 15px;" alt="9_30" src="../../../images/9_30.png">   </div>
+</footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>Le bo&icirc;tier &agrave; code confidentiel</title>
+<meta name="description" content="Le bo&icirc;tier &agrave; code confidentiel." />
+<meta name="keywords" content="audiovore electronique schema schemas montage montages realisation realisations microcontroleur entrees sorties programmation code source langage c stm32discovery stm 32 discovery stm32vldiscovery stm 32 vl discovery stm32l discovery stm32 l discovery stm32f100rb stm32l152rbt6 keil micro vision tutoriel tutoriels exemple exemples cours creer projet projets configurer horloge horloges" />
+<link rel="stylesheet" media="screen" type="text/css" title="Style 3" href="../../../elements/allures/style_3.css">
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-42331281-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+<body>
+<div id="page">
+<div id="haut">
+<header id="Haut_de_page">
+<div id="principale">
+<p class="titre_principal_haut">
+<a href="../../../index.php.html"><img style="width: 150px;" alt="Affichage_Atrylec_com" src="../../../images/Affichage_Atrylec_com.png" /><span class="invisible">Atrylec</span></a></p>
+<p class="sous-titre_haut">Vous n'&ecirc;tes pas seuls dans l'Univers !</p>
+</div>
+<div id="additionnelle">
+</div>
+</header>
+<nav>
+<ul id="navigation">
+<li><a href="../../../index.php.html" title="Accueil">Accueil</a></li>
+<li><a class="choisi" href="../index.php.html" title="Electronique">Electronique</a></li>
+<li><a href="../../radio/index.php%3Fnumero=0.html" title="Radio">Radio</a></li>
+<li><a href="../../origami/index.php.html" title="Origami">Origami</a></li>
+<li><a href="../../photographies/index.php%3Fnumero=0.html" title="Photographies">Photographies</a></li>
+<li><a href="../../le_grenier/index.php.html" title="Le grenier">Le grenier</a></li>
+<li><a href="../../contact.php.html" title="ContaCT">ContaCT</a></li>
+</ul>
+</nav>
+</div>
+<section>
+<div id="titre">
+<div id="titre_gauche">
+</div>
+<div id="titre_image">
+<img style="width: 100px; height: 100px;" alt="Transistor_100" src="../../../images/Transistor_100.png">
+</div>
+<div id="titre_texte">
+<p>/&nbsp;</p><h1>Le bo&icirc;tier &agrave; code confidentiel</h1>
+</div>
+<div id="titre_droite">
+</div>
+</div>
+<div>
+<p id="introduction">Un bo&icirc;tier &agrave; code sert &agrave; n&rsquo;autoriser l&rsquo;acc&egrave;s &agrave; un endroit qu'aux seules personnes qui en poss&egrave;dent le code.<br />
+Un tel dispositif peut &eacute;galement servir &agrave; limiter l&rsquo;utilisation d&rsquo;un appareil &eacute;lectrique, par exemple.<br />
+Les dispositifs qui sont pr&eacute;sent&eacute;s sur cette page ont &eacute;t&eacute; r&eacute;alis&eacute;s pour <a href="la_cabane.php.html" title="Ouvrir le lien &laquo;&nbsp;http://www.atrylec.com/fr/electronique/realisations/la_cabane.php&nbsp;&raquo;">la cabane</a>.</p>
+</div>
+<p>
+<a id="Liste_de_depart"></a>
+</p>
+<div>
+<div class="menu_article">
+<ul class="menu_article_principal">
+<li><a href="le_boitier_a_code_confidentiel.php.html">Le bo&icirc;tier &agrave; code confidentiel</a></li>
+</ul>
+<ul class="menu_article_secondaire">
+<li><a href="le_boitier_a_code_confidentiel.php.html#Endroit_1-0-0">1) Pr&eacute;sentation</a></li>
+<li>
+<ul>
+<li><a href="le_boitier_a_code_confidentiel.php.html#Endroit_1-1-0">1-1) Version 1 - 2001</a></li>
+<li><a href="le_boitier_a_code_confidentiel.php.html#Endroit_1-2-0">1-2) Version 2 - 2003</a></li>
+<li><a href="le_boitier_a_code_confidentiel.php.html#Endroit_1-3-0">1-3) Version 3 - 2006</a></li>
+</ul>
+</li>
+<li><a href="le_boitier_a_code_confidentiel.php.html#Endroit_2-0-0">2) R&eacute;alisation</a></li>
+<li>
+<ul>
+<li><a href="le_boitier_a_code_confidentiel.php.html#Endroit_2-1-0">2-1) Version 1 - 2001</a></li>
+<li>
+<ul>
+<li><a href="le_boitier_a_code_confidentiel.php.html#Endroit_2-1-1">2-1-1) Sch&eacute;ma &eacute;lectronique</a></li>
+</ul>
+</li>
+<li><a href="le_boitier_a_code_confidentiel.php.html#Endroit_2-2-0">2-2) Version 2 - 2003</a></li>
+<li>
+<ul>
+<li><a href="le_boitier_a_code_confidentiel.php.html#Endroit_2-2-1">2-2-1) Sch&eacute;ma &eacute;lectronique</a></li>
+</ul>
+</li>
+<li><a href="le_boitier_a_code_confidentiel.php.html#Endroit_2-3-0">2-3) Version 3 - 2006</a></li>
+<li>
+<ul>
+<li><a href="le_boitier_a_code_confidentiel.php.html#Endroit_2-3-1">2-3-1) Sch&eacute;ma &eacute;lectronique</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="le_boitier_a_code_confidentiel.php.html#Haut_de_page">Je veux remonter !</a>&nbsp;|&nbsp;<a href="le_boitier_a_code_confidentiel.php.html#Liste_de_depart">Liste</a>
+</div>
+<a id="Endroit_1-0-0"></a>
+<h2>1) Pr&eacute;sentation</h2>
+<a id="Endroit_1-1-0"></a>
+<h3>1-1) Version 1 - 2001</h3>
+<p>Ce premier mod&egrave;le ne comporte aucune pi&egrave;ce &eacute;lectronique. Il est constitu&eacute; de quatre interrupteurs rotatifs, &agrave; huit positions chacun. Le bouton central est un bouton poussoir qui poss&egrave;de deux contacts ind&eacute;pendants, et qui se ferment quand quelqu&rsquo;un appuie dessus pour valider le code qu&rsquo;il a pu composer &agrave; l&rsquo;aide des quatre interrupteurs rotatifs.</p>
+<figure>
+<a href="http://u7903.direct.atpic.com/36978/0/1926131/0.jpg">
+<img style="width: 600px; height: 450px;" alt="Bo&icirc;tier cod&eacute; 1" src="http://u7903.direct.atpic.com/36978/0/1926131/600.jpg">
+</a>
+<figcaption>La version 1 du bo&icirc;tier &agrave; code confidentiel</figcaption>
+</figure>
+<a id="Endroit_1-2-0"></a>
+<h3>1-2) Version 2 - 2003</h3>
+<p>Ce second mod&egrave;le est constitu&eacute; d&rsquo;un clavier, qui comporte neuf boutons poussoirs. Le dispositif contient &eacute;galement des relais et des temporisateurs, r&eacute;cup&eacute;r&eacute;s dans des automobiles. Lorsque les quatre chiffres du code ont &eacute;t&eacute; compos&eacute;s, celui-ci est valid&eacute; automatiquement, au bout de trois secondes.</p>
+<figure>
+<a href="http://u7903.direct.atpic.com/36978/0/1926160/0.jpg">
+<img style="width: 600px; height: 450px;" alt="Bo&icirc;tier cod&eacute; 2" src="http://u7903.direct.atpic.com/36978/0/1926160/600.jpg"></a>
+<figcaption>La version 2 du bo&icirc;tier &agrave; code confidentiel</figcaption>
+</figure>
+<a id="Endroit_1-3-0"></a>
+<h3>1-3) Version 3 - 2006</h3>
+<p>Ce troisi&egrave;me
+mod&egrave;le poss&egrave;de
+d&eacute;sormais un clavier, qui comporte douze boutons poussoirs.
+Le code
+est programmable de fa&ccedil;on &eacute;lectronique. Un buzzer
+g&eacute;n&egrave;re un bref
+signal sonore, lorsqu&rsquo;un bouton poussoir est
+appuy&eacute;, et une s&eacute;rie
+de signaux sonores, lorsque le code qui vient
+d&rsquo;&ecirc;tre entr&eacute; est
+incorrect.</p>
+<figure>
+<a href="http://u7903.direct.atpic.com/36978/0/1926187/0.jpg">
+<img style="width: 450px; height: 600px;" alt="Bo&icirc;tier cod&eacute; 3" src="http://u7903.direct.atpic.com/36978/0/1926187/600.jpg">
+</a>
+<figcaption>La version 3 du bo&icirc;tier &agrave; code confidentiel</figcaption>
+</figure>
+<p></p>
+<div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="le_boitier_a_code_confidentiel.php.html#Haut_de_page">Je veux remonter !</a>&nbsp;|&nbsp;<a href="le_boitier_a_code_confidentiel.php.html#Liste_de_depart">Liste</a>
+</div>
+<a id="Endroit_2-0-0"></a>
+<h2>2) R&eacute;alisation</h2>
+<a id="Endroit_2-1-0"></a>
+<h3>2-1) Version 1 - 2001</h3>
+<a id="Endroit_2-1-1"></a>
+<h4>2-1-1) Sch&eacute;ma &eacute;lectronique</h4>
+<a id="Endroit_2-2-0"></a>
+<h3>2-2) Version 2 - 2003</h3>
+<a id="Endroit_2-2-1"></a>
+<h4>2-2-1) Sch&eacute;ma &eacute;lectronique</h4>
+<a id="Endroit_2-3-0"></a>
+<h3>2-3) Version 3 - 2006</h3>
+<a id="Endroit_2-3-1"></a>
+<h4>2-3-1) Sch&eacute;ma &eacute;lectronique</h4>
+<div>
+<div class="menu_article">
+<ul class="menu_article_principal">
+<li><a href="le_boitier_a_code_confidentiel.php.html">Le bo&icirc;tier &agrave; code confidentiel</a></li>
+</ul>
+<ul class="menu_article_secondaire">
+<li><a href="le_boitier_a_code_confidentiel.php.html#Endroit_1-0-0">1) Pr&eacute;sentation</a></li>
+<li>
+<ul>
+<li><a href="le_boitier_a_code_confidentiel.php.html#Endroit_1-1-0">1-1) Version 1 - 2001</a></li>
+<li><a href="le_boitier_a_code_confidentiel.php.html#Endroit_1-2-0">1-2) Version 2 - 2003</a></li>
+<li><a href="le_boitier_a_code_confidentiel.php.html#Endroit_1-3-0">1-3) Version 3 - 2006</a></li>
+</ul>
+</li>
+<li><a href="le_boitier_a_code_confidentiel.php.html#Endroit_2-0-0">2) R&eacute;alisation</a></li>
+<li>
+<ul>
+<li><a href="le_boitier_a_code_confidentiel.php.html#Endroit_2-1-0">2-1) Version 1 - 2001</a></li>
+<li>
+<ul>
+<li><a href="le_boitier_a_code_confidentiel.php.html#Endroit_2-1-1">2-1-1) Sch&eacute;ma &eacute;lectronique</a></li>
+</ul>
+</li>
+<li><a href="le_boitier_a_code_confidentiel.php.html#Endroit_2-2-0">2-2) Version 2 - 2003</a></li>
+<li>
+<ul>
+<li><a href="le_boitier_a_code_confidentiel.php.html#Endroit_2-2-1">2-2-1) Sch&eacute;ma &eacute;lectronique</a></li>
+</ul>
+</li>
+<li><a href="le_boitier_a_code_confidentiel.php.html#Endroit_2-3-0">2-3) Version 3 - 2006</a></li>
+<li>
+<ul>
+<li><a href="le_boitier_a_code_confidentiel.php.html#Endroit_2-3-1">2-3-1) Sch&eacute;ma &eacute;lectronique</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="commentaires"><a id="Endroits_des_commentaires"></a><p class="sous-titre_commentaires">Commentaires (0)</p><p class="sous-titre_ajouts">Ajouter un commentaire</p>
+<form id="contact" method="post" action="http://atrylec.com/elements/allures/commentaires/verification.php">
+<fieldset>
+<legend>
+Votre pseudo&nbsp;: 
+</legend>
+<p>
+<label for="pseudo">
+Pseudo&nbsp;: 
+</label>
+<input type="text" id="pseudo" name="pseudo" tabindex="1" required="required">
+</p>
+</fieldset>
+<fieldset>
+<legend>
+Votre commentaire&nbsp;: 
+</legend>
+<p>
+<label for="commentaire">
+Commentaire&nbsp;: 
+</label>
+<textarea id="commentaire" name="commentaire" tabindex="2" cols="50" rows="2" required="required">
+</textarea>
+</p>
+</fieldset>
+<div class="bouton_validation_commentaire">
+<input type="submit" name="Poster" value="Poster" />
+</div>
+</form>
+</div><div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="le_boitier_a_code_confidentiel.php.html#Haut_de_page">Je veux remonter !</a>
+</div>
+</section>
+<footer>
+<div class="liens">
+<ul>
+<li><a href="../../contact.php.html">ContaCT</a></li>
+</ul>
+</div>
+<div id="choix_style">
+<div class="presentation">Ravaler la fa&ccedil;ade&nbsp;:</div>
+<a href="le_boitier_a_code_confidentiel.php%3Fselection=1.html" title="Style 1"><div class="choix choix_bleu">&nbsp;</div></a><a href="le_boitier_a_code_confidentiel.php%3Fselection=2.html" title="Style 2"><div class="choix choix_rouge">&nbsp;</div></a><div class="choix choix_orange_choisi">&nbsp;</div></div>
+<div class="remarques">
+<p>Il ne faut pas dire&nbsp;: &laquo;&nbsp;Un pot de fleurs
+&nbsp;&raquo;, mais&nbsp;: &laquo;&nbsp;Un support tulipes
+&nbsp;&raquo;.</p>
+</div>
+<div class="visites">
+<img style="width: 15px; height: 15px;" alt="6_30" src="../../../images/6_30.png">   <img style="width: 15px; height: 15px;" alt="5_30" src="../../../images/5_30.png">   <img style="width: 15px; height: 15px;" alt="0_30" src="../../../images/0_30.png">   <img style="width: 15px; height: 15px;" alt="9_30" src="../../../images/9_30.png">   <img style="width: 15px; height: 15px;" alt="8_30" src="../../../images/8_30.png">   </div>
+</footer>
+</div>
+</body>
+</html>

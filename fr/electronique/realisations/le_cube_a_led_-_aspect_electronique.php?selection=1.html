@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>Le cube &agrave; LED - Aspect &eacute;lectronique</title>
+<meta name="description" content="Cube &agrave; LED : Sch&eacute;mas, typons et codes sources." />
+<meta name="keywords" content="atrylec electronique radio origami photographies grenier schema schemas montage montages realisation realisations cube led 3d bleu animation lumineux multiplexage bascule d octuple compteur programmation microcontroleur microcontroleurs langage c pic18f2610" />
+<link rel="stylesheet" media="screen" type="text/css" title="Style 1" href="../../../elements/allures/style_1.css">
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-42331281-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+<body>
+<div id="page">
+<div id="haut">
+<header id="Haut_de_page">
+<div id="principale">
+<p class="titre_principal_haut">
+<a href="../../../index.php.html"><img style="width: 150px;" alt="Affichage_Atrylec_com" src="../../../images/Affichage_Atrylec_com.png" /><span class="invisible">Atrylec</span></a></p>
+<p class="sous-titre_haut">Vous n'&ecirc;tes pas seuls dans l'Univers !</p>
+</div>
+<div id="additionnelle">
+</div>
+</header>
+<nav>
+<ul id="navigation">
+<li><a href="../../../index.php.html" title="Accueil">Accueil</a></li>
+<li><a class="choisi" href="../index.php.html" title="Electronique">Electronique</a></li>
+<li><a href="../../radio/index.php%3Fnumero=0.html" title="Radio">Radio</a></li>
+<li><a href="../../origami/index.php.html" title="Origami">Origami</a></li>
+<li><a href="../../photographies/index.php%3Fnumero=0.html" title="Photographies">Photographies</a></li>
+<li><a href="../../le_grenier/index.php.html" title="Le grenier">Le grenier</a></li>
+<li><a href="../../contact.php.html" title="ContaCT">ContaCT</a></li>
+</ul>
+</nav>
+</div>
+<section>
+<div id="titre">
+<div id="titre_gauche">
+</div>
+<div id="titre_image">
+<img style="width: 100px; height: 100px;" alt="Transistor_100" src="../../../images/Transistor_100.png">
+</div>
+<div id="titre_texte">
+<p>[</p><h1>Le cube &agrave; LED - Aspect &eacute;lectronique</h1><p>]</p>
+</div>
+<div id="titre_droite">
+</div>
+</div>
+<div>
+<p id="introduction">Aspect &eacute;lectronique du cube &agrave; LED.</p>
+</div>
+<p></p>
+<p>
+<a id="Liste_de_depart"></a>
+</p>
+<div>
+<div class="menu_article">
+<ul class="menu_article_principal">
+<li><a href="le_cube_a_led.php.html">Le cube &agrave; LED</a></li>
+<li><ul>
+<li><a href="le_cube_a_led.php.html">Pr&eacute;sentation g&eacute;n&eacute;rale</a></li>
+<li><a class="choisi" href="le_cube_a_led_-_aspect_electronique.php.html">Aspect &eacute;lectronique</a></li>
+</ul></li>
+</ul>
+<ul class="menu_article_secondaire">
+<li><a href="le_cube_a_led_-_aspect_electronique.php%3Fselection=1.html#Endroit_1-0-0">1) R&eacute;alisation</a></li>
+<li>
+<ul>
+<li><a href="le_cube_a_led_-_aspect_electronique.php%3Fselection=1.html#Endroit_1-1-0">1-1) Version 1 - 2013</a></li>
+<li>
+<ul>
+<li><a href="le_cube_a_led_-_aspect_electronique.php%3Fselection=1.html#Endroit_1-1-1">1-1-1) Sch&eacute;mas &eacute;lectroniques</a></li>
+<li><a href="le_cube_a_led_-_aspect_electronique.php%3Fselection=1.html#Endroit_1-1-2">1-1-2) Typons</a></li>
+<li><a href="le_cube_a_led_-_aspect_electronique.php%3Fselection=1.html#Endroit_1-1-3">1-1-3) Codes sources</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="le_cube_a_led_-_aspect_electronique.php%3Fselection=1.html#Endroit_2-0-0">2) Sujets associ&eacute;s</a></li>
+</ul>
+</div>
+</div>
+<div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="le_cube_a_led_-_aspect_electronique.php%3Fselection=1.html#Haut_de_page">Je veux remonter !</a>&nbsp;|&nbsp;<a href="le_cube_a_led_-_aspect_electronique.php%3Fselection=1.html#Liste_de_depart">Liste</a>
+</div>
+<a id="Endroit_1-0-0"></a>
+<h2>1) R&eacute;alisation</h2>
+<p></p>
+<figure>
+<a href="../../../images/VUE_STRUCTURE_1.jpg">
+<img alt="VUE_STRUCTURE_1" src="../../../images/VUE_STRUCTURE_1_Petite.jpg">
+</a>
+<a href="../../../images/VUE_STRUCTURE_2.jpg">
+<img alt="VUE_STRUCTURE_2" src="../../../images/VUE_STRUCTURE_2_Petite.jpg">
+</a>
+<a href="../../../images/VUE_STRUCTURE_3.jpg">
+<img alt="VUE_STRUCTURE_3" src="../../../images/VUE_STRUCTURE_3_Petite.jpg">
+</a>
+<figcaption>La structure externe du cube &agrave; LED</figcaption>
+</figure>
+<p></p>
+<figure>
+<a href="../../../images/VUE_INTERIEUR_1.jpg">
+<img alt="VUE_INTERIEUR_1" src="../../../images/VUE_INTERIEUR_1_Petite.jpg">
+</a>
+<a href="../../../images/VUE_INTERIEUR_2.jpg">
+<img alt="VUE_INTERIEUR_2" src="../../../images/VUE_INTERIEUR_2_Petite.jpg">
+</a>
+<a href="../../../images/VUE_INTERIEUR_3.jpg">
+<img alt="VUE_INTERIEUR_3" src="../../../images/VUE_INTERIEUR_3_Petite.jpg">
+</a>
+<figcaption>Voici ce que contient le cube &agrave; LED</figcaption>
+</figure>
+<p>Les sch&eacute;mas &eacute;lectroniques, les typons, et les codes sources sont pr&eacute;sent&eacute;s ci-dessous.</p>
+<a id="Endroit_1-1-0"></a>
+<h3>1-1) Version 1 - 2013</h3>
+<a id="Endroit_1-1-1"></a>
+<h4>1-1-1) Sch&eacute;mas &eacute;lectroniques</h4>
+<p>Pilotage du cube &agrave; LED, version 1</p>
+<p></p>
+<p>L'alimentation &eacute;lectrique est construite &agrave; partir d'un r&eacute;gulateur lin&eacute;aire 7805.</p>
+<p>Afin de permettre le pilotage des 512 LED bleues du cube par un seul microcontr&ocirc;leur de taille raisonnable, un multiplexage a &eacute;t&eacute; mis en place.<br />
+Ce principe se base sur la persistence r&eacute;tinienne. Dans l'application pr&eacute;sente, il consiste &agrave; n'allumer qu'un seul &eacute;tage de 64 LED &agrave; la fois. Les 8 &eacute;tages sont balay&eacute;s &agrave; un rythme
+suffisament rapide, ce qui donne l'impression qu'ils sont allum&eacute;s en m&ecirc;me temps.<br />
+Cette technique limite le nombre de broches n&eacute;cessaires pour se connecter aux 512 LED &agrave; 64, pour les anodes et &agrave; 8, pour les cathodes, ce qui donne un total de 72 broches.<br />
+Toutes les anodes des LED appartenant &agrave; la m&ecirc;me colonne sont reli&eacute;es.<br />
+De m&ecirc;me, toutes les cathodes des LED appartenant au m&ecirc;me &eacute;tage sont reli&eacute;es.</p>
+<figure>
+<table border="0" cellpadding="2" cellspacing="1">
+<tbody>
+<tr>
+<td>
+<a href="../../../images/CUBE_MULTIPLEXAGE_1.jpg">
+<img alt="CUBE_MULTIPLEXAGE_1" src="../../../images/CUBE_MULTIPLEXAGE_1_Petite.jpg">
+</a>
+</td>
+<td>
+<a href="../../../images/CUBE_MULTIPLEXAGE_2.jpg">
+<img alt="CUBE_MULTIPLEXAGE_2" src="../../../images/CUBE_MULTIPLEXAGE_2_Petite.jpg">
+</a>
+</td>
+<td>
+<a href="../../../images/CUBE_MULTIPLEXAGE_3.jpg">
+<img alt="CUBE_MULTIPLEXAGE_3" src="../../../images/CUBE_MULTIPLEXAGE_3_Petite.jpg">
+</a>
+</td>
+<td>
+<a href="../../../images/CUBE_MULTIPLEXAGE_4.jpg">
+<img alt="CUBE_MULTIPLEXAGE_4" src="../../../images/CUBE_MULTIPLEXAGE_4_Petite.jpg">
+</a>
+</td>
+</tr>
+<tr>
+<td>Phase 1</td>
+<td>Phase 2</td>
+<td>Phase 3</td>
+<td>Phase 4</td>
+</tr>
+<tr>
+<td>
+<a href="../../../images/CUBE_MULTIPLEXAGE_5.jpg">
+<img alt="CUBE_MULTIPLEXAGE_5" src="../../../images/CUBE_MULTIPLEXAGE_5_Petite.jpg">
+</a>
+</td>
+<td>
+<a href="../../../images/CUBE_MULTIPLEXAGE_6.jpg">
+<img alt="CUBE_MULTIPLEXAGE_6" src="../../../images/CUBE_MULTIPLEXAGE_6_Petite.jpg">
+</a>
+</td>
+<td>
+<a href="../../../images/CUBE_MULTIPLEXAGE_7.jpg">
+<img alt="CUBE_MULTIPLEXAGE_7" src="../../../images/CUBE_MULTIPLEXAGE_7_Petite.jpg">
+</a>
+</td>
+<td>
+<a href="../../../images/CUBE_MULTIPLEXAGE_8.jpg">
+<img alt="CUBE_MULTIPLEXAGE_8" src="../../../images/CUBE_MULTIPLEXAGE_8_Petite.jpg">
+</a>
+</td>
+</tr>
+<tr>
+<td>Phase 5</td>
+<td>Phase 6</td>
+<td>Phase 7</td>
+<td>Phase 8</td>
+</tr>
+</tbody>
+</table>
+<p></p>
+<figcaption>Phases du multiplexage du cube &agrave; LED</figcaption>
+</figure>
+<p></p>
+<figure>
+<a href="../../../images/CUBE_MULTIPLEXAGE_RENDU.jpg">
+<img alt="CUBE_MULTIPLEXAGE_RENDU" src="../../../images/CUBE_MULTIPLEXAGE_RENDU_Petite.jpg">
+</a>
+<figcaption>Rendu du multiplexage du cube &agrave; LED</figcaption>
+</figure>
+<p>Ce nombre de broches est encore trop important pour commander le cube
+avec un microcontr&ocirc;leur : en effet, il serait
+d&eacute;mesur&eacute; de vouloir utiliser un composant de ce
+type, avec autant de broches pouvant &ecirc;tre
+utilis&eacute;es&nbsp;simultan&eacute;ment en tant que
+sorties.</p>
+<p>Une partie en logique c&acirc;bl&eacute;e a permis de limiter
+&agrave; 11 le nombre de broches de sorties requises pour le
+pilotage de l'ensemble.<br />
+Ce bloc a &eacute;t&eacute;
+r&eacute;alis&eacute;&nbsp;en partie &agrave; l'aide de
+circuits int&eacute;gr&eacute;s qui dormaient dans des tiroirs
+depuis une vingtaine d'ann&eacute;e : ils ont donc pu se bonifier
+avec le temps.</p>
+<div class="valorisations">
+<div class="informations">
+<div class="informations-gauche">
+<img style="width: 32px; height: 32px;" alt="documentaires-des-proprietes-icone-5224-32" src="../../../images/documentaires-des-proprietes-icone-5224-32.png">
+</div>
+<div class="informations-droite">
+<p>Vous n'&ecirc;tes pas oblig&eacute; d'utiliser des circuits
+mill&eacute;sime 1992 pour vous assurer d'un bon fonctionnement de
+vos montages d&egrave;s la mise sous tension !<br />
+<br />
+Notez que, par ailleurs, la fabrication des LED bleues &eacute;tait encore
+tr&egrave;s difficile &agrave; ce moment-l&agrave; !<br /></p></div>
+</div>
+</div>
+<p>Le r&ocirc;le de cet ensemble en logique
+c&acirc;bl&eacute;e est de piloter les 64 colonnes de LED du
+cube, et d'activer les 8 &eacute;tages &agrave; tour de
+r&ocirc;le.<br />
+Le pilotage des colonnes est r&eacute;parti sur 8 circuits
+int&eacute;gr&eacute;s 74LS374. Ce sont des octuples bascules
+D, avec possibilit&eacute; de mettre &agrave; z&eacute;ro
+les sorties par l'application d'un niveau logique sur une broche
+d&eacute;di&eacute;e.<br />
+Un circuit int&eacute;gr&eacute; 74LS374 g&egrave;re 8 colonnes de LED, soit une tranche du cube, parmi les 8 que ce dernier comporte.</p>
+<figure>
+<a href="../../../images/ACTIVATION_ETAGE_1.jpg">
+<img alt="ACTIVATION_ETAGE_1" src="../../../images/ACTIVATION_ETAGE_1_Petite.jpg">
+</a>
+<a href="../../../images/ACTIVATION_TRANCHE_1.jpg">
+<img alt="ACTIVATION_TRANCHE_1" src="../../../images/ACTIVATION_TRANCHE_1_Petite.jpg">
+</a>
+<a href="../../../images/ACTIVATION_COLONNE_1.jpg">
+<img alt="ACTIVATION_COLONNE_1" src="../../../images/ACTIVATION_COLONNE_1_Petite.jpg">
+</a>
+<figcaption>Activations de l'&eacute;tage 1, de la tranche 1 et de la colonne 1</figcaption>
+</figure>
+<p>Le paragraphe suivant d&eacute;crit les &eacute;tats logiques qui doivent &ecirc;tre appliqu&eacute;s pour n'allumer que la LED situ&eacute;e en bas, &agrave; gauche, sur la face avant du cube.</p>
+<p>Cette LED se situe au croisement du premier &eacute;tage du cube -
+le rez-de-chauss&eacute;e, en fait - et de la premi&egrave;re
+colonne de la premi&egrave;re tranche.<br />
+Il faut tout d'abord s&eacute;lectionner le premier
+&eacute;tage du cube, en reliant les cathodes des LED &agrave;
+la masse.<br />
+Puis, il convient d'activer uniquement la premi&egrave;re colonne
+de LED de la premi&egrave;re tranche du cube.<br />
+Pour ce faire, il faut&nbsp;que les 8 broches de sorties du premier
+circuit int&eacute;gr&eacute; 74LS374 pr&eacute;sentent la
+combinaison logique &laquo;&nbsp;00000001&nbsp;&raquo;, et que la broche
+de validation des sorties soit mise &agrave; &laquo;&nbsp;0
+&raquo;.<br />
+La LED concern&eacute;e s'allume quand toutes ces conditions sont
+r&eacute;unies.</p>
+<p>Deux compteurs d&eacute;cimaux, de r&eacute;f&eacute;rence
+CD4017, sont cascad&eacute;s. Le premier compteur
+d&eacute;cimal s'occupe de valider les octets &agrave;
+destination des 8 circuits int&eacute;gr&eacute;s 74LS374
+&agrave; tour de r&ocirc;le, au fur et &agrave; mesure que
+le microcontr&ocirc;leur PIC18F2610 les fournit et
+d&eacute;livre une impulsion visant &agrave;
+incr&eacute;menter les compteurs. Le deuxi&egrave;me compteur
+d&eacute;cimal s'incr&eacute;mente quand le premier repasse
+&agrave; z&eacute;ro, et a pour r&ocirc;le de
+s&eacute;lectionner les &eacute;tages les uns apr&egrave;s
+les autres, une fois que le contenu des 64 colonnes d'un
+&eacute;tage a &eacute;t&eacute; &eacute;crit par le
+microcontr&ocirc;leur qui g&egrave;re le cube. C'est pourquoi
+ses 8 sorties utilis&eacute;es sont reli&eacute;es aux 8
+transistors charg&eacute;s de commuter les cathodes &agrave; la
+masse. Ces transistors doivent donc &ecirc;tre de type NPN, pour
+pouvoir commuter quand un &laquo;&nbsp;1&nbsp;&raquo; est
+pr&eacute;sent&eacute; en entr&eacute;e. Il doivent aussi
+pouvoir supporter, &agrave; r&eacute;p&eacute;tition, le
+courant consomm&eacute; par 64 LED bleues. C'est en effet le cas le
+plus d&eacute;favorable &agrave; pr&eacute;voir : celui
+o&ugrave; toutes les LED d'un &eacute;tage sont
+allum&eacute;es.</p>
+<div class="valorisations">
+<div class="informations">
+<div class="informations-gauche">
+<img style="width: 32px; height: 32px;" alt="documentaires-des-proprietes-icone-5224-32" src="../../../images/documentaires-des-proprietes-icone-5224-32.png">
+</div>
+<div class="informations-droite">
+<p>A propos du choix des circuits int&eacute;gr&eacute;s :<br />
+<br />
+- Les 74LS374 peuvent &ecirc;tre remplac&eacute;s par des
+74LS574. Il r&eacute;alisent les m&ecirc;me fonctions logiques,
+mais ils ont, en plus, un brochage qui simplifie le routage.<br />
+D'autres familles de circuits int&eacute;gr&eacute;s, tels les
+74ACT, ou les 74HCT, peuvent aussi &ecirc;tre utilis&eacute;es.<br />
+Cependant, il faut &eacute;viter de m&eacute;langer les
+diff&eacute;rents types, car ils ne peuvent pas d&eacute;biter
+le m&ecirc;me courant de sortie, ce qui donnerait lieu &agrave;
+des tranches de LED qui seraient plus lumineuses que les autres, en
+impactant sur l'aspect visuel des animations lumineuses
+effectu&eacute;es par le cube.<br />
+<br />
+- Il serait tout aussi possible d'utiliser deux compteurs octals<br />
+Cela &eacute;viterait d'avoir &agrave; c&acirc;ble le
+dispositif de remise &agrave; z&eacute;ro, qui s'active quand
+la sortie num&eacute;ro 9 passe &agrave; &laquo;&nbsp;1
+&raquo;.<br />
+Les deux CD4017 pourraient donc &ecirc;tre remplac&eacute;s par
+des CD4022.<br />
+<br />
+Au moment de la fabrication, ce sont des 74LS374 qui &eacute;taient
+pr&eacute;sents
+en nombre suffisant, ainsi que des CD4017, d'o&ugrave; ces
+r&eacute;f&eacute;rences
+utilis&eacute;es.<br /></p></div>
+</div>
+</div>
+<p>Le cube, muni de sa logique c&acirc;bl&eacute;e, peut donc &ecirc;tre pilot&eacute; par 11 broches.<br />
+Cela permet un interfa&ccedil;age avec de nombreux microcontr&ocirc;leurs, FPGA, ou plate-formes de d&eacute;veloppement.</p>
+<p>Ainsi, le cube &agrave; LED peut &ecirc;tre pilot&eacute;
+par un Arduino, une Raspberry Pi, une carte de d&eacute;veloppement
+STM32-DISCOVERY, une BASYS 2, une cafeti&egrave;re ou encore le
+port parall&egrave;le d'un ancien ordinateur ou d'un
+&eacute;mulateur de ce type d'interface qui n'est plus vraiment
+utilis&eacute;e.</p>
+<p>Un microcontr&ocirc;leur PIC18F2610 a &eacute;t&eacute; choisi.<br />
+Le tableau suivant pr&eacute;cise les fonctions de ces 11 broches donnant acc&egrave;s &agrave; l'ensemble des LED, par l'interm&eacute;diaire de la partie en logique c&acirc;bl&eacute;e.</p>
+<table border="1" cellpadding="2" cellspacing="2">
+<tbody>
+<tr>
+<th>Num&eacute;ro</th>
+<th>Nom</th>
+<th>Broche du PIC18F2610</th>
+<th>Fonction</th>
+</tr>
+<tr>
+<td>1</td>
+<td>D1</td>
+<td>RB0</td>
+<td>Donn&eacute;es pour le groupe&nbsp;de colonnes 1, soit les LED de la face avant du cube</td>
+</tr>
+<tr>
+<td>2</td>
+<td>D2</td>
+<td>RB1</td>
+<td>Donn&eacute;es pour le groupe&nbsp;de colonnes 2</td>
+</tr>
+<tr>
+<td>3</td>
+<td>D3</td>
+<td>RB2</td>
+<td>Donn&eacute;es pour le groupe&nbsp;de colonnes 3</td>
+</tr>
+<tr>
+<td>4</td>
+<td>D4</td>
+<td>RB3</td>
+<td>Donn&eacute;es pour le groupe&nbsp;de colonnes 4</td>
+</tr>
+<tr>
+<td>5</td>
+<td>D5</td>
+<td>RB4</td>
+<td>Donn&eacute;es pour le groupe&nbsp;de colonnes 5</td>
+</tr>
+<tr>
+<td>6</td>
+<td>D6</td>
+<td>RB5</td>
+<td>Donn&eacute;es pour le groupe&nbsp;de colonnes 6</td>
+</tr>
+<tr>
+<td>7</td>
+<td>D7</td>
+<td>RB6</td>
+<td>Donn&eacute;es pour le groupe&nbsp;de colonnes 7</td>
+</tr>
+<tr>
+<td>8</td>
+<td>D8</td>
+<td>RB7</td>
+<td>Donn&eacute;es pour le groupe&nbsp;de colonnes 8, soit les LED de la face arri&egrave;re du cube</td>
+</tr>
+<tr>
+<td>9</td>
+<td>H</td>
+<td>RC0</td>
+<td>Validation d'un nouvel octet de donn&eacute;es pour le groupe de colonnes suivant</td>
+</tr>
+<tr>
+<td>10</td>
+<td>RAZ</td>
+<td>RC1</td>
+<td>Remise &agrave; z&eacute;ro des deux compteurs d&eacute;cimaux</td>
+</tr>
+<tr>
+<td>11</td>
+<td>AT</td>
+<td>RC2</td>
+<td>Activation des sorties reli&eacute;es aux tranches de l'&eacute;tage courant</td>
+</tr>
+</tbody>
+</table>
+<p>Une modulation de l'intensit&eacute; lumineuse du cube est possible, en modifiant les temps d'activation des sorties et de passage d'un &eacute;tage &agrave; l'autre.</p>
+<figure>
+<a href="../../../images/SCHEMA_LE_CUBE_A_LED_1_PRINCIPAL.png">
+<img alt="SCHEMA_LE_CUBE_A_LED_1_PRINCIPAL" src="../../../images/SCHEMA_LE_CUBE_A_LED_1_PRINCIPAL_Petite.png">
+</a>
+<figcaption>Sch&eacute;ma &eacute;lectronique du module principal du cube &agrave; LED, version 1</figcaption>
+</figure>
+<p></p>
+<figure>
+<a href="../../../images/SCHEMA_LE_CUBE_A_LED_1_COMMANDES.png">
+<img alt="SCHEMA_LE_CUBE_A_LED_1_COMMANDES" src="../../../images/SCHEMA_LE_CUBE_A_LED_1_COMMANDES_Petite.png">
+</a>
+<figcaption>Sch&eacute;ma &eacute;lectronique de la carte de commandes du cube &agrave; LED, version 1</figcaption>
+</figure>
+<p></p>
+<figure>
+<a href="../../../images/SCHEMA_LE_CUBE_A_LED_1_COLONNES.png">
+<img alt="SCHEMA_LE_CUBE_A_LED_1_COLONNES" src="../../../images/SCHEMA_LE_CUBE_A_LED_1_COLONNES_Petite.png">
+</a>
+<figcaption>Sch&eacute;ma &eacute;lectronique des cartes de commandes des colonnes du cube &agrave; LED, version 1</figcaption>
+</figure>
+<p></p>
+<figure>
+<a href="../../../images/SCHEMA_LE_CUBE_A_LED_1_ETAGES.png">
+<img alt="SCHEMA_LE_CUBE_A_LED_1_ETAGES" src="../../../images/SCHEMA_LE_CUBE_A_LED_1_ETAGES_Petite.png">
+</a>
+<figcaption>Sch&eacute;ma &eacute;lectronique des cartes de commandes des &eacute;tages du cube &agrave; LED, version 1</figcaption>
+</figure>
+<p></p>
+<p>R&eacute;alisations des cartes &eacute;lectroniques du cube &agrave; LED, version 1</p>
+<p>La r&eacute;alisation des cartes, correspondants aux sch&eacute;mas &eacute;lectroniques pr&eacute;sent&eacute;s ci-dessus, a consist&eacute; &agrave; cr&eacute;er plusieurs modules.</p>
+<p>Voici la liste de ces modules :</p>
+<ul>
+<li>1 module principal, qui &nbsp;sert de &laquo;&nbsp;Fond de panier &raquo;, embarquant, entre autres, l'alimentation, les deux compteurs d&eacute;cimaux, et des supports pour y raccorder les autres modules,</li>
+<li>1 module de commande, accueillant le microcontr&ocirc;leur,</li>
+<li>8 modules de pilotage des colonnes, supportant chacun une octuple bascule D,</li>
+<li>1 module de s&eacute;lection des &eacute;tages, sur lequel sont implant&eacute;s les 8 transistors NPN qui relient les cathodes &agrave; la masse.</li>
+</ul>
+<a id="Endroit_1-1-2"></a>
+<h4>1-1-2) Typons</h4>
+<figure>
+<a href="../../../images/TYPON_LE_CUBE_A_LED_1_PRINCIPAL.png">
+<img alt="TYPON_LE_CUBE_A_LED_1_PRINCIPAL" src="../../../images/TYPON_LE_CUBE_A_LED_1_PRINCIPAL_Petite.png">
+</a>
+<figcaption>Typon de la carte du module principal du cube &agrave; LED, version 1</figcaption>
+</figure>
+<p></p>
+<figure>
+<a href="../../../images/TYPON_LE_CUBE_A_LED_1_COMMANDES.png">
+<img alt="TYPON_LE_CUBE_A_LED_1_COMMANDES" src="../../../images/TYPON_LE_CUBE_A_LED_1_COMMANDES_Petite.png">
+</a>
+<figcaption>Typon de la carte de commandes du cube &agrave; LED, version 1</figcaption>
+</figure>
+<p></p>
+<figure>
+<a href="../../../images/TYPON_LE_CUBE_A_LED_1_COLONNES.png">
+<img alt="TYPON_LE_CUBE_A_LED_1_COLONNES" src="../../../images/TYPON_LE_CUBE_A_LED_1_COLONNES_Petite.png">
+</a>
+<figcaption>Typon des cartes de commandes des colonnes du cube &agrave; LED, version 1</figcaption>
+</figure>
+<p></p>
+<figure>
+<a href="../../../images/TYPON_LE_CUBE_A_LED_1_ETAGES.png">
+<img alt="TYPON_LE_CUBE_A_LED_1_ETAGES" src="../../../images/TYPON_LE_CUBE_A_LED_1_ETAGES_Petite.png">
+</a>
+<figcaption>Typon de la carte de commandes des &eacute;tages du cube &agrave; LED, version 1</figcaption>
+</figure>
+<div class="valorisations">
+<div class="programmes">
+<div class="programmes_gauche">
+<img style="width: 32px; height: 32px;" alt="fleche-bas-telecharger-icone-9594-32" src="../../../images/fleche-bas-telecharger-icone-9594-32.png">
+</div>
+<div class="programmes_droite">
+<p>Le cube &agrave; LED, version 1 : Sch&eacute;mas &eacute;lectroniques<br />
+Logiciel de dession de sch&eacute;mas &eacute;lectroniques : EAGLE 6.4.0<br />
+<a href="../../../elements/allures/valorisations/programmes.php%3Fprogramme=le_cube_a_led_-_aspect_electronique+1+1">T&eacute;l&eacute;charger le fichier<span>Effectuez un clic droit, puis s&eacute;lectionnez l'option &laquo;&nbsp;Enregistrer la cible du lien sous...&nbsp;&raquo;, pour t&eacute;l&eacute;charger le fichier</span></a> (1.45 Mo)</p></div>
+</div>
+</div>
+<a id="Endroit_1-1-3"></a>
+<h4>1-1-3) Codes sources</h4>
+<div class="valorisations">
+<div class="programmes">
+<div class="programmes_gauche">
+<img style="width: 32px; height: 32px;" alt="fleche-bas-telecharger-icone-9594-32" src="../../../images/fleche-bas-telecharger-icone-9594-32.png">
+</div>
+<div class="programmes_droite">
+<p>Le cube &agrave; LED, version 1 : Fichiers C<br />
+Cible : PIC18F2610<br />Compilateur : MCC18<br />
+<a href="../../../elements/allures/valorisations/programmes.php%3Fprogramme=le_cube_a_led_-_aspect_electronique+1+2">T&eacute;l&eacute;charger le fichier<span>Effectuez un clic droit, puis s&eacute;lectionnez l'option &laquo;&nbsp;Enregistrer la cible du lien sous...&nbsp;&raquo;, pour t&eacute;l&eacute;charger le fichier</span></a> (118.82 Ko)</p></div>
+</div>
+</div>
+<div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="le_cube_a_led_-_aspect_electronique.php%3Fselection=1.html#Haut_de_page">Je veux remonter !</a>&nbsp;|&nbsp;<a href="le_cube_a_led_-_aspect_electronique.php%3Fselection=1.html#Liste_de_depart">Liste</a>
+</div>
+<a id="Endroit_2-0-0"></a>
+<h2>2) Sujets associ&eacute;s</h2>
+<p>La carte de commandes du cube &agrave; LED, version 1, int&egrave;gre un microcontr&ocirc;leur PIC18F2610 et une sonde de temp&eacute;rature I2C TMP100.</p>
+<ul>
+<li><a href="../la_programmation_des_pic18f/la_programmation_des_pic18f_page_1.php.html" title="Ouvrir le lien &laquo;&nbsp;http://www.atrylec.com/fr/electronique/la_programmation_des_pic18f/la_programmation_des_pic18f_page_1.php&nbsp;&raquo;" >La programmation des PIC 18F</a>&nbsp;;</li>
+<li><a href="../laboratoire/tests_de_sondes_de_temperature_i2c.php.html" title="Ouvrir le lien &laquo;&nbsp;http://www.atrylec.com/fr/electronique/laboratoire/tests_de_sondes_de_temperature_i2c.php&nbsp;&raquo;" >Tests de sondes de temp&eacute;rature I2C</a>.</li>
+</ul>
+<p></p>
+<div>
+<div class="menu_article">
+<ul class="menu_article_principal">
+<li><a href="le_cube_a_led.php.html">Le cube &agrave; LED</a></li>
+<li><ul>
+<li><a href="le_cube_a_led.php.html">Pr&eacute;sentation g&eacute;n&eacute;rale</a></li>
+<li><a class="choisi" href="le_cube_a_led_-_aspect_electronique.php.html">Aspect &eacute;lectronique</a></li>
+</ul></li>
+</ul>
+<ul class="menu_article_secondaire">
+<li><a href="le_cube_a_led_-_aspect_electronique.php%3Fselection=1.html#Endroit_1-0-0">1) R&eacute;alisation</a></li>
+<li>
+<ul>
+<li><a href="le_cube_a_led_-_aspect_electronique.php%3Fselection=1.html#Endroit_1-1-0">1-1) Version 1 - 2013</a></li>
+<li>
+<ul>
+<li><a href="le_cube_a_led_-_aspect_electronique.php%3Fselection=1.html#Endroit_1-1-1">1-1-1) Sch&eacute;mas &eacute;lectroniques</a></li>
+<li><a href="le_cube_a_led_-_aspect_electronique.php%3Fselection=1.html#Endroit_1-1-2">1-1-2) Typons</a></li>
+<li><a href="le_cube_a_led_-_aspect_electronique.php%3Fselection=1.html#Endroit_1-1-3">1-1-3) Codes sources</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="le_cube_a_led_-_aspect_electronique.php%3Fselection=1.html#Endroit_2-0-0">2) Sujets associ&eacute;s</a></li>
+</ul>
+</div>
+</div>
+<div class="commentaires"><a id="Endroits_des_commentaires"></a><p class="sous-titre_commentaires">Commentaires (0)</p><p class="sous-titre_ajouts">Ajouter un commentaire</p>
+<form id="contact" method="post" action="http://atrylec.com/elements/allures/commentaires/verification.php">
+<fieldset>
+<legend>
+Votre pseudo&nbsp;: 
+</legend>
+<p>
+<label for="pseudo">
+Pseudo&nbsp;: 
+</label>
+<input type="text" id="pseudo" name="pseudo" tabindex="1" required="required">
+</p>
+</fieldset>
+<fieldset>
+<legend>
+Votre commentaire&nbsp;: 
+</legend>
+<p>
+<label for="commentaire">
+Commentaire&nbsp;: 
+</label>
+<textarea id="commentaire" name="commentaire" tabindex="2" cols="50" rows="2" required="required">
+</textarea>
+</p>
+</fieldset>
+<div class="bouton_validation_commentaire">
+<input type="submit" name="Poster" value="Poster" />
+</div>
+</form>
+</div><div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="le_cube_a_led_-_aspect_electronique.php%3Fselection=1.html#Haut_de_page">Je veux remonter !</a>
+</div>
+</section>
+<footer>
+<div class="liens">
+<ul>
+<li><a href="../../contact.php.html">ContaCT</a></li>
+</ul>
+</div>
+<div id="choix_style">
+<div class="presentation">Ravaler la fa&ccedil;ade&nbsp;:</div>
+<div class="choix choix_bleu_choisi">&nbsp;</div><a href="le_cube_a_led_-_aspect_electronique.php%3Fselection=2.html" title="Style 2"><div class="choix choix_rouge">&nbsp;</div></a><a href="le_cube_a_led_-_aspect_electronique.php%3Fselection=3.html" title="Style 3"><div class="choix choix_orange">&nbsp;</div></a></div>
+<div class="remarques">
+<p>Il ne faut pas dire&nbsp;: &laquo;&nbsp;Un portail qui ne coule pas
+&nbsp;&raquo;, mais&nbsp;: &laquo;&nbsp;Une grille flottante
+&nbsp;&raquo;.</p>
+</div>
+<div class="visites">
+<img style="width: 15px; height: 15px;" alt="6_30" src="../../../images/6_30.png">   <img style="width: 15px; height: 15px;" alt="5_30" src="../../../images/5_30.png">   <img style="width: 15px; height: 15px;" alt="0_30" src="../../../images/0_30.png">   <img style="width: 15px; height: 15px;" alt="9_30" src="../../../images/9_30.png">   <img style="width: 15px; height: 15px;" alt="9_30" src="../../../images/9_30.png">   </div>
+</footer>
+</div>
+</body>
+</html>

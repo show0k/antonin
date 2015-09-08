@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>La Petite Horloge - Conception &eacute;lectronique</title>
+<meta name="description" content="Horloge &agrave; LED de bureau &agrave; base de microcontr&ocirc;leur : sch&eacute;mas, typons et codes sources" />
+<meta name="keywords" content="atrylec electronique horloge led capteur capteurs temperature affichage 7 segment pic pic18f14k22 ds3231 tmp100" />
+<link rel="stylesheet" media="screen" type="text/css" title="Style 3" href="../../../elements/allures/style_3.css">
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-42331281-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+<body>
+<div id="page">
+<div id="haut">
+<header id="Haut_de_page">
+<div id="principale">
+<p class="titre_principal_haut">
+<a href="../../../index.php.html"><img style="width: 150px;" alt="Affichage_Atrylec_com" src="../../../images/Affichage_Atrylec_com.png" /><span class="invisible">Atrylec</span></a></p>
+<p class="sous-titre_haut">Vous n'&ecirc;tes pas seuls dans l'Univers !</p>
+</div>
+<div id="additionnelle">
+</div>
+</header>
+<nav>
+<ul id="navigation">
+<li><a href="../../../index.php.html" title="Accueil">Accueil</a></li>
+<li><a class="choisi" href="../index.php.html" title="Electronique">Electronique</a></li>
+<li><a href="../../radio/index.php%3Fnumero=0.html" title="Radio">Radio</a></li>
+<li><a href="../../origami/index.php.html" title="Origami">Origami</a></li>
+<li><a href="../../photographies/index.php%3Fnumero=0.html" title="Photographies">Photographies</a></li>
+<li><a href="../../le_grenier/index.php.html" title="Le grenier">Le grenier</a></li>
+<li><a href="../../contact.php.html" title="ContaCT">ContaCT</a></li>
+</ul>
+</nav>
+</div>
+<section>
+<div id="titre">
+<div id="titre_gauche">
+</div>
+<div id="titre_image">
+<img style="width: 100px; height: 100px;" alt="Transistor_100" src="../../../images/Transistor_100.png">
+</div>
+<div id="titre_texte">
+<p>/&nbsp;</p><h1>La Petite Horloge - Conception &eacute;lectronique</h1>
+</div>
+<div id="titre_droite">
+</div>
+</div>
+<div>
+<p id="introduction">Conception &eacutelectronique de la Petite Horloge.</p>
+</div>
+<p>
+<a id="Liste_de_depart"></a>
+</p>
+<div>
+<div class="menu_article">
+<ul class="menu_article_principal">
+<li><a href="la_petite_horloge.php.html">La Petite Horloge</a></li>
+<li><ul>
+<li><a href="la_petite_horloge.php.html">Pr&eacute;sentation g&eacute;n&eacute;rale</a></li>
+<li><a class="choisi" href="la_petite_horloge_-_conception_electronique.php.html">Conception &eacute;lectronique</a></li>
+<li><a href="la_petite_horloge_-_fabrication.php.html">Fabrication</a></li>
+</ul></li>
+</ul>
+<ul class="menu_article_secondaire">
+<li><a href="la_petite_horloge_-_conception_electronique.php.html#Endroit_1-0-0">1) Pr&eacute;sentation</a></li>
+<li>
+<ul>
+<li><a href="la_petite_horloge_-_conception_electronique.php.html#Endroit_1-1-0">1-1) Version 1 - 2014</a></li>
+</ul>
+</li>
+<li><a href="la_petite_horloge_-_conception_electronique.php.html#Endroit_2-0-0">2) R&eacute;alisation</a></li>
+<li>
+<ul>
+<li><a href="la_petite_horloge_-_conception_electronique.php.html#Endroit_2-1-0">2-1) Version 1 - 2014</a></li>
+<li>
+<ul>
+<li><a href="la_petite_horloge_-_conception_electronique.php.html#Endroit_2-1-1">2-1-1) Sch&eacute;mas &eacute;lectroniques</a></li>
+<li><a href="la_petite_horloge_-_conception_electronique.php.html#Endroit_2-1-2">2-1-2) Typons</a></li>
+<li><a href="la_petite_horloge_-_conception_electronique.php.html#Endroit_2-1-3">2-1-3) Codes sources</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="la_petite_horloge_-_conception_electronique.php.html#Endroit_3-0-0">3) Fabrication</a></li>
+<li><a href="la_petite_horloge_-_conception_electronique.php.html#Endroit_4-0-0">4) Sujets associ&eacute;s</a></li>
+</ul>
+</div>
+</div>
+<div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="la_petite_horloge_-_conception_electronique.php.html#Haut_de_page">Je veux remonter !</a>&nbsp;|&nbsp;<a href="la_petite_horloge_-_conception_electronique.php.html#Liste_de_depart">Liste</a>
+</div>
+<a id="Endroit_1-0-0"></a>
+<h2>1) Pr&eacute;sentation</h2>
+<a id="Endroit_1-1-0"></a>
+<h3>1-1) Version 1 - 2014</h3>
+<p>La version 1 de la Petite Horloge est constitu&eacute;e de 159 LED CMS.</p>
+<p>Un bloc secteur d&eacute;livrant une tension continue comprise ente 5 Volt et 12 Volt permet de l'alimenter &eacute;lectriquement.<br />
+La sauvegarde de l'heure est assur&eacute;e par une pile bouton de tension nominale 3,3 Volt, de type CR 2032.</p>
+<div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="la_petite_horloge_-_conception_electronique.php.html#Haut_de_page">Je veux remonter !</a>&nbsp;|&nbsp;<a href="la_petite_horloge_-_conception_electronique.php.html#Liste_de_depart">Liste</a>
+</div>
+<a id="Endroit_2-0-0"></a>
+<h2>2) R&eacute;alisation</h2>
+<a id="Endroit_2-1-0"></a>
+<h3>2-1) Version 1 - 2014</h3>
+<a id="Endroit_2-1-1"></a>
+<h4>2-1-1) Sch&eacute;mas &eacute;lectroniques</h4>
+<p>L'ensemble est g&eacute;r&eacute; par un microcontr&ocirc;leur de MICROCHIP, un PIC18F14K22.</p>
+<p>Le pilotage des LED se fait par deux circuits int&eacute;gr&eacute;s sp&eacute;cialis&eacute;s fabriqu&eacute;s par MAXIM, de r&eacute;f&eacute;rence MAX7219.<br />
+Ces composants re&ccedil;oivent des ordres de la part du microcontr&ocirc;leur par l'interm&eacute;diaire d'une liaison SPI priv&eacute;, proc&eacute;d&eacute; aussi appel&eacute; &laquo;&nbsp;<i>Bit - Bang</i>&nbsp;&raquo;.</p>
+<p><a href="../afficheurs_a_led_circuits_de_pilotage/afficheurs_a_led_circuits_de_pilotage_page_1.php.html" title="Ouvrir le lien &laquo;&nbsp;http://www.atrylec.com/fr/electronique/afficheurs_a_led_circuits_de_pilotage/afficheurs_a_led_circuits_de_pilotage_page_1.php&nbsp;&raquo;" >A propos du pilotage d'afficheurs &agrave; LED</a></p>
+<p>La base des temps, incluant la sauvegarde de la date et de l'heure par pile, est une horloge temps r&eacute;el fabriqu&eacute;e par DALLAS SEMICONDUCTOR pour MAXIM, portant la r&eacute;f&eacute;rence DS3231.</p>
+<p><a href="../laboratoire/tests_d_horloges_temps_reel.php.html" title="Ouvrir le lien &laquo;&nbsp;http://www.atrylec.com/fr/electronique/laboratoire/tests_d_horloges_temps_reel.php&nbsp;&raquo;" >Tests d'horloges temps r&eacute;el</a></p>
+<p>Le capteur de temp&eacute;rature int&egrave;gre la conversion analogique - num&eacute;rique, et est interrogeable par un bus I2C.<br />
+Le mod&egrave;le retenu, fabriqu&eacute;e par BURR-BROWN pour TEXAS INSTRUMENTS, est le TMP100.
+Il dialogue avec le module I2C du microcontr&ocirc;leur.</p>
+<p><a href="../laboratoire/tests_de_sondes_de_temperature_i2c.php.html" title="Ouvrir le lien &laquo;&nbsp;http://www.atrylec.com/fr/electronique/laboratoire/tests_de_sondes_de_temperature_i2c.php&nbsp;&raquo;" >Tests de sondes de temp&eacute;rature I2C</a></p>
+<figure>
+<a href="../../../images/SCHEMA_LA_PETITE_HORLOGE_1.png">
+<img alt="SCHEMA_LA_PETITE_HORLOGE_1" src="../../../images/SCHEMA_LA_PETITE_HORLOGE_1_Petite.png">
+</a>
+<figcaption>Le Petit Sch&eacute;ma &eacute;lectronique de la Petite Horloge, version 1</figcaption>
+</figure>
+<a id="Endroit_2-1-2"></a>
+<h4>2-1-2) Typons</h4>
+<figure>
+<a href="../../../images/TYPON_LA_PETITE_HORLOGE_1.png">
+<img alt="TYPON_LA_PETITE_HORLOGE_1" src="../../../images/TYPON_LA_PETITE_HORLOGE_1_Petite.png">
+</a>
+<figcaption>Le Petit Typon de la Petite Horloge, version 1</figcaption>
+</figure>
+<div class="valorisations">
+<div class="programmes">
+<div class="programmes_gauche">
+<img style="width: 32px; height: 32px;" alt="fleche-bas-telecharger-icone-9594-32" src="../../../images/fleche-bas-telecharger-icone-9594-32.png">
+</div>
+<div class="programmes_droite">
+<p>La Petite Horloge, version 1&nbsp;: Petits Sch&eacute;mas &eacute;lectroniques et Petits Typons<br />
+Logiciel de dessin&nbsp;: EAGLE 6.4.0<br />
+<a href="../../../elements/allures/valorisations/programmes.php%3Fprogramme=la_petite_horloge_-_conception_electronique+1+1">T&eacute;l&eacute;charger le fichier<span>Effectuez un clic droit, puis s&eacute;lectionnez l'option &laquo;&nbsp;Enregistrer la cible du lien sous...&nbsp;&raquo;, pour t&eacute;l&eacute;charger le fichier</span></a> (1.97 Mo)</p></div>
+</div>
+</div>
+<a id="Endroit_2-1-3"></a>
+<h4>2-1-3) Codes sources</h4>
+<div class="valorisations">
+<div class="programmes">
+<div class="programmes_gauche">
+<img style="width: 32px; height: 32px;" alt="fleche-bas-telecharger-icone-9594-32" src="../../../images/fleche-bas-telecharger-icone-9594-32.png">
+</div>
+<div class="programmes_droite">
+<p>La Petite Horloge, version 1&nbsp;: Petits Fichiers C<br />
+Cible&nbsp;: PIC18F14K22<br />Compilateur&nbsp;: MCC18<br />
+<a href="../../../elements/allures/valorisations/programmes.php%3Fprogramme=la_petite_horloge_-_conception_electronique+1+2">T&eacute;l&eacute;charger le fichier<span>Effectuez un clic droit, puis s&eacute;lectionnez l'option &laquo;&nbsp;Enregistrer la cible du lien sous...&nbsp;&raquo;, pour t&eacute;l&eacute;charger le fichier</span></a> (62.02 Ko)</p></div>
+</div>
+</div>
+<div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="la_petite_horloge_-_conception_electronique.php.html#Haut_de_page">Je veux remonter !</a>&nbsp;|&nbsp;<a href="la_petite_horloge_-_conception_electronique.php.html#Liste_de_depart">Liste</a>
+</div>
+<a id="Endroit_3-0-0"></a>
+<h2>3) Fabrication</h2>
+<p>La page reprenant la fabrication de l'objet est donn&eacute;e ci-apr&egrave;s&nbsp;:</p>
+<p><a href="la_petite_horloge_-_fabrication.php.html" title="Ouvrir le lien &laquo;&nbsp;http://www.atrylec.com/fr/electronique/realisations/la_petite_horloge_-_fabrication.php&nbsp;&raquo;" >La Petite Horloge - Fabrication</a></p>
+<div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="la_petite_horloge_-_conception_electronique.php.html#Haut_de_page">Je veux remonter !</a>&nbsp;|&nbsp;<a href="la_petite_horloge_-_conception_electronique.php.html#Liste_de_depart">Liste</a>
+</div>
+<a id="Endroit_4-0-0"></a>
+<h2>4) Sujets associ&eacute;s</h2>
+<p>La Petite Horloge est un syst&egrave;me d'affichage &agrave; LED.<br />
+Elle inclus, en plus, un composant servant d'horloge temps r&eacute;el et un capteur de temp&eacute;rature.</p>
+<ul>
+<li><a href="../afficheurs_a_led_circuits_de_pilotage/afficheurs_a_led_circuits_de_pilotage_page_1.php.html" title="Ouvrir le lien &laquo;&nbsp;http://www.atrylec.com/fr/electronique/afficheurs_a_led_circuits_de_pilotage/afficheurs_a_led_circuits_de_pilotage_page_1.php&nbsp;&raquo;" >Afficheurs &agrave; LED&nbsp;: Circuits de pilotage</a>&nbsp;;</li>
+<li><a href="../laboratoire/tests_d_horloges_temps_reel.php.html" title="Ouvrir le lien &laquo;&nbsp;http://www.atrylec.com/fr/electronique/laboratoire/tests_d_horloges_temps_reel.php&nbsp;&raquo;" >Tests d'horloges temps r&eacute;el</a>&nbsp;;</li>
+<li><a href="../laboratoire/tests_de_sondes_de_temperature_i2c.php.html" title="Ouvrir le lien &laquo;&nbsp;http://www.atrylec.com/fr/electronique/laboratoire/tests_de_sondes_de_temperature_i2c.php&nbsp;&raquo;" >Tests de sondes de temp&eacute;rature I2C</a>.</li>
+</ul>
+<p></p>
+<div>
+<div class="menu_article">
+<ul class="menu_article_principal">
+<li><a href="la_petite_horloge.php.html">La Petite Horloge</a></li>
+<li><ul>
+<li><a href="la_petite_horloge.php.html">Pr&eacute;sentation g&eacute;n&eacute;rale</a></li>
+<li><a class="choisi" href="la_petite_horloge_-_conception_electronique.php.html">Conception &eacute;lectronique</a></li>
+<li><a href="la_petite_horloge_-_fabrication.php.html">Fabrication</a></li>
+</ul></li>
+</ul>
+<ul class="menu_article_secondaire">
+<li><a href="la_petite_horloge_-_conception_electronique.php.html#Endroit_1-0-0">1) Pr&eacute;sentation</a></li>
+<li>
+<ul>
+<li><a href="la_petite_horloge_-_conception_electronique.php.html#Endroit_1-1-0">1-1) Version 1 - 2014</a></li>
+</ul>
+</li>
+<li><a href="la_petite_horloge_-_conception_electronique.php.html#Endroit_2-0-0">2) R&eacute;alisation</a></li>
+<li>
+<ul>
+<li><a href="la_petite_horloge_-_conception_electronique.php.html#Endroit_2-1-0">2-1) Version 1 - 2014</a></li>
+<li>
+<ul>
+<li><a href="la_petite_horloge_-_conception_electronique.php.html#Endroit_2-1-1">2-1-1) Sch&eacute;mas &eacute;lectroniques</a></li>
+<li><a href="la_petite_horloge_-_conception_electronique.php.html#Endroit_2-1-2">2-1-2) Typons</a></li>
+<li><a href="la_petite_horloge_-_conception_electronique.php.html#Endroit_2-1-3">2-1-3) Codes sources</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="la_petite_horloge_-_conception_electronique.php.html#Endroit_3-0-0">3) Fabrication</a></li>
+<li><a href="la_petite_horloge_-_conception_electronique.php.html#Endroit_4-0-0">4) Sujets associ&eacute;s</a></li>
+</ul>
+</div>
+</div>
+<div class="commentaires"><a id="Endroits_des_commentaires"></a><p class="sous-titre_commentaires">Commentaires (0)</p><p class="sous-titre_ajouts">Ajouter un commentaire</p>
+<form id="contact" method="post" action="http://atrylec.com/elements/allures/commentaires/verification.php">
+<fieldset>
+<legend>
+Votre pseudo&nbsp;: 
+</legend>
+<p>
+<label for="pseudo">
+Pseudo&nbsp;: 
+</label>
+<input type="text" id="pseudo" name="pseudo" tabindex="1" required="required">
+</p>
+</fieldset>
+<fieldset>
+<legend>
+Votre commentaire&nbsp;: 
+</legend>
+<p>
+<label for="commentaire">
+Commentaire&nbsp;: 
+</label>
+<textarea id="commentaire" name="commentaire" tabindex="2" cols="50" rows="2" required="required">
+</textarea>
+</p>
+</fieldset>
+<div class="bouton_validation_commentaire">
+<input type="submit" name="Poster" value="Poster" />
+</div>
+</form>
+</div><div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="la_petite_horloge_-_conception_electronique.php.html#Haut_de_page">Je veux remonter !</a>
+</div>
+</section>
+<footer>
+<div class="liens">
+<ul>
+<li><a href="../../contact.php.html">ContaCT</a></li>
+</ul>
+</div>
+<div id="choix_style">
+<div class="presentation">Ravaler la fa&ccedil;ade&nbsp;:</div>
+<a href="la_petite_horloge_-_conception_electronique.php%3Fselection=1.html" title="Style 1"><div class="choix choix_bleu">&nbsp;</div></a><a href="la_petite_horloge_-_conception_electronique.php%3Fselection=2.html" title="Style 2"><div class="choix choix_rouge">&nbsp;</div></a><div class="choix choix_orange_choisi">&nbsp;</div></div>
+<div class="remarques">
+<p>Il ne faut pas dire&nbsp;: &laquo;&nbsp;Un ouvrage d'art autrichien
+&nbsp;&raquo;, mais&nbsp;: &laquo;&nbsp;Un pont de Vienne
+&nbsp;&raquo;.</p>
+</div>
+<div class="visites">
+<img style="width: 15px; height: 15px;" alt="6_30" src="../../../images/6_30.png">   <img style="width: 15px; height: 15px;" alt="5_30" src="../../../images/5_30.png">   <img style="width: 15px; height: 15px;" alt="0_30" src="../../../images/0_30.png">   <img style="width: 15px; height: 15px;" alt="9_30" src="../../../images/9_30.png">   <img style="width: 15px; height: 15px;" alt="8_30" src="../../../images/8_30.png">   </div>
+</footer>
+</div>
+</body>
+</html>

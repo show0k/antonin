@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>STM32&nbsp;: Interruptions</title>
+<meta name="description" content="STM32&nbsp;: Interruptions" />
+<meta name="keywords" content="atrylec electronique usart interruption interruptions montage montages realisation realisations microcontroleur entrees sorties programmation code source langage c stm32discovery stm 32 discovery stm32vldiscovery stm 32 vl discovery stm32l discovery stm32 l discovery stm32f100rb tutoriel tutoriels exemple exemples cours" />
+<link rel="stylesheet" media="screen" type="text/css" title="Style 3" href="../../../elements/allures/style_3.css">
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-42331281-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+<body>
+<div id="page">
+<div id="haut">
+<header id="Haut_de_page">
+<div id="principale">
+<p class="titre_principal_haut">
+<a href="../../../index.php.html"><img style="width: 150px;" alt="Affichage_Atrylec_com" src="../../../images/Affichage_Atrylec_com.png" /><span class="invisible">Atrylec</span></a></p>
+<p class="sous-titre_haut">Vous n'&ecirc;tes pas seuls dans l'Univers !</p>
+</div>
+<div id="additionnelle">
+</div>
+</header>
+<nav>
+<ul id="navigation">
+<li><a href="../../../index.php.html" title="Accueil">Accueil</a></li>
+<li><a class="choisi" href="../index.php.html" title="Electronique">Electronique</a></li>
+<li><a href="../../radio/index.php%3Fnumero=0.html" title="Radio">Radio</a></li>
+<li><a href="../../origami/index.php.html" title="Origami">Origami</a></li>
+<li><a href="../../photographies/index.php%3Fnumero=0.html" title="Photographies">Photographies</a></li>
+<li><a href="../../le_grenier/index.php.html" title="Le grenier">Le grenier</a></li>
+<li><a href="../../contact.php.html" title="ContaCT">ContaCT</a></li>
+</ul>
+</nav>
+</div>
+<section>
+<div id="titre">
+<div id="titre_gauche">
+</div>
+<div id="titre_image">
+<img style="width: 100px; height: 100px;" alt="Transistor_100" src="../../../images/Transistor_100.png">
+</div>
+<div id="titre_texte">
+<p>/&nbsp;</p><h1>STM32&nbsp;: Interruptions</h1>
+</div>
+<div id="titre_droite">
+</div>
+</div>
+<div>
+<p id="introduction">STM32&nbsp;: Interruptions.</p>
+</div>
+<p>
+<a id="Liste_de_depart"></a>
+</p>
+<div>
+<div class="menu_article">
+<ul class="menu_article_principal">
+<li><a href="stm32discovery_page_1.php.html">Mises en places</a></li>
+<li><a href="stm32discovery_page_4A.php.html">Programmation de la carte &laquo;&nbsp;STM32VLDISCOVERY&nbsp;&raquo;</a></li>
+<li><ul>
+<li><a href="stm32discovery_page_4A.php.html">Configuration de l'horloge</a></li>
+<li><a href="stm32discovery_page_5A.php.html">Utiliser les ports d'entr&eacute;es-sorties</a></li>
+<li><a class="choisi" href="les_interruptions_STM32F100RB.php.html">STM32F100RB : Interruptions</a></li>
+<li><a href="l_i2c_stm32F100RB.php.html">STM32F100RB : Le bus I2C</a></li>
+<li></li>
+<li><a href="stm32vldiscovery_exemples_programmes.php.html">Exemples de programmes</a></li>
+</ul></li>
+<li><a href="stm32discovery_page_4B.php.html">Programmation de la carte &laquo;&nbsp;STM32L-DISCOVERY&nbsp;&raquo;</a></li>
+</ul>
+<ul class="menu_article_secondaire">
+<li><a href="les_interruptions_STM32F100RB.php%3Fselection=3.html#Endroit_1-0-0">1) D&eacute;finitions et utilit&eacute;s</a></li>
+<li><a href="les_interruptions_STM32F100RB.php%3Fselection=3.html#Endroit_2-0-0">2) Les interruptions et les exceptions du STM32F100RB</a></li>
+<li><a href="les_interruptions_STM32F100RB.php%3Fselection=3.html#Endroit_3-0-0">3) Exemples de programmes qui mettent en &oelig;uvre les interruptions</a></li>
+<li>
+<ul>
+<li><a href="les_interruptions_STM32F100RB.php%3Fselection=3.html#Endroit_3-1-0">3-1) Mettre en &oelig;uvre l'interruption provoqu&eacute;e par la broche &laquo;&nbsp;PA0&nbsp;&raquo;</a></li>
+<li><a href="les_interruptions_STM32F100RB.php%3Fselection=3.html#Endroit_3-2-0">3-2) Faire clignoter une LED avec une interruption</a></li>
+<li><a href="les_interruptions_STM32F100RB.php%3Fselection=3.html#Endroit_3-3-0">3-3) Faire clignoter une LED avec une interruption,<br />
+avec relocalisation de la table des vecteurs</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="les_interruptions_STM32F100RB.php%3Fselection=3.html#Haut_de_page">Je veux remonter !</a>&nbsp;|&nbsp;<a href="les_interruptions_STM32F100RB.php%3Fselection=3.html#Liste_de_depart">Liste</a>
+</div>
+<a id="Endroit_1-0-0"></a>
+<h2>1) D&eacute;finitions et utilit&eacute;s</h2>
+<p>Les interruptions consistent &agrave; mettre en pause l'ex&eacute;cution d'un programme, par un microcontr&ocirc;leur, pour traiter une t&acirc;che qui est prioritaire devant cette ex&eacute;cution de programme.<br />
+Cela est tr&egrave;s utilie, par exemple, pour &eacute;viter de mobiliser les ressources du composant pour produire un d&eacute;lai.<br />
+Par exemple, si l'on souhaite faire clignoter une LED, on peut programmer le microcontr&ocirc;leur de mani&egrave;re &agrave; ce que son programme principal soit interrompu &agrave; intervalles r&eacute;guliers, plut&ocirc;t que de le faire compter en permanence.<br />
+Dans le premier cas de figure, lorsqu'une interruption surviendra, le syst&egrave;me d&eacute;cidera s'il doit allumer ou &eacute;teindre la LED, puis il pourra continuer ce qu'il &eacute;tait en train de faire auparavant.<br />
+Dans le second cas de figure, la LED sera allum&eacute;e ou &eacute;teinte &agrave; chaque fois que le comptage atteindra la limite qui lui aura &eacute;t&eacute; fix&eacute;e, mais le microprocesseur ne pourra rien faire d'autre que de compter et de changer l'&eacute;tat de la LED qui lui sera raccord&eacute;e&nbsp;: le comptage quasi-permanent s'appelle une attente active.</p>
+<p>Voici un exemple du clignotement d'une LED, qui utilise une attente active&nbsp;:</p>
+<div class="codes-sources-c">
+<div class="codes-sources-c-haut">
+<p>Code source&nbsp;: Exemple - Faire clignoter une LED avec une attente active</p>
+</div>
+<div class="codes-sources-c-bas">
+<pre>
+<span style="color: rgb(0, 0, 0);">
+<strong>
+<span style="color: rgb(255, 153, 0);">#include </span></strong>&lt;stm32f10x_lib.h&gt;
+
+<strong><span style="color: rgb(0, 0, 255);">void</span></strong> Delai(<strong><span style="color: rgb(0, 0, 255);">int</span></strong> t)
+{
+	<strong><span style="color: rgb(0, 0, 255);">int</span></strong> i;
+
+	<strong><span style="color: rgb(0, 0, 255);">for</span></strong>(i = <span style="color: rgb(255, 0, 0);">0</span>; i &lt; (<span style="color: rgb(255, 0, 0);">100</span> * t); i++);
+}
+
+<strong><span style="color: rgb(0, 0, 255);">void</span></strong> ConfigPortC()
+{
+	RCC-&gt;APB2ENR |= (<span style="color: rgb(255, 0, 0);">1</span> &lt;&lt; <span style="color: rgb(255, 0, 0);">4</span>);
+
+	GPIOC-&gt;CRH = ((GPIOC-&gt;CRH &amp; <span style="color: rgb(255, 0, 0);">0x00000000</span>) | (<span style="color: rgb(255, 0, 0);">0x00000033</span>));
+}
+
+<strong><span style="color: rgb(0, 0, 255);">int</span></strong> main(<strong><span style="color: rgb(0, 0, 255);">void</span></strong>)
+{
+	ConfigPortC();
+	<strong><span style="color:#0000FF;">while</span></strong>(<span style="color:#FF0000;">1</span>)   <em><span style="color:#009900;">/* Boucle infinie */</span></em>
+	{
+		GPIOC-&gt;ODR |= (<span style="color: rgb(255, 0, 0);">1</span> &lt;&lt; <span style="color: rgb(255, 0, 0);">9</span>); <em><span style="color: rgb(0, 153, 0);">/* Allumage de la LED verte, situ&eacute;e sur la broche PC9 */</span></em>
+		Delai(<span style="color: rgb(255, 0, 0);">1000</span>);
+		GPIOC-&gt;ODR &amp;= ~(<span style="color: rgb(255, 0, 0);">1</span> &lt;&lt; <span style="color: rgb(255, 0, 0);">9</span>); <em><span style="color: rgb(0, 153, 0);">/* Extinction de la LED verte, situ&eacute;e sur la broche PC9 */</span></em>
+		Delai(<span style="color: rgb(255, 0, 0);">1000</span>);
+	}
+}
+
+<strong><span style="color: rgb(0, 0, 255);">void</span></strong> SystemInit (<strong><span style="color: rgb(0, 0, 255);">void</span></strong>)
+{ 
+
+}
+
+</span>
+</pre>
+</div>
+</div>
+<p>Pour donner une analogie entre la notion d'interruptions et le quotidien, imaginons que vous rentriez chez vous, que vous avez tr&egrave;s faim, et que vous n'ayez pas envie de cuisiner.<br />
+Par chance, vous vous rappelez qu'il vous reste une pizza surgel&eacute;e dans votre cong&eacute;lateur.<br />
+Vous la mettez &agrave; r&eacute;chauffer pendant une dix de minutes dans votre four.<br />
+L&agrave;, deux solutions s'offrent &agrave; vous&nbsp;:</p>
+<ul>
+<li>Vous avez une excellente notion du temps, et vous n'avez rien d'autre &agrave; faire de mieux &agrave; ce moment-l&agrave;, c'est pourquoi&nbsp; vous d&eacute;cidez de compter les dix minutes dans votre t&ecirc;te ou &agrave; voix haute,</li>
+<li>Votre four est &eacute;quip&eacute; d'une minuterie, vous r&eacute;glez cette derni&egrave;re sur dix minutes et vous allez faire autre chose pendant la cuisson de votre pizza et le d&eacute;compte du temps de la minuterie du four.</li>
+</ul>
+<p>Le premier cas constitue une attente active, car vous ne pouvez pas faire autre chose de bien int&eacute;ressant pendant votre comptage des dix minutes - vous risqueriez d'&ecirc;tre d&eacute;concentr&eacute; - e dans votre affaire.<br />
+Il s'agit d'une attente active.<br />
+Le second cas, quant &agrave; lui, vous permet d'aller faire autre chose pendant le d&eacute;roulement de l'op&eacute;ration de cuisson.<br />
+En effet, celle-ci sera automatiquement arr&ecirc;t&eacute;e par le four, qui ne manquera pas, au passage, de sonner pour vous interrompre dans l'activit&eacute; que vous seriez en train de faire au moment o&ugrave; les dix minutes se seront &eacute;coul&eacute;es.<br />
+Un dispositif suppl&eacute;mentaire a &eacute;t&eacute; n&eacute;cessaire pour cela&nbsp;: il s'agit de la minuterie et de la sonnette de votre four.</p>
+<p>Ces notions de cuisinier affam&eacute; qui peut faire autre chose que de compter en regardant sa pizza se r&eacute;chauffer, de minuterie et de sonnette se retrouvent au niveau des microcontr&ocirc;leurs.</p>
+<p>Au niveau d'un microprocesseur, le cuisinier peut &ecirc;tre repr&eacute;sent&eacute; par le programme principal du microcontr&ocirc;leur, la minuterie s'apparente aux &laquo;&nbsp;<i>timers</i>&nbsp;&raquo;, qui sont des p&eacute;riph&eacute;riques capables de compter et qui sont inclus dans la plupart des microcontr&ocirc;leurs, et la sonnette correspond au fait que les <i>timers</i> sont capables d'interrompre le programme principal, quand ils ont atteint ou d&eacute;pass&eacute; une certaine valeur de comptage.</p>
+<p>Pour un microcontr&ocirc;leur, une interruption est donc un &eacute;v&eacute;nement qui donne lieu &agrave;&nbsp;:</p>
+<ul>
+<li>La mise en pause de l'ex&eacute;cution normale d'un programme,</li>
+<li>La sauvegarde du contexte d'ex&eacute;cution de ce programme,</li>
+<li>Le traitement d'actions sp&eacute;cifiques associ&eacute;es &agrave; cette interruption, il d'agit de la routine de service de l'interruption, ou &laquo;&nbsp;<i>Interrupt Service Routine</i>&nbsp;&raquo;, terme anglais abr&eacute;g&eacute; en &laquo;&nbsp;<i>ISR</i>&nbsp;&raquo;,</li>
+<li>La restauration du contexte qui &eacute;tait en vigueur avant l'interruption, une fois que le traitement de cette derni&egrave;re ait &eacute;t&eacute; termin&eacute;,</li>
+<li>La reprise de l'ex&eacute;cution du programme qui avait &eacute;t&eacute; interrompu.</li>
+</ul>
+<p>Les interruptions sont des &eacute;v&eacute;nements qui arrivent de fa&ccedil;on asynchrone par rapport &agrave; l'horloge qui cadence le microcontr&ocirc;leur.<br />
+Elles peuvent &ecirc;tre provoqu&eacute;es par un &eacute;l&eacute;ment mat&eacute;riel qui entoure le composant, par exemple par le d&eacute;passement d'une certaine valeur par un timer, par l'appui sur un bouton-poussior, ou &eacute;ventuellement par la r&eacute;ception d'une donn&eacute;e par un p&eacute;riph&eacute;rique capable de faire une telle chose.<br />
+Elles peuvent &eacute;galement &ecirc;tre g&eacute;n&eacute;r&eacute;es par le microcontr&ocirc;leur, par exemple dans le cas d'une division par z&eacute;ro, d'une erreur d&eacute;tect&eacute;e sur un p&eacute;riph&eacute;rique, ou bien alors si la m&eacute;moire vive du microcontr&ocirc;leur est compl&egrave;tement remplie.<br />
+Dans ce cas pr&eacute;cis, on parle alors d' &laquo;&nbsp;interruption syst&egrave;me&nbsp;&raquo;, ou encore d' &laquo;&nbsp;exception&nbsp;&raquo;.</p>
+<div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="les_interruptions_STM32F100RB.php%3Fselection=3.html#Haut_de_page">Je veux remonter !</a>&nbsp;|&nbsp;<a href="les_interruptions_STM32F100RB.php%3Fselection=3.html#Liste_de_depart">Liste</a>
+</div>
+<a id="Endroit_2-0-0"></a>
+<h2>2) Les interruptions et les exceptions du STM32F100RB</h2>
+Dans le STM32F100RB, et plus g&eacute;n&eacute;ralement dans tous les STM32, les interruptions sont associ&eacute;es &agrave; un vecteur d'interruption, qui est cod&eacute; sur 32 bits.<br />
+Chacun de ces vecteurs d'interruption contient l'adresse de la routine de service de l'interruption, cette adresse indique l'emplacement du code qui doit &ecirc;tre trait&eacute; lorsque l'interruption correspondante au vecteur d'interruption survient.<br />
+L'ensemble des vecteurs d'interruption est contenu dans une table, qui est relogeable, ce qui signifie que cette table peut &ecirc;tre d&eacute;plac&eacute;e dans la m&eacute;moire du programme du STM32F100RB.<br />
+Par d&eacute;faut, cette table se situe &agrave; l'adresse 0x0000 0000, dasn la m&eacute;moire flash du STM32.<br />
+Tout vecteur d'interruption est donc localis&eacute; par l'adresse du d&eacute;but de la table, &agrave; laquelle s'ajoute un d&eacute;placement qui est propre &agrave; chaque vecteur d'interruption.<br />
+Le registre qui permet de modifier l'adresse du d&eacute;but s'appelle &laquo;&nbsp;SCB_VTOR&nbsp;&raquo;.<br />
+Chacun de ces vecteurs occupe 32 bits.<br />
+<br />
+Cette table de vecteurs contient, pour ses 16 premi&egrave;res positions, les adresses des exceptions, puis celles des 60 interruptions.<br />
+<br />
+Si la table n'a pas &eacute;t&eacute; d&eacute;plac&eacute;e, la m&eacute;moire du STM32 se pr&eacute;sente alors comme ceci&nbsp;:</p>
+<p></p>
+<table border="1" cellpadding="2" cellspacing="2">
+<tbody>
+<tr>
+<th>Adresses</th>
+<th>Contenu de la m&eacute;moire (donn&eacute;e de 32 bits)</th>
+<th>Signification pour le STM32</th>
+</tr>
+<tr>
+<td>0x0000 0000</td>
+<td>R&eacute;serv&eacute;</td>
+<td>Emplacement de la m&eacute;moire r&eacute;serv&eacute;</td>
+</tr>
+<tr>
+<td>0x0000 0004</td>
+<td>Vecteur de l'exception 0</td>
+<td>Reset</td>
+</tr>
+<tr>
+<td>0x0000 0008</td>
+<td>Vecteur de l'exception 1</td>
+<td>NMI</td>
+</tr>
+<tr>
+<td>0x0000 000C</td>
+<td>Vecteur de l'exception 2</td>
+<td>HardFault (D&eacute;tection d'une erreur au niveau mat&eacute;riel)</td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr>
+<td>0x0000 0040</td>
+<td>Vecteur de l'interruption 0</td>
+<td>Window Watchdog interrupt (Chien de garde)</td>
+</tr>
+<tr>
+<td>0x0000 0044</td>
+<td>Vecteur de l'interruption 1</td>
+<td>
+<p>PVD through EXTI Line detection<br />
+interrupt (Surveillance de la tension d&rsquo;alimentation)</p>
+</td>
+</tr>
+<tr>
+<td>0x0000 0048</td>
+<td>Vecteur de l'interruption 2</td>
+<td>
+<p>Tamper and TimeStamp through<br />
+EXTI line interrupts (Modification sur la broche TAMPER)</p>
+</td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr>
+<td>0x0000 0058</td>
+<td>Vecteur de l'interruption 6</td>
+<td>EXTI Line0 interrupt (D&eacute;tection d&rsquo;une modification sur &laquo;&nbsp;EXTI0&nbsp;&raquo;)</td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr>
+<td>0x0000 0130</td>
+<td>Vecteur de l'interruption 60</td>
+<td>DMA2 Channel5 global interrupt (DMA2 canal 5)</td>
+</tr>
+</tbody>
+</table>
+<p></p>
+<p>La progression dans les adressages se fait de 4 bits en 4 bits, car le contenu de la m&eacute;moire du STM32 est cod&eacute; sur 32 bits, qui occupent 4 octets.</p>
+<p>Pour obtenir l'adresse du vecteur d'une interruption, connaissant son num&eacute;ro et l'adresse du d&eacute;but de la table des vecteurs, il faut suivre la formule suivante&nbsp;:</p>
+<p>Adresse du vecteur = Adresse du d&eacute;but de la table des vecteurs + (4 x 16) + (4 x Num&eacute;ro de l'interruption).</p>
+<p>Il faut, en effet, tenir compte du fait que les 16 premiers vecteurs sont ceux qui correspondent aux 16 exceptions.</p>
+<p>Par exemple, le vecteur de l'interruption qui correspond &agrave; la d&eacute;tection d&rsquo;une modification sur &laquo;&nbsp;EXTI0&nbsp;&raquo;, qui sera utilis&eacute; dans l'un des exemples pr&eacute;sent&eacute;s ci-apr&egrave;s, porte le num&eacute;ro 6.<br />
+Cela signifie que, si la table des vecteurs n'a pas &eacute;t&eacute; d&eacute;plac&eacute;e, l'adresse du vecteur recherch&eacute; est&nbsp;:<br />
+Adresse = 0 + (4 * 16) + (4 x 6),<br />
+Adresse = 0 + 64 + 24,<br />
+Adresse = 88, soit 0x0000 00058, en notation hexad&eacute;cimale.</p>
+<p>Les interruptions ont des priorit&eacute;s qui sont r&eacute;glables, sauf pour les 4 premi&egrave;res exceptions, dont le niveau de priorit&eacute; est fixe.<br />
+La priorit&eacute; est un nombre qui est li&eacute; &agrave; chaque interruption.<br />
+Plus ce nombre est faible, plus l'interruption correspondante est prioritaire.</p>
+<p>Une interruption peut survenir alors qu'une autre interruption est d&eacute;j&agrave; en cours de traitement.<br />
+Si la nouvelle interruption est plus prioritaire que celle qui est ex&eacute;cut&eacute;e, alors cette derni&egrave;re sera mise en pause et laissera la nouvelle interruption se d&eacute;rouler, jusqu'&agrave; ce qu'elle soit termin&eacute;e.</p>
+<p>L'interruption pr&eacute;c&eacute;dente reprendra ensuite.</p>
+<p>Si la nouvelle interruption n'est pas prioritaire, l'interruption en cours de traitement continuera d'&ecirc;tre ex&eacute;cut&eacute;e sans aucune modification de son d&eacute;roulement.</p>
+<p>Les niveaux de priorit&eacute; des exceptions pouvant &ecirc;tre modifi&eacute;s peuvent l'&ecirc;tre gr&acirc;ce aux registres nomm&eacute;s &laquo;&nbsp;SCB_SHPR1&nbsp;&raquo;, &laquo;&nbsp;SCB_SHPR2&nbsp;&raquo; et &laquo;&nbsp;SCB_SHPR3&nbsp;&raquo;.</p>
+<p>Les niveaux de priorit&eacute; des interruptions peuvent l'&ecirc;tre gr&acirc;ce aux registres nomm&eacute;s &laquo;&nbsp;NVIC_IPR0&nbsp;&raquo; &agrave; &laquo;&nbsp;NVIC_IPR20&nbsp;&raquo;.</p>
+<p></p>
+<figure>
+<a href="../../../images/Capture_interruptions_1.png">
+<img alt="Capture_interruptions_1" src="../../../images/Capture_interruptions_1_Petite.png">
+</a>
+<figcaption>Les quatre premi&egrave;res exceptions des STM32F100</figcaption>
+</figure>
+<p></p>
+<figure>
+<a href="../../../images/Capture_interruptions_2.png">
+<img alt="Capture_interruptions_2" src="../../../images/Capture_interruptions_2_Petite.png">
+</a>
+<figcaption>Les 12 derni&egrave;res exceptions et les 20 premi&egrave;res interruptions des STM32F100</figcaption>
+</figure>
+<p></p>
+<figure>
+<a href="../../../images/Capture_interruptions_3.png">
+<img alt="Capture_interruptions_3" src="../../../images/Capture_interruptions_3_Petite.png">
+</a>
+<figcaption>Les interruptions num&eacute;ro 23 &agrave; 53 des STM32F100</figcaption>
+</figure>
+<p></p>
+<figure>
+<a href="../../../images/Capture_interruptions_4.png">
+<img alt="Capture_interruptions_4" src="../../../images/Capture_interruptions_4_Petite.png">
+</a>
+<figcaption>Les 7 derni&egrave;res interruptions des STM32F100</figcaption>
+</figure>
+<p></p>
+<p>Par d&eacute;faut, les interruptions ne sont pas activ&eacute;es.<br />
+On dit qu'elles sont alors &laquo;&nbsp;masqu&eacute;es&nbsp;&raquo;.</p>
+<p>Dans de nombreux environnements de d&eacute;veloppement int&eacute;gr&eacute;s, tels que &laquo;&nbsp;Keil &micro;Vision 4&nbsp;&raquo;, il faut passer par une variable de type &laquo;&nbsp;tableau&nbsp;&raquo; pour activer ou non les interruptions.<br />
+NVIC-&gt;ISER[0] permet de configurer les interruptions nom&eacute;ro 0 &agrave; 31 et<br />
+NVIC-&gt;ISER[1] permet de configurer les interruptions nom&eacute;ro 32 &agrave; 63.</p>
+<p>Par exemple, pour activer l'interruption de la ligne &laquo;&nbsp;EXT0&nbsp;&raquo;, qui a le rang num&eacute;ro 6, il convient d'&eacute;crire&nbsp;:</p>
+<p>NVIC-&gt;ISER[0] |= (1 &lt;&lt; 6);.</p>
+<p>Pour d&eacute;sactiver cette m&ecirc;me interruption, il faut cette fois &eacute;crire&nbsp;:</p>
+<p>NVIC-&gt;ISER[0] &amp;= ~(1 &lt;&lt; 6);.</p>
+<p>Des registres sp&eacute;ciaux permettent &eacute;galement de masquer toutes les interruptions, ou de masquer les interruptions &agrave; partir d'un certain rang.<br />
+Masquer toutes les interruptions peut s'av&eacute;rer utilie lorsque le STM32 s'initialise, en effet, il ne faudrait pas qu'un &eacute;v&eacute;nement externe ne d&eacute;clenche un interruption lorsque le syst&egrave;me n'est pas encore totalement initialis&eacute;, car il pourrait alors avoir un comportement erratique.<br />
+De plus, masquer tout un groupe d'interruptions est utilie lors de l'accomplissement d'une t&acirc;che critique, ne devant pas &ecirc;tre mise en pause.</p>
+<div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="les_interruptions_STM32F100RB.php%3Fselection=3.html#Haut_de_page">Je veux remonter !</a>&nbsp;|&nbsp;<a href="les_interruptions_STM32F100RB.php%3Fselection=3.html#Liste_de_depart">Liste</a>
+</div>
+<a id="Endroit_3-0-0"></a>
+<h2>3) Exemples de programmes qui mettent en &oelig;uvre les interruptions</h2>
+<p></p>
+<a id="Endroit_3-1-0"></a>
+<h3>3-1) Mettre en &oelig;uvre l'interruption provoqu&eacute;e par la broche &laquo;&nbsp;PA0&nbsp;&raquo;</h3>
+L'exemple de code source suivant permet de faire s'allumer la LED bleue de la carte STM32VLDISCOVERY lorsque l'on appuie sur le bouton-poussoir bleu, et de la faire s'&eacute;teindre lorsque l'on rappuie sur ce m&ecirc;me bouton-poussouir.
+<div class="codes-sources-c">
+<div class="codes-sources-c-haut">
+<p>Code source&nbsp;: Exemple 1 - Mettre en &oelig;uvre l'interruption provoqu&eacute;e par la broche &laquo;&nbsp;PA0&nbsp;&raquo;</p>
+</div>
+<div class="codes-sources-c-bas">
+<pre>
+<span style="color: rgb(0, 0, 0);">
+<strong>
+<span style="color:#FF9900;">#include </span></strong>&lt;stm32f10x_lib.h&gt;
+
+<strong><span style="color:#0000FF;">unsigned</span></strong> <strong><span style="color:#0000FF;">char</span></strong> Etat = <span style="color:#FF0000;">0</span>;   <em><span style="color:#009900;">/* Variable globale qui repr&eacute;sente l&#039;&eacute;tat de la LED bleue */</span></em>
+
+<strong><span style="color:#0000FF;">void</span></strong> Delai(<strong><span style="color:#0000FF;">int</span></strong> t)   <em><span style="color:#009900;">/* Fonction qui sert &agrave; faire perdre son temps au STM32F100RB */</span></em>
+{
+	<strong><span style="color:#0000FF;">int</span></strong> i;
+
+	<strong><span style="color:#0000FF;">for</span></strong>(i = <span style="color:#FF0000;">0</span>; i &lt; (<span style="color:#FF0000;">10</span> * t); i++);
+}
+
+<strong><span style="color:#0000FF;">void</span></strong> ConfigurerPortA()
+{
+	RCC-&gt;APB2ENR |= (<span style="color:#FF0000;">1</span> &lt;&lt; <span style="color:#FF0000;">2</span>);   <em><span style="color:#009900;">/* Activitation de l&#039;horloge du port A */</span></em>
+
+	GPIOA-&gt;CRL = ((GPIOA-&gt;CRL &amp; <span style="color:#FF0000;">0x00000000</span>) | (<span style="color:#FF0000;">0x00000004</span>));
+}
+
+<strong><span style="color:#0000FF;">void</span></strong> ConfigurerPortC()
+{
+	RCC-&gt;APB2ENR |= (<span style="color:#FF0000;">1</span> &lt;&lt; <span style="color:#FF0000;">4</span>);   <em><span style="color:#009900;">/* Activitation de l&#039;horloge du port C */</span></em>
+
+	GPIOC-&gt;CRH = ((GPIOC-&gt;CRH &amp; <span style="color:#FF0000;">0x00000000</span>) | (<span style="color:#FF0000;">0x00000003</span>));
+}
+
+<strong><span style="color:#0000FF;">void</span></strong> EXTI0_IRQHandler(<strong><span style="color:#0000FF;">void</span></strong>) __irq   <em><span style="color:#009900;">/* Fonction appel&eacute;e lorsque l&#039;interruption &laquo;&nbsp;EXTI0&nbsp;&raquo; survient */</span></em>
+{   
+	<strong><span style="color:#0000FF;">if</span></strong>(Etat == <span style="color:#FF0000;">0</span>)
+	{
+		GPIOC-&gt;ODR |= (<span style="color:#FF0000;">1</span> &lt;&lt; <span style="color:#FF0000;">8</span>);   <em><span style="color:#009900;">/* Allumage de la LED bleue, situ&eacute;e sur la broche PC8 */</span></em>
+		Etat = <span style="color:#FF0000;">1</span>;
+	}
+
+	<strong><span style="color:#0000FF;">else</span></strong>
+	{
+		GPIOC-&gt;ODR &amp;= ~(<span style="color:#FF0000;">1</span> &lt;&lt; <span style="color:#FF0000;">8</span>);   <em><span style="color:#009900;">/* Extinction de la LED bleue, situ&eacute;e sur la broche PC8 */</span></em>
+		Etat = <span style="color:#FF0000;">0</span>;
+	}
+
+	Delai(<span style="color:#FF0000;">30000</span>);   <em><span style="color:#009900;">/* M&eacute;chant d&eacute;lai anti-rebond */</span></em>
+
+	EXTI-&gt;PR |= (<span style="color:#FF0000;">1</span> &lt;&lt; <span style="color:#FF0000;">0</span>);   <em><span style="color:#009900;">/* R&eacute;armement de l&#039;interruption &laquo;&nbsp;EXTI0&nbsp;&raquo; */</span></em>
+}
+
+<strong><span style="color:#0000FF;">void</span></strong> initITBouton()
+{
+	EXTI-&gt;IMR |= <span style="color:#FF0000;">1</span>;   <em><span style="color:#009900;">/* Autorisation de l&#039;interruption de la ligne 0, correspondant &agrave; la broche &laquo;&nbsp;PA0&nbsp;&raquo; */</span></em>
+	EXTI-&gt;RTSR |= <span style="color:#FF0000;">1</span>;   <em><span style="color:#009900;">/* Activation du d&eacute;clenchement de l&#039;interruption sur un front montant de la broche &laquo;&nbsp;PA0&nbsp;&raquo; */</span></em>   
+	AFIO-&gt;EXTICR[<span style="color:#FF0000;">1</span>] &amp;= ~(<span style="color:#FF0000;">0x0000000F</span>);   <em><span style="color:#009900;">/* L&#039;interruption &laquo;&nbsp;EXTI0&nbsp;&raquo; doit &ecirc;tre provoqu&eacute;e par une modification
+d&#039;&eacute;tat de la broche &laquo;&nbsp;PA0&nbsp;&raquo; */</span></em>
+
+	NVIC-&gt;ISER[<span style="color:#FF0000;">0</span>] |= (<span style="color:#FF0000;">1</span> &lt;&lt; (EXTI0_IRQChannel  &amp; <span style="color:#FF0000;">0x1F</span>));   <em><span style="color:#009900;">/* Autorisation de l&#039;interruption &laquo;&nbsp;EXTI0&nbsp;&raquo;,
+qui porte le num&eacute;ro 6,
+contenu dans la variable &laquo;&nbsp;EXTI0_IRQChannel&nbsp;&raquo; */</span></em>
+
+}
+
+<strong><span style="color:#0000FF;">int</span></strong> main(<strong><span style="color:#0000FF;">void</span></strong>)
+{
+	ConfigurerPortA();   <em><span style="color:#009900;">/* Configuration de la broche reli&eacute; au bouton-poussoir */</span></em>   
+	ConfigurerPortC();   <em><span style="color:#009900;">/* Configuration des broches reli&eacute;es &agrave; la LED verte et &agrave; la LED bleue */</span></em>   
+
+	initITBouton();   <em><span style="color:#009900;">/* Mise en place de l&#039;interruption &laquo;&nbsp;EXTI0&nbsp;&raquo;,
+de fa&ccedil;on &agrave; ce qu&#039;elle soit d&eacute;clench&eacute;e
+par l&#039;appui sur le bouton-poussoir bleu */</span></em> 
+
+	<strong><span style="color:#0000FF;">while</span></strong>(<span style="color:#FF0000;">1</span>)   <em><span style="color:#009900;">/* Boucle infinie */</span></em>
+	{
+
+	}
+}
+
+<strong><span style="color:#0000FF;">void</span></strong> SystemInit(<strong><span style="color:#0000FF;">void</span></strong>)
+{
+
+}
+
+</span>
+</pre>
+</div>
+</div>
+<a id="Endroit_3-2-0"></a>
+<h3>3-2) Faire clignoter une LED avec une interruption</h3>
+<p>Le code source qui suit permet de configurer le timer 2, de mani&egrave;re &agrave; ce qu'il g&eacute;n&egrave;re des interruptions de fa&ccedil;on p&eacute;riodique, le nombre de ces interruptions n&eacute;cessaire pour faire changer d'&eacute;tat la LED verte est de (DELAIS / 2), soit de 500, dans le cas pr&eacute;sent&eacute; ici.</p>
+<div class="codes-sources-c">
+<div class="codes-sources-c-haut">
+<p>Code source&nbsp;: Exemple 2 - Faire clignoter une LED avec une interruption</p>
+</div>
+<div class="codes-sources-c-bas">
+<pre>
+<span style="color: rgb(0, 0, 0);">
+<strong>
+<span style="color: rgb(255, 153, 0);">#include </span></strong>&lt;stm32f10x_lib.h&gt;
+
+<strong><span style="color: rgb(255, 153, 0);">#define </span></strong>DELAIS <span style="color: rgb(255, 0, 0);">1000</span>
+
+<em><span style="color: rgb(0, 153, 0);">/* Variables   globales */</span></em>
+
+<strong><span style="color: rgb(0, 0, 255);">int</span></strong> compteur = <span style="color: rgb(255, 0, 0);">0</span>;
+
+<strong><span style="color: rgb(0, 0, 255);">void</span></strong> ConfigPortC()
+{
+	RCC-&gt;APB2ENR |= (<span style="color: rgb(255, 0, 0);">1</span> &lt;&lt; <span style="color: rgb(255, 0, 0);">4</span>);
+
+	GPIOC-&gt;CRH = ((GPIOC-&gt;CRH &amp; <span style="color: rgb(255, 0, 0);">0x00000000</span>) | (<span style="color: rgb(255, 0, 0);">0x00000033</span>));
+}
+
+<strong><span style="color: rgb(0, 0, 255);">void</span></strong> initTimer2()
+{            
+	RCC-&gt;APB1ENR |= <span style="color: rgb(255, 0, 0);">0x1</span>; <em><span style="color: rgb(0, 153, 0);">/* Activation du timer 2 */</span></em>
+	
+	TIM2-&gt;CR1 = <span style="color: rgb(255, 0, 0);">0x00000095</span>;   <em><span style="color: rgb(0, 153, 0);">/* Le timer 2 utilise l'horloge interne, sans division.
+Il recharge automatiquement la valeur contenue dans le registre &laquo;&nbsp;TIM2-&gt;ARR&nbsp;&raquo;,
+lorsque le comptage est arriv&eacute; &agrave; son terme.
+Le timer 2 va fonctionner en mode "Edge-aligned".
+Le timer 2 fonctionnera en mode de d&eacute;comptage.
+Cela signifie donc qu'&agrave; chaque fois que le timer 2 arrivera en fin de cycle,
+une interruption sera g&eacute;n&eacute;r&eacute;e.
+Le timer 2 fonctionnera de mani&egrave;re cyclique, et non pas une seule fois. */</span></em>
+
+	TIM2-&gt;ARR = <span style="color: rgb(255, 0, 0);">0x00000FA0</span>;
+
+	TIM2-&gt;DIER = TIM2-&gt;DIER | (<span style="color: rgb(255, 0, 0);">1</span> &lt;&lt; <span style="color: rgb(255, 0, 0);">0</span>);   <em><span style="color: rgb(0, 153, 0);">/* Permettre la mise &agrave; jour sur une interruption */</span></em>
+}
+
+<strong><span style="color: rgb(0, 0, 255);">void</span></strong> TIM2_IRQHandler(<strong><span style="color: rgb(0, 0, 255);">void</span></strong>) __irq 
+{
+	compteur++;
+
+	<strong><span style="color: rgb(0, 0, 255);">if</span></strong>(compteur == (DELAIS / <span style="color: rgb(255, 0, 0);">2</span>))
+	{
+		GPIOC-&gt;ODR |= (<span style="color: rgb(255, 0, 0);">1</span> &lt;&lt; <span style="color: rgb(255, 0, 0);">9</span>); <em><span style="color: rgb(0, 153, 0);">/* Allumage de la LED verte, situ&eacute;e sur la broche PC9 */</span></em>
+	}
+
+	<strong><span style="color: rgb(0, 0, 255);">if</span></strong>(compteur &gt; DELAIS)
+	{
+		GPIOC-&gt;ODR &amp;= ~(<span style="color: rgb(255, 0, 0);">1</span> &lt;&lt; <span style="color: rgb(255, 0, 0);">9</span>); <em><span style="color: rgb(0, 153, 0);">/* Extinction de la LED verte, situ&eacute;e sur la broche PC9 */</span></em>
+
+		compteur = <span style="color: rgb(255, 0, 0);">0</span>;
+	}
+
+	TIM2-&gt;SR &amp;= (~<span style="color: rgb(255, 0, 0);">1</span>); <em><span style="color: rgb(0, 153, 0);">/* Ceci doit toujours &ecirc;tre la derni&egrave;re ligne de l'interruption.<br />On r&eacute;arme l'interruption du timer 2 */</span></em>
+}
+
+<strong><span style="color: rgb(0, 0, 255);">void</span></strong> initITTimer2()
+{
+	<em><span style="color: rgb(0, 153, 0);">/* Activation de l'interruption */</span></em>
+	NVIC-&gt;ISER[<span style="color: rgb(255, 0, 0);">0</span>] |= (<span style="color: rgb(255, 0, 0);">1</span> &lt;&lt; <span style="color: rgb(255, 0, 0);">28</span>);   <em><span style="color: rgb(0, 153, 0);">/* L'interruption qui correspond au timer 2 est situ&eacute;e en position 28,<br />dans la table des vecteurs */</span></em>
+
+}
+
+<strong><span style="color: rgb(0, 0, 255);">int</span></strong> main(<strong><span style="color: rgb(0, 0, 255);">void</span></strong>)
+{
+	ConfigPortC();
+
+	initTimer2();
+	initITTimer2();
+
+	<strong><span style="color:#0000FF;">while</span></strong>(<span style="color:#FF0000;">1</span>)   <em><span style="color:#009900;">/* Boucle infinie */</span></em>
+	{
+
+	}
+}
+
+<strong><span style="color: rgb(0, 0, 255);">void</span></strong> SystemInit (<strong><span style="color: rgb(0, 0, 255);">void</span></strong>)
+{ 
+
+}
+
+</span>
+</pre>
+</div>
+</div>
+<a id="Endroit_3-3-0"></a>
+<h3>3-3) Faire clignoter une LED avec une interruption,<br />
+avec relocalisation de la table des vecteurs</h3>
+<div class="codes-sources-c">
+<div class="codes-sources-c-haut">
+<p>Code source&nbsp;: Exemple 3 - Faire clignoter une LED avec une interruption, avec relocalisation</p>
+</div>
+<div class="codes-sources-c-bas">
+<pre>
+<span style="color: rgb(0, 0, 0);">
+<strong>
+<span style="color: rgb(255, 153, 0);">#include </span></strong>&lt;stm32f10x_lib.h&gt;
+
+<strong><span style="color: rgb(255, 153, 0);">#define </span></strong>DELAIS <span style="color: rgb(255, 0, 0);">1000</span>
+
+<em><span style="color: rgb(0, 153, 0);">/* Variables   globales */</span></em>
+<strong><span style="color: rgb(0, 0, 255);">int</span></strong> compteur = <span style="color: rgb(255, 0, 0);">0</span>;
+
+
+<strong><span style="color: rgb(0, 0, 255);">void</span></strong> ConfigPortC()
+{
+	RCC-&gt;APB2ENR |= (<span style="color: rgb(255, 0, 0);">1</span> &lt;&lt; <span style="color: rgb(255, 0, 0);">4</span>);
+
+	GPIOC-&gt;CRH = ((GPIOC-&gt;CRH &amp; <span style="color: rgb(255, 0, 0);">0x00000000</span>) | (<span style="color: rgb(255, 0, 0);">0x00000033</span>));
+}
+
+<strong><span style="color: rgb(0, 0, 255);">void</span></strong> initTimer2()
+{            
+	RCC-&gt;APB1ENR |= <span style="color: rgb(255, 0, 0);">0x1</span>; <em><span style="color: rgb(0, 153, 0);">/* Activation du timer 2 */</span></em>
+
+	TIM2-&gt;CR1 = <span style="color: rgb(255, 0, 0);">0x00000095</span>;   <em><span style="color: rgb(0, 153, 0);">/* Le timer 2 utilise l'horloge interne, sans division.
+Il recharge automatiquement la valeur contenue dans le registre &laquo;&nbsp;TIM2-&gt;ARR&nbsp;&raquo;,
+lorsque le comptage est arriv&eacute; &agrave; son terme.
+Le timer 2 va fonctionner en mode "Edge-aligned".
+Le timer 2 fonctionnera en mode de d&eacute;comptage.
+Cela signifie donc qu'&agrave; chaque fois que le timer 2 arrivera en fin de cycle,
+une interruption sera g&eacute;n&eacute;r&eacute;e.
+Le timer 2 fonctionnera de mani&egrave;re cyclique, et non pas une seule fois. */</span></em>
+
+	TIM2-&gt;ARR = <span style="color: rgb(255, 0, 0);">0x00000FA0</span>;
+
+	TIM2-&gt;DIER = TIM2-&gt;DIER | (<span style="color: rgb(255, 0, 0);">1</span> &lt;&lt; <span style="color: rgb(255, 0, 0);">0</span>);   <em><span style="color: rgb(0, 153, 0);">/* Permettre la mise &agrave; jour sur une interruption */</span></em>
+}
+
+<strong><span style="color: rgb(0, 0, 255);">void</span></strong> it_timer2(<strong><span style="color: rgb(0, 0, 255);">void</span></strong>) __irq 
+{
+	compteur++;
+
+	<strong><span style="color: rgb(0, 0, 255);">if</span></strong>(compteur == (DELAIS / <span style="color: rgb(255, 0, 0);">2</span>))
+	{
+		GPIOC-&gt;ODR |= (<span style="color: rgb(255, 0, 0);">1</span> &lt;&lt; <span style="color: rgb(255, 0, 0);">9</span>); <em><span style="color: rgb(0, 153, 0);">/* Allumage de la LED verte, situ&eacute;e sur la broche PC9 */</span></em>
+	}
+
+	<strong><span style="color: rgb(0, 0, 255);">if</span></strong>(compteur &gt; DELAIS)
+	{
+		GPIOC-&gt;ODR &amp;= ~(<span style="color: rgb(255, 0, 0);">1</span> &lt;&lt; <span style="color: rgb(255, 0, 0);">9</span>); <em><span style="color: rgb(0, 153, 0);">/* Extinction de la LED verte, situ&eacute;e sur la broche PC9 */</span></em>
+
+		compteur = <span style="color: rgb(255, 0, 0);">0</span>;
+	}
+
+	TIM2-&gt;SR &amp;= (~<span style="color: rgb(255, 0, 0);">1</span>); <em><span style="color: rgb(0, 153, 0);">/* Ceci doit toujours &ecirc;tre la derni&egrave;re ligne de l'interruption.<br />On r&eacute;arme l'interruption du compteur 2 */</span></em>
+}
+
+<strong><span style="color: rgb(0, 0, 255);">void</span></strong> initITTimer2()
+{
+	<strong><span style="color: rgb(0, 0, 255);">int</span></strong> adrExcept;
+	<strong><span style="color: rgb(0, 0, 255);">int</span></strong> * pt;   <em><span style="color: rgb(0, 153, 0);">/* D&eacute;claration d'un pointeur sur un nombre entier */</span></em>
+	pt = (<strong><span style="color: rgb(0, 0, 255);">int</span></strong>*)<span style="color: rgb(255, 0, 0);">0x200001B0</span>;   <em><span style="color: rgb(0, 153, 0);">/* On veut que la nouvelle adresse<br />du d&eacute;but de la table des vecteurs soit de 0x20000100,
+												et le d&eacute;placement du vecteur de l'interruption du Timer 2<br /> par rapport au d&eacute;but de cette table est de 0x000000B0,
+												donc 0x20000100 + 0x000000B0 = 0x200001B0 */</span></em>
+
+	<em><span style="color: rgb(0, 153, 0);">/* 1) Nouvelle adresse du d&eacute;but de la table des vecteurs */</span></em>
+	SCB-&gt;VTOR = <span style="color: rgb(255, 0, 0);">0x20000100</span>;
+
+	<em><span style="color: rgb(0, 153, 0);">/* 2) Ecriture du vecteur correspondant au Timer 2, dans la table des vecteurs */</span></em>
+	adrExcept = (<strong><span style="color: rgb(0, 0, 255);">int</span></strong>)it_timer2;   <em><span style="color: rgb(0, 153, 0);">/* R&eacute;cup&eacute;ration de l'adresse qui correspond au d&eacute;but<br />de la fonction &laquo;&nbsp;it_timer2&nbsp;&raquo; */</span></em>
+
+	*pt   = adrExcept;   <em><span style="color: rgb(0, 153, 0);">/* Ecriture de cette adresse &agrave; l'endroit que pointe adrExecpt,
+												c'est-&agrave;-dire &eacute;criture de la valeur de l'adresse qui correspond<br />au d&eacute;but de la fonction &laquo;&nbsp;it_timer2&nbsp;&raquo;,
+												dans la case m&eacute;moire num&eacute;ro 0x200001B0 */</span></em>
+
+	<em><span style="color: rgb(0, 153, 0);">/* 3) Activation de l'interruption */</span></em>
+	NVIC-&gt;ISER[<span style="color: rgb(255, 0, 0);">0</span>] |= (<span style="color: rgb(255, 0, 0);">1</span> &lt;&lt; <span style="color: rgb(255, 0, 0);">28</span>);   <em><span style="color: rgb(0, 153, 0);">/* L'interruption qui correspond au Timer 2 est situ&eacute;e en position 28,<br />dans la table des vecteurs */</span></em>
+
+}
+
+<strong><span style="color: rgb(0, 0, 255);">int</span></strong> main(<strong><span style="color: rgb(0, 0, 255);">void</span></strong>)
+{
+	ConfigPortC();
+
+	initTimer2();
+
+	initITTimer2();
+
+	<strong><span style="color:#0000FF;">while</span></strong>(<span style="color:#FF0000;">1</span>)   <em><span style="color:#009900;">/* Boucle infinie */</span></em>
+	{
+
+	}
+}
+
+<strong><span style="color: rgb(0, 0, 255);">void</span></strong> SystemInit (<strong><span style="color: rgb(0, 0, 255);">void</span></strong>)
+{ 
+
+}
+<br />
+</span>
+</pre>
+</div>
+</div>
+<div>
+<div class="menu_article">
+<ul class="menu_article_principal">
+<li><a href="stm32discovery_page_1.php.html">Mises en places</a></li>
+<li><a href="stm32discovery_page_4A.php.html">Programmation de la carte &laquo;&nbsp;STM32VLDISCOVERY&nbsp;&raquo;</a></li>
+<li><ul>
+<li><a href="stm32discovery_page_4A.php.html">Configuration de l'horloge</a></li>
+<li><a href="stm32discovery_page_5A.php.html">Utiliser les ports d'entr&eacute;es-sorties</a></li>
+<li><a class="choisi" href="les_interruptions_STM32F100RB.php.html">STM32F100RB : Interruptions</a></li>
+<li><a href="l_i2c_stm32F100RB.php.html">STM32F100RB : Le bus I2C</a></li>
+<li></li>
+<li><a href="stm32vldiscovery_exemples_programmes.php.html">Exemples de programmes</a></li>
+</ul></li>
+<li><a href="stm32discovery_page_4B.php.html">Programmation de la carte &laquo;&nbsp;STM32L-DISCOVERY&nbsp;&raquo;</a></li>
+</ul>
+<ul class="menu_article_secondaire">
+<li><a href="les_interruptions_STM32F100RB.php%3Fselection=3.html#Endroit_1-0-0">1) D&eacute;finitions et utilit&eacute;s</a></li>
+<li><a href="les_interruptions_STM32F100RB.php%3Fselection=3.html#Endroit_2-0-0">2) Les interruptions et les exceptions du STM32F100RB</a></li>
+<li><a href="les_interruptions_STM32F100RB.php%3Fselection=3.html#Endroit_3-0-0">3) Exemples de programmes qui mettent en &oelig;uvre les interruptions</a></li>
+<li>
+<ul>
+<li><a href="les_interruptions_STM32F100RB.php%3Fselection=3.html#Endroit_3-1-0">3-1) Mettre en &oelig;uvre l'interruption provoqu&eacute;e par la broche &laquo;&nbsp;PA0&nbsp;&raquo;</a></li>
+<li><a href="les_interruptions_STM32F100RB.php%3Fselection=3.html#Endroit_3-2-0">3-2) Faire clignoter une LED avec une interruption</a></li>
+<li><a href="les_interruptions_STM32F100RB.php%3Fselection=3.html#Endroit_3-3-0">3-3) Faire clignoter une LED avec une interruption,<br />
+avec relocalisation de la table des vecteurs</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="commentaires"><a id="Endroits_des_commentaires"></a><p class="sous-titre_commentaires">Commentaires (2)</p><div class="commentaire">
+<div class="commentaire-haut">
+<div class="commentaire-haut-gauche">
+<p><i>Atrylec</i></p></div>
+<div class="commentaire-haut-droite">
+<p>Le vendredi 13 juin 2014 &agrave; 9:22</p></div>
+</div>
+<div class="commentaire-bas">
+<p>Bonjour,<br/>
+<br/>
+Je vous remercie pour cette critique positive !<br/>
+<br/>
+Relocaliser la table des vecteurs d'interruptions est une op&eacute;ration qui peut &ecirc;tre n&eacute;cessaire lorsque vous utilisez un &laquo;&nbsp;bootloader&nbsp;&raquo; ou un syst&egrave;me d'exploitation, qui utilisent les adresses m&eacute;moires des vecteurs d'interruptions !<br/>
+Dans le cas contraire, votre microcontr&ocirc;leur ne fera pas ce que vous souhaiterez !<br/>
+<br/>
+Si vous avez d'autres questions, n'h&eacute;sitez pas &agrave; me les poser !<br/></p></div>
+</div>
+<div class="commentaire">
+<div class="commentaire-haut">
+<div class="commentaire-haut-gauche">
+<p>eaflip</p></div>
+<div class="commentaire-haut-droite">
+<p>Le jeudi 12 juin 2014 &agrave; 22:17</p></div>
+</div>
+<div class="commentaire-bas">
+<p>Bonjour, super ton site mais je ne comprend pas a quoi sert de relocaliser la table des vecteurs, peut tu m'expliquer?<br />
+merci</p></div>
+</div>
+<p class="sous-titre_ajouts">Ajouter un commentaire</p>
+<form id="contact" method="post" action="http://atrylec.com/elements/allures/commentaires/verification.php">
+<fieldset>
+<legend>
+Votre pseudo&nbsp;: 
+</legend>
+<p>
+<label for="pseudo">
+Pseudo&nbsp;: 
+</label>
+<input type="text" id="pseudo" name="pseudo" tabindex="1" required="required">
+</p>
+</fieldset>
+<fieldset>
+<legend>
+Votre commentaire&nbsp;: 
+</legend>
+<p>
+<label for="commentaire">
+Commentaire&nbsp;: 
+</label>
+<textarea id="commentaire" name="commentaire" tabindex="2" cols="50" rows="2" required="required">
+</textarea>
+</p>
+</fieldset>
+<div class="bouton_validation_commentaire">
+<input type="submit" name="Poster" value="Poster" />
+</div>
+</form>
+</div><div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="les_interruptions_STM32F100RB.php%3Fselection=3.html#Haut_de_page">Je veux remonter !</a>
+</div>
+</section>
+<footer>
+<div class="liens">
+<ul>
+<li><a href="../../contact.php.html">ContaCT</a></li>
+</ul>
+</div>
+<div id="choix_style">
+<div class="presentation">Ravaler la fa&ccedil;ade&nbsp;:</div>
+<a href="les_interruptions_STM32F100RB.php%3Fselection=1.html" title="Style 1"><div class="choix choix_bleu">&nbsp;</div></a><a href="les_interruptions_STM32F100RB.php%3Fselection=2.html" title="Style 2"><div class="choix choix_rouge">&nbsp;</div></a><div class="choix choix_orange_choisi">&nbsp;</div></div>
+<div class="remarques">
+<p>Il ne faut pas dire&nbsp;: &laquo;&nbsp;L'interruption, c'est &agrave; prendre ou &agrave; laisser
+&nbsp;&raquo;, mais&nbsp;: &laquo;&nbsp;L'interruption, on l'aime ou on l'acquitte
+&nbsp;&raquo;.</p>
+</div>
+<div class="visites">
+<img style="width: 15px; height: 15px;" alt="6_30" src="../../../images/6_30.png">   <img style="width: 15px; height: 15px;" alt="5_30" src="../../../images/5_30.png">   <img style="width: 15px; height: 15px;" alt="0_30" src="../../../images/0_30.png">   <img style="width: 15px; height: 15px;" alt="9_30" src="../../../images/9_30.png">   <img style="width: 15px; height: 15px;" alt="9_30" src="../../../images/9_30.png">   </div>
+</footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>Les expanseurs de port I2C</title>
+<meta name="description" content="Les expanseurs de port I2C." />
+<meta name="keywords" content="atrylec electronique schema schemas montage montages realisation realisations microcontroleur entrees sorties programmation code source langage c circuit circuits integre integres expanseur expanseurs port ports i2c remote io expander expanders PCF8574 PCF8574A PCF8575 MCP23016 MCP23017 tutoriel tutoriels exemple exemples cours creer projet projets configurer configuration configurations" />
+<link rel="stylesheet" media="screen" type="text/css" title="Style 2" href="../../../elements/allures/style_2.css">
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-42331281-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</head>
+<body>
+<div id="page">
+<div id="haut">
+<header id="Haut_de_page">
+<div id="principale">
+<p class="titre_principal_haut">
+<a href="../../../index.php.html"><img style="width: 150px;" alt="Affichage_Atrylec_com" src="../../../images/Affichage_Atrylec_com.png" /><span class="invisible">Atrylec</span></a></p>
+<p class="sous-titre_haut">Vous n'&ecirc;tes pas seuls dans l'Univers !</p>
+</div>
+<div id="additionnelle">
+</div>
+</header>
+<nav>
+<ul id="navigation">
+<li><a href="../../../index.php.html" title="Accueil">Accueil</a></li>
+<li><a class="choisi" href="../index.php.html" title="Electronique">Electronique</a></li>
+<li><a href="../../radio/index.php%3Fnumero=0.html" title="Radio">Radio</a></li>
+<li><a href="../../origami/index.php.html" title="Origami">Origami</a></li>
+<li><a href="../../photographies/index.php%3Fnumero=0.html" title="Photographies">Photographies</a></li>
+<li><a href="../../le_grenier/index.php.html" title="Le grenier">Le grenier</a></li>
+<li><a href="../../contact.php.html" title="ContaCT">ContaCT</a></li>
+</ul>
+</nav>
+</div>
+<section>
+<div id="titre">
+<div id="titre_gauche">
+</div>
+<div id="titre_image">
+<img style="width: 100px; height: 100px;" alt="Transistor_100" src="../../../images/Transistor_100.png">
+</div>
+<div id="titre_texte">
+<p>/&nbsp;</p><h1>Les expanseurs de port I2C</h1>
+</div>
+<div id="titre_droite">
+</div>
+</div>
+<div>
+<p id="introduction">Les expanseurs de port I2C.<br />
+Pour de nombreuses r&eacute;alisations &eacute;lectroniques &agrave; base de microcontr&ocirc;leur ou de FPGA, il est n&eacute;c&eacute;ssaire d'avoir un nombre cons&eacute;quent d'entr&eacute;es-sorties.</p>
+</div>
+<p>
+<a id="Liste_de_depart"></a>
+</p>
+<div>
+<div class="menu_article">
+<ul class="menu_article_principal">
+<li><a href="les_expanseurs_de_port_i2c_page_1.php.html">Les expanseurs de port I2C</a></li>
+</ul>
+<ul class="menu_article_secondaire">
+<li><a href="les_expanseurs_de_port_i2c_page_1.php%3Fselection=2.html#Endroit_1-0-0">1) Int&eacute;r&ecirc;t et pr&eacute;sentation</a></li>
+<li><a href="les_expanseurs_de_port_i2c_page_1.php%3Fselection=2.html#Endroit_2-0-0">2) Fonctionnement d'un expanseur de port I2C</a></li>
+<li><a href="les_expanseurs_de_port_i2c_page_1.php%3Fselection=2.html#Endroit_3-0-0">3) Quelques essais d'expanseurs de port I2C</a></li>
+<li>
+<ul>
+<li><a href="les_expanseurs_de_port_i2c_page_1.php%3Fselection=2.html#Endroit_3-1-0">3-1) PCF8574 et PCF8574A</a></li>
+<li><a href="les_expanseurs_de_port_i2c_page_1.php%3Fselection=2.html#Endroit_3-2-0">3-2) PCF8575</a></li>
+<li><a href="les_expanseurs_de_port_i2c_page_1.php%3Fselection=2.html#Endroit_3-3-0">3-3) MCP23016</a></li>
+<li><a href="les_expanseurs_de_port_i2c_page_1.php%3Fselection=2.html#Endroit_3-4-0">3-4) MCP23017</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="les_expanseurs_de_port_i2c_page_1.php%3Fselection=2.html#Haut_de_page">Je veux remonter !</a>&nbsp;|&nbsp;<a href="les_expanseurs_de_port_i2c_page_1.php%3Fselection=2.html#Liste_de_depart">Liste</a>
+</div>
+<a id="Endroit_1-0-0"></a>
+<h2>1) Int&eacute;r&ecirc;t et pr&eacute;sentation</h2>
+<p>Il s'av&egrave;re parfois &eacute;galement utile de pouvoir
+lire des entr&eacute;es ou de commander des sorties depuis la carte
+de commande d'un appareil, alors que ces entr&eacute;es-sorties ne
+se situent pas &agrave; proximit&eacute; imm&eacute;diate
+de cette carte de commande.</p>
+<p>Plut&ocirc;t que de recourir &agrave;
+des&nbsp;microcontr&ocirc;leurs ou &agrave; des FPGA
+poss&eacute;dant beaucoup de broches d'entr&eacute;es-sorties,
+ou &agrave; passer de nombreux c&acirc;bles entre deux endroits
+&eacute;loign&eacute;s d'un dispositif, il peut &ecirc;tre
+int&eacute;ressant de recourir &agrave; des expanseurs de
+ports, en particulier &agrave; des expanseurs de ports
+command&eacute;s par un bus I2C ( &laquo;&nbsp;<i>Remote I/O
+expander for I2C-bus</i>&nbsp;&raquo; ).</p>
+<div class="valorisations">
+<div class="informations">
+<div class="informations-gauche">
+<img style="width: 32px; height: 32px;" alt="documentaires-des-proprietes-icone-5224-32" src="../../../images/documentaires-des-proprietes-icone-5224-32.png">
+</div>
+<div class="informations-droite">
+<p>Exemple&nbsp;: Supposons que vous ayez une machine compos&eacute;e d'un panneau avant et d'une carte de commande, &eacute;quip&eacute;e d'un microcontr&ocirc;leur.<br />
+Le panneau avant contient huit voyants lumineux.<br />
+Sans expanseur de port I2C, il faudrait r&eacute;server huit sorties du microcontr&ocirc;leur pour les huit voyants lumineux.<br />
+Puis, il conviendrait de faire passer au moins neuf fils entre la carte de commande et le panneau avant, si l'on consid&egrave;re que l'on utilise un fil par voyant, et un fil pour le point commun.<br />
+Avec un expanseur de port I2C, il suffit de r&eacute;server deux broches du microcontr&ocirc;leur pour g&eacute;rer le bus I2C, et le c&acirc;blage entre&nbsp;la carte de commande et la face avant ne n&eacute;cessite plus que quatre fils&nbsp;: deux pour alimenter l'expanseur de port I2C, et deux pour faire transiter les donn&eacute;es.</p></div>
+</div>
+</div>
+<div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="les_expanseurs_de_port_i2c_page_1.php%3Fselection=2.html#Haut_de_page">Je veux remonter !</a>&nbsp;|&nbsp;<a href="les_expanseurs_de_port_i2c_page_1.php%3Fselection=2.html#Liste_de_depart">Liste</a>
+</div>
+<a id="Endroit_2-0-0"></a>
+<h2>2) Fonctionnement d'un expanseur de port I2C</h2>
+<p>Un expanseur de port I2C dispose de g&eacute;n&eacute;ralement 8 ou 16 entr&eacute;s-sorties dont l'&eacute;tat peut &ecirc;tre consult&eacute; ou modifi&eacute; par un microcontr&ocirc;leur ou un FPGA connect&eacute; gr&acirc;ce &agrave; un bus I2C.</p>
+<p>Ce bus est compos&eacute; de deux fil, en plus du fil dont le potentiel sert de r&eacute;f&eacute;rence&nbsp;: un fil qui transmet les donn&eacute;es, qui est souvent nomm&eacute; &laquo;&nbsp;SDA&nbsp;&raquo;, pour &laquo;&nbsp;<i>Serial DAta</i>&nbsp;&raquo;, et un fil qui transmet le signal d'horloge permettant de synchroniser la r&eacute;ception des donn&eacute;es, qui est g&eacute;n&eacute;ralement nomm&eacute; &laquo;&nbsp;SCL&nbsp;&raquo;, pour &laquo;&nbsp;<i>Serial CLock</i>&nbsp;&raquo;.</p>
+<p>Vis-&agrave;-vis de la liaison I2C, un expanseur de port I2C est un composant de type&nbsp;&laquo;&nbsp;Esclave&nbsp;&raquo;, ( &laquo;&nbsp;<i>Slave</i>&nbsp;&raquo; ), car il re&ccedil;oit et effectue les ordres que lui envoie un microcontr&ocirc;leur ou un FPGA, qui joue, quant &agrave; lui, le r&ocirc;le de &laquo; Ma&icirc;tre&nbsp;&raquo; ( &laquo;&nbsp;<i>Master</i>&nbsp;&raquo; ).</p>
+<p>Cela veut donc dire qu'un expanseur de port I2C doit avoir une adresse
+sur le bus I2C o&ugrave; il est mis en &oelig;uvre.<br />
+Cela permet de mettre plusieurs expanseurs de port I2C sur le
+m&ecirc;me bus, sans que tous effectuent le m&ecirc;me ordre.</p>
+<p>Les adresses de ces composants sont cod&eacute;es sur huit bits.<br />
+Le bit de poids faible sert &agrave; d&eacute;finir
+l'op&eacute;ration que le ma&icirc;tre souhaite effectuer.<br />
+Si le ma&icirc;tre le met &agrave; &laquo;&nbsp;un&nbsp;&raquo;, il s'agira d'une
+op&eacute;ration de lecture de l'&eacute;tat logique d'une
+broche, ou de la lecture du contenu d'un registre de configuration,
+pour certains expanseurs de ports I2C.<br />
+Si le ma&icirc;tre le met &agrave;&nbsp;&laquo;&nbsp;z&eacute;ro&nbsp;&raquo;, il s'agira
+d'une op&eacute;ration d'&eacute;criture, qui visera
+&agrave; changer l'&eacute;tat logique d'une broche,
+ou&nbsp;du contenu d'un registre
+de configuration.</p>
+<p>La plupart des expanseurs de ports I2C sont pourvus d'une broche qui
+change d'&eacute;tat logique lorsqu'au moins une entr&eacute;e, parmi
+celles que comporte le circuit, a chang&eacute; d'&eacute;tat depuis la
+derni&egrave;re fois que celui-ci a &eacute;t&eacute; consult&eacute;
+par le ma&icirc;tre.<br />
+Cela permet, si cette broche est reli&eacute;e &agrave; une
+entr&eacute;e du ma&icirc;tre, d'indiquer &agrave; ce dernier que
+quelque chose s'est pass&eacute; du c&ocirc;t&eacute; d'un expanseur de
+port I2C, par exemple que quelqu'un a appuy&eacute; sur un
+bouton-poussoir.<br />
+Cette broche porte souvent le nom &laquo;&nbsp;INT&nbsp;&raquo;, car, si elle est
+reli&eacute;e &agrave; une entr&eacute;e d'un microcontr&ocirc;leur
+ma&icirc;tre correctement configur&eacute;, son changement
+d'&eacute;tat provoquera une interruption dans le programme de ce
+microcontr&ocirc;leur.<br />
+Ainsi, il saura qu'il devra interroger l'expanseur de port I2C qui aura
+envoy&eacute; un signal sur sa broche &laquo;&nbsp;INT&nbsp;&raquo;.<br />
+Tant qu'aucune entr&eacute;e de l'expanseur de port I2C n'aura
+chang&eacute; d'&eacute;tat, le programme principal du
+microcontr&ocirc;leur ma&icirc;tre pourra continuer &agrave;
+s'ex&eacute;cuter, sans qu'il n'ait besoin d'interroger en permanence
+l'expanseur pour voir s'il s'est pass&eacute; quelque chose au niveau
+de ses entr&eacute;es.</p>
+<div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="les_expanseurs_de_port_i2c_page_1.php%3Fselection=2.html#Haut_de_page">Je veux remonter !</a>&nbsp;|&nbsp;<a href="les_expanseurs_de_port_i2c_page_1.php%3Fselection=2.html#Liste_de_depart">Liste</a>
+</div>
+<a id="Endroit_3-0-0"></a>
+<h2>3) Quelques essais d'expanseurs de port I2C</h2>
+<p>Il existe de nombreuses r&eacute;f&eacute;rences de circuits int&eacute;gr&eacute;s qui assurent la fonction d'expanseur de port I2C.<br />
+Le tableau comparatif suivant permet de r&eacute;sumer les caract&eacute;ristiques de quelques-uns de ces circuits int&eacute;gr&eacute;s.</p>
+<table border="1" cellpadding="2" cellspacing="2">
+<tbody>
+<tr>
+<th>
+</td>
+<th>PCF8574</th>
+<th>PCF8574A</th>
+<th>PCF8575</th>
+<th>MCP23016</th>
+<th>MCP23017</th>
+</tr>
+<tr>
+<td>Nombre de broches</td>
+<td>16</td>
+<td>16</td>
+<td>24</td>
+<td>28</td>
+<td>28</td>
+</tr>
+<tr>
+<td>Nombre d'entr&eacute;es-sorties disponibles</td>
+<td>8</td>
+<td>8</td>
+<td>16</td>
+<td>16</td>
+<td>16</td>
+</tr>
+<tr>
+<td>Fr&eacute;quence maximale de fonctionnement</td>
+<td>100 kHz</td>
+<td>100 kHz</td>
+<td>400 kHz</td>
+<td>400 kHz</td>
+<td>1,7 MHz</td>
+</tr>
+<tr>
+<td>Composants externes n&eacute;cessaires</td>
+<td>Aucun</td>
+<td>Aucun</td>
+<td>Aucun</td>
+<td>
+<ul>
+<li>1 r&eacute;sistance</li><br />
+<li>1 condensateur</li>
+</ul>
+</td>
+<td>Aucun</td>
+</tr>
+<tr>
+<td>Nombre de sorties d'interruption</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Gamme d'adresses possibles sur le bus I2C</td>
+<td>0x40 - 0x4F</td>
+<td>0x70 - 0x7F</td>
+<td>0x40 - 0x4F</td>
+<td>0x40 - 0x4F</td>
+<td>0x40 - 0x4F</td>
+</tr>
+<tr>
+<td>Nombre d'adresses possibles sur le bus I2C</td>
+<td>8</td>
+<td>8</td>
+<td>8</td>
+<td>8</td>
+<td>8</td>
+</tr>
+</tbody>
+</table>
+<div class="valorisations">
+<div class="attention">
+<div class="attention-gauche">
+<img style="width: 32px; height: 32px;" alt="avertissement-icone-9768-32" src="../../../images/avertissement-icone-9768-32.png">
+</div>
+<div class="attention-droite">
+<p>Attention ! A la lecture de ce tableau, on constate qu'il n'est pas possible de faire cohabiter sur le m&ecirc;me bus I2C, par exemple,<br />
+un circuit int&eacute;gr&eacute; &laquo;&nbsp;PCF8574&nbsp;&raquo; et un circuit int&eacute;gr&eacute; &laquo;&nbsp;MCP23016&nbsp;&raquo;,<br />
+si ces deux circuits n'ont pas une adresse diff&eacute;rente.</p></div>
+</div>
+</div>
+<ul>
+<li><img alt="LIEN_EXTERNE" src="../../../images/LIEN_EXTERNE.png" />&nbsp;<a href="http://www.nxp.com/documents/data_sheet/PCF8574.pdf" title="Ouvrir le lien &laquo;&nbsp;http://www.nxp.com/documents/data_sheet/PCF8574.pdf&nbsp;&raquo; dans une nouvelle fen&ecirc;tre, ou dans un nouvel onglet" target="_blank">La <i>datasheet</i> du PCF8574 et du PCF8574A</a>,</li>
+<li><img alt="LIEN_EXTERNE" src="../../../images/LIEN_EXTERNE.png" />&nbsp;<a href="http://www.nxp.com/documents/data_sheet/PCF8575.pdf" title="Ouvrir le lien &laquo;&nbsp;http://www.nxp.com/documents/data_sheet/PCF8575.pdf&nbsp;&raquo; dans une nouvelle fen&ecirc;tre, ou dans un nouvel onglet" target="_blank">La <i>datasheet</i> du PCF8575</a>,</li>
+<li><img alt="LIEN_EXTERNE" src="../../../images/LIEN_EXTERNE.png" />&nbsp;<a href="http://ww1.microchip.com/downloads/en/DeviceDoc/20090C.pdf" title="Ouvrir le lien &laquo;&nbsp;http://ww1.microchip.com/downloads/en/DeviceDoc/20090C.pdf&nbsp;&raquo; dans une nouvelle fen&ecirc;tre, ou dans un nouvel onglet" target="_blank">La <i>datasheet</i> du MCP23016</a>,</li>
+<li><img alt="LIEN_EXTERNE" src="../../../images/LIEN_EXTERNE.png" />&nbsp;<a href="http://ww1.microchip.com/downloads/en/DeviceDoc/21952b.pdf" title="Ouvrir le lien &laquo;&nbsp;http://ww1.microchip.com/downloads/en/DeviceDoc/21952b.pdf&nbsp;&raquo; dans une nouvelle fen&ecirc;tre, ou dans un nouvel onglet" target="_blank">La <i>datasheet</i> du MCP23017 et du MCP23S17</a>.</li>
+</ul>
+<p>Les exemples de codes sources pr&eacute;sent&eacute;s ci-apr&egrave;s mettent en &oelig;uvre un microcontr&ocirc;leur PIC18F4550 et un microcontr&ocirc;leur STM32F100RB.</p>
+<ul>
+<li><img alt="LIEN_EXTERNE" src="../../../images/LIEN_EXTERNE.png" />&nbsp;<a href="http://ww1.microchip.com/downloads/en/DeviceDoc/39632e.pdf" title="Ouvrir le lien &laquo;&nbsp;http://ww1.microchip.com/downloads/en/DeviceDoc/39632e.pdf&nbsp;&raquo; dans une nouvelle fen&ecirc;tre, ou dans un nouvel onglet" target="_blank">La <i>datasheet</i> du PIC18F2455, du PIC18F2550, du PIC18F4455 et du PIC18F4550</a>.</li>
+</ul>
+<div class="codes-sources-c">
+<div class="codes-sources-c-haut">
+<p>Code source&nbsp;: Exemple 1 - Configurer la connexion du bus I2C d'un PIC18F4550 en tant que &laquo;&nbsp;Ma&icirc;tre&nbsp;&raquo;</p>
+</div>
+<div class="codes-sources-c-bas">
+<pre>
+<span style="color: rgb(0, 0, 0);">
+TRISBbits.RB0 = <span style="color:#FF0000;">1</span>;   <em><span style="color:#009900;">/* Configuration de la broche &laquo;&nbsp;RB0/AN12/INT0/FLT0/SDI/SDA&nbsp;&raquo; du PIC18F4550 en entr&eacute;e num&eacute;rique */</span></em>
+TRISBbits.RB1 = <span style="color:#FF0000;">1</span>;   <em><span style="color:#009900;">/* Configuration de la broche &laquo;&nbsp;RB1/AN10/INT1/SCK/SCL&nbsp;&raquo; du PIC18F4550 en entr&eacute;e num&eacute;rique */</span></em>
+
+OpenI2C(MASTER, SLEW_OFF);   <em><span style="color:#009900;">/* Ouverture de la connexion I2C, en tant que ma&icirc;tre,
+					sans le contr&ocirc;le du temps de mont&eacute;e ( &laquo;&nbsp;Slew Rate&nbsp;&raquo; ),
+					adapt&eacute; au mode &laquo;&nbsp;Standard Speed&nbsp;&raquo; (100 kHz et 1 MHz) */</span></em>
+
+SSPADD = <span style="color:#FF0000;">0x28</span>;  <em><span style="color:#009900;">/* R&eacute;glage de la fr&eacute;quence du bus I2C &agrave; 100 kHz, si l&#039;horloge du PIC18F4550 est r&eacute;gl&eacute;e &agrave; 4 MHz */</span></em>
+
+</pre>
+</pre>
+</div>
+</div>
+<a id="Endroit_3-1-0"></a>
+<h3>3-1) PCF8574 et PCF8574A</h3>
+<p>PCF8574.</p>
+<p>Exemple avec un microcontr&ocirc;leur &laquo;&nbsp;PIC18F4550&nbsp;&raquo;.</p>
+<div class="codes-sources-c">
+<div class="codes-sources-c-haut">
+<p>Code source&nbsp;: Exemple 2 - Envoyer une donn&eacute;e de huit bits à un &laquo;&nbsp;PCF8574&nbsp;&raquo;, ou &agrave; un &laquo;&nbsp;PCF8574A&nbsp;&raquo;</p>
+</div>
+<div class="codes-sources-c-bas">
+<pre>
+<span style="color: rgb(0, 0, 0);">
+<strong><span style="color:#0000FF;">int</span></strong> Ecrire(<strong><span style="color:#0000FF;">unsigned</span></strong> <strong><span style="color:#0000FF;">char</span></strong> adresse, <strong><span style="color:#0000FF;">unsigned</span></strong> <strong><span style="color:#0000FF;">char</span></strong> donnee) 
+{
+	<strong><span style="color:#0000FF;">int</span></strong> information = -<span style="color:#FF0000;">1</span>;
+
+	IdleI2C();    <em><span style="color:#009900;">/* Attente de la disponibilit&eacute; du bus I2C */</span></em>
+	StartI2C();    <em><span style="color:#009900;">/* Envoi de message de d&eacute;but de la communication I2C */</span></em>
+	IdleI2C();    <em><span style="color:#009900;">/* Attente de la disponibilit&eacute; du bus I2C */</span></em>
+
+	putcI2C(adresse); <em><span style="color:#009900;">/* Envoi de l&#039;adresse de l&#039;esclave */</span></em>
+	IdleI2C();   <em><span style="color:#009900;">/* Attente de la disponibilit&eacute; du bus I2C */</span></em>
+
+	<strong><span style="color:#0000FF;">if</span></strong>(SSPCON2bits.ACKSTAT) <em><span style="color:#009900;">/* Si AckStat == 1, on n&#039;a pas re&ccedil;u d&#039;acquittement de la part de l&#039;esclave */</span></em>
+	{
+		StopI2C();  <em><span style="color:#009900;">/* Envoi de message de fin de la communication I2C */</span></em>
+
+		<strong><span style="color:#0000FF;">return</span></strong> information;   <em><span style="color:#009900;">/* On renvoie -1, ce qui indique qu&#039;il y a eu un probl&egrave;me */</span></em>
+	}
+
+	putcI2C(donnee);   <em><span style="color:#009900;">/* On envoie la valeur */</span></em>
+	IdleI2C();   <em><span style="color:#009900;">/* Attente de la disponibilit&eacute; du bus I2C */</span></em>
+
+	<strong><span style="color:#0000FF;">if</span></strong>(!(SSPCON2bits.ACKSTAT)) <em><span style="color:#009900;">/* Si on re&ccedil;oit un acquitement de la part de l&#039;esclave,
+	on retournera 1 &agrave; la fin de la fonction */</span></em>
+	{
+		information = <span style="color:#FF0000;">1</span>;
+	}
+
+	StopI2C();    <em><span style="color:#009900;">/* Envoi de message de fin de la communication I2C */</span></em>
+
+	<strong><span style="color:#0000FF;">return</span></strong> information;
+}
+
+</span>
+</pre>
+</div>
+</div>
+<div class="codes-sources-c">
+<div class="codes-sources-c-haut">
+<p>Code source&nbsp;: Exemple 3 - Lire une donn&eacute;e de huit bits &agrave; un &laquo;&nbsp;PCF8574&nbsp;&raquo;, ou &agrave; un &laquo;&nbsp;PCF8574A&nbsp;&raquo;</p>
+</div>
+<div class="codes-sources-c-bas">
+<pre>
+<span style="color: rgb(0, 0, 0);">
+<strong><span style="color:#0000FF;">int</span></strong> Lire(<strong><span style="color:#0000FF;">unsigned</span></strong> <strong><span style="color:#0000FF;">char</span></strong> adresse)
+{
+	<strong><span style="color:#0000FF;">int</span></strong> valeur = -<span style="color:#FF0000;">1</span>;
+
+	IdleI2C();    <em><span style="color:#009900;">/* Attente de la disponibilit&eacute; du bus I2C */</span></em>
+	StartI2C();    <em><span style="color:#009900;">/* Envoi de message de d&eacute;but de la communication I2C */</span></em>
+	IdleI2C();    <em><span style="color:#009900;">/* Attente de la disponibilit&eacute; du bus I2C */</span></em>
+
+	putcI2C(adresse); <em><span style="color:#009900;">/* Envoi de l&#039;adresse de l&#039;esclave */</span></em>
+	IdleI2C();   <em><span style="color:#009900;">/* Attente de la disponibilit&eacute; du bus I2C */</span></em>
+
+	<strong><span style="color:#0000FF;">if</span></strong> (SSPCON2bits.ACKSTAT) <em><span style="color:#009900;">/* Si AckStat == 1, on n&#039;a pas re&ccedil;u d&#039;acquittement de la part de l&#039;esclave */</span></em>
+	{
+		StopI2C();  <em><span style="color:#009900;">/* Envoi de message de fin de la communication I2C */</span></em>
+
+		<strong><span style="color:#0000FF;">return</span></strong> valeur;   <em><span style="color:#009900;">/* On renvoie -1, ce qui indique qu&#039;il y a eu un probl&egrave;me */</span></em>
+	}
+
+	valeur = ReadI2C(); <em><span style="color:#009900;">/* Lecture de la valeur qui est re&ccedil;ue sur le bus I2C */</span></em>
+
+	NotAckI2C();   <em><span style="color:#009900;">/* On n&#039;envoie pas d&#039;acquittement car on lit qu&#039;un seul caract&egrave;re */</span></em>
+
+	IdleI2C();   <em><span style="color:#009900;">/* Attente de la disponibilit&eacute; du bus I2C */</span></em>
+
+	StopI2C();   <em><span style="color:#009900;">/* Envoi de message de fin de la communication I2C */</span></em>
+
+	<strong><span style="color:#0000FF;">return</span></strong> valeur;   <em><span style="color:#009900;">/* On renvoie la valeur lue */</span></em>
+}
+
+</span>
+</pre>
+</div>
+</div>
+<p>Exemple mettant en &oelig;uvre deux cartes &agrave; expanseurs PCF8574 et une carte de d&eacute;veloppement de type &laquo;&nbsp;STM32VLDISCOVERY&nbsp;&raquo;, &eacute;quip&eacute; d'un microcontrôleur &laquo;&nbsp;STM32F100RB&nbsp;&raquo;.<br />
+Les connexions entre les expanseurs et la carte de d&eacute;veloppement sont indiqu&eacute;es dans le tableau ci-après.<br />
+Les broches &laquo;&nbsp;PB6&nbsp;&raquo; et &laquo;&nbsp;PB7&nbsp;&raquo; sont reli&eacute;es au + 5 volts par des r&eacute;sistances de tirage de 1 kilo Ohm.</p>
+<table border="1" cellpadding="2" cellspacing="2">
+<tbody>
+<tr>
+<th>Carte de d&eacute;veloppement &laquo;&nbsp;STM32VLDISCOVERY&nbsp;&raquo;</th>
+<td>+5V</td>
+<td>0V</td>
+<td>PB6</td>
+<td>PB7</td>
+</tr>
+<tr>
+<th>Circuits int&eacute;gr&eacute;s PCF8574</th>
+<td>+5V</td>
+<td>0V</td>
+<td>SCL</td>
+<td>SDA</td>
+</tr>
+</tbody>
+</table>
+<figure>
+<table border="0" cellpadding="2" cellspacing="1">
+<tbody>
+<tr>
+<td>
+<a href="http://u7903.direct.atpic.com/36978/0/2435131/0.jpg">
+<img style="width: 300px; height: 225px;" alt="Expanseur_I2C_modele_PCF8574_et_STM32VLDISCOVERY_1" src="http://u7903.direct.atpic.com/36978/0/2435131/600.jpg">
+</a>
+</td>
+<td>
+<a href="http://u7903.direct.atpic.com/36978/0/2435132/0.jpg">
+<img style="width: 300px; height: 225px;" alt="Expanseur_I2C_modele_PCF8574_et_STM32VLDISCOVERY_2" src="http://u7903.direct.atpic.com/36978/0/2435132/600.jpg">
+</a>
+</td>
+<td>
+<a href="http://u7903.direct.atpic.com/36978/0/2435133/0.jpg">
+<img style="width: 300px; height: 225px;" alt="Expanseur_I2C_modele_PCF8574_et_STM32VLDISCOVERY_3" src="http://u7903.direct.atpic.com/36978/0/2435133/600.jpg">
+</a>
+</td>
+</tr>
+</tbody>
+</table>
+<figcaption>Essais avec deux cartes &agrave; expanseurs &laquo;&nbsp;PCF8574&nbsp;&raquo; et une carte de d&eacute;veloppement de type &laquo;&nbsp;STM32VLDISCOVERY&nbsp;&raquo;</figcaption>
+</figure>
+<div class="valorisations">
+<div class="programmes">
+<div class="programmes_gauche">
+<img style="width: 32px; height: 32px;" alt="fleche-bas-telecharger-icone-9594-32" src="../../../images/fleche-bas-telecharger-icone-9594-32.png">
+</div>
+<div class="programmes_droite">
+<p>Communiquer avec un PCF8574&nbsp;: Fichier C<br />
+Cible&nbsp;: STM32F100RB<br />Compilateur&nbsp;: Keil &micro;Vision4<br />
+<a href="../../../elements/allures/valorisations/programmes.php%3Fprogramme=les_expanseurs_de_port_i2c_page_1+1+1">T&eacute;l&eacute;charger le fichier<span>Effectuez un clic droit, puis s&eacute;lectionnez l'option &laquo;&nbsp;Enregistrer la cible du lien sous...&nbsp;&raquo;, pour t&eacute;l&eacute;charger le fichier</span></a> (2.37 Ko)</p></div>
+</div>
+</div>
+<a id="Endroit_3-2-0"></a>
+<h3>3-2) PCF8575</h3>
+<p>PCF8575.</p>
+<a id="Endroit_3-3-0"></a>
+<h3>3-3) MCP23016</h3>
+<p>MCP23016.</p>
+<p>Exemple avec un microcontr&ocirc;leur &laquo;&nbsp;PIC18F4550&nbsp;&raquo;.</p>
+<div class="codes-sources-c">
+<div class="codes-sources-c-haut">
+<p>Code source&nbsp;: Exemple 4 - Ecrire dans un registre d'un &laquo;&nbsp;MCP23016&nbsp;&raquo;, ou d'un &laquo;&nbsp;MCP23017&nbsp;&raquo;</p>
+</div>
+<div class="codes-sources-c-bas">
+<pre>
+<span style="color: rgb(0, 0, 0);">
+<strong><span style="color:#0000FF;">int</span></strong> Ecrire16Nouvelle(<strong><span style="color:#0000FF;">unsigned</span></strong> <strong><span style="color:#0000FF;">char</span></strong> adresse, <strong><span style="color:#0000FF;">unsigned</span></strong> <strong><span style="color:#0000FF;">char</span></strong> commande, <strong><span style="color:#0000FF;">unsigned</span></strong> <strong><span style="color:#0000FF;">char</span></strong> donnee1, <strong><span style="color:#0000FF;">unsigned</span></strong> <strong><span style="color:#0000FF;">char</span></strong> donnee2) 
+{
+	<strong><span style="color:#0000FF;">int</span></strong> information = -<span style="color:#FF0000;">1</span>;
+
+	IdleI2C();    <em><span style="color:#009900;">/* Attente de la disponibilit&eacute; du bus I2C */</span></em>
+	StartI2C();    <em><span style="color:#009900;">/* Envoi du message de d&eacute;but de la communication I2C */</span></em>
+	IdleI2C();    <em><span style="color:#009900;">/* Attente de la disponibilit&eacute; du bus I2C */</span></em>
+
+	putcI2C(adresse); <em><span style="color:#009900;">/* Envoi de l&#039;adresse de l&#039;esclave */</span></em>
+	IdleI2C();   <em><span style="color:#009900;">/* Attente de la disponibilit&eacute; du bus I2C */</span></em>
+
+	<strong><span style="color:#0000FF;">if</span></strong>(SSPCON2bits.ACKSTAT) <em><span style="color:#009900;">/* Si AckStat == 1, on n&#039;a pas re&ccedil;u d&#039;acquittement de la part de l&#039;esclave */</span></em>
+	{
+		StopI2C();  <em><span style="color:#009900;">/* Envoi du message de fin de la communication I2C */</span></em>
+
+		<strong><span style="color:#0000FF;">return</span></strong> information;   <em><span style="color:#009900;">/* On renvoie -1, ce qui indique qu&#039;il y a eu un probl&egrave;me */</span></em>
+	}
+
+	putcI2C(commande);   <em><span style="color:#009900;">/* On envoie la valeur de &laquo;&nbsp;commande&nbsp;&raquo; */</span></em>
+	IdleI2C();   <em><span style="color:#009900;">/* Attente de la disponibilit&eacute; du bus I2C */</span></em>
+
+	<strong><span style="color:#0000FF;">if</span></strong>(SSPCON2bits.ACKSTAT) <em><span style="color:#009900;">/* Si AckStat == 1, on n&#039;a pas re&ccedil;u d&#039;acquittement de la part de l&#039;esclave */</span></em>
+	{
+		StopI2C();  <em><span style="color:#009900;">/* Envoi du message de fin de la communication I2C */</span></em>
+
+		<strong><span style="color:#0000FF;">return</span></strong> information;   <em><span style="color:#009900;">/* On renvoie -1, ce qui indique qu&#039;il y a eu un probl&egrave;me */</span></em>
+	}
+
+	putcI2C(donnee1);   <em><span style="color:#009900;">/* On envoie la valeur de &laquo;&nbsp;donnee1&nbsp;&raquo; */</span></em>
+	IdleI2C();   <em><span style="color:#009900;">/* Attente de la disponibilit&eacute; du bus I2C */</span></em>
+
+	<strong><span style="color:#0000FF;">if</span></strong>(SSPCON2bits.ACKSTAT) <em><span style="color:#009900;">/* Si AckStat == 1, on n&#039;a pas re&ccedil;u d&#039;acquittement de la part de l&#039;esclave */</span></em>
+	{
+		StopI2C();  <em><span style="color:#009900;">/* Envoi du message de fin de la communication I2C */</span></em>
+
+		<strong><span style="color:#0000FF;">return</span></strong> information;   <em><span style="color:#009900;">/* On renvoie -1, ce qui indique qu&#039;il y a eu un probl&egrave;me */</span></em>
+	}
+
+	putcI2C(donnee2);   <em><span style="color:#009900;">/* On envoie la valeur de &laquo;&nbsp;donnee2&nbsp;&raquo; */</span></em>
+	IdleI2C();   <em><span style="color:#009900;">/* Attente de la disponibilit&eacute; du bus I2C */</span></em>
+
+	<strong><span style="color:#0000FF;">if</span></strong>(!(SSPCON2bits.ACKSTAT)) <em><span style="color:#009900;">/* Si on re&ccedil;oit un acquitement
+	de la part de l&#039;esclave,
+	on retournera 1 &agrave; la fin de la fonction */</span></em>
+	{
+		information = <span style="color:#FF0000;">1</span>;
+	}
+
+	StopI2C();  <em><span style="color:#009900;">/* Envoi du message de fin de la communication I2C */</span></em>
+
+	<strong><span style="color:#0000FF;">return</span></strong> information;
+}
+
+</span>
+</pre>
+</div>
+</div>
+<div class="codes-sources-c">
+<div class="codes-sources-c-haut">
+<p>Code source&nbsp;: Exemple 5 - Lire un registre d'un &laquo;&nbsp;MCP23016&nbsp;&raquo;, ou d'un &laquo;&nbsp;MCP23017&nbsp;&raquo;</p>
+</div>
+<div class="codes-sources-c-bas">
+<pre>
+<span style="color: rgb(0, 0, 0);">
+<strong><span style="color:#0000FF;">int</span></strong> Lire16Nouvelle(<strong><span style="color:#0000FF;">unsigned</span></strong> <strong><span style="color:#0000FF;">char</span></strong> adresse, <strong><span style="color:#0000FF;">unsigned</span></strong> <strong><span style="color:#0000FF;">char</span></strong> commande, <strong><span style="color:#0000FF;">unsigned</span></strong> <strong><span style="color:#0000FF;">char</span></strong> adresse_de_lecture,
+<strong><span style="color:#0000FF;">unsigned</span></strong> <strong><span style="color:#0000FF;">char</span></strong> * donnee1, <strong><span style="color:#0000FF;">unsigned</span></strong> <strong><span style="color:#0000FF;">char</span></strong> * donnee2)
+{
+	<strong><span style="color:#0000FF;">int</span></strong> information = -<span style="color:#FF0000;">1</span>;
+
+	IdleI2C();    <em><span style="color:#009900;">/* Attente de la disponibilit&eacute; du bus I2C */</span></em>
+	StartI2C();    <em><span style="color:#009900;">/* Envoi du message de d&eacute;but de la communication I2C */</span></em>
+	IdleI2C();    <em><span style="color:#009900;">/* Attente de la disponibilit&eacute; du bus I2C */</span></em>
+
+	putcI2C(adresse); <em><span style="color:#009900;">/* Envoi de l&#039;adresse de l&#039;esclave */</span></em>
+	IdleI2C();   <em><span style="color:#009900;">/* Attente de la disponibilit&eacute; du bus I2C */</span></em>
+
+	<strong><span style="color:#0000FF;">if</span></strong>(SSPCON2bits.ACKSTAT) <em><span style="color:#009900;">/* Si AckStat == 1, on n&#039;a pas re&ccedil;u d&#039;acquittement de la part de l&#039;esclave */</span></em>
+	{
+		StopI2C();  <em><span style="color:#009900;">/* Envoi du message de fin de la communication I2C */</span></em>
+
+		<strong><span style="color:#0000FF;">return</span></strong> information;   <em><span style="color:#009900;">/* On renvoie -1, ce qui indique qu&#039;il y a eu un probl&egrave;me */</span></em>
+	}
+
+	putcI2C(commande);   <em><span style="color:#009900;">/* On envoie la valeur de &laquo;&nbsp;commande&nbsp;&raquo; */</span></em>
+	IdleI2C();   <em><span style="color:#009900;">/* Attente de la disponibilit&eacute; du bus I2C */</span></em>
+
+	<strong><span style="color:#0000FF;">if</span></strong>(SSPCON2bits.ACKSTAT) <em><span style="color:#009900;">/* Si AckStat == 1, on n&#039;a pas re&ccedil;u d&#039;acquittement de la part de l&#039;esclave */</span></em>
+	{
+		StopI2C();  <em><span style="color:#009900;">/* Envoi du message de fin de la communication I2C */</span></em>
+
+		<strong><span style="color:#0000FF;">return</span></strong> information;   <em><span style="color:#009900;">/* On renvoie -1, ce qui indique qu&#039;il y a eu un probl&egrave;me */</span></em>
+	}
+
+	StopI2C();  <em><span style="color:#009900;">/* Envoi du message de fin de la communication I2C&nbsp;: l&#039;expanseur de port I2C &laquo;&nbsp;MCP23016&nbsp;&raquo; 
+											sait d&eacute;sormais que la prochaine op&eacute;ration de lecture
+											concernera le registre dont la valeur vaut &laquo;&nbsp;commande&nbsp;&raquo; */</span></em>
+
+	IdleI2C();    <em><span style="color:#009900;">/* Attente de la disponibilit&eacute; du bus I2C */</span></em>
+	StartI2C();    <em><span style="color:#009900;">/* Envoi du message de d&eacute;but de la communication I2C */</span></em>
+	IdleI2C();    <em><span style="color:#009900;">/* Attente de la disponibilit&eacute; du bus I2C */</span></em>
+
+	putcI2C(adresse_de_lecture); <em><span style="color:#009900;">/* Envoi de l&#039;adresse de lecture de l&#039;esclave */</span></em>
+	IdleI2C();    <em><span style="color:#009900;">/* Attente de la disponibilit&eacute; du bus I2C */</span></em>
+
+	<strong><span style="color:#0000FF;">if</span></strong>(SSPCON2bits.ACKSTAT) <em><span style="color:#009900;">/* Si AckStat == 1, on n&#039;a pas re&ccedil;u d&#039;acquittement de la part de l&#039;esclave */</span></em>
+	{
+		StopI2C();  <em><span style="color:#009900;">/* Envoi du message de fin de la communication I2C */</span></em>
+
+		<strong><span style="color:#0000FF;">return</span></strong> information;   <em><span style="color:#009900;">/* On renvoie -1, ce qui indique qu&#039;il y a eu un probl&egrave;me */</span></em>
+	}
+
+	*donnee1 = ReadI2C(); <em><span style="color:#009900;">/* Lecture de la valeur de &laquo;&nbsp;donnee1&nbsp;&raquo;, qui est re&ccedil;ue sur le bus I2C */</span></em>
+	AckI2C();   <em><span style="color:#009900;">/* On renvoie un acquittement,
+									conform&eacute;ment aux informations donn&eacute;es par la datasheet
+									de l&#039;expanseur de port I2C &laquo;&nbsp;MCP23016&nbsp;&raquo; */</span></em>
+	IdleI2C();    <em><span style="color:#009900;">/* Attente de la disponibilit&eacute; du bus I2C */</span></em>
+
+	*donnee2 = ReadI2C(); <em><span style="color:#009900;">/* Lecture de la valeur de &laquo;&nbsp;donnee2&nbsp;&raquo;, qui est re&ccedil;ue sur le bus I2C */</span></em>
+	NotAckI2C();   <em><span style="color:#009900;">/* On ne renvoie pas d&#039;acquittement,
+									conform&eacute;ment aux informations donn&eacute;es par la datasheet
+									de l&#039;expanseur de port I2C &laquo;&nbsp;MCP23016&nbsp;&raquo; */</span></em>
+	IdleI2C();    <em><span style="color:#009900;">/* Attente de la disponibilit&eacute; du bus I2C */</span></em>
+
+	StopI2C();  <em><span style="color:#009900;">/* Envoi du message de fin de la communication I2C */</span></em>
+
+	information = <span style="color:#FF0000;">1</span>;
+
+	<strong><span style="color:#0000FF;">return</span></strong> information;   <em><span style="color:#009900;">/* On renvoie 1, ce qui indique que tout s&#039;est bien pass&eacute; */</span></em>
+}
+
+</span>
+</pre>
+</div>
+</div>
+<a id="Endroit_3-4-0"></a>
+<h3>3-4) MCP23017</h3>
+<p>MCP2317.</p>
+<div>
+<div class="menu_article">
+<ul class="menu_article_principal">
+<li><a href="les_expanseurs_de_port_i2c_page_1.php.html">Les expanseurs de port I2C</a></li>
+</ul>
+<ul class="menu_article_secondaire">
+<li><a href="les_expanseurs_de_port_i2c_page_1.php%3Fselection=2.html#Endroit_1-0-0">1) Int&eacute;r&ecirc;t et pr&eacute;sentation</a></li>
+<li><a href="les_expanseurs_de_port_i2c_page_1.php%3Fselection=2.html#Endroit_2-0-0">2) Fonctionnement d'un expanseur de port I2C</a></li>
+<li><a href="les_expanseurs_de_port_i2c_page_1.php%3Fselection=2.html#Endroit_3-0-0">3) Quelques essais d'expanseurs de port I2C</a></li>
+<li>
+<ul>
+<li><a href="les_expanseurs_de_port_i2c_page_1.php%3Fselection=2.html#Endroit_3-1-0">3-1) PCF8574 et PCF8574A</a></li>
+<li><a href="les_expanseurs_de_port_i2c_page_1.php%3Fselection=2.html#Endroit_3-2-0">3-2) PCF8575</a></li>
+<li><a href="les_expanseurs_de_port_i2c_page_1.php%3Fselection=2.html#Endroit_3-3-0">3-3) MCP23016</a></li>
+<li><a href="les_expanseurs_de_port_i2c_page_1.php%3Fselection=2.html#Endroit_3-4-0">3-4) MCP23017</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="commentaires"><a id="Endroits_des_commentaires"></a><p class="sous-titre_commentaires">Commentaires (0)</p><p class="sous-titre_ajouts">Ajouter un commentaire</p>
+<form id="contact" method="post" action="http://atrylec.com/elements/allures/commentaires/verification.php">
+<fieldset>
+<legend>
+Votre pseudo&nbsp;: 
+</legend>
+<p>
+<label for="pseudo">
+Pseudo&nbsp;: 
+</label>
+<input type="text" id="pseudo" name="pseudo" tabindex="1" required="required">
+</p>
+</fieldset>
+<fieldset>
+<legend>
+Votre commentaire&nbsp;: 
+</legend>
+<p>
+<label for="commentaire">
+Commentaire&nbsp;: 
+</label>
+<textarea id="commentaire" name="commentaire" tabindex="2" cols="50" rows="2" required="required">
+</textarea>
+</p>
+</fieldset>
+<div class="bouton_validation_commentaire">
+<input type="submit" name="Poster" value="Poster" />
+</div>
+</form>
+</div><div>
+<span style="font-size: 42px; color: rgb(209, 1, 38);"><b>&uarr;</b></span> <a href="les_expanseurs_de_port_i2c_page_1.php%3Fselection=2.html#Haut_de_page">Je veux remonter !</a>
+</div>
+</section>
+<footer>
+<div class="liens">
+<ul>
+<li><a href="../../contact.php.html">ContaCT</a></li>
+</ul>
+</div>
+<div id="choix_style">
+<div class="presentation">Ravaler la fa&ccedil;ade&nbsp;:</div>
+<a href="les_expanseurs_de_port_i2c_page_1.php%3Fselection=1.html" title="Style 1"><div class="choix choix_bleu">&nbsp;</div></a><div class="choix choix_rouge_choisi">&nbsp;</div><a href="les_expanseurs_de_port_i2c_page_1.php%3Fselection=3.html" title="Style 3"><div class="choix choix_orange">&nbsp;</div></a></div>
+<div class="remarques">
+<p>Il ne faut pas dire&nbsp;: &laquo;&nbsp;Des jantes qui sont capables de traiter des op&eacute;rations
+&nbsp;&raquo;, mais&nbsp;: &laquo;&nbsp;Des jantes ALU
+&nbsp;&raquo;.</p>
+</div>
+<div class="visites">
+<img style="width: 15px; height: 15px;" alt="6_30" src="../../../images/6_30.png">   <img style="width: 15px; height: 15px;" alt="5_30" src="../../../images/5_30.png">   <img style="width: 15px; height: 15px;" alt="0_30" src="../../../images/0_30.png">   <img style="width: 15px; height: 15px;" alt="9_30" src="../../../images/9_30.png">   <img style="width: 15px; height: 15px;" alt="9_30" src="../../../images/9_30.png">   </div>
+</footer>
+</div>
+</body>
+</html>
